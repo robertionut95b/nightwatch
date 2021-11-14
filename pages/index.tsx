@@ -1,50 +1,61 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
+import Layout, { siteTitle } from '../components/layout/layout'
 import Link from 'next/link'
-import DateComponent from '../components/date'
+import { GetServerSideProps } from 'next'
+import apolloClient from '../lib/apollo/apolloClient';
+import MovieCard from '../components/items/MovieCard';
+import { AllMoviesDocument, Movie, AllMoviesQuery, AllMoviesQueryVariables, AllSeriesDocument, AllSeriesQuery, AllSeriesQueryVariables, Series } from '../generated/graphql';
+import SeriesCard from '../components/items/SeriesCard';
 
-const sample = [{
-  id: 1,
-  date: new Date().toISOString(),
-  title: "new Movie"
-}]
+export default function Home({ movies, series }: { movies: Movie[], series: Series[] }) {
 
-export default function Home({ latestMovies }) {
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {latestMovies.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <DateComponent dateString={date} />
-              </small>
-            </li>
+      <section className="main-wrapper">
+        <h2 className='mb-4 text-lg font-bold'>
+          <Link href="/movies">
+            Movies
+          </Link>
+        </h2>
+        <section className='latest-movies-section flex flex-row gap-x-12 gap-y-8 flex-wrap justify-evenly'>
+          {movies.map(m => (
+            <MovieCard movie={m} key={m.id} />
           ))}
-        </ul>
+        </section>
+        <h2 className='mt-8 mb-4 text-lg font-bold'>
+          <Link href="/series">
+            Series
+          </Link>
+        </h2>
+        <section className="latest-series-section flex flex-row gap-x-12 gap-y-8 flex-wrap justify-evenly">
+          {series.map(s => (
+            <SeriesCard series={s} key={s.id} />
+          ))}
+        </section>
       </section>
     </Layout>
   )
 }
 
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data, error } = await apolloClient.query<AllMoviesQuery, AllMoviesQueryVariables>({ query: AllMoviesDocument });
+  if (error) console.error(error)
+
+  const { data: seriesData, error: seriesError } = await apolloClient.query<AllSeriesQuery, AllSeriesQueryVariables>({
+    query: AllSeriesDocument,
+  });
+  if (seriesError) console.error(error)
+
+  const movies = data?.movies || []
+  const series = seriesData?.series || []
+
   return {
-    props: { latestMovies: sample },
+    props: {
+      movies: movies.slice(0, 12),
+      series: series.slice(0, 12),
+    },
   }
 }

@@ -7,63 +7,110 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 
 model User {
+  id            String    @id @default(cuid())
+  lastName      String?
+  firstName     String?
+  username      String?   @unique
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(USER)
+  accounts      Account[]
+  sessions      Session[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationRequest {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Genre {
   id        Int      @id @default(autoincrement())
-  name      String?
-  email     String?  @unique
+  name      String   @unique
+  movies    Movie[]
+  series    Series[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Genre {
-  id        Int         @id @default(autoincrement())
-  name      String      @unique
-  movies    Screening[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-}
-
 model Director {
-  id        Int         @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
-  movie     Screening[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  movies    Movie[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  series    Series?  @relation(fields: [seriesId], references: [id])
+  seriesId  Int?
 }
 
 model Actor {
-  id        Int         @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
-  movie     Screening[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-}
-
-model Type {
-  id        Int         @id @default(autoincrement())
-  name      String      @unique
-  movie     Screening[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  movies    Movie[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  series    Series?  @relation(fields: [seriesId], references: [id])
+  seriesId  Int?
 }
 
 model Language {
-  id        Int         @id @default(autoincrement())
-  name      String
-  movie     Screening[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  movies    Movie[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  series    Series?  @relation(fields: [seriesId], references: [id])
+  seriesId  Int?
 }
 
-model Screening {
+model Movie {
   id         Int        @id @default(autoincrement())
-  title      String
+  title      String     @unique
   year       Int
-  type       Type       @relation(fields: [typeId], references: [id])
-  typeId     Int
   rating     String
   release    DateTime
   runtime    Int
@@ -76,4 +123,48 @@ model Screening {
   imdbRating Float
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+}
+
+model Series {
+  id           Int        @id @default(autoincrement())
+  title        String     @unique
+  year         Int
+  rating       String
+  release      DateTime
+  runtime      Int
+  genres       Genre[]
+  directors    Director[]
+  actors       Actor[]
+  plot         String
+  languages    Language[]
+  poster       String
+  imdbRating   Float
+  totalSeasons Int
+  seasons      Season[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Season {
+  id         Int       @id @default(autoincrement())
+  title      String
+  index      Int
+  episodes   Int
+  episodeIds Episode[]
+  series     Series    @relation(fields: [seriesId], references: [id])
+  seriesId   Int
+  launchDate DateTime  @default(now())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Episode {
+  id         Int    @id @default(autoincrement())
+  title      String
+  runtime    Int
+  plot       String
+  poster     String
+  imdbRating Float
+  season     Season @relation(fields: [seasonId], references: [id])
+  seasonId   Int
 }

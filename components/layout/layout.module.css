@@ -1,0 +1,24 @@
+.headerWrapper {
+    margin-bottom: 8vh;
+}
+
+.headingImage {
+    background: linear-gradient(to bottom, transparent, var(--color-background)),url('/images/bg-heading1.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin-bottom: 4vh;
+    position: relative;
+}
+
+.heroRegister {
+    padding: 16vh 0;
+}
+
+.heroContent {
+    box-shadow: 0 0 100px -10px #000
+}
+
+.layoutMainContainer {
+    margin-bottom: 12vh;
+}
