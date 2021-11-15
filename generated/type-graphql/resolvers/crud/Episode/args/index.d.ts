@@ -1,0 +1,12 @@
+export { AggregateEpisodeArgs } from "./AggregateEpisodeArgs";
+export { CreateEpisodeArgs } from "./CreateEpisodeArgs";
+export { CreateManyEpisodeArgs } from "./CreateManyEpisodeArgs";
+export { DeleteEpisodeArgs } from "./DeleteEpisodeArgs";
+export { DeleteManyEpisodeArgs } from "./DeleteManyEpisodeArgs";
+export { FindFirstEpisodeArgs } from "./FindFirstEpisodeArgs";
+export { FindManyEpisodeArgs } from "./FindManyEpisodeArgs";
+export { FindUniqueEpisodeArgs } from "./FindUniqueEpisodeArgs";
+export { GroupByEpisodeArgs } from "./GroupByEpisodeArgs";
+export { UpdateEpisodeArgs } from "./UpdateEpisodeArgs";
+export { UpdateManyEpisodeArgs } from "./UpdateManyEpisodeArgs";
+export { UpsertEpisodeArgs } from "./UpsertEpisodeArgs";

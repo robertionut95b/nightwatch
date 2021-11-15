@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const AllMovies = gql`
-query allMovies($genre: [String]) {
-        movies(genre: $genre) {
+query allMovies($genre: String) {
+        movies(where: {genres: {some: {name: {contains: $genre} }}}) {
             id,
             title,
             poster,
@@ -29,18 +29,13 @@ export const AllMoviesDetails = gql`
             imdbRating,
             createdAt,
             updatedAt,
-            related {
-                id,
-                title,
-                poster,
-            }
       }
    }
 `
 
 export const MovieById = gql`
     query movie ($id: Int!) {
-        movie (id: $id) {
+        movie (where: {id: $id}) {
         id,
         title,
         year,
@@ -55,18 +50,13 @@ export const MovieById = gql`
         imdbRating,
         createdAt,
         updatedAt,
-        related {
-          id,
-          title,
-          poster,
-        }
       }
    }
 `
 
 export const searchMovieByTitle = gql`
     query searchMovieByTitle($title: String!) {
-      searchMovieByTitle (title: $title) {
+      movies (where: {title: {contains: $title}}) {
             id,
             title,
             year,
@@ -101,8 +91,8 @@ export const AllSeasons = gql`
 `
 
 export const AllSeries = gql`
-query allSeries($genre: [String]) {
-        series(genre: $genre) {
+query allSeries($genre: String) {
+        series(where: {genres: {some: {name: {contains: $genre} }}}) {
             id,
             title,
             poster,
@@ -129,10 +119,6 @@ export const AllSeriesDetails = gql`
         runtime,
         year,
         totalSeasons,
-        related {
-            id,
-            title
-        },
         seasons {
             id,
             title
@@ -142,8 +128,8 @@ export const AllSeriesDetails = gql`
 `
 
 export const SeriesById = gql`
-    query series ($id: Int!) {
-        serie (id: $id) {
+    query serieById ($id: Int!) {
+        serie (where: {id: $id}) {
           id,
           title,
           year,
@@ -163,18 +149,13 @@ export const SeriesById = gql`
             id,
             title
           }
-          related {
-            id,
-            title,
-            poster,
-          }
         }
    }
 `
 
 export const searchSeriesByTitle = gql`
     query searchSeriesByTitle($title: String!) {
-      searchSeriesByTitle (title: $title) {
+      series (where: {title: {contains: $title}}) {
             id,
             title,
             poster,
@@ -182,4 +163,24 @@ export const searchSeriesByTitle = gql`
             updatedAt
       }
     }
+`
+
+export const relatedSeries = gql`
+    query series ($id: Int!, $genre: [String!]) {
+        series (where: { id: { not: {equals: $id} }, genres: {some: {name: {in: $genre, mode: insensitive}}}}) {
+          id,
+          title,
+          poster,
+    }
+  }
+`
+
+export const relatedMovies = gql`
+    query movies ($id: Int!, $genre: [String!]) {
+        movies (where: {id: {not: {equals: $id} }, genres: {some: {name: {in: $genre , mode: insensitive}}}}) {
+          id,
+          title,
+          poster,
+    }
+  }
 `

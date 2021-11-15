@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SerieSeasonsArgs = exports.SerieLanguagesArgs = exports.SerieGenresArgs = exports.SerieDirectorsArgs = exports.SerieActorsArgs = void 0;
+var SerieActorsArgs_1 = require("./SerieActorsArgs");
+Object.defineProperty(exports, "SerieActorsArgs", { enumerable: true, get: function () { return SerieActorsArgs_1.SerieActorsArgs; } });
+var SerieDirectorsArgs_1 = require("./SerieDirectorsArgs");
+Object.defineProperty(exports, "SerieDirectorsArgs", { enumerable: true, get: function () { return SerieDirectorsArgs_1.SerieDirectorsArgs; } });
+var SerieGenresArgs_1 = require("./SerieGenresArgs");
+Object.defineProperty(exports, "SerieGenresArgs", { enumerable: true, get: function () { return SerieGenresArgs_1.SerieGenresArgs; } });
+var SerieLanguagesArgs_1 = require("./SerieLanguagesArgs");
+Object.defineProperty(exports, "SerieLanguagesArgs", { enumerable: true, get: function () { return SerieLanguagesArgs_1.SerieLanguagesArgs; } });
+var SerieSeasonsArgs_1 = require("./SerieSeasonsArgs");
+Object.defineProperty(exports, "SerieSeasonsArgs", { enumerable: true, get: function () { return SerieSeasonsArgs_1.SerieSeasonsArgs; } });

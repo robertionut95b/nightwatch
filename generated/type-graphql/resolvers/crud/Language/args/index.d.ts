@@ -1,0 +1,12 @@
+export { AggregateLanguageArgs } from "./AggregateLanguageArgs";
+export { CreateLanguageArgs } from "./CreateLanguageArgs";
+export { CreateManyLanguageArgs } from "./CreateManyLanguageArgs";
+export { DeleteLanguageArgs } from "./DeleteLanguageArgs";
+export { DeleteManyLanguageArgs } from "./DeleteManyLanguageArgs";
+export { FindFirstLanguageArgs } from "./FindFirstLanguageArgs";
+export { FindManyLanguageArgs } from "./FindManyLanguageArgs";
+export { FindUniqueLanguageArgs } from "./FindUniqueLanguageArgs";
+export { GroupByLanguageArgs } from "./GroupByLanguageArgs";
+export { UpdateLanguageArgs } from "./UpdateLanguageArgs";
+export { UpdateManyLanguageArgs } from "./UpdateManyLanguageArgs";
+export { UpsertLanguageArgs } from "./UpsertLanguageArgs";

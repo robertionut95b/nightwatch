@@ -11,6 +11,12 @@ generator client {
   previewFeatures = ["fullTextSearch"]
 }
 
+generator typegraphql {
+  provider           = "typegraphql-prisma"
+  output             = "../generated/type-graphql"
+  emitTranspiledCode = true
+}
+
 enum Role {
   USER
   ADMIN
@@ -72,7 +78,7 @@ model Genre {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   movies    Movie[]
-  series    Series[]
+  series    Serie[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -83,7 +89,7 @@ model Director {
   movies    Movie[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  series    Series?  @relation(fields: [seriesId], references: [id])
+  series    Serie?   @relation(fields: [seriesId], references: [id])
   seriesId  Int?
 }
 
@@ -93,7 +99,7 @@ model Actor {
   movies    Movie[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  series    Series?  @relation(fields: [seriesId], references: [id])
+  series    Serie?   @relation(fields: [seriesId], references: [id])
   seriesId  Int?
 }
 
@@ -103,7 +109,7 @@ model Language {
   movies    Movie[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  series    Series?  @relation(fields: [seriesId], references: [id])
+  series    Serie?   @relation(fields: [seriesId], references: [id])
   seriesId  Int?
 }
 
@@ -125,7 +131,7 @@ model Movie {
   updatedAt  DateTime   @updatedAt
 }
 
-model Series {
+model Serie {
   id           Int        @id @default(autoincrement())
   title        String     @unique
   year         Int
@@ -151,7 +157,7 @@ model Season {
   index      Int
   episodes   Int
   episodeIds Episode[]
-  series     Series    @relation(fields: [seriesId], references: [id])
+  series     Serie     @relation(fields: [seriesId], references: [id])
   seriesId   Int
   launchDate DateTime  @default(now())
   createdAt  DateTime  @default(now())

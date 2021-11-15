@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import DateComponent from "../date";
 import Link from 'next/link';
-import { Series } from '../../generated/graphql';
+import { Serie } from '../../generated/graphql';
 import SeriesCard from './SeriesCard';
 import SeasonCard from './SeasonCard';
 
-export default function SeriesDetailsCard({ series }: { series: Series }) {
+export default function SeriesDetailsCard({ series, relatedSeries }: { series: Serie, relatedSeries: Serie[] }) {
 
     return (
         <div className="series-card-details">
@@ -52,7 +52,7 @@ export default function SeriesDetailsCard({ series }: { series: Series }) {
                 </div>
             </div>
             {
-                series?.related?.length > 0 &&
+                relatedSeries?.length > 0 &&
                 <div className="similar-series flex flex-col justify-center md:justify-start mt-12">
                     <h6 className="mb-4 font-bold text-3xl">
                         More like this
@@ -60,7 +60,7 @@ export default function SeriesDetailsCard({ series }: { series: Series }) {
                     <div className="related-series">
                         <section className="max-w-max flex flex-row gap-x-12 gap-y-8 flex-wrap justify-center">
                             <>
-                                {series.related.map(s => <SeriesCard series={s} key={s.id} />)}
+                                {relatedSeries.map(s => <SeriesCard series={s} key={s.id} />)}
                             </>
                         </section>
                     </div>

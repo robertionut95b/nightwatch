@@ -171,7 +171,7 @@ const moviesData: Prisma.MovieCreateInput[] = [
     },
 ]
 
-const seriesData: Prisma.SeriesCreateInput[] = [
+const seriesData: Prisma.SerieCreateInput[] = [
     {
         title: 'Dark',
         year: 2017,
@@ -280,7 +280,7 @@ async function main() {
         console.log(`Created movie with id: ${movie.id}`)
     }
     for (const s of seriesData) {
-        const series = await prisma.series.create({
+        const series = await prisma.serie.create({
             data: s,
         })
         console.log(`Created series with id: ${series.id}`)

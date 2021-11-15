@@ -3,11 +3,11 @@ import { GetServerSideProps } from "next";
 import Layout from '../../components/layout/layout';
 import apolloClient from '../../lib/apollo/apolloClient';
 import MovieCard from "../../components/items/MovieCard";
-import { SearchMovieByTitleDocument, SearchMovieByTitleQuery, SearchMovieByTitleQueryVariables, SearchSeriesByTitleQuery, SearchSeriesByTitleQueryVariables, SearchSeriesByTitleDocument, Series } from '../../generated/graphql';
+import { SearchMovieByTitleDocument, SearchMovieByTitleQuery, SearchMovieByTitleQueryVariables, SearchSeriesByTitleQuery, SearchSeriesByTitleQueryVariables, SearchSeriesByTitleDocument, Serie } from '../../generated/graphql';
 import SeriesCard from "../../components/items/SeriesCard";
 import { OMDBApiUtils } from '../../src/utils/convertors/OMDBApiUtils';
 
-export default function SearchResults({ movies, series }: { movies: Movie[], series: Series[] }) {
+export default function SearchResults({ movies, series }: { movies: Movie[], series: Serie[] }) {
 
     return (
         <Layout home={false}>
@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     })
 
     if (error) console.error(error)
-    const movies = data?.searchMovieByTitle || []
+    const movies = data?.movies || []
 
     const { data: seriesData, error: seriesError } = await apolloClient.query<SearchSeriesByTitleQuery, SearchSeriesByTitleQueryVariables>({
         query: SearchSeriesByTitleDocument,
@@ -66,7 +66,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     })
 
     if (seriesError) console.error(error)
-    const series = seriesData?.searchSeriesByTitle || []
+    const series = seriesData?.series || []
 
     try {
         const searchedSeries = await OMDBApiUtils.fetchFromOMDBandCreateSeries(query?.q as string)

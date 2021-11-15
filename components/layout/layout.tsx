@@ -7,7 +7,7 @@ import styles from './layout.module.css';
 
 export const siteTitle = 'NightWatch 🌙'
 
-export default function Layout({ children, home = false }) {
+export default function Layout({ children, home = false }: { children: React.ReactNode, home?: boolean }) {
 
   const [session] = useSession()
 

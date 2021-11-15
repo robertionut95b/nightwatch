@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { GetServerSideProps } from 'next'
 import apolloClient from '../lib/apollo/apolloClient';
 import MovieCard from '../components/items/MovieCard';
-import { AllMoviesDocument, Movie, AllMoviesQuery, AllMoviesQueryVariables, AllSeriesDocument, AllSeriesQuery, AllSeriesQueryVariables, Series } from '../generated/graphql';
+import { AllMoviesDocument, Movie, AllMoviesQuery, AllMoviesQueryVariables, AllSeriesDocument, AllSeriesQuery, AllSeriesQueryVariables, Serie } from '../generated/graphql';
 import SeriesCard from '../components/items/SeriesCard';
 
-export default function Home({ movies, series }: { movies: Movie[], series: Series[] }) {
+export default function Home({ movies, series }: { movies: Movie[], series: Serie[] }) {
 
   return (
     <Layout home>
@@ -54,8 +54,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      movies: movies.slice(0, 12),
-      series: series.slice(0, 12),
+      movies: movies,
+      series: series,
     },
   }
 }

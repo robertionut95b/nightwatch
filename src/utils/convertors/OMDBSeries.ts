@@ -1,7 +1,7 @@
 import { IPrismaSeriesConvertor } from './IConvertors';
 import { Prisma } from '@prisma/client'
 import { parse } from 'date-fns';
-import { Series } from '../../../generated/graphql';
+import { Serie } from '../../../generated/graphql';
 
 export class OMDBSeries implements IPrismaSeriesConvertor {
 
@@ -35,12 +35,12 @@ export class OMDBSeries implements IPrismaSeriesConvertor {
         this.totalSeasons = totalSeasons
     }
 
-    public toPrismaSeries(): Prisma.SeriesCreateInput {
-        const genres = this.genre.split(",")
-        const languages = this.language.split(",")
-        const series: Prisma.SeriesCreateInput = {
+    public toPrismaSeries(): Prisma.SerieCreateInput {
+        const genres = this.genre?.split(",")
+        const languages = this.language?.split(",")
+        const series: Prisma.SerieCreateInput = {
             title: this.title,
-            year: parseInt(this.year.split("-")[0]),
+            year: parseInt(this.year?.split("-")[0]),
             rating: this.rated,
             release: parse(this.released, "dd MMM yyyy", new Date()),
             runtime: parseInt(this.runtime),
@@ -64,7 +64,7 @@ export class OMDBSeries implements IPrismaSeriesConvertor {
         return series
     }
 
-    public toSeries: () => Series | undefined = () => {
+    public toSeries: () => Serie | undefined = () => {
         return undefined
     }
 }

@@ -4,20 +4,20 @@ import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next'
 import apolloClient from '../../lib/apollo/apolloClient'
 import { ParsedUrlQuery } from 'querystring'
 import MovieDetailsCard from '../../components/items/MovieDetailsCard';
-import { AllMoviesDetailsDocument, Movie, AllMoviesDetailsQuery, AllMoviesDetailsQueryVariables, MovieQuery, MovieQueryVariables, MovieDocument } from '../../generated/graphql';
+import { AllMoviesDetailsDocument, Movie, AllMoviesDetailsQuery, AllMoviesDetailsQueryVariables, MovieQuery, MovieQueryVariables, MovieDocument, MoviesQuery, MoviesQueryVariables, MoviesDocument } from '../../generated/graphql';
 
 interface IParams extends ParsedUrlQuery {
   id: string,
 }
 
-export default function MoviePage({ movie }: { movie: Movie }) {
+export default function MoviePage({ movie, relatedMovies }: { movie: Movie, relatedMovies: Movie[] }) {
   return (
     <Layout home={false}>
       <Head>
         <title>{movie.title}</title>
       </Head>
       <article>
-        <MovieDetailsCard movie={movie} />
+        <MovieDetailsCard movie={movie} relatedMovies={[]} />
       </article>
     </Layout>
   )
@@ -47,9 +47,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   if (error) console.error(error)
   const movie = data?.movie
+
+  const { data: relatedMoviesData, error: relatedMoviesError } = await apolloClient.query<MoviesQuery, MoviesQueryVariables>({
+    query: MoviesDocument,
+    variables: {
+      id: movie?.id || Number(id),
+      genre: movie?.genres.map(g => g.name)
+    }
+  });
+
+  if (relatedMoviesError) console.error(relatedMoviesError)
+  const relatedMovies = relatedMoviesData?.movies || []
+
   return {
     props: {
-      movie: movie
+      movie: movie,
+      relatedMovies: relatedMovies
     },
   }
 }

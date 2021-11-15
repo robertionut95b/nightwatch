@@ -1,0 +1,31 @@
+import { GraphQLResolveInfo } from "graphql";
+import { AggregateDirectorArgs } from "./args/AggregateDirectorArgs";
+import { CreateDirectorArgs } from "./args/CreateDirectorArgs";
+import { CreateManyDirectorArgs } from "./args/CreateManyDirectorArgs";
+import { DeleteDirectorArgs } from "./args/DeleteDirectorArgs";
+import { DeleteManyDirectorArgs } from "./args/DeleteManyDirectorArgs";
+import { FindFirstDirectorArgs } from "./args/FindFirstDirectorArgs";
+import { FindManyDirectorArgs } from "./args/FindManyDirectorArgs";
+import { FindUniqueDirectorArgs } from "./args/FindUniqueDirectorArgs";
+import { GroupByDirectorArgs } from "./args/GroupByDirectorArgs";
+import { UpdateDirectorArgs } from "./args/UpdateDirectorArgs";
+import { UpdateManyDirectorArgs } from "./args/UpdateManyDirectorArgs";
+import { UpsertDirectorArgs } from "./args/UpsertDirectorArgs";
+import { Director } from "../../../models/Director";
+import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
+import { AggregateDirector } from "../../outputs/AggregateDirector";
+import { DirectorGroupBy } from "../../outputs/DirectorGroupBy";
+export declare class DirectorCrudResolver {
+    director(ctx: any, info: GraphQLResolveInfo, args: FindUniqueDirectorArgs): Promise<Director | null>;
+    findFirstDirector(ctx: any, info: GraphQLResolveInfo, args: FindFirstDirectorArgs): Promise<Director | null>;
+    directors(ctx: any, info: GraphQLResolveInfo, args: FindManyDirectorArgs): Promise<Director[]>;
+    createDirector(ctx: any, info: GraphQLResolveInfo, args: CreateDirectorArgs): Promise<Director>;
+    createManyDirector(ctx: any, info: GraphQLResolveInfo, args: CreateManyDirectorArgs): Promise<AffectedRowsOutput>;
+    deleteDirector(ctx: any, info: GraphQLResolveInfo, args: DeleteDirectorArgs): Promise<Director | null>;
+    updateDirector(ctx: any, info: GraphQLResolveInfo, args: UpdateDirectorArgs): Promise<Director | null>;
+    deleteManyDirector(ctx: any, info: GraphQLResolveInfo, args: DeleteManyDirectorArgs): Promise<AffectedRowsOutput>;
+    updateManyDirector(ctx: any, info: GraphQLResolveInfo, args: UpdateManyDirectorArgs): Promise<AffectedRowsOutput>;
+    upsertDirector(ctx: any, info: GraphQLResolveInfo, args: UpsertDirectorArgs): Promise<Director>;
+    aggregateDirector(ctx: any, info: GraphQLResolveInfo, args: AggregateDirectorArgs): Promise<AggregateDirector>;
+    groupByDirector(ctx: any, info: GraphQLResolveInfo, args: GroupByDirectorArgs): Promise<DirectorGroupBy[]>;
+}

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image'
-import { Series } from '../../generated/graphql';
+import { Serie } from '../../generated/graphql';
 
-export default function SeriesCard({ series }: { series: Series }) {
+export default function SeriesCard({ series }: { series: Serie }) {
 
     return (
         <div className="series-card cursor-pointer">

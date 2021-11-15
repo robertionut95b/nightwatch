@@ -1,0 +1,12 @@
+export { AggregateSerieArgs } from "./AggregateSerieArgs";
+export { CreateManySerieArgs } from "./CreateManySerieArgs";
+export { CreateSerieArgs } from "./CreateSerieArgs";
+export { DeleteManySerieArgs } from "./DeleteManySerieArgs";
+export { DeleteSerieArgs } from "./DeleteSerieArgs";
+export { FindFirstSerieArgs } from "./FindFirstSerieArgs";
+export { FindManySerieArgs } from "./FindManySerieArgs";
+export { FindUniqueSerieArgs } from "./FindUniqueSerieArgs";
+export { GroupBySerieArgs } from "./GroupBySerieArgs";
+export { UpdateManySerieArgs } from "./UpdateManySerieArgs";
+export { UpdateSerieArgs } from "./UpdateSerieArgs";
+export { UpsertSerieArgs } from "./UpsertSerieArgs";

@@ -1,6 +1,7 @@
 import '../styles/global.css'
 import 'tailwindcss/tailwind.css'
 import "../styles/nprogress.css";
+import "reflect-metadata";
 import React from 'react'
 import apolloClient from '../lib/apollo/apolloClient'
 import { ApolloProvider } from '@apollo/client'
@@ -8,7 +9,7 @@ import { Provider } from 'next-auth/client'
 import { Router } from 'next/dist/client/router'
 import NProgress from 'nprogress'
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: { Component: any, pageProps: any }) {
 
   Router.events.on("routeChangeStart", NProgress.start)
   Router.events.on("routeChangeComplete", NProgress.done)

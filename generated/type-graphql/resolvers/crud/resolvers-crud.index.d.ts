@@ -1,0 +1,12 @@
+export { AccountCrudResolver } from "./Account/AccountCrudResolver";
+export { ActorCrudResolver } from "./Actor/ActorCrudResolver";
+export { DirectorCrudResolver } from "./Director/DirectorCrudResolver";
+export { EpisodeCrudResolver } from "./Episode/EpisodeCrudResolver";
+export { GenreCrudResolver } from "./Genre/GenreCrudResolver";
+export { LanguageCrudResolver } from "./Language/LanguageCrudResolver";
+export { MovieCrudResolver } from "./Movie/MovieCrudResolver";
+export { SeasonCrudResolver } from "./Season/SeasonCrudResolver";
+export { SerieCrudResolver } from "./Serie/SerieCrudResolver";
+export { SessionCrudResolver } from "./Session/SessionCrudResolver";
+export { UserCrudResolver } from "./User/UserCrudResolver";
+export { VerificationRequestCrudResolver } from "./VerificationRequest/VerificationRequestCrudResolver";

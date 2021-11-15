@@ -3,7 +3,9 @@ import { signout, getSession, useSession } from 'next-auth/client';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
-export default function SignOut({ session }) {
+export default function SignOut() {
+
+    const [session] = useSession();
 
     useEffect(() => { if (session) signout() }, [session?.user])
 

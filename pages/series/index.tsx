@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import Layout from "../../components/layout/layout";
 import { GetServerSideProps } from 'next';
 import apolloClient from '../../lib/apollo/apolloClient';
-import { AllSeriesDocument, AllSeriesQuery, AllSeriesQueryVariables, Genre, GenresDocument, GenresQuery, GenresQueryVariables, Series } from "../../generated/graphql";
+import { AllSeriesDocument, AllSeriesQuery, AllSeriesQueryVariables, Genre, GenresDocument, GenresQuery, GenresQueryVariables, Serie } from "../../generated/graphql";
 import { useRouter } from 'next/dist/client/router';
 import SeriesCard from "../../components/items/SeriesCard";
 
-export default function SeriesPage({ series, genres }: { series: Series[], genres: Genre[] }) {
+export default function SeriesPage({ series, genres }: { series: Serie[], genres: Genre[] }) {
 
     const router = useRouter()
     const { g } = router.query
@@ -60,14 +60,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { query } = context
     const { data, error } = await apolloClient.query<AllSeriesQuery, AllSeriesQueryVariables>({
         query: AllSeriesDocument,
-        variables: { genre: query?.g || "" }
+        variables: { genre: query?.g as string || "" }
     });
     if (error) console.error(error)
     const series = data?.series || []
 
     const { data: genreData, error: genreError } = await apolloClient.query<GenresQuery, GenresQueryVariables>({
         query: GenresDocument,
-        // variables:
     })
     if (genreError) console.error(error)
     const genres = genreData?.genres || []

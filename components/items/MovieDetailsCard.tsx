@@ -4,7 +4,7 @@ import MovieCard from "./MovieCard";
 import Link from 'next/link';
 import { Movie } from '../../generated/graphql';
 
-export default function MovieDetailsCard({ movie }: { movie: Movie }) {
+export default function MovieDetailsCard({ movie, relatedMovies }: { movie: Movie, relatedMovies: Movie[] }) {
 
     return (
         <div className="movie-card-details">
@@ -38,7 +38,7 @@ export default function MovieDetailsCard({ movie }: { movie: Movie }) {
                 </div>
             </div>
             {
-                movie?.related?.length > 0 &&
+                relatedMovies?.length > 0 &&
                 <div className="similar-movies flex flex-col justify-center md:justify-start mt-12">
                     <h6 className="mb-4 font-bold text-3xl">
                         More like this
@@ -46,7 +46,7 @@ export default function MovieDetailsCard({ movie }: { movie: Movie }) {
                     <div className="related-movies">
                         <section className="max-w-max flex flex-row gap-x-12 gap-y-8 flex-wrap justify-center">
                             <>
-                                {movie.related.map(m => <MovieCard movie={m} key={m.id} />)}
+                                {relatedMovies?.map(m => <MovieCard movie={m} key={m.id} />)}
                             </>
                         </section>
                     </div>

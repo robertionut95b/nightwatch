@@ -1,0 +1,31 @@
+import { GraphQLResolveInfo } from "graphql";
+import { AggregateSerieArgs } from "./args/AggregateSerieArgs";
+import { CreateManySerieArgs } from "./args/CreateManySerieArgs";
+import { CreateSerieArgs } from "./args/CreateSerieArgs";
+import { DeleteManySerieArgs } from "./args/DeleteManySerieArgs";
+import { DeleteSerieArgs } from "./args/DeleteSerieArgs";
+import { FindFirstSerieArgs } from "./args/FindFirstSerieArgs";
+import { FindManySerieArgs } from "./args/FindManySerieArgs";
+import { FindUniqueSerieArgs } from "./args/FindUniqueSerieArgs";
+import { GroupBySerieArgs } from "./args/GroupBySerieArgs";
+import { UpdateManySerieArgs } from "./args/UpdateManySerieArgs";
+import { UpdateSerieArgs } from "./args/UpdateSerieArgs";
+import { UpsertSerieArgs } from "./args/UpsertSerieArgs";
+import { Serie } from "../../../models/Serie";
+import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
+import { AggregateSerie } from "../../outputs/AggregateSerie";
+import { SerieGroupBy } from "../../outputs/SerieGroupBy";
+export declare class SerieCrudResolver {
+    serie(ctx: any, info: GraphQLResolveInfo, args: FindUniqueSerieArgs): Promise<Serie | null>;
+    findFirstSerie(ctx: any, info: GraphQLResolveInfo, args: FindFirstSerieArgs): Promise<Serie | null>;
+    series(ctx: any, info: GraphQLResolveInfo, args: FindManySerieArgs): Promise<Serie[]>;
+    createSerie(ctx: any, info: GraphQLResolveInfo, args: CreateSerieArgs): Promise<Serie>;
+    createManySerie(ctx: any, info: GraphQLResolveInfo, args: CreateManySerieArgs): Promise<AffectedRowsOutput>;
+    deleteSerie(ctx: any, info: GraphQLResolveInfo, args: DeleteSerieArgs): Promise<Serie | null>;
+    updateSerie(ctx: any, info: GraphQLResolveInfo, args: UpdateSerieArgs): Promise<Serie | null>;
+    deleteManySerie(ctx: any, info: GraphQLResolveInfo, args: DeleteManySerieArgs): Promise<AffectedRowsOutput>;
+    updateManySerie(ctx: any, info: GraphQLResolveInfo, args: UpdateManySerieArgs): Promise<AffectedRowsOutput>;
+    upsertSerie(ctx: any, info: GraphQLResolveInfo, args: UpsertSerieArgs): Promise<Serie>;
+    aggregateSerie(ctx: any, info: GraphQLResolveInfo, args: AggregateSerieArgs): Promise<AggregateSerie>;
+    groupBySerie(ctx: any, info: GraphQLResolveInfo, args: GroupBySerieArgs): Promise<SerieGroupBy[]>;
+}

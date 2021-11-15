@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es2018",
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "es2018",
+      "esnext.asynciterable"
     ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "allowJs": true,
     "alwaysStrict": true,
     "skipLibCheck": true,
@@ -24,11 +28,7 @@
       "types",
       "./generated"
     ],
-    "plugins": [
-      {
-        "name": "nexus/typescript-language-service"
-      }
-    ],
+    "plugins": [],
     "incremental": true
   },
   "include": [
@@ -36,7 +36,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "types.d.ts"
+    "types.d.ts",
+    "./generated/*.ts"
   ],
   "exclude": [
     "node_modules"

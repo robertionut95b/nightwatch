@@ -1,12 +1,11 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../components/layout/layout";
 import { GetServerSideProps } from 'next';
 import MovieCard from "../../components/items/MovieCard";
 import apolloClient from '../../lib/apollo/apolloClient';
 import { AllMoviesDocument, AllMoviesQuery, AllMoviesQueryVariables, Genre, GenresDocument, GenresQuery, GenresQueryVariables, Movie } from "../../generated/graphql";
 import { useRouter } from 'next/dist/client/router';
-import { useEffect } from 'react';
 
 export default function Movies({ movies, genres }: { movies: Movie[], genres: Genre[] }) {
 
@@ -61,14 +60,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { query } = context
     const { data, error } = await apolloClient.query<AllMoviesQuery, AllMoviesQueryVariables>({
         query: AllMoviesDocument,
-        variables: { genre: query?.g || "" }
+        variables: { genre: query?.g as string }
     });
     if (error) console.error(error)
     const movies = data?.movies || []
 
     const { data: genreData, error: genreError } = await apolloClient.query<GenresQuery, GenresQueryVariables>({
         query: GenresDocument,
-        // variables:
     })
     if (genreError) console.error(error)
     const genres = genreData?.genres || []

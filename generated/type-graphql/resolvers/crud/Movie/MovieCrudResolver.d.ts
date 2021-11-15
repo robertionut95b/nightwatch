@@ -1,0 +1,31 @@
+import { GraphQLResolveInfo } from "graphql";
+import { AggregateMovieArgs } from "./args/AggregateMovieArgs";
+import { CreateManyMovieArgs } from "./args/CreateManyMovieArgs";
+import { CreateMovieArgs } from "./args/CreateMovieArgs";
+import { DeleteManyMovieArgs } from "./args/DeleteManyMovieArgs";
+import { DeleteMovieArgs } from "./args/DeleteMovieArgs";
+import { FindFirstMovieArgs } from "./args/FindFirstMovieArgs";
+import { FindManyMovieArgs } from "./args/FindManyMovieArgs";
+import { FindUniqueMovieArgs } from "./args/FindUniqueMovieArgs";
+import { GroupByMovieArgs } from "./args/GroupByMovieArgs";
+import { UpdateManyMovieArgs } from "./args/UpdateManyMovieArgs";
+import { UpdateMovieArgs } from "./args/UpdateMovieArgs";
+import { UpsertMovieArgs } from "./args/UpsertMovieArgs";
+import { Movie } from "../../../models/Movie";
+import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
+import { AggregateMovie } from "../../outputs/AggregateMovie";
+import { MovieGroupBy } from "../../outputs/MovieGroupBy";
+export declare class MovieCrudResolver {
+    movie(ctx: any, info: GraphQLResolveInfo, args: FindUniqueMovieArgs): Promise<Movie | null>;
+    findFirstMovie(ctx: any, info: GraphQLResolveInfo, args: FindFirstMovieArgs): Promise<Movie | null>;
+    movies(ctx: any, info: GraphQLResolveInfo, args: FindManyMovieArgs): Promise<Movie[]>;
+    createMovie(ctx: any, info: GraphQLResolveInfo, args: CreateMovieArgs): Promise<Movie>;
+    createManyMovie(ctx: any, info: GraphQLResolveInfo, args: CreateManyMovieArgs): Promise<AffectedRowsOutput>;
+    deleteMovie(ctx: any, info: GraphQLResolveInfo, args: DeleteMovieArgs): Promise<Movie | null>;
+    updateMovie(ctx: any, info: GraphQLResolveInfo, args: UpdateMovieArgs): Promise<Movie | null>;
+    deleteManyMovie(ctx: any, info: GraphQLResolveInfo, args: DeleteManyMovieArgs): Promise<AffectedRowsOutput>;
+    updateManyMovie(ctx: any, info: GraphQLResolveInfo, args: UpdateManyMovieArgs): Promise<AffectedRowsOutput>;
+    upsertMovie(ctx: any, info: GraphQLResolveInfo, args: UpsertMovieArgs): Promise<Movie>;
+    aggregateMovie(ctx: any, info: GraphQLResolveInfo, args: AggregateMovieArgs): Promise<AggregateMovie>;
+    groupByMovie(ctx: any, info: GraphQLResolveInfo, args: GroupByMovieArgs): Promise<MovieGroupBy[]>;
+}
