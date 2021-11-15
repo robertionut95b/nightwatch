@@ -2,10 +2,12 @@ import { Prisma, Serie } from "@prisma/client";
 import axios from "axios";
 import prisma from "../../../lib/PrismaClient/prisma";
 import { OMDBSeries } from './OMDBSeries';
+import apolloClient from '../../../lib/apollo/apolloClient';
+import { CreateSerieSearchDocument, CreateSerieSearchMutation, CreateSerieSearchMutationVariables, SearchSeriesByTitleDocument, SearchSeriesByTitleQuery, SearchSeriesByTitleQueryVariables } from '../../../generated/graphql';
 
 export class OMDBApiUtils {
 
-    public static async fetchOMDBSeriesByTitle(title: string): Promise<Prisma.SerieCreateInput | undefined> {
+    public static async fetchOMDBSeriesByTitle(title: string): Promise<CreateSerieSearchMutationVariables | undefined> {
         const titleEncoded = encodeURIComponent(title);
         var seriesResp = undefined
         var seriesToCreate: OMDBSeries | Prisma.SerieCreateInput | undefined = undefined
@@ -15,27 +17,6 @@ export class OMDBApiUtils {
         } catch (err) {
             console.error(err)
         }
-        return seriesToCreate?.toPrismaSeries()
-    }
-
-    private static checkIfSeriesExistByTitle = (title: string): Promise<Serie | null> => {
-        return prisma.serie.findUnique({
-            where: {
-                title: title
-            }
-        })
-    }
-
-    public static fetchFromOMDBandCreateSeries = async (q: string): Promise<Serie | undefined> => {
-        const existingSeries = await OMDBApiUtils.checkIfSeriesExistByTitle(q || "")
-        if (existingSeries) {
-            return existingSeries
-        }
-        const series = await OMDBApiUtils.fetchOMDBSeriesByTitle(q)
-        if (series) {
-            const newSeries = await prisma.serie.create({ data: series })
-            console.log(`Created series with id ${newSeries.id}`)
-            return newSeries
-        }
+        return seriesToCreate?.toSeries()
     }
 }

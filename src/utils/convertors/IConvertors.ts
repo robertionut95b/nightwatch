@@ -1,12 +1,12 @@
 import { Prisma } from '@prisma/client'
-import { Movie, Serie } from '../../../generated/graphql';
+import { CreateSerieMutationVariables, Movie } from '../../../generated/graphql';
 
 export interface IPrismaSeriesConvertor {
-    toSeries: () => Serie | undefined
+    toSeries: () => CreateSerieMutationVariables
     toPrismaSeries: () => Prisma.SerieCreateInput
 }
 
 export interface IPrismaMovieConvertor {
-    toMovie: () => Movie | undefined
+    toMovie: () => Movie
     toPrismaMovie: () => Prisma.MovieCreateInput
 }

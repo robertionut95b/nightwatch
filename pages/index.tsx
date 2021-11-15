@@ -41,11 +41,19 @@ export default function Home({ movies, series }: { movies: Movie[], series: Seri
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data, error } = await apolloClient.query<AllMoviesQuery, AllMoviesQueryVariables>({ query: AllMoviesDocument });
+  const { data, error } = await apolloClient.query<AllMoviesQuery, AllMoviesQueryVariables>({
+    query: AllMoviesDocument,
+    variables: {
+      take: 12
+    }
+  })
   if (error) console.error(error)
 
   const { data: seriesData, error: seriesError } = await apolloClient.query<AllSeriesQuery, AllSeriesQueryVariables>({
     query: AllSeriesDocument,
+    variables: {
+      take: 12
+    }
   });
   if (seriesError) console.error(error)
 

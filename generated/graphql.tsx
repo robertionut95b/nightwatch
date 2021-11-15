@@ -6691,8 +6691,41 @@ export type VerificationRequestWhereUniqueInput = {
   token?: Maybe<Scalars['String']>;
 };
 
+export type CreateSerieMutationVariables = Exact<{
+  title: Scalars['String'];
+  genres?: Maybe<GenreCreateNestedManyWithoutSeriesInput>;
+  plot: Scalars['String'];
+  poster: Scalars['String'];
+  imdbRating: Scalars['Float'];
+  rating: Scalars['String'];
+  release: Scalars['DateTime'];
+  runtime: Scalars['Int'];
+  year: Scalars['Int'];
+  totalSeasons: Scalars['Int'];
+}>;
+
+
+export type CreateSerieMutation = { __typename?: 'Mutation', createSerie: { __typename?: 'Serie', id: number, title: string, imdbRating: number, plot: string, poster: string, rating: string, release: any, runtime: number, year: number, totalSeasons: number, genres: Array<{ __typename?: 'Genre', name: string }>, seasons: Array<{ __typename?: 'Season', id: number, title: string }> } };
+
+export type CreateSerieSearchMutationVariables = Exact<{
+  title: Scalars['String'];
+  genres?: Maybe<GenreCreateNestedManyWithoutSeriesInput>;
+  plot: Scalars['String'];
+  poster: Scalars['String'];
+  imdbRating: Scalars['Float'];
+  rating: Scalars['String'];
+  release: Scalars['DateTime'];
+  runtime: Scalars['Int'];
+  year: Scalars['Int'];
+  totalSeasons: Scalars['Int'];
+}>;
+
+
+export type CreateSerieSearchMutation = { __typename?: 'Mutation', createSerie: { __typename?: 'Serie', id: number, title: string, poster: string, createdAt: any, updatedAt: any } };
+
 export type AllMoviesQueryVariables = Exact<{
   genre?: Maybe<Scalars['String']>;
+  take?: Maybe<Scalars['Int']>;
 }>;
 
 
@@ -6729,6 +6762,7 @@ export type AllSeasonsQuery = { __typename?: 'Query', seasons: Array<{ __typenam
 
 export type AllSeriesQueryVariables = Exact<{
   genre?: Maybe<Scalars['String']>;
+  take?: Maybe<Scalars['Int']>;
 }>;
 
 
@@ -6770,9 +6804,117 @@ export type MoviesQueryVariables = Exact<{
 export type MoviesQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: number, title: string, poster: string }> };
 
 
+export const CreateSerieDocument = gql`
+    mutation createSerie($title: String!, $genres: GenreCreateNestedManyWithoutSeriesInput, $plot: String!, $poster: String!, $imdbRating: Float!, $rating: String!, $release: DateTime!, $runtime: Int!, $year: Int!, $totalSeasons: Int!) {
+  createSerie(
+    data: {title: $title, genres: $genres, plot: $plot, poster: $poster, imdbRating: $imdbRating, rating: $rating, release: $release, runtime: $runtime, year: $year, totalSeasons: $totalSeasons}
+  ) {
+    id
+    title
+    genres {
+      name
+    }
+    imdbRating
+    plot
+    poster
+    rating
+    release
+    runtime
+    year
+    totalSeasons
+    seasons {
+      id
+      title
+    }
+  }
+}
+    `;
+export type CreateSerieMutationFn = Apollo.MutationFunction<CreateSerieMutation, CreateSerieMutationVariables>;
+
+/**
+ * __useCreateSerieMutation__
+ *
+ * To run a mutation, you first call `useCreateSerieMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSerieMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSerieMutation, { data, loading, error }] = useCreateSerieMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *      genres: // value for 'genres'
+ *      plot: // value for 'plot'
+ *      poster: // value for 'poster'
+ *      imdbRating: // value for 'imdbRating'
+ *      rating: // value for 'rating'
+ *      release: // value for 'release'
+ *      runtime: // value for 'runtime'
+ *      year: // value for 'year'
+ *      totalSeasons: // value for 'totalSeasons'
+ *   },
+ * });
+ */
+export function useCreateSerieMutation(baseOptions?: Apollo.MutationHookOptions<CreateSerieMutation, CreateSerieMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateSerieMutation, CreateSerieMutationVariables>(CreateSerieDocument, options);
+      }
+export type CreateSerieMutationHookResult = ReturnType<typeof useCreateSerieMutation>;
+export type CreateSerieMutationResult = Apollo.MutationResult<CreateSerieMutation>;
+export type CreateSerieMutationOptions = Apollo.BaseMutationOptions<CreateSerieMutation, CreateSerieMutationVariables>;
+export const CreateSerieSearchDocument = gql`
+    mutation createSerieSearch($title: String!, $genres: GenreCreateNestedManyWithoutSeriesInput, $plot: String!, $poster: String!, $imdbRating: Float!, $rating: String!, $release: DateTime!, $runtime: Int!, $year: Int!, $totalSeasons: Int!) {
+  createSerie(
+    data: {title: $title, genres: $genres, plot: $plot, poster: $poster, imdbRating: $imdbRating, rating: $rating, release: $release, runtime: $runtime, year: $year, totalSeasons: $totalSeasons}
+  ) {
+    id
+    title
+    poster
+    createdAt
+    updatedAt
+  }
+}
+    `;
+export type CreateSerieSearchMutationFn = Apollo.MutationFunction<CreateSerieSearchMutation, CreateSerieSearchMutationVariables>;
+
+/**
+ * __useCreateSerieSearchMutation__
+ *
+ * To run a mutation, you first call `useCreateSerieSearchMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSerieSearchMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSerieSearchMutation, { data, loading, error }] = useCreateSerieSearchMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *      genres: // value for 'genres'
+ *      plot: // value for 'plot'
+ *      poster: // value for 'poster'
+ *      imdbRating: // value for 'imdbRating'
+ *      rating: // value for 'rating'
+ *      release: // value for 'release'
+ *      runtime: // value for 'runtime'
+ *      year: // value for 'year'
+ *      totalSeasons: // value for 'totalSeasons'
+ *   },
+ * });
+ */
+export function useCreateSerieSearchMutation(baseOptions?: Apollo.MutationHookOptions<CreateSerieSearchMutation, CreateSerieSearchMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateSerieSearchMutation, CreateSerieSearchMutationVariables>(CreateSerieSearchDocument, options);
+      }
+export type CreateSerieSearchMutationHookResult = ReturnType<typeof useCreateSerieSearchMutation>;
+export type CreateSerieSearchMutationResult = Apollo.MutationResult<CreateSerieSearchMutation>;
+export type CreateSerieSearchMutationOptions = Apollo.BaseMutationOptions<CreateSerieSearchMutation, CreateSerieSearchMutationVariables>;
 export const AllMoviesDocument = gql`
-    query allMovies($genre: String) {
-  movies(where: {genres: {some: {name: {contains: $genre}}}}) {
+    query allMovies($genre: String, $take: Int) {
+  movies(where: {genres: {some: {name: {contains: $genre}}}}, take: $take) {
     id
     title
     poster
@@ -6796,6 +6938,7 @@ export const AllMoviesDocument = gql`
  * const { data, loading, error } = useAllMoviesQuery({
  *   variables: {
  *      genre: // value for 'genre'
+ *      take: // value for 'take'
  *   },
  * });
  */
@@ -6907,7 +7050,7 @@ export type MovieLazyQueryHookResult = ReturnType<typeof useMovieLazyQuery>;
 export type MovieQueryResult = Apollo.QueryResult<MovieQuery, MovieQueryVariables>;
 export const SearchMovieByTitleDocument = gql`
     query searchMovieByTitle($title: String!) {
-  movies(where: {title: {contains: $title}}) {
+  movies(where: {title: {contains: $title, mode: insensitive}}) {
     id
     title
     year
@@ -7021,8 +7164,8 @@ export type AllSeasonsQueryHookResult = ReturnType<typeof useAllSeasonsQuery>;
 export type AllSeasonsLazyQueryHookResult = ReturnType<typeof useAllSeasonsLazyQuery>;
 export type AllSeasonsQueryResult = Apollo.QueryResult<AllSeasonsQuery, AllSeasonsQueryVariables>;
 export const AllSeriesDocument = gql`
-    query allSeries($genre: String) {
-  series(where: {genres: {some: {name: {contains: $genre}}}}) {
+    query allSeries($genre: String, $take: Int) {
+  series(where: {genres: {some: {name: {contains: $genre}}}}, take: $take) {
     id
     title
     poster
@@ -7046,6 +7189,7 @@ export const AllSeriesDocument = gql`
  * const { data, loading, error } = useAllSeriesQuery({
  *   variables: {
  *      genre: // value for 'genre'
+ *      take: // value for 'take'
  *   },
  * });
  */
@@ -7165,7 +7309,7 @@ export type SerieByIdLazyQueryHookResult = ReturnType<typeof useSerieByIdLazyQue
 export type SerieByIdQueryResult = Apollo.QueryResult<SerieByIdQuery, SerieByIdQueryVariables>;
 export const SearchSeriesByTitleDocument = gql`
     query searchSeriesByTitle($title: String!) {
-  series(where: {title: {contains: $title}}) {
+  series(where: {title: {contains: $title, mode: insensitive}}) {
     id
     title
     poster
@@ -7206,6 +7350,7 @@ export const SeriesDocument = gql`
     query series($id: Int!, $genre: [String!]) {
   series(
     where: {id: {not: {equals: $id}}, genres: {some: {name: {in: $genre, mode: insensitive}}}}
+    take: 6
   ) {
     id
     title
@@ -7246,6 +7391,7 @@ export const MoviesDocument = gql`
     query movies($id: Int!, $genre: [String!]) {
   movies(
     where: {id: {not: {equals: $id}}, genres: {some: {name: {in: $genre, mode: insensitive}}}}
+    take: 6
   ) {
     id
     title

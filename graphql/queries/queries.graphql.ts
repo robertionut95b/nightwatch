@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const AllMovies = gql`
-query allMovies($genre: String) {
-        movies(where: {genres: {some: {name: {contains: $genre} }}}) {
+query allMovies($genre: String, $take: Int) {
+        movies(where: {genres: {some: {name: {contains: $genre} }}}, take: $take) {
             id,
             title,
             poster,
@@ -56,7 +56,7 @@ export const MovieById = gql`
 
 export const searchMovieByTitle = gql`
     query searchMovieByTitle($title: String!) {
-      movies (where: {title: {contains: $title}}) {
+      movies (where: {title: {contains: $title, mode: insensitive}}) {
             id,
             title,
             year,
@@ -91,8 +91,8 @@ export const AllSeasons = gql`
 `
 
 export const AllSeries = gql`
-query allSeries($genre: String) {
-        series(where: {genres: {some: {name: {contains: $genre} }}}) {
+query allSeries($genre: String, $take: Int) {
+        series(where: {genres: {some: {name: {contains: $genre} }}}, take: $take) {
             id,
             title,
             poster,
@@ -155,7 +155,7 @@ export const SeriesById = gql`
 
 export const searchSeriesByTitle = gql`
     query searchSeriesByTitle($title: String!) {
-      series (where: {title: {contains: $title}}) {
+      series (where: {title: {contains: $title, mode: insensitive}}) {
             id,
             title,
             poster,
@@ -167,7 +167,7 @@ export const searchSeriesByTitle = gql`
 
 export const relatedSeries = gql`
     query series ($id: Int!, $genre: [String!]) {
-        series (where: { id: { not: {equals: $id} }, genres: {some: {name: {in: $genre, mode: insensitive}}}}) {
+        series (where: { id: { not: {equals: $id} }, genres: {some: {name: {in: $genre, mode: insensitive}}}}, take: 6) {
           id,
           title,
           poster,
@@ -177,7 +177,7 @@ export const relatedSeries = gql`
 
 export const relatedMovies = gql`
     query movies ($id: Int!, $genre: [String!]) {
-        movies (where: {id: {not: {equals: $id} }, genres: {some: {name: {in: $genre , mode: insensitive}}}}) {
+        movies (where: {id: {not: {equals: $id} }, genres: {some: {name: {in: $genre , mode: insensitive}}}}, take: 6) {
           id,
           title,
           poster,

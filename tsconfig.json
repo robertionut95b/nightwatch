@@ -10,7 +10,7 @@
     ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "allowJs": true,
+    "allowJs": false,
     "alwaysStrict": true,
     "skipLibCheck": true,
     "strict": true,
@@ -40,6 +40,7 @@
     "./generated/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "./generated/type-graphql/*.js"
   ]
 }

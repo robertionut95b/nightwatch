@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image'
-import { Serie } from '../../generated/graphql';
+import { CreateSerieSearchMutation, Serie } from '../../generated/graphql';
 
-export default function SeriesCard({ series }: { series: Serie }) {
+export default function SeriesCard({ series }: { series: Serie | CreateSerieSearchMutation['createSerie'] }) {
 
     return (
         <div className="series-card cursor-pointer">
