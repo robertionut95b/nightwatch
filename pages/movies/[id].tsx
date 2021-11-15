@@ -5,6 +5,7 @@ import apolloClient from '../../lib/apollo/apolloClient'
 import { ParsedUrlQuery } from 'querystring'
 import MovieDetailsCard from '../../components/items/MovieDetailsCard';
 import { AllMoviesDetailsDocument, Movie, AllMoviesDetailsQuery, AllMoviesDetailsQueryVariables, MovieQuery, MovieQueryVariables, MovieDocument, MoviesQuery, MoviesQueryVariables, MoviesDocument } from '../../generated/graphql';
+import prisma from '../../lib/PrismaClient/prisma'
 
 interface IParams extends ParsedUrlQuery {
   id: string,
@@ -24,10 +25,14 @@ export default function MoviePage({ movie, relatedMovies }: { movie: Movie, rela
 }
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult> => {
-  const { data, error } = await apolloClient.query<AllMoviesDetailsQuery, AllMoviesDetailsQueryVariables>({ query: AllMoviesDetailsDocument });
-
-  if (error) console.error(error)
-  const movies = data?.movies || []
+  const movies = await prisma.movie.findMany({
+    include: {
+      genres: true,
+      actors: true,
+      directors: true,
+      languages: true,
+    }
+  })
   return {
     paths: movies.map((m) => {
       return {
@@ -40,24 +45,38 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsRe
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params as IParams
-  const { data, error } = await apolloClient.query<MovieQuery, MovieQueryVariables>({
-    query: MovieDocument,
-    variables: { id: Number.parseInt(id) }
-  });
 
-  if (error) console.error(error)
-  const movie = data?.movie
-
-  const { data: relatedMoviesData, error: relatedMoviesError } = await apolloClient.query<MoviesQuery, MoviesQueryVariables>({
-    query: MoviesDocument,
-    variables: {
-      id: movie?.id || Number(id),
-      genre: movie?.genres.map(g => g.name)
+  var movie = await prisma.movie.findUnique({
+    where: {
+      id: Number.parseInt(id),
+    },
+    include: {
+      genres: true,
+      actors: true,
+      directors: true,
+      languages: true,
     }
-  });
+  })
 
-  if (relatedMoviesError) console.error(relatedMoviesError)
-  const relatedMovies = relatedMoviesData?.movies || []
+  const movieStr = JSON.stringify(movie)
+  movie = JSON.parse(movieStr)
+
+  var relatedMovies = await prisma.movie.findMany({
+    where: {
+      id: { not: Number.parseInt(id) },
+      genres: {
+        some: {
+          name: {
+            in: movie?.genres?.map((g) => { return g.name }),
+            mode: "insensitive"
+          }
+        }
+      }
+    }
+  })
+
+  const relatedMoviesStr = JSON.stringify(relatedMovies)
+  relatedMovies = JSON.parse(relatedMoviesStr)
 
   return {
     props: {

@@ -1,9 +1,7 @@
-import { Prisma, Serie } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import axios from "axios";
-import prisma from "../../../lib/PrismaClient/prisma";
 import { OMDBSeries } from './OMDBSeries';
-import apolloClient from '../../../lib/apollo/apolloClient';
-import { CreateSerieSearchDocument, CreateSerieSearchMutation, CreateSerieSearchMutationVariables, SearchSeriesByTitleDocument, SearchSeriesByTitleQuery, SearchSeriesByTitleQueryVariables } from '../../../generated/graphql';
+import { CreateSerieSearchMutationVariables } from '../../../generated/graphql';
 
 export class OMDBApiUtils {
 

@@ -7,6 +7,7 @@ import React from "react";
 import Layout from "../../components/layout/layout";
 import apolloClient from "../../lib/apollo/apolloClient";
 import { format } from 'date-fns';
+import prisma from "../../lib/PrismaClient/prisma";
 
 export default function GenrePage({ genres }: { genres: Genre[] }) {
     return (
@@ -29,19 +30,11 @@ export default function GenrePage({ genres }: { genres: Genre[] }) {
 }
 
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const query = gql`
-        query genres {
-                genres {
-                id,
-                name,
-            }
-        }
-    `
-    const { data, error } = await apolloClient.query<{ genres?: Genre[] }>({ query: query });
-    if (error) console.error(error)
+export const getStaticProps: GetStaticProps = async () => {
+    var genres = await prisma.genre.findMany({});
+    const genresStr = JSON.stringify(genres);
+    genres = JSON.parse(genresStr);
 
-    const genres = data?.genres || []
     return {
         props: {
             genres: genres
