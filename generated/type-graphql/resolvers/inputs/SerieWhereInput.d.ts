@@ -24,6 +24,7 @@ export declare class SerieWhereInput {
     languages?: LanguageListRelationFilter | undefined;
     poster?: StringFilter | undefined;
     imdbRating?: FloatFilter | undefined;
+    imdbID?: StringFilter | undefined;
     totalSeasons?: IntFilter | undefined;
     seasons?: SeasonListRelationFilter | undefined;
     createdAt?: DateTimeFilter | undefined;

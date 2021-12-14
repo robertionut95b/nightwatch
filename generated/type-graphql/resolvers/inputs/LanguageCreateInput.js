@@ -31,7 +31,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LanguageCreateInput = void 0;
 const TypeGraphQL = __importStar(require("type-graphql"));
 const MovieCreateNestedManyWithoutLanguagesInput_1 = require("../inputs/MovieCreateNestedManyWithoutLanguagesInput");
-const SerieCreateNestedOneWithoutLanguagesInput_1 = require("../inputs/SerieCreateNestedOneWithoutLanguagesInput");
+const SerieCreateNestedManyWithoutLanguagesInput_1 = require("../inputs/SerieCreateNestedManyWithoutLanguagesInput");
 let LanguageCreateInput = class LanguageCreateInput {
 };
 __decorate([
@@ -53,16 +53,22 @@ __decorate([
     __metadata("design:type", Date)
 ], LanguageCreateInput.prototype, "updatedAt", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+        nullable: true
+    }),
+    __metadata("design:type", Number)
+], LanguageCreateInput.prototype, "seriesId", void 0);
+__decorate([
     TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutLanguagesInput_1.MovieCreateNestedManyWithoutLanguagesInput, {
         nullable: true
     }),
     __metadata("design:type", MovieCreateNestedManyWithoutLanguagesInput_1.MovieCreateNestedManyWithoutLanguagesInput)
 ], LanguageCreateInput.prototype, "movies", void 0);
 __decorate([
-    TypeGraphQL.Field(_type => SerieCreateNestedOneWithoutLanguagesInput_1.SerieCreateNestedOneWithoutLanguagesInput, {
+    TypeGraphQL.Field(_type => SerieCreateNestedManyWithoutLanguagesInput_1.SerieCreateNestedManyWithoutLanguagesInput, {
         nullable: true
     }),
-    __metadata("design:type", SerieCreateNestedOneWithoutLanguagesInput_1.SerieCreateNestedOneWithoutLanguagesInput)
+    __metadata("design:type", SerieCreateNestedManyWithoutLanguagesInput_1.SerieCreateNestedManyWithoutLanguagesInput)
 ], LanguageCreateInput.prototype, "series", void 0);
 LanguageCreateInput = __decorate([
     TypeGraphQL.InputType("LanguageCreateInput", {

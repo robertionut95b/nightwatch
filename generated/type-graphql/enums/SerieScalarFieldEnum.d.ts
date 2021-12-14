@@ -8,6 +8,7 @@ export declare enum SerieScalarFieldEnum {
     plot = "plot",
     poster = "poster",
     imdbRating = "imdbRating",
+    imdbID = "imdbID",
     totalSeasons = "totalSeasons",
     createdAt = "createdAt",
     updatedAt = "updatedAt"

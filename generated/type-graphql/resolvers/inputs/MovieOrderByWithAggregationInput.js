@@ -97,6 +97,12 @@ __decorate([
         nullable: true
     }),
     __metadata("design:type", String)
+], MovieOrderByWithAggregationInput.prototype, "imdbID", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    __metadata("design:type", String)
 ], MovieOrderByWithAggregationInput.prototype, "createdAt", void 0);
 __decorate([
     TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {

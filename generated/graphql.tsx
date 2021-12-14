@@ -1406,6 +1406,7 @@ export type EnumRoleWithAggregatesFilter = {
 export type Episode = {
   __typename?: 'Episode';
   id: Scalars['Int'];
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -1434,6 +1435,7 @@ export type EpisodeCountAggregate = {
   __typename?: 'EpisodeCountAggregate';
   _all: Scalars['Int'];
   id: Scalars['Int'];
+  imdbID: Scalars['Int'];
   imdbRating: Scalars['Int'];
   plot: Scalars['Int'];
   poster: Scalars['Int'];
@@ -1444,6 +1446,7 @@ export type EpisodeCountAggregate = {
 
 export type EpisodeCountOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -1453,6 +1456,7 @@ export type EpisodeCountOrderByAggregateInput = {
 };
 
 export type EpisodeCreateInput = {
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -1463,6 +1467,7 @@ export type EpisodeCreateInput = {
 
 export type EpisodeCreateManyInput = {
   id?: Maybe<Scalars['Int']>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -1473,6 +1478,7 @@ export type EpisodeCreateManyInput = {
 
 export type EpisodeCreateManySeasonInput = {
   id?: Maybe<Scalars['Int']>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -1498,6 +1504,7 @@ export type EpisodeCreateOrConnectWithoutSeasonInput = {
 };
 
 export type EpisodeCreateWithoutSeasonInput = {
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -1513,6 +1520,7 @@ export type EpisodeGroupBy = {
   _min?: Maybe<EpisodeMinAggregate>;
   _sum?: Maybe<EpisodeSumAggregate>;
   id: Scalars['Int'];
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -1530,6 +1538,7 @@ export type EpisodeListRelationFilter = {
 export type EpisodeMaxAggregate = {
   __typename?: 'EpisodeMaxAggregate';
   id?: Maybe<Scalars['Int']>;
+  imdbID?: Maybe<Scalars['String']>;
   imdbRating?: Maybe<Scalars['Float']>;
   plot?: Maybe<Scalars['String']>;
   poster?: Maybe<Scalars['String']>;
@@ -1540,6 +1549,7 @@ export type EpisodeMaxAggregate = {
 
 export type EpisodeMaxOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -1551,6 +1561,7 @@ export type EpisodeMaxOrderByAggregateInput = {
 export type EpisodeMinAggregate = {
   __typename?: 'EpisodeMinAggregate';
   id?: Maybe<Scalars['Int']>;
+  imdbID?: Maybe<Scalars['String']>;
   imdbRating?: Maybe<Scalars['Float']>;
   plot?: Maybe<Scalars['String']>;
   poster?: Maybe<Scalars['String']>;
@@ -1561,6 +1572,7 @@ export type EpisodeMinAggregate = {
 
 export type EpisodeMinOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -1574,6 +1586,7 @@ export type EpisodeOrderByRelationAggregateInput = {
 };
 
 export enum EpisodeOrderByRelevanceFieldEnum {
+  ImdbId = 'imdbID',
   Plot = 'plot',
   Poster = 'poster',
   Title = 'title'
@@ -1592,6 +1605,7 @@ export type EpisodeOrderByWithAggregationInput = {
   _min?: Maybe<EpisodeMinOrderByAggregateInput>;
   _sum?: Maybe<EpisodeSumOrderByAggregateInput>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -1603,6 +1617,7 @@ export type EpisodeOrderByWithAggregationInput = {
 export type EpisodeOrderByWithRelationAndSearchRelevanceInput = {
   _relevance?: Maybe<EpisodeOrderByRelevanceInput>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -1614,6 +1629,7 @@ export type EpisodeOrderByWithRelationAndSearchRelevanceInput = {
 
 export enum EpisodeScalarFieldEnum {
   Id = 'id',
+  ImdbId = 'imdbID',
   ImdbRating = 'imdbRating',
   Plot = 'plot',
   Poster = 'poster',
@@ -1627,6 +1643,7 @@ export type EpisodeScalarWhereInput = {
   NOT?: Maybe<Array<EpisodeScalarWhereInput>>;
   OR?: Maybe<Array<EpisodeScalarWhereInput>>;
   id?: Maybe<IntFilter>;
+  imdbID?: Maybe<StringFilter>;
   imdbRating?: Maybe<FloatFilter>;
   plot?: Maybe<StringFilter>;
   poster?: Maybe<StringFilter>;
@@ -1640,6 +1657,7 @@ export type EpisodeScalarWhereWithAggregatesInput = {
   NOT?: Maybe<Array<EpisodeScalarWhereWithAggregatesInput>>;
   OR?: Maybe<Array<EpisodeScalarWhereWithAggregatesInput>>;
   id?: Maybe<IntWithAggregatesFilter>;
+  imdbID?: Maybe<StringWithAggregatesFilter>;
   imdbRating?: Maybe<FloatWithAggregatesFilter>;
   plot?: Maybe<StringWithAggregatesFilter>;
   poster?: Maybe<StringWithAggregatesFilter>;
@@ -1664,6 +1682,7 @@ export type EpisodeSumOrderByAggregateInput = {
 };
 
 export type EpisodeUpdateInput = {
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
   poster?: Maybe<StringFieldUpdateOperationsInput>;
@@ -1673,6 +1692,7 @@ export type EpisodeUpdateInput = {
 };
 
 export type EpisodeUpdateManyMutationInput = {
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
   poster?: Maybe<StringFieldUpdateOperationsInput>;
@@ -1705,6 +1725,7 @@ export type EpisodeUpdateWithWhereUniqueWithoutSeasonInput = {
 };
 
 export type EpisodeUpdateWithoutSeasonInput = {
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
   poster?: Maybe<StringFieldUpdateOperationsInput>;
@@ -1723,6 +1744,7 @@ export type EpisodeWhereInput = {
   NOT?: Maybe<Array<EpisodeWhereInput>>;
   OR?: Maybe<Array<EpisodeWhereInput>>;
   id?: Maybe<IntFilter>;
+  imdbID?: Maybe<StringFilter>;
   imdbRating?: Maybe<FloatFilter>;
   plot?: Maybe<StringFilter>;
   poster?: Maybe<StringFilter>;
@@ -1734,6 +1756,7 @@ export type EpisodeWhereInput = {
 
 export type EpisodeWhereUniqueInput = {
   id?: Maybe<Scalars['Int']>;
+  imdbID?: Maybe<Scalars['String']>;
 };
 
 export type FloatFieldUpdateOperationsInput = {
@@ -2177,7 +2200,7 @@ export type Language = {
   id: Scalars['Int'];
   movies: Array<Movie>;
   name: Scalars['String'];
-  series?: Maybe<Serie>;
+  series: Array<Serie>;
   seriesId?: Maybe<Scalars['Int']>;
   updatedAt: Scalars['DateTime'];
 };
@@ -2190,6 +2213,16 @@ export type LanguageMoviesArgs = {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<MovieWhereInput>;
+};
+
+
+export type LanguageSeriesArgs = {
+  cursor?: Maybe<SerieWhereUniqueInput>;
+  distinct?: Maybe<Array<SerieScalarFieldEnum>>;
+  orderBy?: Maybe<Array<SerieOrderByWithRelationAndSearchRelevanceInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<SerieWhereInput>;
 };
 
 export type LanguageAvgAggregate = {
@@ -2206,6 +2239,7 @@ export type LanguageAvgOrderByAggregateInput = {
 export type LanguageCount = {
   __typename?: 'LanguageCount';
   movies: Scalars['Int'];
+  series: Scalars['Int'];
 };
 
 export type LanguageCountAggregate = {
@@ -2230,7 +2264,8 @@ export type LanguageCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   movies?: Maybe<MovieCreateNestedManyWithoutLanguagesInput>;
   name: Scalars['String'];
-  series?: Maybe<SerieCreateNestedOneWithoutLanguagesInput>;
+  series?: Maybe<SerieCreateNestedManyWithoutLanguagesInput>;
+  seriesId?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -2240,18 +2275,6 @@ export type LanguageCreateManyInput = {
   name: Scalars['String'];
   seriesId?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type LanguageCreateManySeriesInput = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['Int']>;
-  name: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type LanguageCreateManySeriesInputEnvelope = {
-  data: Array<LanguageCreateManySeriesInput>;
-  skipDuplicates?: Maybe<Scalars['Boolean']>;
 };
 
 export type LanguageCreateNestedManyWithoutMoviesInput = {
@@ -2264,7 +2287,6 @@ export type LanguageCreateNestedManyWithoutSeriesInput = {
   connect?: Maybe<Array<LanguageWhereUniqueInput>>;
   connectOrCreate?: Maybe<Array<LanguageCreateOrConnectWithoutSeriesInput>>;
   create?: Maybe<Array<LanguageCreateWithoutSeriesInput>>;
-  createMany?: Maybe<LanguageCreateManySeriesInputEnvelope>;
 };
 
 export type LanguageCreateOrConnectWithoutMoviesInput = {
@@ -2280,7 +2302,8 @@ export type LanguageCreateOrConnectWithoutSeriesInput = {
 export type LanguageCreateWithoutMoviesInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   name: Scalars['String'];
-  series?: Maybe<SerieCreateNestedOneWithoutLanguagesInput>;
+  series?: Maybe<SerieCreateNestedManyWithoutLanguagesInput>;
+  seriesId?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -2288,6 +2311,7 @@ export type LanguageCreateWithoutSeriesInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   movies?: Maybe<MovieCreateNestedManyWithoutLanguagesInput>;
   name: Scalars['String'];
+  seriesId?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -2378,7 +2402,7 @@ export type LanguageOrderByWithRelationAndSearchRelevanceInput = {
   id?: Maybe<SortOrder>;
   movies?: Maybe<MovieOrderByRelationAggregateInput>;
   name?: Maybe<SortOrder>;
-  series?: Maybe<SerieOrderByWithRelationAndSearchRelevanceInput>;
+  series?: Maybe<SerieOrderByRelationAggregateInput>;
   seriesId?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
 };
@@ -2428,13 +2452,15 @@ export type LanguageUpdateInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   movies?: Maybe<MovieUpdateManyWithoutLanguagesInput>;
   name?: Maybe<StringFieldUpdateOperationsInput>;
-  series?: Maybe<SerieUpdateOneWithoutLanguagesInput>;
+  series?: Maybe<SerieUpdateManyWithoutLanguagesInput>;
+  seriesId?: Maybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type LanguageUpdateManyMutationInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   name?: Maybe<StringFieldUpdateOperationsInput>;
+  seriesId?: Maybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2465,7 +2491,6 @@ export type LanguageUpdateManyWithoutSeriesInput = {
   connect?: Maybe<Array<LanguageWhereUniqueInput>>;
   connectOrCreate?: Maybe<Array<LanguageCreateOrConnectWithoutSeriesInput>>;
   create?: Maybe<Array<LanguageCreateWithoutSeriesInput>>;
-  createMany?: Maybe<LanguageCreateManySeriesInputEnvelope>;
   delete?: Maybe<Array<LanguageWhereUniqueInput>>;
   deleteMany?: Maybe<Array<LanguageScalarWhereInput>>;
   disconnect?: Maybe<Array<LanguageWhereUniqueInput>>;
@@ -2488,7 +2513,8 @@ export type LanguageUpdateWithWhereUniqueWithoutSeriesInput = {
 export type LanguageUpdateWithoutMoviesInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   name?: Maybe<StringFieldUpdateOperationsInput>;
-  series?: Maybe<SerieUpdateOneWithoutLanguagesInput>;
+  series?: Maybe<SerieUpdateManyWithoutLanguagesInput>;
+  seriesId?: Maybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2496,6 +2522,7 @@ export type LanguageUpdateWithoutSeriesInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   movies?: Maybe<MovieUpdateManyWithoutLanguagesInput>;
   name?: Maybe<StringFieldUpdateOperationsInput>;
+  seriesId?: Maybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2519,7 +2546,7 @@ export type LanguageWhereInput = {
   id?: Maybe<IntFilter>;
   movies?: Maybe<MovieListRelationFilter>;
   name?: Maybe<StringFilter>;
-  series?: Maybe<SerieRelationFilter>;
+  series?: Maybe<SerieListRelationFilter>;
   seriesId?: Maybe<IntNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
 };
@@ -2537,6 +2564,7 @@ export type Movie = {
   directors: Array<Director>;
   genres: Array<Genre>;
   id: Scalars['Int'];
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages: Array<Language>;
   plot: Scalars['String'];
@@ -2617,6 +2645,7 @@ export type MovieCountAggregate = {
   _all: Scalars['Int'];
   createdAt: Scalars['Int'];
   id: Scalars['Int'];
+  imdbID: Scalars['Int'];
   imdbRating: Scalars['Int'];
   plot: Scalars['Int'];
   poster: Scalars['Int'];
@@ -2631,6 +2660,7 @@ export type MovieCountAggregate = {
 export type MovieCountOrderByAggregateInput = {
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -2647,6 +2677,7 @@ export type MovieCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   directors?: Maybe<DirectorCreateNestedManyWithoutMoviesInput>;
   genres?: Maybe<GenreCreateNestedManyWithoutMoviesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages?: Maybe<LanguageCreateNestedManyWithoutMoviesInput>;
   plot: Scalars['String'];
@@ -2662,6 +2693,7 @@ export type MovieCreateInput = {
 export type MovieCreateManyInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['Int']>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -2721,6 +2753,7 @@ export type MovieCreateWithoutActorsInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   directors?: Maybe<DirectorCreateNestedManyWithoutMoviesInput>;
   genres?: Maybe<GenreCreateNestedManyWithoutMoviesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages?: Maybe<LanguageCreateNestedManyWithoutMoviesInput>;
   plot: Scalars['String'];
@@ -2737,6 +2770,7 @@ export type MovieCreateWithoutDirectorsInput = {
   actors?: Maybe<ActorCreateNestedManyWithoutMoviesInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   genres?: Maybe<GenreCreateNestedManyWithoutMoviesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages?: Maybe<LanguageCreateNestedManyWithoutMoviesInput>;
   plot: Scalars['String'];
@@ -2753,6 +2787,7 @@ export type MovieCreateWithoutGenresInput = {
   actors?: Maybe<ActorCreateNestedManyWithoutMoviesInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   directors?: Maybe<DirectorCreateNestedManyWithoutMoviesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages?: Maybe<LanguageCreateNestedManyWithoutMoviesInput>;
   plot: Scalars['String'];
@@ -2770,6 +2805,7 @@ export type MovieCreateWithoutLanguagesInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   directors?: Maybe<DirectorCreateNestedManyWithoutMoviesInput>;
   genres?: Maybe<GenreCreateNestedManyWithoutMoviesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -2790,6 +2826,7 @@ export type MovieGroupBy = {
   _sum?: Maybe<MovieSumAggregate>;
   createdAt: Scalars['DateTime'];
   id: Scalars['Int'];
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -2811,6 +2848,7 @@ export type MovieMaxAggregate = {
   __typename?: 'MovieMaxAggregate';
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['Int']>;
+  imdbID?: Maybe<Scalars['String']>;
   imdbRating?: Maybe<Scalars['Float']>;
   plot?: Maybe<Scalars['String']>;
   poster?: Maybe<Scalars['String']>;
@@ -2825,6 +2863,7 @@ export type MovieMaxAggregate = {
 export type MovieMaxOrderByAggregateInput = {
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -2840,6 +2879,7 @@ export type MovieMinAggregate = {
   __typename?: 'MovieMinAggregate';
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['Int']>;
+  imdbID?: Maybe<Scalars['String']>;
   imdbRating?: Maybe<Scalars['Float']>;
   plot?: Maybe<Scalars['String']>;
   poster?: Maybe<Scalars['String']>;
@@ -2854,6 +2894,7 @@ export type MovieMinAggregate = {
 export type MovieMinOrderByAggregateInput = {
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -2870,6 +2911,7 @@ export type MovieOrderByRelationAggregateInput = {
 };
 
 export enum MovieOrderByRelevanceFieldEnum {
+  ImdbId = 'imdbID',
   Plot = 'plot',
   Poster = 'poster',
   Rating = 'rating',
@@ -2890,6 +2932,7 @@ export type MovieOrderByWithAggregationInput = {
   _sum?: Maybe<MovieSumOrderByAggregateInput>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -2908,6 +2951,7 @@ export type MovieOrderByWithRelationAndSearchRelevanceInput = {
   directors?: Maybe<DirectorOrderByRelationAggregateInput>;
   genres?: Maybe<GenreOrderByRelationAggregateInput>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   languages?: Maybe<LanguageOrderByRelationAggregateInput>;
   plot?: Maybe<SortOrder>;
@@ -2923,6 +2967,7 @@ export type MovieOrderByWithRelationAndSearchRelevanceInput = {
 export enum MovieScalarFieldEnum {
   CreatedAt = 'createdAt',
   Id = 'id',
+  ImdbId = 'imdbID',
   ImdbRating = 'imdbRating',
   Plot = 'plot',
   Poster = 'poster',
@@ -2940,6 +2985,7 @@ export type MovieScalarWhereInput = {
   OR?: Maybe<Array<MovieScalarWhereInput>>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<IntFilter>;
+  imdbID?: Maybe<StringFilter>;
   imdbRating?: Maybe<FloatFilter>;
   plot?: Maybe<StringFilter>;
   poster?: Maybe<StringFilter>;
@@ -2957,6 +3003,7 @@ export type MovieScalarWhereWithAggregatesInput = {
   OR?: Maybe<Array<MovieScalarWhereWithAggregatesInput>>;
   createdAt?: Maybe<DateTimeWithAggregatesFilter>;
   id?: Maybe<IntWithAggregatesFilter>;
+  imdbID?: Maybe<StringWithAggregatesFilter>;
   imdbRating?: Maybe<FloatWithAggregatesFilter>;
   plot?: Maybe<StringWithAggregatesFilter>;
   poster?: Maybe<StringWithAggregatesFilter>;
@@ -2988,6 +3035,7 @@ export type MovieUpdateInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   directors?: Maybe<DirectorUpdateManyWithoutMoviesInput>;
   genres?: Maybe<GenreUpdateManyWithoutMoviesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   languages?: Maybe<LanguageUpdateManyWithoutMoviesInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
@@ -3002,6 +3050,7 @@ export type MovieUpdateInput = {
 
 export type MovieUpdateManyMutationInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
   poster?: Maybe<StringFieldUpdateOperationsInput>;
@@ -3109,6 +3158,7 @@ export type MovieUpdateWithoutActorsInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   directors?: Maybe<DirectorUpdateManyWithoutMoviesInput>;
   genres?: Maybe<GenreUpdateManyWithoutMoviesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   languages?: Maybe<LanguageUpdateManyWithoutMoviesInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
@@ -3125,6 +3175,7 @@ export type MovieUpdateWithoutDirectorsInput = {
   actors?: Maybe<ActorUpdateManyWithoutMoviesInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   genres?: Maybe<GenreUpdateManyWithoutMoviesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   languages?: Maybe<LanguageUpdateManyWithoutMoviesInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
@@ -3141,6 +3192,7 @@ export type MovieUpdateWithoutGenresInput = {
   actors?: Maybe<ActorUpdateManyWithoutMoviesInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   directors?: Maybe<DirectorUpdateManyWithoutMoviesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   languages?: Maybe<LanguageUpdateManyWithoutMoviesInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
@@ -3158,6 +3210,7 @@ export type MovieUpdateWithoutLanguagesInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   directors?: Maybe<DirectorUpdateManyWithoutMoviesInput>;
   genres?: Maybe<GenreUpdateManyWithoutMoviesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
   poster?: Maybe<StringFieldUpdateOperationsInput>;
@@ -3202,6 +3255,7 @@ export type MovieWhereInput = {
   directors?: Maybe<DirectorListRelationFilter>;
   genres?: Maybe<GenreListRelationFilter>;
   id?: Maybe<IntFilter>;
+  imdbID?: Maybe<StringFilter>;
   imdbRating?: Maybe<FloatFilter>;
   languages?: Maybe<LanguageListRelationFilter>;
   plot?: Maybe<StringFilter>;
@@ -3216,7 +3270,7 @@ export type MovieWhereInput = {
 
 export type MovieWhereUniqueInput = {
   id?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
+  imdbID?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {
@@ -5062,6 +5116,7 @@ export type Serie = {
   directors: Array<Director>;
   genres: Array<Genre>;
   id: Scalars['Int'];
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages: Array<Language>;
   plot: Scalars['String'];
@@ -5157,6 +5212,7 @@ export type SerieCountAggregate = {
   _all: Scalars['Int'];
   createdAt: Scalars['Int'];
   id: Scalars['Int'];
+  imdbID: Scalars['Int'];
   imdbRating: Scalars['Int'];
   plot: Scalars['Int'];
   poster: Scalars['Int'];
@@ -5172,6 +5228,7 @@ export type SerieCountAggregate = {
 export type SerieCountOrderByAggregateInput = {
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -5189,6 +5246,7 @@ export type SerieCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   directors?: Maybe<DirectorCreateNestedManyWithoutSeriesInput>;
   genres?: Maybe<GenreCreateNestedManyWithoutSeriesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages?: Maybe<LanguageCreateNestedManyWithoutSeriesInput>;
   plot: Scalars['String'];
@@ -5206,6 +5264,7 @@ export type SerieCreateInput = {
 export type SerieCreateManyInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['Int']>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -5224,6 +5283,12 @@ export type SerieCreateNestedManyWithoutGenresInput = {
   create?: Maybe<Array<SerieCreateWithoutGenresInput>>;
 };
 
+export type SerieCreateNestedManyWithoutLanguagesInput = {
+  connect?: Maybe<Array<SerieWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SerieCreateOrConnectWithoutLanguagesInput>>;
+  create?: Maybe<Array<SerieCreateWithoutLanguagesInput>>;
+};
+
 export type SerieCreateNestedOneWithoutActorsInput = {
   connect?: Maybe<SerieWhereUniqueInput>;
   connectOrCreate?: Maybe<SerieCreateOrConnectWithoutActorsInput>;
@@ -5234,12 +5299,6 @@ export type SerieCreateNestedOneWithoutDirectorsInput = {
   connect?: Maybe<SerieWhereUniqueInput>;
   connectOrCreate?: Maybe<SerieCreateOrConnectWithoutDirectorsInput>;
   create?: Maybe<SerieCreateWithoutDirectorsInput>;
-};
-
-export type SerieCreateNestedOneWithoutLanguagesInput = {
-  connect?: Maybe<SerieWhereUniqueInput>;
-  connectOrCreate?: Maybe<SerieCreateOrConnectWithoutLanguagesInput>;
-  create?: Maybe<SerieCreateWithoutLanguagesInput>;
 };
 
 export type SerieCreateNestedOneWithoutSeasonsInput = {
@@ -5277,6 +5336,7 @@ export type SerieCreateWithoutActorsInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   directors?: Maybe<DirectorCreateNestedManyWithoutSeriesInput>;
   genres?: Maybe<GenreCreateNestedManyWithoutSeriesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages?: Maybe<LanguageCreateNestedManyWithoutSeriesInput>;
   plot: Scalars['String'];
@@ -5295,6 +5355,7 @@ export type SerieCreateWithoutDirectorsInput = {
   actors?: Maybe<ActorCreateNestedManyWithoutSeriesInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   genres?: Maybe<GenreCreateNestedManyWithoutSeriesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages?: Maybe<LanguageCreateNestedManyWithoutSeriesInput>;
   plot: Scalars['String'];
@@ -5313,6 +5374,7 @@ export type SerieCreateWithoutGenresInput = {
   actors?: Maybe<ActorCreateNestedManyWithoutSeriesInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   directors?: Maybe<DirectorCreateNestedManyWithoutSeriesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages?: Maybe<LanguageCreateNestedManyWithoutSeriesInput>;
   plot: Scalars['String'];
@@ -5332,6 +5394,7 @@ export type SerieCreateWithoutLanguagesInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   directors?: Maybe<DirectorCreateNestedManyWithoutSeriesInput>;
   genres?: Maybe<GenreCreateNestedManyWithoutSeriesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -5350,6 +5413,7 @@ export type SerieCreateWithoutSeasonsInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   directors?: Maybe<DirectorCreateNestedManyWithoutSeriesInput>;
   genres?: Maybe<GenreCreateNestedManyWithoutSeriesInput>;
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   languages?: Maybe<LanguageCreateNestedManyWithoutSeriesInput>;
   plot: Scalars['String'];
@@ -5372,6 +5436,7 @@ export type SerieGroupBy = {
   _sum?: Maybe<SerieSumAggregate>;
   createdAt: Scalars['DateTime'];
   id: Scalars['Int'];
+  imdbID: Scalars['String'];
   imdbRating: Scalars['Float'];
   plot: Scalars['String'];
   poster: Scalars['String'];
@@ -5394,6 +5459,7 @@ export type SerieMaxAggregate = {
   __typename?: 'SerieMaxAggregate';
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['Int']>;
+  imdbID?: Maybe<Scalars['String']>;
   imdbRating?: Maybe<Scalars['Float']>;
   plot?: Maybe<Scalars['String']>;
   poster?: Maybe<Scalars['String']>;
@@ -5409,6 +5475,7 @@ export type SerieMaxAggregate = {
 export type SerieMaxOrderByAggregateInput = {
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -5425,6 +5492,7 @@ export type SerieMinAggregate = {
   __typename?: 'SerieMinAggregate';
   createdAt?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['Int']>;
+  imdbID?: Maybe<Scalars['String']>;
   imdbRating?: Maybe<Scalars['Float']>;
   plot?: Maybe<Scalars['String']>;
   poster?: Maybe<Scalars['String']>;
@@ -5440,6 +5508,7 @@ export type SerieMinAggregate = {
 export type SerieMinOrderByAggregateInput = {
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -5457,6 +5526,7 @@ export type SerieOrderByRelationAggregateInput = {
 };
 
 export enum SerieOrderByRelevanceFieldEnum {
+  ImdbId = 'imdbID',
   Plot = 'plot',
   Poster = 'poster',
   Rating = 'rating',
@@ -5477,6 +5547,7 @@ export type SerieOrderByWithAggregationInput = {
   _sum?: Maybe<SerieSumOrderByAggregateInput>;
   createdAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   plot?: Maybe<SortOrder>;
   poster?: Maybe<SortOrder>;
@@ -5496,6 +5567,7 @@ export type SerieOrderByWithRelationAndSearchRelevanceInput = {
   directors?: Maybe<DirectorOrderByRelationAggregateInput>;
   genres?: Maybe<GenreOrderByRelationAggregateInput>;
   id?: Maybe<SortOrder>;
+  imdbID?: Maybe<SortOrder>;
   imdbRating?: Maybe<SortOrder>;
   languages?: Maybe<LanguageOrderByRelationAggregateInput>;
   plot?: Maybe<SortOrder>;
@@ -5518,6 +5590,7 @@ export type SerieRelationFilter = {
 export enum SerieScalarFieldEnum {
   CreatedAt = 'createdAt',
   Id = 'id',
+  ImdbId = 'imdbID',
   ImdbRating = 'imdbRating',
   Plot = 'plot',
   Poster = 'poster',
@@ -5536,6 +5609,7 @@ export type SerieScalarWhereInput = {
   OR?: Maybe<Array<SerieScalarWhereInput>>;
   createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<IntFilter>;
+  imdbID?: Maybe<StringFilter>;
   imdbRating?: Maybe<FloatFilter>;
   plot?: Maybe<StringFilter>;
   poster?: Maybe<StringFilter>;
@@ -5554,6 +5628,7 @@ export type SerieScalarWhereWithAggregatesInput = {
   OR?: Maybe<Array<SerieScalarWhereWithAggregatesInput>>;
   createdAt?: Maybe<DateTimeWithAggregatesFilter>;
   id?: Maybe<IntWithAggregatesFilter>;
+  imdbID?: Maybe<StringWithAggregatesFilter>;
   imdbRating?: Maybe<FloatWithAggregatesFilter>;
   plot?: Maybe<StringWithAggregatesFilter>;
   poster?: Maybe<StringWithAggregatesFilter>;
@@ -5588,6 +5663,7 @@ export type SerieUpdateInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   directors?: Maybe<DirectorUpdateManyWithoutSeriesInput>;
   genres?: Maybe<GenreUpdateManyWithoutSeriesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   languages?: Maybe<LanguageUpdateManyWithoutSeriesInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
@@ -5604,6 +5680,7 @@ export type SerieUpdateInput = {
 
 export type SerieUpdateManyMutationInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
   poster?: Maybe<StringFieldUpdateOperationsInput>;
@@ -5621,6 +5698,11 @@ export type SerieUpdateManyWithWhereWithoutGenresInput = {
   where: SerieScalarWhereInput;
 };
 
+export type SerieUpdateManyWithWhereWithoutLanguagesInput = {
+  data: SerieUpdateManyMutationInput;
+  where: SerieScalarWhereInput;
+};
+
 export type SerieUpdateManyWithoutGenresInput = {
   connect?: Maybe<Array<SerieWhereUniqueInput>>;
   connectOrCreate?: Maybe<Array<SerieCreateOrConnectWithoutGenresInput>>;
@@ -5632,6 +5714,19 @@ export type SerieUpdateManyWithoutGenresInput = {
   update?: Maybe<Array<SerieUpdateWithWhereUniqueWithoutGenresInput>>;
   updateMany?: Maybe<Array<SerieUpdateManyWithWhereWithoutGenresInput>>;
   upsert?: Maybe<Array<SerieUpsertWithWhereUniqueWithoutGenresInput>>;
+};
+
+export type SerieUpdateManyWithoutLanguagesInput = {
+  connect?: Maybe<Array<SerieWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SerieCreateOrConnectWithoutLanguagesInput>>;
+  create?: Maybe<Array<SerieCreateWithoutLanguagesInput>>;
+  delete?: Maybe<Array<SerieWhereUniqueInput>>;
+  deleteMany?: Maybe<Array<SerieScalarWhereInput>>;
+  disconnect?: Maybe<Array<SerieWhereUniqueInput>>;
+  set?: Maybe<Array<SerieWhereUniqueInput>>;
+  update?: Maybe<Array<SerieUpdateWithWhereUniqueWithoutLanguagesInput>>;
+  updateMany?: Maybe<Array<SerieUpdateManyWithWhereWithoutLanguagesInput>>;
+  upsert?: Maybe<Array<SerieUpsertWithWhereUniqueWithoutLanguagesInput>>;
 };
 
 export type SerieUpdateOneRequiredWithoutSeasonsInput = {
@@ -5662,18 +5757,13 @@ export type SerieUpdateOneWithoutDirectorsInput = {
   upsert?: Maybe<SerieUpsertWithoutDirectorsInput>;
 };
 
-export type SerieUpdateOneWithoutLanguagesInput = {
-  connect?: Maybe<SerieWhereUniqueInput>;
-  connectOrCreate?: Maybe<SerieCreateOrConnectWithoutLanguagesInput>;
-  create?: Maybe<SerieCreateWithoutLanguagesInput>;
-  delete?: Maybe<Scalars['Boolean']>;
-  disconnect?: Maybe<Scalars['Boolean']>;
-  update?: Maybe<SerieUpdateWithoutLanguagesInput>;
-  upsert?: Maybe<SerieUpsertWithoutLanguagesInput>;
-};
-
 export type SerieUpdateWithWhereUniqueWithoutGenresInput = {
   data: SerieUpdateWithoutGenresInput;
+  where: SerieWhereUniqueInput;
+};
+
+export type SerieUpdateWithWhereUniqueWithoutLanguagesInput = {
+  data: SerieUpdateWithoutLanguagesInput;
   where: SerieWhereUniqueInput;
 };
 
@@ -5681,6 +5771,7 @@ export type SerieUpdateWithoutActorsInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   directors?: Maybe<DirectorUpdateManyWithoutSeriesInput>;
   genres?: Maybe<GenreUpdateManyWithoutSeriesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   languages?: Maybe<LanguageUpdateManyWithoutSeriesInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
@@ -5699,6 +5790,7 @@ export type SerieUpdateWithoutDirectorsInput = {
   actors?: Maybe<ActorUpdateManyWithoutSeriesInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   genres?: Maybe<GenreUpdateManyWithoutSeriesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   languages?: Maybe<LanguageUpdateManyWithoutSeriesInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
@@ -5717,6 +5809,7 @@ export type SerieUpdateWithoutGenresInput = {
   actors?: Maybe<ActorUpdateManyWithoutSeriesInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   directors?: Maybe<DirectorUpdateManyWithoutSeriesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   languages?: Maybe<LanguageUpdateManyWithoutSeriesInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
@@ -5736,6 +5829,7 @@ export type SerieUpdateWithoutLanguagesInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   directors?: Maybe<DirectorUpdateManyWithoutSeriesInput>;
   genres?: Maybe<GenreUpdateManyWithoutSeriesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
   poster?: Maybe<StringFieldUpdateOperationsInput>;
@@ -5754,6 +5848,7 @@ export type SerieUpdateWithoutSeasonsInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   directors?: Maybe<DirectorUpdateManyWithoutSeriesInput>;
   genres?: Maybe<GenreUpdateManyWithoutSeriesInput>;
+  imdbID?: Maybe<StringFieldUpdateOperationsInput>;
   imdbRating?: Maybe<FloatFieldUpdateOperationsInput>;
   languages?: Maybe<LanguageUpdateManyWithoutSeriesInput>;
   plot?: Maybe<StringFieldUpdateOperationsInput>;
@@ -5773,6 +5868,12 @@ export type SerieUpsertWithWhereUniqueWithoutGenresInput = {
   where: SerieWhereUniqueInput;
 };
 
+export type SerieUpsertWithWhereUniqueWithoutLanguagesInput = {
+  create: SerieCreateWithoutLanguagesInput;
+  update: SerieUpdateWithoutLanguagesInput;
+  where: SerieWhereUniqueInput;
+};
+
 export type SerieUpsertWithoutActorsInput = {
   create: SerieCreateWithoutActorsInput;
   update: SerieUpdateWithoutActorsInput;
@@ -5781,11 +5882,6 @@ export type SerieUpsertWithoutActorsInput = {
 export type SerieUpsertWithoutDirectorsInput = {
   create: SerieCreateWithoutDirectorsInput;
   update: SerieUpdateWithoutDirectorsInput;
-};
-
-export type SerieUpsertWithoutLanguagesInput = {
-  create: SerieCreateWithoutLanguagesInput;
-  update: SerieUpdateWithoutLanguagesInput;
 };
 
 export type SerieUpsertWithoutSeasonsInput = {
@@ -5802,6 +5898,7 @@ export type SerieWhereInput = {
   directors?: Maybe<DirectorListRelationFilter>;
   genres?: Maybe<GenreListRelationFilter>;
   id?: Maybe<IntFilter>;
+  imdbID?: Maybe<StringFilter>;
   imdbRating?: Maybe<FloatFilter>;
   languages?: Maybe<LanguageListRelationFilter>;
   plot?: Maybe<StringFilter>;
@@ -5818,7 +5915,7 @@ export type SerieWhereInput = {
 
 export type SerieWhereUniqueInput = {
   id?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
+  imdbID?: Maybe<Scalars['String']>;
 };
 
 export type Session = {
@@ -6702,10 +6799,12 @@ export type CreateSerieMutationVariables = Exact<{
   runtime: Scalars['Int'];
   year: Scalars['Int'];
   totalSeasons: Scalars['Int'];
+  languages?: Maybe<LanguageCreateNestedManyWithoutSeriesInput>;
+  imdbID: Scalars['String'];
 }>;
 
 
-export type CreateSerieMutation = { __typename?: 'Mutation', createSerie: { __typename?: 'Serie', id: number, title: string, imdbRating: number, plot: string, poster: string, rating: string, release: any, runtime: number, year: number, totalSeasons: number, genres: Array<{ __typename?: 'Genre', name: string }>, seasons: Array<{ __typename?: 'Season', id: number, title: string }> } };
+export type CreateSerieMutation = { __typename?: 'Mutation', createSerie: { __typename?: 'Serie', id: number, title: string, imdbRating: number, plot: string, poster: string, rating: string, release: any, runtime: number, year: number, imdbID: string, totalSeasons: number, genres: Array<{ __typename?: 'Genre', name: string }>, languages: Array<{ __typename?: 'Language', name: string }>, seasons: Array<{ __typename?: 'Season', id: number, title: string }> } };
 
 export type CreateSerieSearchMutationVariables = Exact<{
   title: Scalars['String'];
@@ -6718,42 +6817,116 @@ export type CreateSerieSearchMutationVariables = Exact<{
   runtime: Scalars['Int'];
   year: Scalars['Int'];
   totalSeasons: Scalars['Int'];
+  languages?: Maybe<LanguageCreateNestedManyWithoutSeriesInput>;
+  imdbID: Scalars['String'];
 }>;
 
 
-export type CreateSerieSearchMutation = { __typename?: 'Mutation', createSerie: { __typename?: 'Serie', id: number, title: string, poster: string, createdAt: any, updatedAt: any } };
+export type CreateSerieSearchMutation = { __typename?: 'Mutation', createSerie: { __typename?: 'Serie', id: number, title: string, poster: string } };
+
+export type CreateMovieSearchMutationVariables = Exact<{
+  title: Scalars['String'];
+  genres?: Maybe<GenreCreateNestedManyWithoutMoviesInput>;
+  plot: Scalars['String'];
+  poster: Scalars['String'];
+  imdbRating: Scalars['Float'];
+  rating: Scalars['String'];
+  release: Scalars['DateTime'];
+  runtime: Scalars['Int'];
+  year: Scalars['Int'];
+  languages?: Maybe<LanguageCreateNestedManyWithoutMoviesInput>;
+  imdbID: Scalars['String'];
+}>;
+
+
+export type CreateMovieSearchMutation = { __typename?: 'Mutation', createMovie: { __typename?: 'Movie', id: number, title: string, poster: string } };
+
+export type CreateMovieMutationVariables = Exact<{
+  title: Scalars['String'];
+  genres?: Maybe<GenreCreateNestedManyWithoutMoviesInput>;
+  plot: Scalars['String'];
+  poster: Scalars['String'];
+  imdbRating: Scalars['Float'];
+  rating: Scalars['String'];
+  release: Scalars['DateTime'];
+  runtime: Scalars['Int'];
+  year: Scalars['Int'];
+  languages?: Maybe<LanguageCreateNestedManyWithoutMoviesInput>;
+  imdbID: Scalars['String'];
+}>;
+
+
+export type CreateMovieMutation = { __typename?: 'Mutation', createMovie: { __typename?: 'Movie', id: number, title: string, imdbRating: number, imdbID: string, plot: string, poster: string, rating: string, release: any, runtime: number, year: number, createdAt: any, updatedAt: any, genres: Array<{ __typename?: 'Genre', name: string }>, languages: Array<{ __typename?: 'Language', name: string }> } };
+
+export type CreateGenreMutationVariables = Exact<{
+  name: Scalars['String'];
+}>;
+
+
+export type CreateGenreMutation = { __typename?: 'Mutation', createGenre: { __typename?: 'Genre', id: number, name: string } };
+
+export type CreateSeasonMutationVariables = Exact<{
+  title: Scalars['String'];
+  index: Scalars['Int'];
+  episodes: Scalars['Int'];
+  episodeIds: EpisodeCreateNestedManyWithoutSeasonInput;
+  series: SerieCreateNestedOneWithoutSeasonsInput;
+  launchDate: Scalars['DateTime'];
+}>;
+
+
+export type CreateSeasonMutation = { __typename?: 'Mutation', createSeason: { __typename?: 'Season', id: number, title: string, index: number } };
 
 export type AllMoviesQueryVariables = Exact<{
-  genre?: Maybe<Scalars['String']>;
+  cursor?: Maybe<MovieWhereUniqueInput>;
+  where?: Maybe<MovieWhereInput>;
+  orderBy?: Maybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput> | MovieOrderByWithRelationAndSearchRelevanceInput>;
+  skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
 }>;
 
 
-export type AllMoviesQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: number, title: string, poster: string, genres: Array<{ __typename?: 'Genre', name: string }> }> };
+export type AllMoviesQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: number, title: string, poster: string, imdbID: string, genres: Array<{ __typename?: 'Genre', name: string }> }> };
+
+export type AllMoviesLangGenreQueryVariables = Exact<{
+  cursor?: Maybe<MovieWhereUniqueInput>;
+  where?: Maybe<MovieWhereInput>;
+  orderBy?: Maybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput> | MovieOrderByWithRelationAndSearchRelevanceInput>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type AllMoviesLangGenreQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: number, title: string, poster: string, imdbID: string, genres: Array<{ __typename?: 'Genre', name: string }> }>, genres: Array<{ __typename?: 'Genre', id: number, name: string }>, languages: Array<{ __typename?: 'Language', id: number, name: string }> };
 
 export type AllMoviesDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllMoviesDetailsQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: number, title: string, year: number, rating: string, release: any, runtime: number, plot: string, poster: string, imdbRating: number, createdAt: any, updatedAt: any, genres: Array<{ __typename?: 'Genre', name: string }> }> };
+export type AllMoviesDetailsQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: number, title: string, year: number, rating: string, release: any, runtime: number, plot: string, poster: string, imdbRating: number, imdbID: string, createdAt: any, updatedAt: any, genres: Array<{ __typename?: 'Genre', name: string }> }> };
 
 export type MovieQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type MovieQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: number, title: string, year: number, rating: string, release: any, runtime: number, plot: string, poster: string, imdbRating: number, createdAt: any, updatedAt: any, genres: Array<{ __typename?: 'Genre', name: string }> } | null | undefined };
+export type MovieQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: number, title: string, year: number, rating: string, release: any, runtime: number, plot: string, poster: string, imdbRating: number, imdbID: string, createdAt: any, updatedAt: any, genres: Array<{ __typename?: 'Genre', name: string }> } | null | undefined };
 
 export type SearchMovieByTitleQueryVariables = Exact<{
   title: Scalars['String'];
 }>;
 
 
-export type SearchMovieByTitleQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: number, title: string, year: number, rating: string, release: any, runtime: number, plot: string, poster: string, imdbRating: number, createdAt: any, updatedAt: any }> };
+export type SearchMovieByTitleQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: number, title: string, poster: string, imdbID: string }> };
 
 export type GenresQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'Genre', id: number, name: string }> };
+
+export type GenresLanguagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GenresLanguagesQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'Genre', id: number, name: string }>, languages: Array<{ __typename?: 'Language', id: number, name: string }> };
 
 export type AllSeasonsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6761,17 +6934,31 @@ export type AllSeasonsQueryVariables = Exact<{ [key: string]: never; }>;
 export type AllSeasonsQuery = { __typename?: 'Query', seasons: Array<{ __typename?: 'Season', id: number, title: string }> };
 
 export type AllSeriesQueryVariables = Exact<{
-  genre?: Maybe<Scalars['String']>;
+  cursor?: Maybe<SerieWhereUniqueInput>;
+  where?: Maybe<SerieWhereInput>;
+  orderBy?: Maybe<Array<SerieOrderByWithRelationAndSearchRelevanceInput> | SerieOrderByWithRelationAndSearchRelevanceInput>;
+  skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
 }>;
 
 
-export type AllSeriesQuery = { __typename?: 'Query', series: Array<{ __typename?: 'Serie', id: number, title: string, poster: string, genres: Array<{ __typename?: 'Genre', name: string }> }> };
+export type AllSeriesQuery = { __typename?: 'Query', series: Array<{ __typename?: 'Serie', id: number, title: string, poster: string, imdbID: string, genres: Array<{ __typename?: 'Genre', name: string }> }> };
+
+export type AllSeriesLangGenreQueryVariables = Exact<{
+  cursor?: Maybe<SerieWhereUniqueInput>;
+  where?: Maybe<SerieWhereInput>;
+  orderBy?: Maybe<Array<SerieOrderByWithRelationAndSearchRelevanceInput> | SerieOrderByWithRelationAndSearchRelevanceInput>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type AllSeriesLangGenreQuery = { __typename?: 'Query', series: Array<{ __typename?: 'Serie', id: number, title: string, poster: string, imdbID: string, genres: Array<{ __typename?: 'Genre', name: string }> }>, genres: Array<{ __typename?: 'Genre', id: number, name: string }>, languages: Array<{ __typename?: 'Language', id: number, name: string }> };
 
 export type AllSeriesDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllSeriesDetailsQuery = { __typename?: 'Query', series: Array<{ __typename?: 'Serie', id: number, title: string, imdbRating: number, plot: string, poster: string, rating: string, release: any, runtime: number, year: number, totalSeasons: number, genres: Array<{ __typename?: 'Genre', name: string }>, seasons: Array<{ __typename?: 'Season', id: number, title: string }> }> };
+export type AllSeriesDetailsQuery = { __typename?: 'Query', series: Array<{ __typename?: 'Serie', id: number, title: string, imdbRating: number, imdbID: string, plot: string, poster: string, rating: string, release: any, runtime: number, year: number, totalSeasons: number, genres: Array<{ __typename?: 'Genre', name: string }>, seasons: Array<{ __typename?: 'Season', id: number, title: string }> }> };
 
 export type SerieByIdQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -6785,7 +6972,7 @@ export type SearchSeriesByTitleQueryVariables = Exact<{
 }>;
 
 
-export type SearchSeriesByTitleQuery = { __typename?: 'Query', series: Array<{ __typename?: 'Serie', id: number, title: string, poster: string, createdAt: any, updatedAt: any }> };
+export type SearchSeriesByTitleQuery = { __typename?: 'Query', series: Array<{ __typename?: 'Serie', id: number, title: string, poster: string, imdbID: string }> };
 
 export type SeriesQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -6805,13 +6992,16 @@ export type MoviesQuery = { __typename?: 'Query', movies: Array<{ __typename?: '
 
 
 export const CreateSerieDocument = gql`
-    mutation createSerie($title: String!, $genres: GenreCreateNestedManyWithoutSeriesInput, $plot: String!, $poster: String!, $imdbRating: Float!, $rating: String!, $release: DateTime!, $runtime: Int!, $year: Int!, $totalSeasons: Int!) {
+    mutation createSerie($title: String!, $genres: GenreCreateNestedManyWithoutSeriesInput, $plot: String!, $poster: String!, $imdbRating: Float!, $rating: String!, $release: DateTime!, $runtime: Int!, $year: Int!, $totalSeasons: Int!, $languages: LanguageCreateNestedManyWithoutSeriesInput, $imdbID: String!) {
   createSerie(
-    data: {title: $title, genres: $genres, plot: $plot, poster: $poster, imdbRating: $imdbRating, rating: $rating, release: $release, runtime: $runtime, year: $year, totalSeasons: $totalSeasons}
+    data: {title: $title, genres: $genres, plot: $plot, poster: $poster, imdbRating: $imdbRating, rating: $rating, release: $release, runtime: $runtime, year: $year, totalSeasons: $totalSeasons, languages: $languages, imdbID: $imdbID}
   ) {
     id
     title
     genres {
+      name
+    }
+    languages {
       name
     }
     imdbRating
@@ -6821,6 +7011,7 @@ export const CreateSerieDocument = gql`
     release
     runtime
     year
+    imdbID
     totalSeasons
     seasons {
       id
@@ -6854,6 +7045,8 @@ export type CreateSerieMutationFn = Apollo.MutationFunction<CreateSerieMutation,
  *      runtime: // value for 'runtime'
  *      year: // value for 'year'
  *      totalSeasons: // value for 'totalSeasons'
+ *      languages: // value for 'languages'
+ *      imdbID: // value for 'imdbID'
  *   },
  * });
  */
@@ -6865,15 +7058,13 @@ export type CreateSerieMutationHookResult = ReturnType<typeof useCreateSerieMuta
 export type CreateSerieMutationResult = Apollo.MutationResult<CreateSerieMutation>;
 export type CreateSerieMutationOptions = Apollo.BaseMutationOptions<CreateSerieMutation, CreateSerieMutationVariables>;
 export const CreateSerieSearchDocument = gql`
-    mutation createSerieSearch($title: String!, $genres: GenreCreateNestedManyWithoutSeriesInput, $plot: String!, $poster: String!, $imdbRating: Float!, $rating: String!, $release: DateTime!, $runtime: Int!, $year: Int!, $totalSeasons: Int!) {
+    mutation createSerieSearch($title: String!, $genres: GenreCreateNestedManyWithoutSeriesInput, $plot: String!, $poster: String!, $imdbRating: Float!, $rating: String!, $release: DateTime!, $runtime: Int!, $year: Int!, $totalSeasons: Int!, $languages: LanguageCreateNestedManyWithoutSeriesInput, $imdbID: String!) {
   createSerie(
-    data: {title: $title, genres: $genres, plot: $plot, poster: $poster, imdbRating: $imdbRating, rating: $rating, release: $release, runtime: $runtime, year: $year, totalSeasons: $totalSeasons}
+    data: {title: $title, genres: $genres, plot: $plot, poster: $poster, imdbRating: $imdbRating, rating: $rating, release: $release, runtime: $runtime, year: $year, totalSeasons: $totalSeasons, languages: $languages, imdbID: $imdbID}
   ) {
     id
     title
     poster
-    createdAt
-    updatedAt
   }
 }
     `;
@@ -6902,6 +7093,8 @@ export type CreateSerieSearchMutationFn = Apollo.MutationFunction<CreateSerieSea
  *      runtime: // value for 'runtime'
  *      year: // value for 'year'
  *      totalSeasons: // value for 'totalSeasons'
+ *      languages: // value for 'languages'
+ *      imdbID: // value for 'imdbID'
  *   },
  * });
  */
@@ -6912,12 +7105,204 @@ export function useCreateSerieSearchMutation(baseOptions?: Apollo.MutationHookOp
 export type CreateSerieSearchMutationHookResult = ReturnType<typeof useCreateSerieSearchMutation>;
 export type CreateSerieSearchMutationResult = Apollo.MutationResult<CreateSerieSearchMutation>;
 export type CreateSerieSearchMutationOptions = Apollo.BaseMutationOptions<CreateSerieSearchMutation, CreateSerieSearchMutationVariables>;
-export const AllMoviesDocument = gql`
-    query allMovies($genre: String, $take: Int) {
-  movies(where: {genres: {some: {name: {contains: $genre}}}}, take: $take) {
+export const CreateMovieSearchDocument = gql`
+    mutation createMovieSearch($title: String!, $genres: GenreCreateNestedManyWithoutMoviesInput, $plot: String!, $poster: String!, $imdbRating: Float!, $rating: String!, $release: DateTime!, $runtime: Int!, $year: Int!, $languages: LanguageCreateNestedManyWithoutMoviesInput, $imdbID: String!) {
+  createMovie(
+    data: {title: $title, genres: $genres, plot: $plot, poster: $poster, imdbRating: $imdbRating, rating: $rating, release: $release, runtime: $runtime, year: $year, languages: $languages, imdbID: $imdbID}
+  ) {
     id
     title
     poster
+  }
+}
+    `;
+export type CreateMovieSearchMutationFn = Apollo.MutationFunction<CreateMovieSearchMutation, CreateMovieSearchMutationVariables>;
+
+/**
+ * __useCreateMovieSearchMutation__
+ *
+ * To run a mutation, you first call `useCreateMovieSearchMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMovieSearchMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMovieSearchMutation, { data, loading, error }] = useCreateMovieSearchMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *      genres: // value for 'genres'
+ *      plot: // value for 'plot'
+ *      poster: // value for 'poster'
+ *      imdbRating: // value for 'imdbRating'
+ *      rating: // value for 'rating'
+ *      release: // value for 'release'
+ *      runtime: // value for 'runtime'
+ *      year: // value for 'year'
+ *      languages: // value for 'languages'
+ *      imdbID: // value for 'imdbID'
+ *   },
+ * });
+ */
+export function useCreateMovieSearchMutation(baseOptions?: Apollo.MutationHookOptions<CreateMovieSearchMutation, CreateMovieSearchMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateMovieSearchMutation, CreateMovieSearchMutationVariables>(CreateMovieSearchDocument, options);
+      }
+export type CreateMovieSearchMutationHookResult = ReturnType<typeof useCreateMovieSearchMutation>;
+export type CreateMovieSearchMutationResult = Apollo.MutationResult<CreateMovieSearchMutation>;
+export type CreateMovieSearchMutationOptions = Apollo.BaseMutationOptions<CreateMovieSearchMutation, CreateMovieSearchMutationVariables>;
+export const CreateMovieDocument = gql`
+    mutation createMovie($title: String!, $genres: GenreCreateNestedManyWithoutMoviesInput, $plot: String!, $poster: String!, $imdbRating: Float!, $rating: String!, $release: DateTime!, $runtime: Int!, $year: Int!, $languages: LanguageCreateNestedManyWithoutMoviesInput, $imdbID: String!) {
+  createMovie(
+    data: {title: $title, genres: $genres, plot: $plot, poster: $poster, imdbRating: $imdbRating, rating: $rating, release: $release, runtime: $runtime, year: $year, languages: $languages, imdbID: $imdbID}
+  ) {
+    id
+    title
+    genres {
+      name
+    }
+    languages {
+      name
+    }
+    imdbRating
+    imdbID
+    plot
+    poster
+    rating
+    release
+    runtime
+    year
+    createdAt
+    updatedAt
+  }
+}
+    `;
+export type CreateMovieMutationFn = Apollo.MutationFunction<CreateMovieMutation, CreateMovieMutationVariables>;
+
+/**
+ * __useCreateMovieMutation__
+ *
+ * To run a mutation, you first call `useCreateMovieMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMovieMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMovieMutation, { data, loading, error }] = useCreateMovieMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *      genres: // value for 'genres'
+ *      plot: // value for 'plot'
+ *      poster: // value for 'poster'
+ *      imdbRating: // value for 'imdbRating'
+ *      rating: // value for 'rating'
+ *      release: // value for 'release'
+ *      runtime: // value for 'runtime'
+ *      year: // value for 'year'
+ *      languages: // value for 'languages'
+ *      imdbID: // value for 'imdbID'
+ *   },
+ * });
+ */
+export function useCreateMovieMutation(baseOptions?: Apollo.MutationHookOptions<CreateMovieMutation, CreateMovieMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateMovieMutation, CreateMovieMutationVariables>(CreateMovieDocument, options);
+      }
+export type CreateMovieMutationHookResult = ReturnType<typeof useCreateMovieMutation>;
+export type CreateMovieMutationResult = Apollo.MutationResult<CreateMovieMutation>;
+export type CreateMovieMutationOptions = Apollo.BaseMutationOptions<CreateMovieMutation, CreateMovieMutationVariables>;
+export const CreateGenreDocument = gql`
+    mutation createGenre($name: String!) {
+  createGenre(data: {name: $name}) {
+    id
+    name
+  }
+}
+    `;
+export type CreateGenreMutationFn = Apollo.MutationFunction<CreateGenreMutation, CreateGenreMutationVariables>;
+
+/**
+ * __useCreateGenreMutation__
+ *
+ * To run a mutation, you first call `useCreateGenreMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateGenreMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createGenreMutation, { data, loading, error }] = useCreateGenreMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useCreateGenreMutation(baseOptions?: Apollo.MutationHookOptions<CreateGenreMutation, CreateGenreMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateGenreMutation, CreateGenreMutationVariables>(CreateGenreDocument, options);
+      }
+export type CreateGenreMutationHookResult = ReturnType<typeof useCreateGenreMutation>;
+export type CreateGenreMutationResult = Apollo.MutationResult<CreateGenreMutation>;
+export type CreateGenreMutationOptions = Apollo.BaseMutationOptions<CreateGenreMutation, CreateGenreMutationVariables>;
+export const CreateSeasonDocument = gql`
+    mutation createSeason($title: String!, $index: Int!, $episodes: Int!, $episodeIds: EpisodeCreateNestedManyWithoutSeasonInput!, $series: SerieCreateNestedOneWithoutSeasonsInput!, $launchDate: DateTime!) {
+  createSeason(
+    data: {title: $title, index: $index, episodes: $episodes, episodeIds: $episodeIds, series: $series, launchDate: $launchDate}
+  ) {
+    id
+    title
+    index
+  }
+}
+    `;
+export type CreateSeasonMutationFn = Apollo.MutationFunction<CreateSeasonMutation, CreateSeasonMutationVariables>;
+
+/**
+ * __useCreateSeasonMutation__
+ *
+ * To run a mutation, you first call `useCreateSeasonMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSeasonMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSeasonMutation, { data, loading, error }] = useCreateSeasonMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *      index: // value for 'index'
+ *      episodes: // value for 'episodes'
+ *      episodeIds: // value for 'episodeIds'
+ *      series: // value for 'series'
+ *      launchDate: // value for 'launchDate'
+ *   },
+ * });
+ */
+export function useCreateSeasonMutation(baseOptions?: Apollo.MutationHookOptions<CreateSeasonMutation, CreateSeasonMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateSeasonMutation, CreateSeasonMutationVariables>(CreateSeasonDocument, options);
+      }
+export type CreateSeasonMutationHookResult = ReturnType<typeof useCreateSeasonMutation>;
+export type CreateSeasonMutationResult = Apollo.MutationResult<CreateSeasonMutation>;
+export type CreateSeasonMutationOptions = Apollo.BaseMutationOptions<CreateSeasonMutation, CreateSeasonMutationVariables>;
+export const AllMoviesDocument = gql`
+    query allMovies($cursor: MovieWhereUniqueInput, $where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], $skip: Int, $take: Int) {
+  movies(
+    cursor: $cursor
+    where: $where
+    orderBy: $orderBy
+    skip: $skip
+    take: $take
+  ) {
+    id
+    title
+    poster
+    imdbID
     genres {
       name
     }
@@ -6937,7 +7322,10 @@ export const AllMoviesDocument = gql`
  * @example
  * const { data, loading, error } = useAllMoviesQuery({
  *   variables: {
- *      genre: // value for 'genre'
+ *      cursor: // value for 'cursor'
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
  *      take: // value for 'take'
  *   },
  * });
@@ -6953,6 +7341,65 @@ export function useAllMoviesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type AllMoviesQueryHookResult = ReturnType<typeof useAllMoviesQuery>;
 export type AllMoviesLazyQueryHookResult = ReturnType<typeof useAllMoviesLazyQuery>;
 export type AllMoviesQueryResult = Apollo.QueryResult<AllMoviesQuery, AllMoviesQueryVariables>;
+export const AllMoviesLangGenreDocument = gql`
+    query AllMoviesLangGenre($cursor: MovieWhereUniqueInput, $where: MovieWhereInput, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], $skip: Int, $take: Int) {
+  movies(
+    cursor: $cursor
+    where: $where
+    orderBy: $orderBy
+    skip: $skip
+    take: $take
+  ) {
+    id
+    title
+    poster
+    imdbID
+    genres {
+      name
+    }
+  }
+  genres {
+    id
+    name
+  }
+  languages {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useAllMoviesLangGenreQuery__
+ *
+ * To run a query within a React component, call `useAllMoviesLangGenreQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllMoviesLangGenreQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllMoviesLangGenreQuery({
+ *   variables: {
+ *      cursor: // value for 'cursor'
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useAllMoviesLangGenreQuery(baseOptions?: Apollo.QueryHookOptions<AllMoviesLangGenreQuery, AllMoviesLangGenreQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AllMoviesLangGenreQuery, AllMoviesLangGenreQueryVariables>(AllMoviesLangGenreDocument, options);
+      }
+export function useAllMoviesLangGenreLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllMoviesLangGenreQuery, AllMoviesLangGenreQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AllMoviesLangGenreQuery, AllMoviesLangGenreQueryVariables>(AllMoviesLangGenreDocument, options);
+        }
+export type AllMoviesLangGenreQueryHookResult = ReturnType<typeof useAllMoviesLangGenreQuery>;
+export type AllMoviesLangGenreLazyQueryHookResult = ReturnType<typeof useAllMoviesLangGenreLazyQuery>;
+export type AllMoviesLangGenreQueryResult = Apollo.QueryResult<AllMoviesLangGenreQuery, AllMoviesLangGenreQueryVariables>;
 export const AllMoviesDetailsDocument = gql`
     query AllMoviesDetails {
   movies {
@@ -6968,6 +7415,7 @@ export const AllMoviesDetailsDocument = gql`
     plot
     poster
     imdbRating
+    imdbID
     createdAt
     updatedAt
   }
@@ -7015,6 +7463,7 @@ export const MovieDocument = gql`
     plot
     poster
     imdbRating
+    imdbID
     createdAt
     updatedAt
   }
@@ -7050,18 +7499,11 @@ export type MovieLazyQueryHookResult = ReturnType<typeof useMovieLazyQuery>;
 export type MovieQueryResult = Apollo.QueryResult<MovieQuery, MovieQueryVariables>;
 export const SearchMovieByTitleDocument = gql`
     query searchMovieByTitle($title: String!) {
-  movies(where: {title: {contains: $title, mode: insensitive}}) {
+  movies(where: {title: {search: $title}}) {
     id
     title
-    year
-    rating
-    release
-    runtime
-    plot
     poster
-    imdbRating
-    createdAt
-    updatedAt
+    imdbID
   }
 }
     `;
@@ -7128,6 +7570,45 @@ export function useGenresLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Gen
 export type GenresQueryHookResult = ReturnType<typeof useGenresQuery>;
 export type GenresLazyQueryHookResult = ReturnType<typeof useGenresLazyQuery>;
 export type GenresQueryResult = Apollo.QueryResult<GenresQuery, GenresQueryVariables>;
+export const GenresLanguagesDocument = gql`
+    query genresLanguages {
+  genres {
+    id
+    name
+  }
+  languages {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useGenresLanguagesQuery__
+ *
+ * To run a query within a React component, call `useGenresLanguagesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGenresLanguagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGenresLanguagesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGenresLanguagesQuery(baseOptions?: Apollo.QueryHookOptions<GenresLanguagesQuery, GenresLanguagesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GenresLanguagesQuery, GenresLanguagesQueryVariables>(GenresLanguagesDocument, options);
+      }
+export function useGenresLanguagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GenresLanguagesQuery, GenresLanguagesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GenresLanguagesQuery, GenresLanguagesQueryVariables>(GenresLanguagesDocument, options);
+        }
+export type GenresLanguagesQueryHookResult = ReturnType<typeof useGenresLanguagesQuery>;
+export type GenresLanguagesLazyQueryHookResult = ReturnType<typeof useGenresLanguagesLazyQuery>;
+export type GenresLanguagesQueryResult = Apollo.QueryResult<GenresLanguagesQuery, GenresLanguagesQueryVariables>;
 export const AllSeasonsDocument = gql`
     query allSeasons {
   seasons {
@@ -7164,11 +7645,18 @@ export type AllSeasonsQueryHookResult = ReturnType<typeof useAllSeasonsQuery>;
 export type AllSeasonsLazyQueryHookResult = ReturnType<typeof useAllSeasonsLazyQuery>;
 export type AllSeasonsQueryResult = Apollo.QueryResult<AllSeasonsQuery, AllSeasonsQueryVariables>;
 export const AllSeriesDocument = gql`
-    query allSeries($genre: String, $take: Int) {
-  series(where: {genres: {some: {name: {contains: $genre}}}}, take: $take) {
+    query allSeries($cursor: SerieWhereUniqueInput, $where: SerieWhereInput, $orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], $skip: Int, $take: Int) {
+  series(
+    cursor: $cursor
+    where: $where
+    orderBy: $orderBy
+    skip: $skip
+    take: $take
+  ) {
     id
     title
     poster
+    imdbID
     genres {
       name
     }
@@ -7188,7 +7676,10 @@ export const AllSeriesDocument = gql`
  * @example
  * const { data, loading, error } = useAllSeriesQuery({
  *   variables: {
- *      genre: // value for 'genre'
+ *      cursor: // value for 'cursor'
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
  *      take: // value for 'take'
  *   },
  * });
@@ -7204,6 +7695,65 @@ export function useAllSeriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type AllSeriesQueryHookResult = ReturnType<typeof useAllSeriesQuery>;
 export type AllSeriesLazyQueryHookResult = ReturnType<typeof useAllSeriesLazyQuery>;
 export type AllSeriesQueryResult = Apollo.QueryResult<AllSeriesQuery, AllSeriesQueryVariables>;
+export const AllSeriesLangGenreDocument = gql`
+    query allSeriesLangGenre($cursor: SerieWhereUniqueInput, $where: SerieWhereInput, $orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], $skip: Int, $take: Int) {
+  series(
+    cursor: $cursor
+    where: $where
+    orderBy: $orderBy
+    skip: $skip
+    take: $take
+  ) {
+    id
+    title
+    poster
+    imdbID
+    genres {
+      name
+    }
+  }
+  genres {
+    id
+    name
+  }
+  languages {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useAllSeriesLangGenreQuery__
+ *
+ * To run a query within a React component, call `useAllSeriesLangGenreQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllSeriesLangGenreQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllSeriesLangGenreQuery({
+ *   variables: {
+ *      cursor: // value for 'cursor'
+ *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useAllSeriesLangGenreQuery(baseOptions?: Apollo.QueryHookOptions<AllSeriesLangGenreQuery, AllSeriesLangGenreQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AllSeriesLangGenreQuery, AllSeriesLangGenreQueryVariables>(AllSeriesLangGenreDocument, options);
+      }
+export function useAllSeriesLangGenreLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllSeriesLangGenreQuery, AllSeriesLangGenreQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AllSeriesLangGenreQuery, AllSeriesLangGenreQueryVariables>(AllSeriesLangGenreDocument, options);
+        }
+export type AllSeriesLangGenreQueryHookResult = ReturnType<typeof useAllSeriesLangGenreQuery>;
+export type AllSeriesLangGenreLazyQueryHookResult = ReturnType<typeof useAllSeriesLangGenreLazyQuery>;
+export type AllSeriesLangGenreQueryResult = Apollo.QueryResult<AllSeriesLangGenreQuery, AllSeriesLangGenreQueryVariables>;
 export const AllSeriesDetailsDocument = gql`
     query AllSeriesDetails {
   series {
@@ -7213,6 +7763,7 @@ export const AllSeriesDetailsDocument = gql`
       name
     }
     imdbRating
+    imdbID
     plot
     poster
     rating
@@ -7309,12 +7860,11 @@ export type SerieByIdLazyQueryHookResult = ReturnType<typeof useSerieByIdLazyQue
 export type SerieByIdQueryResult = Apollo.QueryResult<SerieByIdQuery, SerieByIdQueryVariables>;
 export const SearchSeriesByTitleDocument = gql`
     query searchSeriesByTitle($title: String!) {
-  series(where: {title: {contains: $title, mode: insensitive}}) {
+  series(where: {title: {search: $title}}) {
     id
     title
     poster
-    createdAt
-    updatedAt
+    imdbID
   }
 }
     `;
@@ -7349,7 +7899,7 @@ export type SearchSeriesByTitleQueryResult = Apollo.QueryResult<SearchSeriesByTi
 export const SeriesDocument = gql`
     query series($id: Int!, $genre: [String!]) {
   series(
-    where: {id: {not: {equals: $id}}, genres: {some: {name: {in: $genre, mode: insensitive}}}}
+    where: {id: {not: {equals: $id}}, genres: {every: {name: {in: $genre, mode: insensitive}}}}
     take: 6
   ) {
     id
@@ -7390,7 +7940,7 @@ export type SeriesQueryResult = Apollo.QueryResult<SeriesQuery, SeriesQueryVaria
 export const MoviesDocument = gql`
     query movies($id: Int!, $genre: [String!]) {
   movies(
-    where: {id: {not: {equals: $id}}, genres: {some: {name: {in: $genre, mode: insensitive}}}}
+    where: {id: {not: {equals: $id}}, genres: {every: {name: {in: $genre, mode: insensitive}}}}
     take: 6
   ) {
     id

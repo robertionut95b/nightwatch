@@ -35,7 +35,7 @@ const DateTimeFilter_1 = require("../inputs/DateTimeFilter");
 const IntFilter_1 = require("../inputs/IntFilter");
 const IntNullableFilter_1 = require("../inputs/IntNullableFilter");
 const MovieListRelationFilter_1 = require("../inputs/MovieListRelationFilter");
-const SerieRelationFilter_1 = require("../inputs/SerieRelationFilter");
+const SerieListRelationFilter_1 = require("../inputs/SerieListRelationFilter");
 const StringFilter_1 = require("../inputs/StringFilter");
 let LanguageWhereInput = LanguageWhereInput_1 = class LanguageWhereInput {
 };
@@ -88,10 +88,10 @@ __decorate([
     __metadata("design:type", DateTimeFilter_1.DateTimeFilter)
 ], LanguageWhereInput.prototype, "updatedAt", void 0);
 __decorate([
-    TypeGraphQL.Field(_type => SerieRelationFilter_1.SerieRelationFilter, {
+    TypeGraphQL.Field(_type => SerieListRelationFilter_1.SerieListRelationFilter, {
         nullable: true
     }),
-    __metadata("design:type", SerieRelationFilter_1.SerieRelationFilter)
+    __metadata("design:type", SerieListRelationFilter_1.SerieListRelationFilter)
 ], LanguageWhereInput.prototype, "series", void 0);
 __decorate([
     TypeGraphQL.Field(_type => IntNullableFilter_1.IntNullableFilter, {

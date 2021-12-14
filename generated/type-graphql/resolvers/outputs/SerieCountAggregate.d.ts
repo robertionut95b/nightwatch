@@ -8,6 +8,7 @@ export declare class SerieCountAggregate {
     plot: number;
     poster: number;
     imdbRating: number;
+    imdbID: number;
     totalSeasons: number;
     createdAt: number;
     updatedAt: number;

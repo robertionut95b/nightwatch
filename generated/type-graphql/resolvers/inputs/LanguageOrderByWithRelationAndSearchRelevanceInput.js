@@ -32,7 +32,7 @@ exports.LanguageOrderByWithRelationAndSearchRelevanceInput = void 0;
 const TypeGraphQL = __importStar(require("type-graphql"));
 const LanguageOrderByRelevanceInput_1 = require("../inputs/LanguageOrderByRelevanceInput");
 const MovieOrderByRelationAggregateInput_1 = require("../inputs/MovieOrderByRelationAggregateInput");
-const SerieOrderByWithRelationAndSearchRelevanceInput_1 = require("../inputs/SerieOrderByWithRelationAndSearchRelevanceInput");
+const SerieOrderByRelationAggregateInput_1 = require("../inputs/SerieOrderByRelationAggregateInput");
 const SortOrder_1 = require("../../enums/SortOrder");
 let LanguageOrderByWithRelationAndSearchRelevanceInput = class LanguageOrderByWithRelationAndSearchRelevanceInput {
 };
@@ -67,10 +67,10 @@ __decorate([
     __metadata("design:type", String)
 ], LanguageOrderByWithRelationAndSearchRelevanceInput.prototype, "updatedAt", void 0);
 __decorate([
-    TypeGraphQL.Field(_type => SerieOrderByWithRelationAndSearchRelevanceInput_1.SerieOrderByWithRelationAndSearchRelevanceInput, {
+    TypeGraphQL.Field(_type => SerieOrderByRelationAggregateInput_1.SerieOrderByRelationAggregateInput, {
         nullable: true
     }),
-    __metadata("design:type", SerieOrderByWithRelationAndSearchRelevanceInput_1.SerieOrderByWithRelationAndSearchRelevanceInput)
+    __metadata("design:type", SerieOrderByRelationAggregateInput_1.SerieOrderByRelationAggregateInput)
 ], LanguageOrderByWithRelationAndSearchRelevanceInput.prototype, "series", void 0);
 __decorate([
     TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {

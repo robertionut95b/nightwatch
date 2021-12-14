@@ -31,6 +31,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LanguageUpdateManyMutationInput = void 0;
 const TypeGraphQL = __importStar(require("type-graphql"));
 const DateTimeFieldUpdateOperationsInput_1 = require("../inputs/DateTimeFieldUpdateOperationsInput");
+const NullableIntFieldUpdateOperationsInput_1 = require("../inputs/NullableIntFieldUpdateOperationsInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
 let LanguageUpdateManyMutationInput = class LanguageUpdateManyMutationInput {
 };
@@ -52,6 +53,12 @@ __decorate([
     }),
     __metadata("design:type", DateTimeFieldUpdateOperationsInput_1.DateTimeFieldUpdateOperationsInput)
 ], LanguageUpdateManyMutationInput.prototype, "updatedAt", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => NullableIntFieldUpdateOperationsInput_1.NullableIntFieldUpdateOperationsInput, {
+        nullable: true
+    }),
+    __metadata("design:type", NullableIntFieldUpdateOperationsInput_1.NullableIntFieldUpdateOperationsInput)
+], LanguageUpdateManyMutationInput.prototype, "seriesId", void 0);
 LanguageUpdateManyMutationInput = __decorate([
     TypeGraphQL.InputType("LanguageUpdateManyMutationInput", {
         isAbstract: true

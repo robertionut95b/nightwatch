@@ -26,6 +26,7 @@ var EpisodeOrderByRelevanceFieldEnum;
     EpisodeOrderByRelevanceFieldEnum["title"] = "title";
     EpisodeOrderByRelevanceFieldEnum["plot"] = "plot";
     EpisodeOrderByRelevanceFieldEnum["poster"] = "poster";
+    EpisodeOrderByRelevanceFieldEnum["imdbID"] = "imdbID";
 })(EpisodeOrderByRelevanceFieldEnum = exports.EpisodeOrderByRelevanceFieldEnum || (exports.EpisodeOrderByRelevanceFieldEnum = {}));
 TypeGraphQL.registerEnumType(EpisodeOrderByRelevanceFieldEnum, {
     name: "EpisodeOrderByRelevanceFieldEnum",

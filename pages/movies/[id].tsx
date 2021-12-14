@@ -1,11 +1,10 @@
-import Layout from '../../components/layout/layout'
-import Head from 'next/head'
-import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next'
-import apolloClient from '../../lib/apollo/apolloClient'
-import { ParsedUrlQuery } from 'querystring'
+import Layout from '../../components/layout/layout';
+import Head from 'next/head';
+import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 import MovieDetailsCard from '../../components/items/MovieDetailsCard';
-import { AllMoviesDetailsDocument, Movie, AllMoviesDetailsQuery, AllMoviesDetailsQueryVariables, MovieQuery, MovieQueryVariables, MovieDocument, MoviesQuery, MoviesQueryVariables, MoviesDocument } from '../../generated/graphql';
-import prisma from '../../lib/PrismaClient/prisma'
+import { Movie } from '../../generated/graphql';
+import prisma from '../../lib/PrismaClient/prisma';
 
 interface IParams extends ParsedUrlQuery {
   id: string,
@@ -18,10 +17,10 @@ export default function MoviePage({ movie, relatedMovies }: { movie: Movie, rela
         <title>{movie.title}</title>
       </Head>
       <article>
-        <MovieDetailsCard movie={movie} relatedMovies={[]} />
+        <MovieDetailsCard movie={movie} relatedMovies={relatedMovies} />
       </article>
     </Layout>
-  )
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult> => {
@@ -31,57 +30,57 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsRe
       actors: true,
       directors: true,
       languages: true,
-    }
-  })
+    },
+  });
   return {
     paths: movies.map((m) => {
       return {
-        params: { id: String(m?.id) || "" }
-      }
+        params: { id: String(m?.imdbID) || '' },
+      };
     }),
-    fallback: false
-  }
-}
+    fallback: 'blocking',
+  };
+};
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { id } = params as IParams
+  const { id } = params as IParams;
 
   var movie = await prisma.movie.findUnique({
     where: {
-      id: Number.parseInt(id),
+      imdbID: id,
     },
     include: {
       genres: true,
       actors: true,
       directors: true,
       languages: true,
-    }
-  })
+    },
+  });
 
-  const movieStr = JSON.stringify(movie)
-  movie = JSON.parse(movieStr)
+  const movieStr = JSON.stringify(movie);
+  movie = JSON.parse(movieStr);
 
   var relatedMovies = await prisma.movie.findMany({
     where: {
-      id: { not: Number.parseInt(id) },
+      imdbID: { not: id },
       genres: {
-        some: {
+        every: {
           name: {
-            in: movie?.genres?.map((g) => { return g.name }),
-            mode: "insensitive"
-          }
-        }
-      }
-    }
-  })
+            in: movie?.genres?.map((g) => { return g.name; }),
+            mode: 'insensitive',
+          },
+        },
+      },
+    },
+  });
 
-  const relatedMoviesStr = JSON.stringify(relatedMovies)
-  relatedMovies = JSON.parse(relatedMoviesStr)
+  const relatedMoviesStr = JSON.stringify(relatedMovies);
+  relatedMovies = JSON.parse(relatedMoviesStr);
 
   return {
     props: {
       movie: movie,
-      relatedMovies: relatedMovies
+      relatedMovies: relatedMovies,
     },
-  }
-}
+  };
+};

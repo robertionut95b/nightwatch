@@ -52,6 +52,12 @@ __decorate([
     __metadata("design:type", Date)
 ], LanguageCreateWithoutSeriesInput.prototype, "updatedAt", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+        nullable: true
+    }),
+    __metadata("design:type", Number)
+], LanguageCreateWithoutSeriesInput.prototype, "seriesId", void 0);
+__decorate([
     TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutLanguagesInput_1.MovieCreateNestedManyWithoutLanguagesInput, {
         nullable: true
     }),

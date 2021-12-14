@@ -8,5 +8,6 @@ export declare class EpisodeUpdateInput {
     plot?: StringFieldUpdateOperationsInput | undefined;
     poster?: StringFieldUpdateOperationsInput | undefined;
     imdbRating?: FloatFieldUpdateOperationsInput | undefined;
+    imdbID?: StringFieldUpdateOperationsInput | undefined;
     season?: SeasonUpdateOneRequiredWithoutEpisodeIdsInput | undefined;
 }

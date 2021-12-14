@@ -7,7 +7,7 @@ export declare class Language {
     movies?: Movie[];
     createdAt: Date;
     updatedAt: Date;
-    series?: Serie | null;
+    series?: Serie[];
     seriesId?: number | null;
     _count?: LanguageCount | null;
 }

@@ -1,4 +1,3 @@
-import { LanguageCreateManySeriesInputEnvelope } from "../inputs/LanguageCreateManySeriesInputEnvelope";
 import { LanguageCreateOrConnectWithoutSeriesInput } from "../inputs/LanguageCreateOrConnectWithoutSeriesInput";
 import { LanguageCreateWithoutSeriesInput } from "../inputs/LanguageCreateWithoutSeriesInput";
 import { LanguageScalarWhereInput } from "../inputs/LanguageScalarWhereInput";
@@ -10,7 +9,6 @@ export declare class LanguageUpdateManyWithoutSeriesInput {
     create?: LanguageCreateWithoutSeriesInput[] | undefined;
     connectOrCreate?: LanguageCreateOrConnectWithoutSeriesInput[] | undefined;
     upsert?: LanguageUpsertWithWhereUniqueWithoutSeriesInput[] | undefined;
-    createMany?: LanguageCreateManySeriesInputEnvelope | undefined;
     connect?: LanguageWhereUniqueInput[] | undefined;
     set?: LanguageWhereUniqueInput[] | undefined;
     disconnect?: LanguageWhereUniqueInput[] | undefined;

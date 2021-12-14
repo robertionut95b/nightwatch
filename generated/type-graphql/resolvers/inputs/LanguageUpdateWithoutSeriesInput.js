@@ -32,6 +32,7 @@ exports.LanguageUpdateWithoutSeriesInput = void 0;
 const TypeGraphQL = __importStar(require("type-graphql"));
 const DateTimeFieldUpdateOperationsInput_1 = require("../inputs/DateTimeFieldUpdateOperationsInput");
 const MovieUpdateManyWithoutLanguagesInput_1 = require("../inputs/MovieUpdateManyWithoutLanguagesInput");
+const NullableIntFieldUpdateOperationsInput_1 = require("../inputs/NullableIntFieldUpdateOperationsInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
 let LanguageUpdateWithoutSeriesInput = class LanguageUpdateWithoutSeriesInput {
 };
@@ -53,6 +54,12 @@ __decorate([
     }),
     __metadata("design:type", DateTimeFieldUpdateOperationsInput_1.DateTimeFieldUpdateOperationsInput)
 ], LanguageUpdateWithoutSeriesInput.prototype, "updatedAt", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => NullableIntFieldUpdateOperationsInput_1.NullableIntFieldUpdateOperationsInput, {
+        nullable: true
+    }),
+    __metadata("design:type", NullableIntFieldUpdateOperationsInput_1.NullableIntFieldUpdateOperationsInput)
+], LanguageUpdateWithoutSeriesInput.prototype, "seriesId", void 0);
 __decorate([
     TypeGraphQL.Field(_type => MovieUpdateManyWithoutLanguagesInput_1.MovieUpdateManyWithoutLanguagesInput, {
         nullable: true

@@ -29,6 +29,7 @@ var EpisodeScalarFieldEnum;
     EpisodeScalarFieldEnum["plot"] = "plot";
     EpisodeScalarFieldEnum["poster"] = "poster";
     EpisodeScalarFieldEnum["imdbRating"] = "imdbRating";
+    EpisodeScalarFieldEnum["imdbID"] = "imdbID";
     EpisodeScalarFieldEnum["seasonId"] = "seasonId";
 })(EpisodeScalarFieldEnum = exports.EpisodeScalarFieldEnum || (exports.EpisodeScalarFieldEnum = {}));
 TypeGraphQL.registerEnumType(EpisodeScalarFieldEnum, {

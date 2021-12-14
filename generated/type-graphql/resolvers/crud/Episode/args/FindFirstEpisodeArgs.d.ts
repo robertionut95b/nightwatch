@@ -7,5 +7,5 @@ export declare class FindFirstEpisodeArgs {
     cursor?: EpisodeWhereUniqueInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;
-    distinct?: Array<"id" | "title" | "runtime" | "plot" | "poster" | "imdbRating" | "seasonId"> | undefined;
+    distinct?: Array<"id" | "title" | "runtime" | "plot" | "poster" | "imdbRating" | "imdbID" | "seasonId"> | undefined;
 }

@@ -32,7 +32,8 @@ exports.LanguageUpdateInput = void 0;
 const TypeGraphQL = __importStar(require("type-graphql"));
 const DateTimeFieldUpdateOperationsInput_1 = require("../inputs/DateTimeFieldUpdateOperationsInput");
 const MovieUpdateManyWithoutLanguagesInput_1 = require("../inputs/MovieUpdateManyWithoutLanguagesInput");
-const SerieUpdateOneWithoutLanguagesInput_1 = require("../inputs/SerieUpdateOneWithoutLanguagesInput");
+const NullableIntFieldUpdateOperationsInput_1 = require("../inputs/NullableIntFieldUpdateOperationsInput");
+const SerieUpdateManyWithoutLanguagesInput_1 = require("../inputs/SerieUpdateManyWithoutLanguagesInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
 let LanguageUpdateInput = class LanguageUpdateInput {
 };
@@ -55,16 +56,22 @@ __decorate([
     __metadata("design:type", DateTimeFieldUpdateOperationsInput_1.DateTimeFieldUpdateOperationsInput)
 ], LanguageUpdateInput.prototype, "updatedAt", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => NullableIntFieldUpdateOperationsInput_1.NullableIntFieldUpdateOperationsInput, {
+        nullable: true
+    }),
+    __metadata("design:type", NullableIntFieldUpdateOperationsInput_1.NullableIntFieldUpdateOperationsInput)
+], LanguageUpdateInput.prototype, "seriesId", void 0);
+__decorate([
     TypeGraphQL.Field(_type => MovieUpdateManyWithoutLanguagesInput_1.MovieUpdateManyWithoutLanguagesInput, {
         nullable: true
     }),
     __metadata("design:type", MovieUpdateManyWithoutLanguagesInput_1.MovieUpdateManyWithoutLanguagesInput)
 ], LanguageUpdateInput.prototype, "movies", void 0);
 __decorate([
-    TypeGraphQL.Field(_type => SerieUpdateOneWithoutLanguagesInput_1.SerieUpdateOneWithoutLanguagesInput, {
+    TypeGraphQL.Field(_type => SerieUpdateManyWithoutLanguagesInput_1.SerieUpdateManyWithoutLanguagesInput, {
         nullable: true
     }),
-    __metadata("design:type", SerieUpdateOneWithoutLanguagesInput_1.SerieUpdateOneWithoutLanguagesInput)
+    __metadata("design:type", SerieUpdateManyWithoutLanguagesInput_1.SerieUpdateManyWithoutLanguagesInput)
 ], LanguageUpdateInput.prototype, "series", void 0);
 LanguageUpdateInput = __decorate([
     TypeGraphQL.InputType("LanguageUpdateInput", {

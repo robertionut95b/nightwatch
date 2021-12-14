@@ -1,8 +1,9 @@
+import Layout from '../../components/layout/layout';
 export default function AuthError() {
 
-    return (
-        <div className="container">
+  return (
+        <Layout home={false} >
             <p> Unfortunately your login has failed. </p>
-        </div>
-    );
-};
+        </Layout>
+  );
+}

@@ -13,6 +13,7 @@ export declare class SerieGroupBy {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
     totalSeasons: number;
     createdAt: Date;
     updatedAt: Date;

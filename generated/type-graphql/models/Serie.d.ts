@@ -18,6 +18,7 @@ export declare class Serie {
     languages?: Language[];
     poster: string;
     imdbRating: number;
+    imdbID: string;
     totalSeasons: number;
     seasons?: Season[];
     createdAt: Date;

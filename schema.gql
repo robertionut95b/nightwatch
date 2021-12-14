@@ -1341,6 +1341,7 @@ input EnumRoleWithAggregatesFilter {
 
 type Episode {
   id: Int!
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -1367,6 +1368,7 @@ input EpisodeAvgOrderByAggregateInput {
 type EpisodeCountAggregate {
   _all: Int!
   id: Int!
+  imdbID: Int!
   imdbRating: Int!
   plot: Int!
   poster: Int!
@@ -1377,6 +1379,7 @@ type EpisodeCountAggregate {
 
 input EpisodeCountOrderByAggregateInput {
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -1386,6 +1389,7 @@ input EpisodeCountOrderByAggregateInput {
 }
 
 input EpisodeCreateInput {
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -1396,6 +1400,7 @@ input EpisodeCreateInput {
 
 input EpisodeCreateManyInput {
   id: Int
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -1406,6 +1411,7 @@ input EpisodeCreateManyInput {
 
 input EpisodeCreateManySeasonInput {
   id: Int
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -1431,6 +1437,7 @@ input EpisodeCreateOrConnectWithoutSeasonInput {
 }
 
 input EpisodeCreateWithoutSeasonInput {
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -1445,6 +1452,7 @@ type EpisodeGroupBy {
   _min: EpisodeMinAggregate
   _sum: EpisodeSumAggregate
   id: Int!
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -1461,6 +1469,7 @@ input EpisodeListRelationFilter {
 
 type EpisodeMaxAggregate {
   id: Int
+  imdbID: String
   imdbRating: Float
   plot: String
   poster: String
@@ -1471,6 +1480,7 @@ type EpisodeMaxAggregate {
 
 input EpisodeMaxOrderByAggregateInput {
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -1481,6 +1491,7 @@ input EpisodeMaxOrderByAggregateInput {
 
 type EpisodeMinAggregate {
   id: Int
+  imdbID: String
   imdbRating: Float
   plot: String
   poster: String
@@ -1491,6 +1502,7 @@ type EpisodeMinAggregate {
 
 input EpisodeMinOrderByAggregateInput {
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -1504,6 +1516,7 @@ input EpisodeOrderByRelationAggregateInput {
 }
 
 enum EpisodeOrderByRelevanceFieldEnum {
+  imdbID
   plot
   poster
   title
@@ -1522,6 +1535,7 @@ input EpisodeOrderByWithAggregationInput {
   _min: EpisodeMinOrderByAggregateInput
   _sum: EpisodeSumOrderByAggregateInput
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -1533,6 +1547,7 @@ input EpisodeOrderByWithAggregationInput {
 input EpisodeOrderByWithRelationAndSearchRelevanceInput {
   _relevance: EpisodeOrderByRelevanceInput
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -1544,6 +1559,7 @@ input EpisodeOrderByWithRelationAndSearchRelevanceInput {
 
 enum EpisodeScalarFieldEnum {
   id
+  imdbID
   imdbRating
   plot
   poster
@@ -1557,6 +1573,7 @@ input EpisodeScalarWhereInput {
   NOT: [EpisodeScalarWhereInput!]
   OR: [EpisodeScalarWhereInput!]
   id: IntFilter
+  imdbID: StringFilter
   imdbRating: FloatFilter
   plot: StringFilter
   poster: StringFilter
@@ -1570,6 +1587,7 @@ input EpisodeScalarWhereWithAggregatesInput {
   NOT: [EpisodeScalarWhereWithAggregatesInput!]
   OR: [EpisodeScalarWhereWithAggregatesInput!]
   id: IntWithAggregatesFilter
+  imdbID: StringWithAggregatesFilter
   imdbRating: FloatWithAggregatesFilter
   plot: StringWithAggregatesFilter
   poster: StringWithAggregatesFilter
@@ -1593,6 +1611,7 @@ input EpisodeSumOrderByAggregateInput {
 }
 
 input EpisodeUpdateInput {
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
@@ -1602,6 +1621,7 @@ input EpisodeUpdateInput {
 }
 
 input EpisodeUpdateManyMutationInput {
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
@@ -1634,6 +1654,7 @@ input EpisodeUpdateWithWhereUniqueWithoutSeasonInput {
 }
 
 input EpisodeUpdateWithoutSeasonInput {
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
@@ -1652,6 +1673,7 @@ input EpisodeWhereInput {
   NOT: [EpisodeWhereInput!]
   OR: [EpisodeWhereInput!]
   id: IntFilter
+  imdbID: StringFilter
   imdbRating: FloatFilter
   plot: StringFilter
   poster: StringFilter
@@ -1663,6 +1685,7 @@ input EpisodeWhereInput {
 
 input EpisodeWhereUniqueInput {
   id: Int
+  imdbID: String
 }
 
 input FloatFieldUpdateOperationsInput {
@@ -2077,7 +2100,7 @@ type Language {
   id: Int!
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   name: String!
-  series: Serie
+  series(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SerieWhereInput): [Serie!]!
   seriesId: Int
   updatedAt: DateTime!
 }
@@ -2094,6 +2117,7 @@ input LanguageAvgOrderByAggregateInput {
 
 type LanguageCount {
   movies: Int!
+  series: Int!
 }
 
 type LanguageCountAggregate {
@@ -2117,7 +2141,8 @@ input LanguageCreateInput {
   createdAt: DateTime
   movies: MovieCreateNestedManyWithoutLanguagesInput
   name: String!
-  series: SerieCreateNestedOneWithoutLanguagesInput
+  series: SerieCreateNestedManyWithoutLanguagesInput
+  seriesId: Int
   updatedAt: DateTime
 }
 
@@ -2127,18 +2152,6 @@ input LanguageCreateManyInput {
   name: String!
   seriesId: Int
   updatedAt: DateTime
-}
-
-input LanguageCreateManySeriesInput {
-  createdAt: DateTime
-  id: Int
-  name: String!
-  updatedAt: DateTime
-}
-
-input LanguageCreateManySeriesInputEnvelope {
-  data: [LanguageCreateManySeriesInput!]!
-  skipDuplicates: Boolean
 }
 
 input LanguageCreateNestedManyWithoutMoviesInput {
@@ -2151,7 +2164,6 @@ input LanguageCreateNestedManyWithoutSeriesInput {
   connect: [LanguageWhereUniqueInput!]
   connectOrCreate: [LanguageCreateOrConnectWithoutSeriesInput!]
   create: [LanguageCreateWithoutSeriesInput!]
-  createMany: LanguageCreateManySeriesInputEnvelope
 }
 
 input LanguageCreateOrConnectWithoutMoviesInput {
@@ -2167,7 +2179,8 @@ input LanguageCreateOrConnectWithoutSeriesInput {
 input LanguageCreateWithoutMoviesInput {
   createdAt: DateTime
   name: String!
-  series: SerieCreateNestedOneWithoutLanguagesInput
+  series: SerieCreateNestedManyWithoutLanguagesInput
+  seriesId: Int
   updatedAt: DateTime
 }
 
@@ -2175,6 +2188,7 @@ input LanguageCreateWithoutSeriesInput {
   createdAt: DateTime
   movies: MovieCreateNestedManyWithoutLanguagesInput
   name: String!
+  seriesId: Int
   updatedAt: DateTime
 }
 
@@ -2262,7 +2276,7 @@ input LanguageOrderByWithRelationAndSearchRelevanceInput {
   id: SortOrder
   movies: MovieOrderByRelationAggregateInput
   name: SortOrder
-  series: SerieOrderByWithRelationAndSearchRelevanceInput
+  series: SerieOrderByRelationAggregateInput
   seriesId: SortOrder
   updatedAt: SortOrder
 }
@@ -2311,13 +2325,15 @@ input LanguageUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   movies: MovieUpdateManyWithoutLanguagesInput
   name: StringFieldUpdateOperationsInput
-  series: SerieUpdateOneWithoutLanguagesInput
+  series: SerieUpdateManyWithoutLanguagesInput
+  seriesId: NullableIntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input LanguageUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
+  seriesId: NullableIntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2348,7 +2364,6 @@ input LanguageUpdateManyWithoutSeriesInput {
   connect: [LanguageWhereUniqueInput!]
   connectOrCreate: [LanguageCreateOrConnectWithoutSeriesInput!]
   create: [LanguageCreateWithoutSeriesInput!]
-  createMany: LanguageCreateManySeriesInputEnvelope
   delete: [LanguageWhereUniqueInput!]
   deleteMany: [LanguageScalarWhereInput!]
   disconnect: [LanguageWhereUniqueInput!]
@@ -2371,7 +2386,8 @@ input LanguageUpdateWithWhereUniqueWithoutSeriesInput {
 input LanguageUpdateWithoutMoviesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  series: SerieUpdateOneWithoutLanguagesInput
+  series: SerieUpdateManyWithoutLanguagesInput
+  seriesId: NullableIntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2379,6 +2395,7 @@ input LanguageUpdateWithoutSeriesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   movies: MovieUpdateManyWithoutLanguagesInput
   name: StringFieldUpdateOperationsInput
+  seriesId: NullableIntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2402,7 +2419,7 @@ input LanguageWhereInput {
   id: IntFilter
   movies: MovieListRelationFilter
   name: StringFilter
-  series: SerieRelationFilter
+  series: SerieListRelationFilter
   seriesId: IntNullableFilter
   updatedAt: DateTimeFilter
 }
@@ -2419,6 +2436,7 @@ type Movie {
   directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
   genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
   id: Int!
+  imdbID: String!
   imdbRating: Float!
   languages(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): [Language!]!
   plot: String!
@@ -2456,6 +2474,7 @@ type MovieCountAggregate {
   _all: Int!
   createdAt: Int!
   id: Int!
+  imdbID: Int!
   imdbRating: Int!
   plot: Int!
   poster: Int!
@@ -2470,6 +2489,7 @@ type MovieCountAggregate {
 input MovieCountOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -2486,6 +2506,7 @@ input MovieCreateInput {
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
   genres: GenreCreateNestedManyWithoutMoviesInput
+  imdbID: String!
   imdbRating: Float!
   languages: LanguageCreateNestedManyWithoutMoviesInput
   plot: String!
@@ -2501,6 +2522,7 @@ input MovieCreateInput {
 input MovieCreateManyInput {
   createdAt: DateTime
   id: Int
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -2560,6 +2582,7 @@ input MovieCreateWithoutActorsInput {
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
   genres: GenreCreateNestedManyWithoutMoviesInput
+  imdbID: String!
   imdbRating: Float!
   languages: LanguageCreateNestedManyWithoutMoviesInput
   plot: String!
@@ -2576,6 +2599,7 @@ input MovieCreateWithoutDirectorsInput {
   actors: ActorCreateNestedManyWithoutMoviesInput
   createdAt: DateTime
   genres: GenreCreateNestedManyWithoutMoviesInput
+  imdbID: String!
   imdbRating: Float!
   languages: LanguageCreateNestedManyWithoutMoviesInput
   plot: String!
@@ -2592,6 +2616,7 @@ input MovieCreateWithoutGenresInput {
   actors: ActorCreateNestedManyWithoutMoviesInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
+  imdbID: String!
   imdbRating: Float!
   languages: LanguageCreateNestedManyWithoutMoviesInput
   plot: String!
@@ -2609,6 +2634,7 @@ input MovieCreateWithoutLanguagesInput {
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
   genres: GenreCreateNestedManyWithoutMoviesInput
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -2628,6 +2654,7 @@ type MovieGroupBy {
   _sum: MovieSumAggregate
   createdAt: DateTime!
   id: Int!
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -2648,6 +2675,7 @@ input MovieListRelationFilter {
 type MovieMaxAggregate {
   createdAt: DateTime
   id: Int
+  imdbID: String
   imdbRating: Float
   plot: String
   poster: String
@@ -2662,6 +2690,7 @@ type MovieMaxAggregate {
 input MovieMaxOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -2676,6 +2705,7 @@ input MovieMaxOrderByAggregateInput {
 type MovieMinAggregate {
   createdAt: DateTime
   id: Int
+  imdbID: String
   imdbRating: Float
   plot: String
   poster: String
@@ -2690,6 +2720,7 @@ type MovieMinAggregate {
 input MovieMinOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -2706,6 +2737,7 @@ input MovieOrderByRelationAggregateInput {
 }
 
 enum MovieOrderByRelevanceFieldEnum {
+  imdbID
   plot
   poster
   rating
@@ -2726,6 +2758,7 @@ input MovieOrderByWithAggregationInput {
   _sum: MovieSumOrderByAggregateInput
   createdAt: SortOrder
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -2744,6 +2777,7 @@ input MovieOrderByWithRelationAndSearchRelevanceInput {
   directors: DirectorOrderByRelationAggregateInput
   genres: GenreOrderByRelationAggregateInput
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   languages: LanguageOrderByRelationAggregateInput
   plot: SortOrder
@@ -2759,6 +2793,7 @@ input MovieOrderByWithRelationAndSearchRelevanceInput {
 enum MovieScalarFieldEnum {
   createdAt
   id
+  imdbID
   imdbRating
   plot
   poster
@@ -2776,6 +2811,7 @@ input MovieScalarWhereInput {
   OR: [MovieScalarWhereInput!]
   createdAt: DateTimeFilter
   id: IntFilter
+  imdbID: StringFilter
   imdbRating: FloatFilter
   plot: StringFilter
   poster: StringFilter
@@ -2793,6 +2829,7 @@ input MovieScalarWhereWithAggregatesInput {
   OR: [MovieScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
   id: IntWithAggregatesFilter
+  imdbID: StringWithAggregatesFilter
   imdbRating: FloatWithAggregatesFilter
   plot: StringWithAggregatesFilter
   poster: StringWithAggregatesFilter
@@ -2823,6 +2860,7 @@ input MovieUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutMoviesInput
   genres: GenreUpdateManyWithoutMoviesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   languages: LanguageUpdateManyWithoutMoviesInput
   plot: StringFieldUpdateOperationsInput
@@ -2837,6 +2875,7 @@ input MovieUpdateInput {
 
 input MovieUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
@@ -2944,6 +2983,7 @@ input MovieUpdateWithoutActorsInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutMoviesInput
   genres: GenreUpdateManyWithoutMoviesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   languages: LanguageUpdateManyWithoutMoviesInput
   plot: StringFieldUpdateOperationsInput
@@ -2960,6 +3000,7 @@ input MovieUpdateWithoutDirectorsInput {
   actors: ActorUpdateManyWithoutMoviesInput
   createdAt: DateTimeFieldUpdateOperationsInput
   genres: GenreUpdateManyWithoutMoviesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   languages: LanguageUpdateManyWithoutMoviesInput
   plot: StringFieldUpdateOperationsInput
@@ -2976,6 +3017,7 @@ input MovieUpdateWithoutGenresInput {
   actors: ActorUpdateManyWithoutMoviesInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutMoviesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   languages: LanguageUpdateManyWithoutMoviesInput
   plot: StringFieldUpdateOperationsInput
@@ -2993,6 +3035,7 @@ input MovieUpdateWithoutLanguagesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutMoviesInput
   genres: GenreUpdateManyWithoutMoviesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
@@ -3037,6 +3080,7 @@ input MovieWhereInput {
   directors: DirectorListRelationFilter
   genres: GenreListRelationFilter
   id: IntFilter
+  imdbID: StringFilter
   imdbRating: FloatFilter
   languages: LanguageListRelationFilter
   plot: StringFilter
@@ -3051,7 +3095,7 @@ input MovieWhereInput {
 
 input MovieWhereUniqueInput {
   id: Int
-  title: String
+  imdbID: String
 }
 
 type Mutation {
@@ -3868,6 +3912,7 @@ type Serie {
   directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
   genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
   id: Int!
+  imdbID: String!
   imdbRating: Float!
   languages(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): [Language!]!
   plot: String!
@@ -3910,6 +3955,7 @@ type SerieCountAggregate {
   _all: Int!
   createdAt: Int!
   id: Int!
+  imdbID: Int!
   imdbRating: Int!
   plot: Int!
   poster: Int!
@@ -3925,6 +3971,7 @@ type SerieCountAggregate {
 input SerieCountOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -3942,6 +3989,7 @@ input SerieCreateInput {
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   genres: GenreCreateNestedManyWithoutSeriesInput
+  imdbID: String!
   imdbRating: Float!
   languages: LanguageCreateNestedManyWithoutSeriesInput
   plot: String!
@@ -3959,6 +4007,7 @@ input SerieCreateInput {
 input SerieCreateManyInput {
   createdAt: DateTime
   id: Int
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -3977,6 +4026,12 @@ input SerieCreateNestedManyWithoutGenresInput {
   create: [SerieCreateWithoutGenresInput!]
 }
 
+input SerieCreateNestedManyWithoutLanguagesInput {
+  connect: [SerieWhereUniqueInput!]
+  connectOrCreate: [SerieCreateOrConnectWithoutLanguagesInput!]
+  create: [SerieCreateWithoutLanguagesInput!]
+}
+
 input SerieCreateNestedOneWithoutActorsInput {
   connect: SerieWhereUniqueInput
   connectOrCreate: SerieCreateOrConnectWithoutActorsInput
@@ -3987,12 +4042,6 @@ input SerieCreateNestedOneWithoutDirectorsInput {
   connect: SerieWhereUniqueInput
   connectOrCreate: SerieCreateOrConnectWithoutDirectorsInput
   create: SerieCreateWithoutDirectorsInput
-}
-
-input SerieCreateNestedOneWithoutLanguagesInput {
-  connect: SerieWhereUniqueInput
-  connectOrCreate: SerieCreateOrConnectWithoutLanguagesInput
-  create: SerieCreateWithoutLanguagesInput
 }
 
 input SerieCreateNestedOneWithoutSeasonsInput {
@@ -4030,6 +4079,7 @@ input SerieCreateWithoutActorsInput {
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   genres: GenreCreateNestedManyWithoutSeriesInput
+  imdbID: String!
   imdbRating: Float!
   languages: LanguageCreateNestedManyWithoutSeriesInput
   plot: String!
@@ -4048,6 +4098,7 @@ input SerieCreateWithoutDirectorsInput {
   actors: ActorCreateNestedManyWithoutSeriesInput
   createdAt: DateTime
   genres: GenreCreateNestedManyWithoutSeriesInput
+  imdbID: String!
   imdbRating: Float!
   languages: LanguageCreateNestedManyWithoutSeriesInput
   plot: String!
@@ -4066,6 +4117,7 @@ input SerieCreateWithoutGenresInput {
   actors: ActorCreateNestedManyWithoutSeriesInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
+  imdbID: String!
   imdbRating: Float!
   languages: LanguageCreateNestedManyWithoutSeriesInput
   plot: String!
@@ -4085,6 +4137,7 @@ input SerieCreateWithoutLanguagesInput {
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   genres: GenreCreateNestedManyWithoutSeriesInput
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -4103,6 +4156,7 @@ input SerieCreateWithoutSeasonsInput {
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   genres: GenreCreateNestedManyWithoutSeriesInput
+  imdbID: String!
   imdbRating: Float!
   languages: LanguageCreateNestedManyWithoutSeriesInput
   plot: String!
@@ -4124,6 +4178,7 @@ type SerieGroupBy {
   _sum: SerieSumAggregate
   createdAt: DateTime!
   id: Int!
+  imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
@@ -4145,6 +4200,7 @@ input SerieListRelationFilter {
 type SerieMaxAggregate {
   createdAt: DateTime
   id: Int
+  imdbID: String
   imdbRating: Float
   plot: String
   poster: String
@@ -4160,6 +4216,7 @@ type SerieMaxAggregate {
 input SerieMaxOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -4175,6 +4232,7 @@ input SerieMaxOrderByAggregateInput {
 type SerieMinAggregate {
   createdAt: DateTime
   id: Int
+  imdbID: String
   imdbRating: Float
   plot: String
   poster: String
@@ -4190,6 +4248,7 @@ type SerieMinAggregate {
 input SerieMinOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -4207,6 +4266,7 @@ input SerieOrderByRelationAggregateInput {
 }
 
 enum SerieOrderByRelevanceFieldEnum {
+  imdbID
   plot
   poster
   rating
@@ -4227,6 +4287,7 @@ input SerieOrderByWithAggregationInput {
   _sum: SerieSumOrderByAggregateInput
   createdAt: SortOrder
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   plot: SortOrder
   poster: SortOrder
@@ -4246,6 +4307,7 @@ input SerieOrderByWithRelationAndSearchRelevanceInput {
   directors: DirectorOrderByRelationAggregateInput
   genres: GenreOrderByRelationAggregateInput
   id: SortOrder
+  imdbID: SortOrder
   imdbRating: SortOrder
   languages: LanguageOrderByRelationAggregateInput
   plot: SortOrder
@@ -4268,6 +4330,7 @@ input SerieRelationFilter {
 enum SerieScalarFieldEnum {
   createdAt
   id
+  imdbID
   imdbRating
   plot
   poster
@@ -4286,6 +4349,7 @@ input SerieScalarWhereInput {
   OR: [SerieScalarWhereInput!]
   createdAt: DateTimeFilter
   id: IntFilter
+  imdbID: StringFilter
   imdbRating: FloatFilter
   plot: StringFilter
   poster: StringFilter
@@ -4304,6 +4368,7 @@ input SerieScalarWhereWithAggregatesInput {
   OR: [SerieScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
   id: IntWithAggregatesFilter
+  imdbID: StringWithAggregatesFilter
   imdbRating: FloatWithAggregatesFilter
   plot: StringWithAggregatesFilter
   poster: StringWithAggregatesFilter
@@ -4337,6 +4402,7 @@ input SerieUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   genres: GenreUpdateManyWithoutSeriesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   languages: LanguageUpdateManyWithoutSeriesInput
   plot: StringFieldUpdateOperationsInput
@@ -4353,6 +4419,7 @@ input SerieUpdateInput {
 
 input SerieUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
@@ -4370,6 +4437,11 @@ input SerieUpdateManyWithWhereWithoutGenresInput {
   where: SerieScalarWhereInput!
 }
 
+input SerieUpdateManyWithWhereWithoutLanguagesInput {
+  data: SerieUpdateManyMutationInput!
+  where: SerieScalarWhereInput!
+}
+
 input SerieUpdateManyWithoutGenresInput {
   connect: [SerieWhereUniqueInput!]
   connectOrCreate: [SerieCreateOrConnectWithoutGenresInput!]
@@ -4381,6 +4453,19 @@ input SerieUpdateManyWithoutGenresInput {
   update: [SerieUpdateWithWhereUniqueWithoutGenresInput!]
   updateMany: [SerieUpdateManyWithWhereWithoutGenresInput!]
   upsert: [SerieUpsertWithWhereUniqueWithoutGenresInput!]
+}
+
+input SerieUpdateManyWithoutLanguagesInput {
+  connect: [SerieWhereUniqueInput!]
+  connectOrCreate: [SerieCreateOrConnectWithoutLanguagesInput!]
+  create: [SerieCreateWithoutLanguagesInput!]
+  delete: [SerieWhereUniqueInput!]
+  deleteMany: [SerieScalarWhereInput!]
+  disconnect: [SerieWhereUniqueInput!]
+  set: [SerieWhereUniqueInput!]
+  update: [SerieUpdateWithWhereUniqueWithoutLanguagesInput!]
+  updateMany: [SerieUpdateManyWithWhereWithoutLanguagesInput!]
+  upsert: [SerieUpsertWithWhereUniqueWithoutLanguagesInput!]
 }
 
 input SerieUpdateOneRequiredWithoutSeasonsInput {
@@ -4411,18 +4496,13 @@ input SerieUpdateOneWithoutDirectorsInput {
   upsert: SerieUpsertWithoutDirectorsInput
 }
 
-input SerieUpdateOneWithoutLanguagesInput {
-  connect: SerieWhereUniqueInput
-  connectOrCreate: SerieCreateOrConnectWithoutLanguagesInput
-  create: SerieCreateWithoutLanguagesInput
-  delete: Boolean
-  disconnect: Boolean
-  update: SerieUpdateWithoutLanguagesInput
-  upsert: SerieUpsertWithoutLanguagesInput
-}
-
 input SerieUpdateWithWhereUniqueWithoutGenresInput {
   data: SerieUpdateWithoutGenresInput!
+  where: SerieWhereUniqueInput!
+}
+
+input SerieUpdateWithWhereUniqueWithoutLanguagesInput {
+  data: SerieUpdateWithoutLanguagesInput!
   where: SerieWhereUniqueInput!
 }
 
@@ -4430,6 +4510,7 @@ input SerieUpdateWithoutActorsInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   genres: GenreUpdateManyWithoutSeriesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   languages: LanguageUpdateManyWithoutSeriesInput
   plot: StringFieldUpdateOperationsInput
@@ -4448,6 +4529,7 @@ input SerieUpdateWithoutDirectorsInput {
   actors: ActorUpdateManyWithoutSeriesInput
   createdAt: DateTimeFieldUpdateOperationsInput
   genres: GenreUpdateManyWithoutSeriesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   languages: LanguageUpdateManyWithoutSeriesInput
   plot: StringFieldUpdateOperationsInput
@@ -4466,6 +4548,7 @@ input SerieUpdateWithoutGenresInput {
   actors: ActorUpdateManyWithoutSeriesInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   languages: LanguageUpdateManyWithoutSeriesInput
   plot: StringFieldUpdateOperationsInput
@@ -4485,6 +4568,7 @@ input SerieUpdateWithoutLanguagesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   genres: GenreUpdateManyWithoutSeriesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
@@ -4503,6 +4587,7 @@ input SerieUpdateWithoutSeasonsInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   genres: GenreUpdateManyWithoutSeriesInput
+  imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   languages: LanguageUpdateManyWithoutSeriesInput
   plot: StringFieldUpdateOperationsInput
@@ -4522,6 +4607,12 @@ input SerieUpsertWithWhereUniqueWithoutGenresInput {
   where: SerieWhereUniqueInput!
 }
 
+input SerieUpsertWithWhereUniqueWithoutLanguagesInput {
+  create: SerieCreateWithoutLanguagesInput!
+  update: SerieUpdateWithoutLanguagesInput!
+  where: SerieWhereUniqueInput!
+}
+
 input SerieUpsertWithoutActorsInput {
   create: SerieCreateWithoutActorsInput!
   update: SerieUpdateWithoutActorsInput!
@@ -4530,11 +4621,6 @@ input SerieUpsertWithoutActorsInput {
 input SerieUpsertWithoutDirectorsInput {
   create: SerieCreateWithoutDirectorsInput!
   update: SerieUpdateWithoutDirectorsInput!
-}
-
-input SerieUpsertWithoutLanguagesInput {
-  create: SerieCreateWithoutLanguagesInput!
-  update: SerieUpdateWithoutLanguagesInput!
 }
 
 input SerieUpsertWithoutSeasonsInput {
@@ -4551,6 +4637,7 @@ input SerieWhereInput {
   directors: DirectorListRelationFilter
   genres: GenreListRelationFilter
   id: IntFilter
+  imdbID: StringFilter
   imdbRating: FloatFilter
   languages: LanguageListRelationFilter
   plot: StringFilter
@@ -4567,7 +4654,7 @@ input SerieWhereInput {
 
 input SerieWhereUniqueInput {
   id: Int
-  title: String
+  imdbID: String
 }
 
 type Session {

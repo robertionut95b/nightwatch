@@ -2,7 +2,7 @@ import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { MovieListRelationFilter } from "../inputs/MovieListRelationFilter";
-import { SerieRelationFilter } from "../inputs/SerieRelationFilter";
+import { SerieListRelationFilter } from "../inputs/SerieListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 export declare class LanguageWhereInput {
     AND?: LanguageWhereInput[] | undefined;
@@ -13,6 +13,6 @@ export declare class LanguageWhereInput {
     movies?: MovieListRelationFilter | undefined;
     createdAt?: DateTimeFilter | undefined;
     updatedAt?: DateTimeFilter | undefined;
-    series?: SerieRelationFilter | undefined;
+    series?: SerieListRelationFilter | undefined;
     seriesId?: IntNullableFilter | undefined;
 }

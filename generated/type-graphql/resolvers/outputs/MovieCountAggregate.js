@@ -91,6 +91,12 @@ __decorate([
         nullable: false
     }),
     __metadata("design:type", Number)
+], MovieCountAggregate.prototype, "imdbID", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+        nullable: false
+    }),
+    __metadata("design:type", Number)
 ], MovieCountAggregate.prototype, "createdAt", void 0);
 __decorate([
     TypeGraphQL.Field(_type => TypeGraphQL.Int, {

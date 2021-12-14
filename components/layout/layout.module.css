@@ -1,5 +1,5 @@
 .headerWrapper {
-    margin-bottom: 8vh;
+    margin-bottom: 6vh;
 }
 
 .headingImage {
@@ -21,4 +21,14 @@
 
 .layoutMainContainer {
     margin-bottom: 12vh;
+}
+
+.breadcrumbs {
+    margin-bottom: 5vh;
+}
+
+.breadcrumbs ol li+li:before {
+  padding: 8px;
+  color: silver;
+  content: "/\00a0";
 }

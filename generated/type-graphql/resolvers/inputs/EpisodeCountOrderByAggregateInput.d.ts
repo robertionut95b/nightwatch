@@ -5,5 +5,6 @@ export declare class EpisodeCountOrderByAggregateInput {
     plot?: "asc" | "desc" | undefined;
     poster?: "asc" | "desc" | undefined;
     imdbRating?: "asc" | "desc" | undefined;
+    imdbID?: "asc" | "desc" | undefined;
     seasonId?: "asc" | "desc" | undefined;
 }

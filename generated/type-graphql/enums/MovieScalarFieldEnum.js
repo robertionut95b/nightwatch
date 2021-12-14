@@ -32,6 +32,7 @@ var MovieScalarFieldEnum;
     MovieScalarFieldEnum["plot"] = "plot";
     MovieScalarFieldEnum["poster"] = "poster";
     MovieScalarFieldEnum["imdbRating"] = "imdbRating";
+    MovieScalarFieldEnum["imdbID"] = "imdbID";
     MovieScalarFieldEnum["createdAt"] = "createdAt";
     MovieScalarFieldEnum["updatedAt"] = "updatedAt";
 })(MovieScalarFieldEnum = exports.MovieScalarFieldEnum || (exports.MovieScalarFieldEnum = {}));

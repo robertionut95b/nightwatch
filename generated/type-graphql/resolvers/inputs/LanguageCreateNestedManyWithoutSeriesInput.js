@@ -30,7 +30,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LanguageCreateNestedManyWithoutSeriesInput = void 0;
 const TypeGraphQL = __importStar(require("type-graphql"));
-const LanguageCreateManySeriesInputEnvelope_1 = require("../inputs/LanguageCreateManySeriesInputEnvelope");
 const LanguageCreateOrConnectWithoutSeriesInput_1 = require("../inputs/LanguageCreateOrConnectWithoutSeriesInput");
 const LanguageCreateWithoutSeriesInput_1 = require("../inputs/LanguageCreateWithoutSeriesInput");
 const LanguageWhereUniqueInput_1 = require("../inputs/LanguageWhereUniqueInput");
@@ -48,12 +47,6 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], LanguageCreateNestedManyWithoutSeriesInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    TypeGraphQL.Field(_type => LanguageCreateManySeriesInputEnvelope_1.LanguageCreateManySeriesInputEnvelope, {
-        nullable: true
-    }),
-    __metadata("design:type", LanguageCreateManySeriesInputEnvelope_1.LanguageCreateManySeriesInputEnvelope)
-], LanguageCreateNestedManyWithoutSeriesInput.prototype, "createMany", void 0);
 __decorate([
     TypeGraphQL.Field(_type => [LanguageWhereUniqueInput_1.LanguageWhereUniqueInput], {
         nullable: true

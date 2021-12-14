@@ -27,6 +27,7 @@ var MovieOrderByRelevanceFieldEnum;
     MovieOrderByRelevanceFieldEnum["rating"] = "rating";
     MovieOrderByRelevanceFieldEnum["plot"] = "plot";
     MovieOrderByRelevanceFieldEnum["poster"] = "poster";
+    MovieOrderByRelevanceFieldEnum["imdbID"] = "imdbID";
 })(MovieOrderByRelevanceFieldEnum = exports.MovieOrderByRelevanceFieldEnum || (exports.MovieOrderByRelevanceFieldEnum = {}));
 TypeGraphQL.registerEnumType(MovieOrderByRelevanceFieldEnum, {
     name: "MovieOrderByRelevanceFieldEnum",

@@ -8,6 +8,7 @@ export declare class MovieMaxAggregate {
     plot: string | null;
     poster: string | null;
     imdbRating: number | null;
+    imdbID: string | null;
     createdAt: Date | null;
     updatedAt: Date | null;
 }

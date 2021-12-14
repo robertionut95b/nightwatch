@@ -6,6 +6,7 @@ export declare class Episode {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
     season?: Season;
     seasonId: number;
 }

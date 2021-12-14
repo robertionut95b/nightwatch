@@ -11,6 +11,7 @@ export declare class MovieCreateInput {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
     genres?: GenreCreateNestedManyWithoutMoviesInput | undefined;

@@ -43,7 +43,7 @@ __decorate([
         nullable: true
     }),
     __metadata("design:type", String)
-], MovieWhereUniqueInput.prototype, "title", void 0);
+], MovieWhereUniqueInput.prototype, "imdbID", void 0);
 MovieWhereUniqueInput = __decorate([
     TypeGraphQL.InputType("MovieWhereUniqueInput", {
         isAbstract: true

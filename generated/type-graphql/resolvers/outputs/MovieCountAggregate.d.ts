@@ -8,6 +8,7 @@ export declare class MovieCountAggregate {
     plot: number;
     poster: number;
     imdbRating: number;
+    imdbID: number;
     createdAt: number;
     updatedAt: number;
     _all: number;

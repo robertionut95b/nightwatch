@@ -14,6 +14,7 @@ export declare class MovieUpdateWithoutGenresInput {
     plot?: StringFieldUpdateOperationsInput | undefined;
     poster?: StringFieldUpdateOperationsInput | undefined;
     imdbRating?: FloatFieldUpdateOperationsInput | undefined;
+    imdbID?: StringFieldUpdateOperationsInput | undefined;
     createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
     updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
     directors?: DirectorUpdateManyWithoutMoviesInput | undefined;

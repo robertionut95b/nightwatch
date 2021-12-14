@@ -1,9 +1,9 @@
 module.exports = {
-  purge: [
+  content: [
     './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}'
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
   mode: 'jit',
   theme: {
     extend: {
@@ -21,21 +21,17 @@ module.exports = {
           hover: 'var(--color-primary-hover)',
         },
         secondary: {
-          DEFAULT: 'var(--color-secondary)'
+          DEFAULT: 'var(--color-secondary)',
         },
         heading: {
           light: 'var(--color-heading-light)',
           DEFAULT: 'var(--color-heading-light)',
-          dark: 'var(--color-heading-dark)'
-        }
-      }
+          dark: 'var(--color-heading-dark)',
+        },
+      },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [
-    require('tailwindcss-textshadow'),
-    require('@tailwindcss/forms')
-  ],
-}
+};

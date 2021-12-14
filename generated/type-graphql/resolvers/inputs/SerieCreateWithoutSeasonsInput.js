@@ -85,6 +85,12 @@ __decorate([
     __metadata("design:type", Number)
 ], SerieCreateWithoutSeasonsInput.prototype, "imdbRating", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    __metadata("design:type", String)
+], SerieCreateWithoutSeasonsInput.prototype, "imdbID", void 0);
+__decorate([
     TypeGraphQL.Field(_type => TypeGraphQL.Int, {
         nullable: false
     }),

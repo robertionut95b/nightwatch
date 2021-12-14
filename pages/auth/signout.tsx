@@ -5,24 +5,24 @@ import { useEffect } from 'react';
 
 export default function SignOut() {
 
-    const [session] = useSession();
+  const [session] = useSession();
 
-    useEffect(() => { if (session) signout() }, [session?.user])
+  useEffect(() => { if (session) signout(); }, [session]);
 
-    return (
+  return (
         <div className="container">
             <p>Successfully logged out</p>
             <Link href="/">Go back home</Link>
         </div>
-    );
-};
+  );
+}
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const ses = await getSession(context);
-    if (!ses) return { redirect: { destination: "/", permanent: false } }
-    return {
-        props: {
-            session: ses,
-        },
-    }
-}
+  const ses = await getSession(context);
+  if (!ses) return { redirect: { destination: '/', permanent: false } };
+  return {
+    props: {
+      session: ses,
+    },
+  };
+};

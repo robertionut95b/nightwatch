@@ -27,6 +27,7 @@ var SerieOrderByRelevanceFieldEnum;
     SerieOrderByRelevanceFieldEnum["rating"] = "rating";
     SerieOrderByRelevanceFieldEnum["plot"] = "plot";
     SerieOrderByRelevanceFieldEnum["poster"] = "poster";
+    SerieOrderByRelevanceFieldEnum["imdbID"] = "imdbID";
 })(SerieOrderByRelevanceFieldEnum = exports.SerieOrderByRelevanceFieldEnum || (exports.SerieOrderByRelevanceFieldEnum = {}));
 TypeGraphQL.registerEnumType(SerieOrderByRelevanceFieldEnum, {
     name: "SerieOrderByRelevanceFieldEnum",

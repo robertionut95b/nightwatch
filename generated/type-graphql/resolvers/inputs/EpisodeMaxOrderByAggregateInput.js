@@ -74,6 +74,12 @@ __decorate([
         nullable: true
     }),
     __metadata("design:type", String)
+], EpisodeMaxOrderByAggregateInput.prototype, "imdbID", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    __metadata("design:type", String)
 ], EpisodeMaxOrderByAggregateInput.prototype, "seasonId", void 0);
 EpisodeMaxOrderByAggregateInput = __decorate([
     TypeGraphQL.InputType("EpisodeMaxOrderByAggregateInput", {

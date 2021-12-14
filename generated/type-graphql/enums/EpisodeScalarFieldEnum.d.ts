@@ -5,5 +5,6 @@ export declare enum EpisodeScalarFieldEnum {
     plot = "plot",
     poster = "poster",
     imdbRating = "imdbRating",
+    imdbID = "imdbID",
     seasonId = "seasonId"
 }

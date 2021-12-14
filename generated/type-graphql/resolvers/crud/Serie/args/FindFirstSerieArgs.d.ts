@@ -7,5 +7,5 @@ export declare class FindFirstSerieArgs {
     cursor?: SerieWhereUniqueInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;
-    distinct?: Array<"id" | "title" | "year" | "rating" | "release" | "runtime" | "plot" | "poster" | "imdbRating" | "totalSeasons" | "createdAt" | "updatedAt"> | undefined;
+    distinct?: Array<"id" | "title" | "year" | "rating" | "release" | "runtime" | "plot" | "poster" | "imdbRating" | "imdbID" | "totalSeasons" | "createdAt" | "updatedAt"> | undefined;
 }

@@ -12,6 +12,7 @@ export declare class EpisodeWhereInput {
     plot?: StringFilter | undefined;
     poster?: StringFilter | undefined;
     imdbRating?: FloatFilter | undefined;
+    imdbID?: StringFilter | undefined;
     season?: SeasonRelationFilter | undefined;
     seasonId?: IntFilter | undefined;
 }

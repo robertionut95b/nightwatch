@@ -1,0 +1,4 @@
+export const cfg = {
+  API_ITEMS_PAGINATION_SKIP: 1,
+  API_ITEMS_PAGINATION_COUNT: 12,
+};

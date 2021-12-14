@@ -7,6 +7,7 @@ export declare class EpisodeOrderByWithRelationAndSearchRelevanceInput {
     plot?: "asc" | "desc" | undefined;
     poster?: "asc" | "desc" | undefined;
     imdbRating?: "asc" | "desc" | undefined;
+    imdbID?: "asc" | "desc" | undefined;
     season?: SeasonOrderByWithRelationAndSearchRelevanceInput | undefined;
     seasonId?: "asc" | "desc" | undefined;
     _relevance?: EpisodeOrderByRelevanceInput | undefined;

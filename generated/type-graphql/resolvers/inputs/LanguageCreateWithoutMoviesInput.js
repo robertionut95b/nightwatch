@@ -30,7 +30,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LanguageCreateWithoutMoviesInput = void 0;
 const TypeGraphQL = __importStar(require("type-graphql"));
-const SerieCreateNestedOneWithoutLanguagesInput_1 = require("../inputs/SerieCreateNestedOneWithoutLanguagesInput");
+const SerieCreateNestedManyWithoutLanguagesInput_1 = require("../inputs/SerieCreateNestedManyWithoutLanguagesInput");
 let LanguageCreateWithoutMoviesInput = class LanguageCreateWithoutMoviesInput {
 };
 __decorate([
@@ -52,10 +52,16 @@ __decorate([
     __metadata("design:type", Date)
 ], LanguageCreateWithoutMoviesInput.prototype, "updatedAt", void 0);
 __decorate([
-    TypeGraphQL.Field(_type => SerieCreateNestedOneWithoutLanguagesInput_1.SerieCreateNestedOneWithoutLanguagesInput, {
+    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
         nullable: true
     }),
-    __metadata("design:type", SerieCreateNestedOneWithoutLanguagesInput_1.SerieCreateNestedOneWithoutLanguagesInput)
+    __metadata("design:type", Number)
+], LanguageCreateWithoutMoviesInput.prototype, "seriesId", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => SerieCreateNestedManyWithoutLanguagesInput_1.SerieCreateNestedManyWithoutLanguagesInput, {
+        nullable: true
+    }),
+    __metadata("design:type", SerieCreateNestedManyWithoutLanguagesInput_1.SerieCreateNestedManyWithoutLanguagesInput)
 ], LanguageCreateWithoutMoviesInput.prototype, "series", void 0);
 LanguageCreateWithoutMoviesInput = __decorate([
     TypeGraphQL.InputType("LanguageCreateWithoutMoviesInput", {

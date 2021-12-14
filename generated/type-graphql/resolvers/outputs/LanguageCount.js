@@ -38,6 +38,12 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], LanguageCount.prototype, "movies", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+        nullable: false
+    }),
+    __metadata("design:type", Number)
+], LanguageCount.prototype, "series", void 0);
 LanguageCount = __decorate([
     TypeGraphQL.ObjectType("LanguageCount", {
         isAbstract: true

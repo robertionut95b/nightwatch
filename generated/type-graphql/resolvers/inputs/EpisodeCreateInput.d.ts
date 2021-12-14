@@ -5,5 +5,6 @@ export declare class EpisodeCreateInput {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
     season: SeasonCreateNestedOneWithoutEpisodeIdsInput;
 }

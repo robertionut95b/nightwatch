@@ -17,6 +17,7 @@ export declare class Movie {
     languages?: Language[];
     poster: string;
     imdbRating: number;
+    imdbID: string;
     createdAt: Date;
     updatedAt: Date;
     _count?: MovieCount | null;

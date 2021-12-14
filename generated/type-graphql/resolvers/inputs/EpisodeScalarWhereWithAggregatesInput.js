@@ -91,6 +91,12 @@ __decorate([
     __metadata("design:type", FloatWithAggregatesFilter_1.FloatWithAggregatesFilter)
 ], EpisodeScalarWhereWithAggregatesInput.prototype, "imdbRating", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => StringWithAggregatesFilter_1.StringWithAggregatesFilter, {
+        nullable: true
+    }),
+    __metadata("design:type", StringWithAggregatesFilter_1.StringWithAggregatesFilter)
+], EpisodeScalarWhereWithAggregatesInput.prototype, "imdbID", void 0);
+__decorate([
     TypeGraphQL.Field(_type => IntWithAggregatesFilter_1.IntWithAggregatesFilter, {
         nullable: true
     }),

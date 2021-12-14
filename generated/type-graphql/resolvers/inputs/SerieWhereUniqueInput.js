@@ -43,7 +43,7 @@ __decorate([
         nullable: true
     }),
     __metadata("design:type", String)
-], SerieWhereUniqueInput.prototype, "title", void 0);
+], SerieWhereUniqueInput.prototype, "imdbID", void 0);
 SerieWhereUniqueInput = __decorate([
     TypeGraphQL.InputType("SerieWhereUniqueInput", {
         isAbstract: true

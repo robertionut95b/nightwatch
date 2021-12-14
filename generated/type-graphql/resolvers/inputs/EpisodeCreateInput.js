@@ -64,6 +64,12 @@ __decorate([
     __metadata("design:type", Number)
 ], EpisodeCreateInput.prototype, "imdbRating", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    __metadata("design:type", String)
+], EpisodeCreateInput.prototype, "imdbID", void 0);
+__decorate([
     TypeGraphQL.Field(_type => SeasonCreateNestedOneWithoutEpisodeIdsInput_1.SeasonCreateNestedOneWithoutEpisodeIdsInput, {
         nullable: false
     }),

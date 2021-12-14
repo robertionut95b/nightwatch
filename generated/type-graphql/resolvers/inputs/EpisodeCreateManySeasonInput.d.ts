@@ -5,4 +5,5 @@ export declare class EpisodeCreateManySeasonInput {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
 }

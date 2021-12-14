@@ -32,6 +32,7 @@ var SerieScalarFieldEnum;
     SerieScalarFieldEnum["plot"] = "plot";
     SerieScalarFieldEnum["poster"] = "poster";
     SerieScalarFieldEnum["imdbRating"] = "imdbRating";
+    SerieScalarFieldEnum["imdbID"] = "imdbID";
     SerieScalarFieldEnum["totalSeasons"] = "totalSeasons";
     SerieScalarFieldEnum["createdAt"] = "createdAt";
     SerieScalarFieldEnum["updatedAt"] = "updatedAt";

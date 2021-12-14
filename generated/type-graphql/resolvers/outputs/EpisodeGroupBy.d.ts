@@ -10,6 +10,7 @@ export declare class EpisodeGroupBy {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
     seasonId: number;
     _count: EpisodeCountAggregate | null;
     _avg: EpisodeAvgAggregate | null;

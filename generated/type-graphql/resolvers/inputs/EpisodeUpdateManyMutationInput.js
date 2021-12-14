@@ -65,6 +65,12 @@ __decorate([
     }),
     __metadata("design:type", FloatFieldUpdateOperationsInput_1.FloatFieldUpdateOperationsInput)
 ], EpisodeUpdateManyMutationInput.prototype, "imdbRating", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput, {
+        nullable: true
+    }),
+    __metadata("design:type", StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput)
+], EpisodeUpdateManyMutationInput.prototype, "imdbID", void 0);
 EpisodeUpdateManyMutationInput = __decorate([
     TypeGraphQL.InputType("EpisodeUpdateManyMutationInput", {
         isAbstract: true

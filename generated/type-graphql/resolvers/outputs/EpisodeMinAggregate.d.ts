@@ -5,5 +5,6 @@ export declare class EpisodeMinAggregate {
     plot: string | null;
     poster: string | null;
     imdbRating: number | null;
+    imdbID: string | null;
     seasonId: number | null;
 }

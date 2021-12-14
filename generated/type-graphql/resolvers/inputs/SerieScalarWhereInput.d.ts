@@ -15,6 +15,7 @@ export declare class SerieScalarWhereInput {
     plot?: StringFilter | undefined;
     poster?: StringFilter | undefined;
     imdbRating?: FloatFilter | undefined;
+    imdbID?: StringFilter | undefined;
     totalSeasons?: IntFilter | undefined;
     createdAt?: DateTimeFilter | undefined;
     updatedAt?: DateTimeFilter | undefined;

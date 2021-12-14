@@ -92,6 +92,12 @@ __decorate([
     __metadata("design:type", Number)
 ], SerieGroupBy.prototype, "imdbRating", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    __metadata("design:type", String)
+], SerieGroupBy.prototype, "imdbID", void 0);
+__decorate([
     TypeGraphQL.Field(_type => TypeGraphQL.Int, {
         nullable: false
     }),

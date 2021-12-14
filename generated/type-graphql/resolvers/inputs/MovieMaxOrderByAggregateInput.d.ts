@@ -8,6 +8,7 @@ export declare class MovieMaxOrderByAggregateInput {
     plot?: "asc" | "desc" | undefined;
     poster?: "asc" | "desc" | undefined;
     imdbRating?: "asc" | "desc" | undefined;
+    imdbID?: "asc" | "desc" | undefined;
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
 }

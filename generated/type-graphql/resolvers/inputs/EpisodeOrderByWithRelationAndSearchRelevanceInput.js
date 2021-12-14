@@ -72,6 +72,12 @@ __decorate([
     __metadata("design:type", String)
 ], EpisodeOrderByWithRelationAndSearchRelevanceInput.prototype, "imdbRating", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    __metadata("design:type", String)
+], EpisodeOrderByWithRelationAndSearchRelevanceInput.prototype, "imdbID", void 0);
+__decorate([
     TypeGraphQL.Field(_type => SeasonOrderByWithRelationAndSearchRelevanceInput_1.SeasonOrderByWithRelationAndSearchRelevanceInput, {
         nullable: true
     }),

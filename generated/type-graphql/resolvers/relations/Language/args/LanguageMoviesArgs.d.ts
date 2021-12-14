@@ -7,5 +7,5 @@ export declare class LanguageMoviesArgs {
     cursor?: MovieWhereUniqueInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;
-    distinct?: Array<"id" | "title" | "year" | "rating" | "release" | "runtime" | "plot" | "poster" | "imdbRating" | "createdAt" | "updatedAt"> | undefined;
+    distinct?: Array<"id" | "title" | "year" | "rating" | "release" | "runtime" | "plot" | "poster" | "imdbRating" | "imdbID" | "createdAt" | "updatedAt"> | undefined;
 }

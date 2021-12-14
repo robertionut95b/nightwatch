@@ -10,6 +10,7 @@ export declare class EpisodeOrderByWithAggregationInput {
     plot?: "asc" | "desc" | undefined;
     poster?: "asc" | "desc" | undefined;
     imdbRating?: "asc" | "desc" | undefined;
+    imdbID?: "asc" | "desc" | undefined;
     seasonId?: "asc" | "desc" | undefined;
     _count?: EpisodeCountOrderByAggregateInput | undefined;
     _avg?: EpisodeAvgOrderByAggregateInput | undefined;

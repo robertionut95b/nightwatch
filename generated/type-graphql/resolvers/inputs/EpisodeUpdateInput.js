@@ -67,6 +67,12 @@ __decorate([
     __metadata("design:type", FloatFieldUpdateOperationsInput_1.FloatFieldUpdateOperationsInput)
 ], EpisodeUpdateInput.prototype, "imdbRating", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput, {
+        nullable: true
+    }),
+    __metadata("design:type", StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput)
+], EpisodeUpdateInput.prototype, "imdbID", void 0);
+__decorate([
     TypeGraphQL.Field(_type => SeasonUpdateOneRequiredWithoutEpisodeIdsInput_1.SeasonUpdateOneRequiredWithoutEpisodeIdsInput, {
         nullable: true
     }),

@@ -13,6 +13,7 @@ export declare class MovieGroupBy {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
     createdAt: Date;
     updatedAt: Date;
     _count: MovieCountAggregate | null;

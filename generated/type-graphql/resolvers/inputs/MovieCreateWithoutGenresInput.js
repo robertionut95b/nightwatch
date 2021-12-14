@@ -84,6 +84,12 @@ __decorate([
     __metadata("design:type", Number)
 ], MovieCreateWithoutGenresInput.prototype, "imdbRating", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    __metadata("design:type", String)
+], MovieCreateWithoutGenresInput.prototype, "imdbID", void 0);
+__decorate([
     TypeGraphQL.Field(_type => Date, {
         nullable: true
     }),

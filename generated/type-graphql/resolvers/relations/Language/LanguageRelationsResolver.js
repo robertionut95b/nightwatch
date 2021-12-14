@@ -37,6 +37,7 @@ const Language_1 = require("../../../models/Language");
 const Movie_1 = require("../../../models/Movie");
 const Serie_1 = require("../../../models/Serie");
 const LanguageMoviesArgs_1 = require("./args/LanguageMoviesArgs");
+const LanguageSeriesArgs_1 = require("./args/LanguageSeriesArgs");
 const helpers_1 = require("../../../helpers");
 let LanguageRelationsResolver = class LanguageRelationsResolver {
     async movies(language, ctx, args) {
@@ -46,12 +47,12 @@ let LanguageRelationsResolver = class LanguageRelationsResolver {
             },
         }).movies(args);
     }
-    async series(language, ctx) {
+    async series(language, ctx, args) {
         return (0, helpers_1.getPrismaFromContext)(ctx).language.findUnique({
             where: {
                 id: language.id,
             },
-        }).series({});
+        }).series(args);
     }
 };
 __decorate([
@@ -66,13 +67,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LanguageRelationsResolver.prototype, "movies", null);
 __decorate([
-    TypeGraphQL.FieldResolver(_type => Serie_1.Serie, {
-        nullable: true
+    TypeGraphQL.FieldResolver(_type => [Serie_1.Serie], {
+        nullable: false
     }),
     __param(0, TypeGraphQL.Root()),
     __param(1, TypeGraphQL.Ctx()),
+    __param(2, TypeGraphQL.Args()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Language_1.Language, Object]),
+    __metadata("design:paramtypes", [Language_1.Language, Object, LanguageSeriesArgs_1.LanguageSeriesArgs]),
     __metadata("design:returntype", Promise)
 ], LanguageRelationsResolver.prototype, "series", null);
 LanguageRelationsResolver = __decorate([

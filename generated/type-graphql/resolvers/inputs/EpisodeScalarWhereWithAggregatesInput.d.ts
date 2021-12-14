@@ -11,5 +11,6 @@ export declare class EpisodeScalarWhereWithAggregatesInput {
     plot?: StringWithAggregatesFilter | undefined;
     poster?: StringWithAggregatesFilter | undefined;
     imdbRating?: FloatWithAggregatesFilter | undefined;
+    imdbID?: StringWithAggregatesFilter | undefined;
     seasonId?: IntWithAggregatesFilter | undefined;
 }

@@ -4,4 +4,5 @@ export declare class EpisodeCreateWithoutSeasonInput {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
 }

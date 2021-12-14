@@ -79,6 +79,12 @@ __decorate([
         nullable: true
     }),
     __metadata("design:type", String)
+], EpisodeOrderByWithAggregationInput.prototype, "imdbID", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    __metadata("design:type", String)
 ], EpisodeOrderByWithAggregationInput.prototype, "seasonId", void 0);
 __decorate([
     TypeGraphQL.Field(_type => EpisodeCountOrderByAggregateInput_1.EpisodeCountOrderByAggregateInput, {

@@ -38,6 +38,12 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], EpisodeWhereUniqueInput.prototype, "id", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    __metadata("design:type", String)
+], EpisodeWhereUniqueInput.prototype, "imdbID", void 0);
 EpisodeWhereUniqueInput = __decorate([
     TypeGraphQL.InputType("EpisodeWhereUniqueInput", {
         isAbstract: true

@@ -73,6 +73,12 @@ __decorate([
         nullable: false
     }),
     __metadata("design:type", Number)
+], EpisodeCountAggregate.prototype, "imdbID", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+        nullable: false
+    }),
+    __metadata("design:type", Number)
 ], EpisodeCountAggregate.prototype, "seasonId", void 0);
 __decorate([
     TypeGraphQL.Field(_type => TypeGraphQL.Int, {

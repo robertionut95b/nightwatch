@@ -8,6 +8,7 @@ export declare class SerieCreateManyInput {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
     totalSeasons: number;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;

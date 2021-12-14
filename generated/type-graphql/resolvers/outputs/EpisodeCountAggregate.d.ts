@@ -5,6 +5,7 @@ export declare class EpisodeCountAggregate {
     plot: number;
     poster: number;
     imdbRating: number;
+    imdbID: number;
     seasonId: number;
     _all: number;
 }

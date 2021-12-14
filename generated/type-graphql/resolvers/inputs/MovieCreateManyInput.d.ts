@@ -8,6 +8,7 @@ export declare class MovieCreateManyInput {
     plot: string;
     poster: string;
     imdbRating: number;
+    imdbID: string;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
 }

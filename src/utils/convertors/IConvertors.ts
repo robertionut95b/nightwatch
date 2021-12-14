@@ -1,12 +1,20 @@
-import { Prisma } from '@prisma/client'
-import { CreateSerieMutationVariables, Movie } from '../../../generated/graphql';
-
+import { Prisma } from '@prisma/client';
+import {
+  CreateSeasonMutationVariables,
+  CreateSerieMutationVariables,
+  CreateMovieMutationVariables,
+} from '../../../generated/graphql';
 export interface IPrismaSeriesConvertor {
-    toSeries: () => CreateSerieMutationVariables
-    toPrismaSeries: () => Prisma.SerieCreateInput
+  toCreateVariables: () => CreateSerieMutationVariables;
+  toPrismaSeriesCreate: () => Prisma.SerieCreateInput;
 }
 
 export interface IPrismaMovieConvertor {
-    toMovie: () => Movie
-    toPrismaMovie: () => Prisma.MovieCreateInput
+  toCreateVariables: () => CreateMovieMutationVariables;
+  toPrismaMovieCreate: () => Prisma.MovieCreateInput;
+}
+
+export interface IPrismaSeasonsConvertor {
+  toCreateVariables: () => CreateSeasonMutationVariables;
+  toPrismaSeasonCreate: () => Prisma.SeasonCreateInput;
 }

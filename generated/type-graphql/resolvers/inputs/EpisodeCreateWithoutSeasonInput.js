@@ -62,6 +62,12 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], EpisodeCreateWithoutSeasonInput.prototype, "imdbRating", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    __metadata("design:type", String)
+], EpisodeCreateWithoutSeasonInput.prototype, "imdbID", void 0);
 EpisodeCreateWithoutSeasonInput = __decorate([
     TypeGraphQL.InputType("EpisodeCreateWithoutSeasonInput", {
         isAbstract: true

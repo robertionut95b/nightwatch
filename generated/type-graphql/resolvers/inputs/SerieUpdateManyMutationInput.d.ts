@@ -11,6 +11,7 @@ export declare class SerieUpdateManyMutationInput {
     plot?: StringFieldUpdateOperationsInput | undefined;
     poster?: StringFieldUpdateOperationsInput | undefined;
     imdbRating?: FloatFieldUpdateOperationsInput | undefined;
+    imdbID?: StringFieldUpdateOperationsInput | undefined;
     totalSeasons?: IntFieldUpdateOperationsInput | undefined;
     createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
     updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;

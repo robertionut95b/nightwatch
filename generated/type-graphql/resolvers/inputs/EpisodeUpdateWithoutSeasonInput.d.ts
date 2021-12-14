@@ -7,4 +7,5 @@ export declare class EpisodeUpdateWithoutSeasonInput {
     plot?: StringFieldUpdateOperationsInput | undefined;
     poster?: StringFieldUpdateOperationsInput | undefined;
     imdbRating?: FloatFieldUpdateOperationsInput | undefined;
+    imdbID?: StringFieldUpdateOperationsInput | undefined;
 }

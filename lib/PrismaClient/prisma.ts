@@ -1,29 +1,21 @@
-import { PrismaClient } from "@prisma/client";
-
-declare global {
-    namespace NodeJS {
-        interface Global {
-            prisma: PrismaClient;
-        }
-    }
-}
+import { PrismaClient } from '@prisma/client';
 
 let prisma: PrismaClient;
 
 export interface Context {
-    prisma: PrismaClient;
+  prisma: PrismaClient;
 }
 
-if (typeof window === "undefined") {
-    if (process.env.NODE_ENV === "production") {
-        prisma = new PrismaClient();
-    } else {
-        let globalWithPrisma = global as typeof globalThis & Context;
-        if (!globalWithPrisma.prisma) {
-            globalWithPrisma.prisma = new PrismaClient();
-        }
-        prisma = globalWithPrisma.prisma;
+if (typeof window === 'undefined') {
+  if (process.env.NODE_ENV === 'production') {
+    prisma = new PrismaClient();
+  } else {
+    let globalWithPrisma = global as typeof globalThis & Context;
+    if (!globalWithPrisma.prisma) {
+      globalWithPrisma.prisma = new PrismaClient();
     }
+    prisma = globalWithPrisma.prisma;
+  }
 }
 
 //@ts-ignore

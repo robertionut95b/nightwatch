@@ -15,6 +15,7 @@ export declare class MovieScalarWhereWithAggregatesInput {
     plot?: StringWithAggregatesFilter | undefined;
     poster?: StringWithAggregatesFilter | undefined;
     imdbRating?: FloatWithAggregatesFilter | undefined;
+    imdbID?: StringWithAggregatesFilter | undefined;
     createdAt?: DateTimeWithAggregatesFilter | undefined;
     updatedAt?: DateTimeWithAggregatesFilter | undefined;
 }

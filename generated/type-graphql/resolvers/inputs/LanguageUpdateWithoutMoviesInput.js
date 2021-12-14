@@ -31,7 +31,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LanguageUpdateWithoutMoviesInput = void 0;
 const TypeGraphQL = __importStar(require("type-graphql"));
 const DateTimeFieldUpdateOperationsInput_1 = require("../inputs/DateTimeFieldUpdateOperationsInput");
-const SerieUpdateOneWithoutLanguagesInput_1 = require("../inputs/SerieUpdateOneWithoutLanguagesInput");
+const NullableIntFieldUpdateOperationsInput_1 = require("../inputs/NullableIntFieldUpdateOperationsInput");
+const SerieUpdateManyWithoutLanguagesInput_1 = require("../inputs/SerieUpdateManyWithoutLanguagesInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
 let LanguageUpdateWithoutMoviesInput = class LanguageUpdateWithoutMoviesInput {
 };
@@ -54,10 +55,16 @@ __decorate([
     __metadata("design:type", DateTimeFieldUpdateOperationsInput_1.DateTimeFieldUpdateOperationsInput)
 ], LanguageUpdateWithoutMoviesInput.prototype, "updatedAt", void 0);
 __decorate([
-    TypeGraphQL.Field(_type => SerieUpdateOneWithoutLanguagesInput_1.SerieUpdateOneWithoutLanguagesInput, {
+    TypeGraphQL.Field(_type => NullableIntFieldUpdateOperationsInput_1.NullableIntFieldUpdateOperationsInput, {
         nullable: true
     }),
-    __metadata("design:type", SerieUpdateOneWithoutLanguagesInput_1.SerieUpdateOneWithoutLanguagesInput)
+    __metadata("design:type", NullableIntFieldUpdateOperationsInput_1.NullableIntFieldUpdateOperationsInput)
+], LanguageUpdateWithoutMoviesInput.prototype, "seriesId", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => SerieUpdateManyWithoutLanguagesInput_1.SerieUpdateManyWithoutLanguagesInput, {
+        nullable: true
+    }),
+    __metadata("design:type", SerieUpdateManyWithoutLanguagesInput_1.SerieUpdateManyWithoutLanguagesInput)
 ], LanguageUpdateWithoutMoviesInput.prototype, "series", void 0);
 LanguageUpdateWithoutMoviesInput = __decorate([
     TypeGraphQL.InputType("LanguageUpdateWithoutMoviesInput", {

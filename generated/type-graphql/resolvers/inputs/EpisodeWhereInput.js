@@ -92,6 +92,12 @@ __decorate([
     __metadata("design:type", FloatFilter_1.FloatFilter)
 ], EpisodeWhereInput.prototype, "imdbRating", void 0);
 __decorate([
+    TypeGraphQL.Field(_type => StringFilter_1.StringFilter, {
+        nullable: true
+    }),
+    __metadata("design:type", StringFilter_1.StringFilter)
+], EpisodeWhereInput.prototype, "imdbID", void 0);
+__decorate([
     TypeGraphQL.Field(_type => SeasonRelationFilter_1.SeasonRelationFilter, {
         nullable: true
     }),

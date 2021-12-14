@@ -109,13 +109,13 @@ model Language {
   movies    Movie[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  series    Serie?   @relation(fields: [seriesId], references: [id])
+  series    Serie[]
   seriesId  Int?
 }
 
 model Movie {
   id         Int        @id @default(autoincrement())
-  title      String     @unique
+  title      String
   year       Int
   rating     String
   release    DateTime
@@ -127,13 +127,14 @@ model Movie {
   languages  Language[]
   poster     String
   imdbRating Float
+  imdbID     String     @unique
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
 }
 
 model Serie {
   id           Int        @id @default(autoincrement())
-  title        String     @unique
+  title        String
   year         Int
   rating       String
   release      DateTime
@@ -145,6 +146,7 @@ model Serie {
   languages    Language[]
   poster       String
   imdbRating   Float
+  imdbID       String     @unique
   totalSeasons Int
   seasons      Season[]
   createdAt    DateTime   @default(now())
@@ -171,6 +173,7 @@ model Episode {
   plot       String
   poster     String
   imdbRating Float
+  imdbID     String @unique
   season     Season @relation(fields: [seasonId], references: [id])
   seasonId   Int
 }

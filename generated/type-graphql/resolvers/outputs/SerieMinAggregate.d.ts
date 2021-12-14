@@ -8,6 +8,7 @@ export declare class SerieMinAggregate {
     plot: string | null;
     poster: string | null;
     imdbRating: number | null;
+    imdbID: string | null;
     totalSeasons: number | null;
     createdAt: Date | null;
     updatedAt: Date | null;

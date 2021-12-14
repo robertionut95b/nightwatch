@@ -8,6 +8,7 @@ export declare enum MovieScalarFieldEnum {
     plot = "plot",
     poster = "poster",
     imdbRating = "imdbRating",
+    imdbID = "imdbID",
     createdAt = "createdAt",
     updatedAt = "updatedAt"
 }
