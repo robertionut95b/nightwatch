@@ -122,9 +122,9 @@ export class OMDBMovie implements IPrismaMovieConvertor {
     return {
       title: this.Title,
       year: parseInt(this.Year?.split('-')[0]),
-      rating: this.Rated,
+      rating: this.Rated || 'N/A',
       release: parse(this.Released, 'dd MMM yyyy', new Date()),
-      runtime: parseInt(this.Runtime?.split(' ')[0]),
+      runtime: parseInt(this.Runtime?.split(' ')[0]) || 0,
       genres: {
         connectOrCreate: genres,
       },
@@ -146,9 +146,9 @@ export class OMDBMovie implements IPrismaMovieConvertor {
     return {
       title: this.Title,
       year: parseInt(this.Year),
-      rating: this.Rated,
+      rating: this.Rated || 'N/A',
       release: parse(this.Released, 'dd MMM yyyy', new Date()),
-      runtime: parseInt(this.Runtime),
+      runtime: parseInt(this.Runtime) || 0,
       genres: {
         connectOrCreate: genres,
       },

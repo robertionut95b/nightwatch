@@ -1,53 +1,115 @@
 import Link from 'next/link';
 import { useSession } from '../../node_modules/next-auth/client';
 import { useRouter } from 'next/dist/client/router';
-import { FormEvent } from 'react';
+import ThemeSwitch from '../utils/layout/themes/themeSwitch';
+import React from 'react';
+import MobileNavigationBar from './MobileNavigationBar';
+import SearchBar from './SearchBar';
+import Logo from './Logo';
+import Profile from './Profile';
+import { useThemeMode } from '../utils/hooks/useThemeMode';
+import useWindowDimensions from '../utils/hooks/useWindowDimensions';
+import { MinimalSpinner } from '../utils/layout/spinners/minimalSpinner';
 
-export default function NavigationBar() {
-
-  const [session] = useSession();
-  const router = useRouter();
-  const { query, pathname } = useRouter();
-
+export default function NavigationBar(): JSX.Element {
+  const [session, loading] = useSession();
+  const [theme] = useThemeMode();
+  const { pathname } = useRouter();
   const isHome = pathname === '/';
 
-  const hitSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const search = (document.getElementById('search-input-title') as HTMLInputElement).value;
-    if (search) {
-      router.push(`/search?q=${encodeURIComponent(search)}`);
+  const [isFullMenuToggled, setIsFullMenuToggled] =
+    React.useState<boolean>(false);
+
+  const { width } = useWindowDimensions();
+
+  React.useEffect(() => {
+    if (width <= 768) {
+      return;
     }
-  };
+    if (width > 768) {
+      setIsFullMenuToggled(false);
+      document.body.style.overflow = 'unset';
+    }
+  }, [width]);
+
+  React.useEffect(() => {
+    if (isFullMenuToggled) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'unset';
+  }, [isFullMenuToggled]);
 
   return (
-        <nav className={`flex flex-row z-10 justify-between px-12 items-center sticky top-0 py-3 backdrop-blur-sm ${isHome ? 'bg-black' : 'bg-background-dark'} bg-opacity-60`}>
-            <div className="nav-logo">
-                <Link href="/" passHref>
-                  <h1 className='font-bold text-lg cursor-pointer'>{process.env.APP_SITE_NAME}</h1>
+    <nav
+      className={`flex flex-row z-10 justify-between px-5 md:px-12 items-center sticky top-0 py-3 backdrop-blur-sm ${
+        isHome ? 'bg-black' : 'bg-background-dark'
+      } bg-opacity-60`}
+    >
+      <Logo />
+      <div className="searchbar relative hidden md:block w-1/3">
+        <SearchBar />
+      </div>
+      <div className="nav-right-menu">
+        <div className="flex-row gap-x-4 items-center hidden md:flex">
+          {loading ? (
+            <MinimalSpinner />
+          ) : (
+            <>
+              <Link href="/user/profile" passHref>
+                <a>
+                  <Profile minimal />
+                </a>
+              </Link>
+              <ThemeSwitch className="p-1.5" toggled={theme === 'dark'} />
+              {!session && (
+                <Link href="/auth/signin" passHref>
+                  <button className="btn-primary">Log in</button>
                 </Link>
-            </div>
-            <div className="nav-search-screenings relative hidden md:block w-1/3">
-                <form action="/search" encType="application/x-www-form-urlencoded" onSubmit={(e) => hitSearch(e)}>
-                    <input
-                        id='search-input-title'
-                        name="q"
-                        className={'bg-background w-full shadow-md bg-clip-padding bg-opacity-60 px-4 py-1 backdrop-filter backdrop-blur-sm rounded-md text-sm font-semibold border border-gray-800'}
-                        type="text"
-                        placeholder="Search movies ..."
-                        required
-                        defaultValue={query?.q || ''}></input>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="absolute top-1.5 right-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </form>
-            </div>
-            <div className="nav-right-menu">
-                <div className="flex flex-row gap-x-4 items-center">
-                    {session && <Link href="/user/watchlists">Watchlists</Link>}
-                    {!session && <Link href="/auth/signin" passHref><button className='btn-primary'>Log in</button></Link>}
-                    {session && <Link href="/auth/signout" passHref><button className='btn-primary'>Log out</button></Link>}
-                </div>
-            </div>
-        </nav >
+              )}
+              {session && (
+                <Link href="/auth/signout" passHref>
+                  <button className="btn-primary">Log out</button>
+                </Link>
+              )}
+            </>
+          )}
+        </div>
+        <div
+          className="hamburger-button cursor-pointer block md:hidden"
+          onClick={() => setIsFullMenuToggled(!isFullMenuToggled)}
+        >
+          {!isFullMenuToggled ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          )}
+        </div>
+      </div>
+      {isFullMenuToggled && <MobileNavigationBar />}
+    </nav>
   );
 }

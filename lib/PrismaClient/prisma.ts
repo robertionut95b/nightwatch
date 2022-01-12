@@ -1,6 +1,10 @@
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 let prisma: PrismaClient;
+
+const prismaOptions: Prisma.PrismaClientOptions = {
+  log: ['info', 'warn', 'error'],
+};
 
 export interface Context {
   prisma: PrismaClient;
@@ -8,15 +12,16 @@ export interface Context {
 
 if (typeof window === 'undefined') {
   if (process.env.NODE_ENV === 'production') {
-    prisma = new PrismaClient();
+    prisma = new PrismaClient(prismaOptions);
   } else {
-    let globalWithPrisma = global as typeof globalThis & Context;
+    const globalWithPrisma = global as typeof globalThis & Context;
     if (!globalWithPrisma.prisma) {
-      globalWithPrisma.prisma = new PrismaClient();
+      globalWithPrisma.prisma = new PrismaClient(prismaOptions);
     }
     prisma = globalWithPrisma.prisma;
   }
 }
 
-//@ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export default prisma;

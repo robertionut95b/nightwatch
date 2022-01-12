@@ -38,4 +38,11 @@
   "editor.tabSize": 2,
   "editor.detectIndentation": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "ts",
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css"
+  }
 }

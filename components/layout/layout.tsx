@@ -3,10 +3,10 @@ import React from 'react';
 import { useSession } from '../../node_modules/next-auth/client';
 import SignInForm from '../auth/SignInForm';
 import NavigationBar from '../nav/NavigationBar';
-import { AskBanner } from './askBanner';
-import Footer from './footer';
+import { AskBanner } from './banners/askBanner';
+import Footer from './footer/footer';
 import styles from './layout.module.css';
-import HeroMain from './heroMain';
+import HeroMain from './home/heroMain';
 
 export default function Layout({
   children,
@@ -17,7 +17,7 @@ export default function Layout({
 }): JSX.Element {
   const [session] = useSession();
   return (
-    <div className={`scroll-smooth`}>
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="og:title" content={process.env.APP_SITE_NAME} />
@@ -52,6 +52,6 @@ export default function Layout({
         <AskBanner />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

@@ -90,6 +90,8 @@ export const CreateSerieSearch = gql`
       id
       title
       poster
+      totalSeasons
+      imdbID
     }
   }
 `;
@@ -212,6 +214,92 @@ export const createSeason = gql`
       id
       title
       index
+      episodeIds {
+        id
+        imdbID
+        plot
+        poster
+        runtime
+        seasonId
+        title
+        createdAt
+        updatedAt
+        imdbRating
+      }
+      episodes
+      launchDate
+      seriesId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const addSeriesToWatchlist = gql`
+  mutation addSeriesToWatchlist(
+    $serie: SerieCreateNestedOneWithoutWatchlistInput!
+    $watchlist: SeriesWatchlistCreateNestedOneWithoutSeriesInput!
+  ) {
+    createWatchlistedSerie(data: { serie: $serie, watchlist: $watchlist }) {
+      serieId
+      seen
+    }
+  }
+`;
+
+export const removeSeriesFromWatchlist = gql`
+  mutation removeSeriesFromWatchlist(
+    $where: WatchlistedSerieWhereUniqueInput!
+  ) {
+    deleteWatchlistedSerie(where: $where) {
+      serieId
+      watchlistId
+    }
+  }
+`;
+
+export const addMovieToWatchlist = gql`
+  mutation addMovieToWatchlist(
+    $movie: MovieCreateNestedOneWithoutWatchlistInput!
+    $watchlist: MoviesWatchlistCreateNestedOneWithoutMoviesInput!
+  ) {
+    createWatchlistedMovie(data: { movie: $movie, watchlist: $watchlist }) {
+      movieId
+      seen
+    }
+  }
+`;
+
+export const removeMovieFromWatchlist = gql`
+  mutation removeMovieFromWatchlist($where: WatchlistedMovieWhereUniqueInput!) {
+    deleteWatchlistedMovie(where: $where) {
+      movieId
+      watchlistId
+    }
+  }
+`;
+
+export const addEpisodeToWatchlist = gql`
+  mutation addEpisodeToWatchlist(
+    $episode: EpisodeCreateNestedOneWithoutWatchlistInput!
+    $watchlist: EpisodesWatchlistCreateNestedOneWithoutEpisodesInput!
+  ) {
+    createWatchlistedEpisode(
+      data: { episode: $episode, watchlist: $watchlist }
+    ) {
+      episodeId
+      seen
+    }
+  }
+`;
+
+export const removeEpisodeFromWatchlist = gql`
+  mutation removeEpisodeFromWatchlist(
+    $where: WatchlistedEpisodeWhereUniqueInput!
+  ) {
+    deleteWatchlistedEpisode(where: $where) {
+      episodeId
+      watchlistId
     }
   }
 `;

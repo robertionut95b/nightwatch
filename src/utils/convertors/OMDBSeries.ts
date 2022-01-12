@@ -127,9 +127,9 @@ export class OMDBSeries implements IPrismaSeriesConvertor {
     const series: Prisma.SerieCreateInput = {
       title: this.title,
       year: parseInt(this.year?.split('-')[0]),
-      rating: this.rated,
+      rating: this.rated || "N/A",
       release: parse(this.released, 'dd MMM yyyy', new Date()),
-      runtime: parseInt(this.runtime),
+      runtime: parseInt(this.runtime) || 0,
       genres: {
         connectOrCreate: genres,
       },
@@ -153,9 +153,9 @@ export class OMDBSeries implements IPrismaSeriesConvertor {
     return {
       title: this.title,
       year: parseInt(this.year?.split('-')[0]),
-      rating: this.rated,
+      rating: this.rated || 'N/A',
       release: parse(this.released, 'dd MMM yyyy', new Date()),
-      runtime: parseInt(this.runtime),
+      runtime: parseInt(this.runtime) || 0,
       genres: {
         connectOrCreate: genres,
       },

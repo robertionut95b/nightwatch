@@ -5,29 +5,30 @@ import React from 'react';
 import Layout from '../../components/layout/layout';
 import prisma from '../../lib/PrismaClient/prisma';
 
-export default function GenrePage({ genres }: { genres: Genre[] }) {
+export default function GenrePage({
+  genres,
+}: {
+  genres: Genre[];
+}): JSX.Element {
   return (
-        <Layout home={false}>
-            <Head>
-                <title>Genres</title>
-            </Head>
-            {
-                genres.map((genre) => (
-                    <article key={genre.id}>
-                        <h1>{genre.name}</h1>
-                        <div>
-                            {/* <Date dateString={format(genre.createdAt, 'LLLL d, yyyy')} /> */}
-                        </div>
-                    </article>
-                ))
-            }
-        </Layout>
+    <Layout home={false}>
+      <Head>
+        <title>Genres</title>
+      </Head>
+      {genres.map((genre) => (
+        <article key={genre.id}>
+          <h1>{genre.name}</h1>
+          <div>
+            {/* <Date dateString={format(genre.createdAt, 'LLLL d, yyyy')} /> */}
+          </div>
+        </article>
+      ))}
+    </Layout>
   );
 }
 
-
 export const getStaticProps: GetStaticProps = async () => {
-  var genres = await prisma.genre.findMany({});
+  let genres = await prisma.genre.findMany({});
   const genresStr = JSON.stringify(genres);
   genres = JSON.parse(genresStr);
 

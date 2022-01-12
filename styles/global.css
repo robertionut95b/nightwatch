@@ -1,22 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-:root{
-  --color-primary: #095DB2ff;
+:root {
+  --color-primary: #095db2ff;
   --color-primary-hover: #013b76;
-  --color-secondary: #DC9B28ff;
-  --color-background: #080C1Aff;
+  --color-secondary: #dc9b28ff;
+  --color-background: #080c1aff;
   --color-background-dark: #060811;
   --color-background-secondary: #0e1527;
-  --color-background-light: #9EA3B5ff;
-  --color-heading-light: #9EA3B5ff;
-  --color-heading-dark: #080C1Aff;
+  --color-background-light: #9ea3b5ff;
+  --color-heading-light: #9ea3b5ff;
+  --color-heading-dark: #080c1aff;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   font-family: 'Barlow', sans-serif;
@@ -50,22 +51,22 @@ img {
 }
 
 ::-webkit-scrollbar {
-  width: 1rem;               /* width of the entire scrollbar */
+  width: 1rem; /* width of the entire scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-background-dark);        /* color of the tracking area */
+  background: var(--color-background-dark); /* color of the tracking area */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-primary);    /* color of the scroll thumb */
-  border-radius: 10px;       /* roundness of the scroll thumb */
-  border: 4px solid var(--color-background);  /* creates padding around scroll thumb */
+  background-color: var(--color-primary); /* color of the scroll thumb */
+  border-radius: 10px; /* roundness of the scroll thumb */
+  border: 4px solid var(--color-background); /* creates padding around scroll thumb */
   padding: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-primary-hover);    /* color of the scroll thumb */
+  background-color: var(--color-primary-hover); /* color of the scroll thumb */
 }
 
 .lds-ring {
@@ -103,7 +104,6 @@ img {
     transform: rotate(360deg);
   }
 }
-
 
 /* --ebony: #5A5E4Aff;
 --gamboge: #DC9B28ff;

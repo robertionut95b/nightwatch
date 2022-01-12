@@ -3,19 +3,22 @@ import { signout, getSession, useSession } from 'next-auth/client';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
-export default function SignOut() {
-
+const SignOut = (): JSX.Element => {
   const [session] = useSession();
 
-  useEffect(() => { if (session) signout(); }, [session]);
+  useEffect(() => {
+    if (session) signout();
+  }, [session]);
 
   return (
-        <div className="container">
-            <p>Successfully logged out</p>
-            <Link href="/">Go back home</Link>
-        </div>
+    <div className="container">
+      <p>Successfully logged out</p>
+      <Link href="/">Go back home</Link>
+    </div>
   );
-}
+};
+
+export default SignOut;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const ses = await getSession(context);

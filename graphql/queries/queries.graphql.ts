@@ -299,3 +299,37 @@ export const relatedMovies = gql`
     }
   }
 `;
+
+export const getWatchlist = gql`
+  query watchlists($where: WatchlistWhereInput) {
+    watchlists(where: $where) {
+      id
+      default
+      name
+      movieWatchlist {
+        movies {
+          movieId
+          addedAt
+          seen
+          seenAt
+        }
+      }
+      episodeWatchlist {
+        episodes {
+          episodeId
+          addedAt
+          seen
+          seenAt
+        }
+      }
+      seriesWatchlist {
+        series {
+          serieId
+          addedAt
+          seen
+          seenAt
+        }
+      }
+    }
+  }
+`;

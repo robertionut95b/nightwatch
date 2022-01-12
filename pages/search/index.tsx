@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import Layout from '../../components/layout/layout';
 import apolloClient from '../../lib/apollo/apolloClient';
-import MovieCard from '../../components/items/MovieCard';
+import MovieCard from '../../components/items/movies/card/MovieCard';
 import {
   SearchMovieByTitleDocument,
   SearchMovieByTitleQuery,
@@ -13,21 +13,25 @@ import {
   CreateSerieSearchMutation,
   useCreateMovieSearchMutation,
   CreateMovieSearchMutation,
+  CreateSeasonMutation,
+  useCreateSeasonMutation,
 } from '../../generated/graphql';
-import SeriesCard from '../../components/items/SeriesCard';
+import SeriesCard from '../../components/items/series/card/SeriesCard';
 import { OMDBApiUtils } from '../../src/utils/convertors/OMDBApiUtils';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
 import { ApolloError } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import NProgress from 'nprogress';
-import { Spinner } from '../../components/utils/spinner';
+import { Spinner } from '../../components/utils/layout/spinners/spinner';
 import Head from 'next/head';
-import SearchedSeriesCard from '../../components/items/SearchedSeriesCard';
+import SearchedSeriesCard from '../../components/items/series/searched/SearchedSeriesCard';
 import { OMDBSearchSeries } from '../../src/utils/convertors/OMDBSearchSeries';
 import { OMDBSearchMovie } from '../../src/utils/convertors/OMDBSearchMovies';
-import SearchedMoviesCard from '../../components/items/SearchedMovieCard';
+import SearchedMoviesCard from '../../components/items/movies/searched/card/SearchedMovieCard';
 import Link from 'next/link';
+import { createStandaloneToast } from '@chakra-ui/toast';
+import { toastDefaults } from '../../assets/constants/config';
 
 export default function SearchResults({
   movies,
@@ -41,16 +45,53 @@ export default function SearchResults({
   const { query } = router;
   const [omdbSeries, setOmdbSeries] = useState<OMDBSearchSeries[]>([]);
   const [omdbMovies, setOmdbMovies] = useState<OMDBSearchMovie[]>([]);
+  const toast = createStandaloneToast();
+
+  const [createSeasonMutation] = useCreateSeasonMutation({
+    fetchPolicy: 'no-cache',
+    onError: (error: ApolloError) => {
+      console.error(error);
+      console.error('Could not add season, try again later');
+    },
+    onCompleted: (data: CreateSeasonMutation) => {
+      console.log(`Season ${data.createSeason.index} created`);
+      router.replace(router.asPath);
+    },
+  });
 
   const [createSerieSearchMutation, { loading }] = useCreateSerieSearchMutation(
     {
       fetchPolicy: 'no-cache',
       onError: (error: ApolloError) => {
         console.error(error);
-        alert('Could not add series, try again later');
+        toast({
+          title: 'Could not add series, please try again later',
+          status: 'error',
+          ...toastDefaults,
+        });
       },
-      onCompleted: (data: CreateSerieSearchMutation) => {
-        alert(`Serie ${data.createSerie.title} created`);
+      onCompleted: async (data: CreateSerieSearchMutation) => {
+        // if series is created, add the seasons and episodes
+        if (data.createSerie.totalSeasons > 0) {
+          for (let i = 1; i <= data.createSerie.totalSeasons; i++) {
+            const season =
+              await OMDBApiUtils.fetchSeriesEpisodeBySeriesTitleAndSeason(
+                data.createSerie.imdbID,
+                i,
+              );
+            if (!season) continue;
+            await createSeasonMutation({
+              variables: {
+                ...season.toCreateVariables(),
+              },
+            });
+          }
+        }
+        toast({
+          title: `Added series ${data.createSerie.title}`,
+          status: 'success',
+          ...toastDefaults,
+        });
         router.replace(router.asPath);
       },
       refetchQueries: [
@@ -71,10 +112,18 @@ export default function SearchResults({
       fetchPolicy: 'no-cache',
       onError: (error: ApolloError) => {
         console.error(error);
-        alert('Could not add movie, try again later');
+        toast({
+          title: 'Could not add movie, please try again later',
+          status: 'error',
+          ...toastDefaults,
+        });
       },
       onCompleted: (data: CreateMovieSearchMutation) => {
-        alert(`Movie ${data.createMovie.title} created`);
+        toast({
+          title: `Added movie ${data.createMovie.title}`,
+          status: 'success',
+          ...toastDefaults,
+        });
         router.replace(router.asPath);
       },
       refetchQueries: [
@@ -207,10 +256,15 @@ export default function SearchResults({
           </p>
           <button
             type="button"
-            className="btn-primary mt-4"
+            className="btn-primary-outline mt-4 disabled:bg-zinc-600"
+            disabled={loading || loadingMovies}
             onClick={() => {
               if (!session) {
-                alert('You must login first');
+                toast({
+                  title: 'Action not allowed. Must login',
+                  status: 'error',
+                  ...toastDefaults,
+                });
                 return;
               }
               searchOMDBAPISeries(query.q as string);

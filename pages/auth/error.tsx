@@ -1,9 +1,15 @@
 import Layout from '../../components/layout/layout';
-export default function AuthError() {
+import Head from 'next/head';
 
+const AuthError = (): JSX.Element => {
   return (
-        <Layout home={false} >
-            <p> Unfortunately your login has failed. </p>
-        </Layout>
+    <Layout home={false}>
+      <Head>
+        <title>{`${process.env.APP_SITE_NAME}`}</title>
+      </Head>
+      <p> Unfortunately your login has failed. </p>
+    </Layout>
   );
-}
+};
+
+export default AuthError;

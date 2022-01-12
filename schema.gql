@@ -4,114 +4,82 @@
 # -----------------------------------------------
 
 type Account {
-  access_token: String
-  expires_at: Int
+  accessToken: String
+  accessTokenExpires: DateTime
+  createdAt: DateTime!
   id: String!
-  id_token: String
-  oauth_token: String
-  oauth_token_secret: String
-  provider: String!
   providerAccountId: String!
-  refresh_token: String
-  scope: String
-  session_state: String
-  token_type: String
-  type: String!
+  providerId: String!
+  providerType: String!
+  refreshToken: String
+  updatedAt: DateTime!
   user: User!
   userId: String!
 }
 
-type AccountAvgAggregate {
-  expires_at: Float
-}
-
-input AccountAvgOrderByAggregateInput {
-  expires_at: SortOrder
-}
-
 type AccountCountAggregate {
   _all: Int!
-  access_token: Int!
-  expires_at: Int!
+  accessToken: Int!
+  accessTokenExpires: Int!
+  createdAt: Int!
   id: Int!
-  id_token: Int!
-  oauth_token: Int!
-  oauth_token_secret: Int!
-  provider: Int!
   providerAccountId: Int!
-  refresh_token: Int!
-  scope: Int!
-  session_state: Int!
-  token_type: Int!
-  type: Int!
+  providerId: Int!
+  providerType: Int!
+  refreshToken: Int!
+  updatedAt: Int!
   userId: Int!
 }
 
 input AccountCountOrderByAggregateInput {
-  access_token: SortOrder
-  expires_at: SortOrder
+  accessToken: SortOrder
+  accessTokenExpires: SortOrder
+  createdAt: SortOrder
   id: SortOrder
-  id_token: SortOrder
-  oauth_token: SortOrder
-  oauth_token_secret: SortOrder
-  provider: SortOrder
   providerAccountId: SortOrder
-  refresh_token: SortOrder
-  scope: SortOrder
-  session_state: SortOrder
-  token_type: SortOrder
-  type: SortOrder
+  providerId: SortOrder
+  providerType: SortOrder
+  refreshToken: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input AccountCreateInput {
-  access_token: String
-  expires_at: Int
+  accessToken: String
+  accessTokenExpires: DateTime
+  createdAt: DateTime
   id: String
-  id_token: String
-  oauth_token: String
-  oauth_token_secret: String
-  provider: String!
   providerAccountId: String!
-  refresh_token: String
-  scope: String
-  session_state: String
-  token_type: String
-  type: String!
+  providerId: String!
+  providerType: String!
+  refreshToken: String
+  updatedAt: DateTime
   user: UserCreateNestedOneWithoutAccountsInput!
 }
 
 input AccountCreateManyInput {
-  access_token: String
-  expires_at: Int
+  accessToken: String
+  accessTokenExpires: DateTime
+  createdAt: DateTime
   id: String
-  id_token: String
-  oauth_token: String
-  oauth_token_secret: String
-  provider: String!
   providerAccountId: String!
-  refresh_token: String
-  scope: String
-  session_state: String
-  token_type: String
-  type: String!
+  providerId: String!
+  providerType: String!
+  refreshToken: String
+  updatedAt: DateTime
   userId: String!
 }
 
 input AccountCreateManyUserInput {
-  access_token: String
-  expires_at: Int
+  accessToken: String
+  accessTokenExpires: DateTime
+  createdAt: DateTime
   id: String
-  id_token: String
-  oauth_token: String
-  oauth_token_secret: String
-  provider: String!
   providerAccountId: String!
-  refresh_token: String
-  scope: String
-  session_state: String
-  token_type: String
-  type: String!
+  providerId: String!
+  providerType: String!
+  refreshToken: String
+  updatedAt: DateTime
 }
 
 input AccountCreateManyUserInputEnvelope {
@@ -132,40 +100,30 @@ input AccountCreateOrConnectWithoutUserInput {
 }
 
 input AccountCreateWithoutUserInput {
-  access_token: String
-  expires_at: Int
+  accessToken: String
+  accessTokenExpires: DateTime
+  createdAt: DateTime
   id: String
-  id_token: String
-  oauth_token: String
-  oauth_token_secret: String
-  provider: String!
   providerAccountId: String!
-  refresh_token: String
-  scope: String
-  session_state: String
-  token_type: String
-  type: String!
+  providerId: String!
+  providerType: String!
+  refreshToken: String
+  updatedAt: DateTime
 }
 
 type AccountGroupBy {
-  _avg: AccountAvgAggregate
   _count: AccountCountAggregate
   _max: AccountMaxAggregate
   _min: AccountMinAggregate
-  _sum: AccountSumAggregate
-  access_token: String
-  expires_at: Int
+  accessToken: String
+  accessTokenExpires: DateTime
+  createdAt: DateTime!
   id: String!
-  id_token: String
-  oauth_token: String
-  oauth_token_secret: String
-  provider: String!
   providerAccountId: String!
-  refresh_token: String
-  scope: String
-  session_state: String
-  token_type: String
-  type: String!
+  providerId: String!
+  providerType: String!
+  refreshToken: String
+  updatedAt: DateTime!
   userId: String!
 }
 
@@ -176,70 +134,54 @@ input AccountListRelationFilter {
 }
 
 type AccountMaxAggregate {
-  access_token: String
-  expires_at: Int
+  accessToken: String
+  accessTokenExpires: DateTime
+  createdAt: DateTime
   id: String
-  id_token: String
-  oauth_token: String
-  oauth_token_secret: String
-  provider: String
   providerAccountId: String
-  refresh_token: String
-  scope: String
-  session_state: String
-  token_type: String
-  type: String
+  providerId: String
+  providerType: String
+  refreshToken: String
+  updatedAt: DateTime
   userId: String
 }
 
 input AccountMaxOrderByAggregateInput {
-  access_token: SortOrder
-  expires_at: SortOrder
+  accessToken: SortOrder
+  accessTokenExpires: SortOrder
+  createdAt: SortOrder
   id: SortOrder
-  id_token: SortOrder
-  oauth_token: SortOrder
-  oauth_token_secret: SortOrder
-  provider: SortOrder
   providerAccountId: SortOrder
-  refresh_token: SortOrder
-  scope: SortOrder
-  session_state: SortOrder
-  token_type: SortOrder
-  type: SortOrder
+  providerId: SortOrder
+  providerType: SortOrder
+  refreshToken: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
 type AccountMinAggregate {
-  access_token: String
-  expires_at: Int
+  accessToken: String
+  accessTokenExpires: DateTime
+  createdAt: DateTime
   id: String
-  id_token: String
-  oauth_token: String
-  oauth_token_secret: String
-  provider: String
   providerAccountId: String
-  refresh_token: String
-  scope: String
-  session_state: String
-  token_type: String
-  type: String
+  providerId: String
+  providerType: String
+  refreshToken: String
+  updatedAt: DateTime
   userId: String
 }
 
 input AccountMinOrderByAggregateInput {
-  access_token: SortOrder
-  expires_at: SortOrder
+  accessToken: SortOrder
+  accessTokenExpires: SortOrder
+  createdAt: SortOrder
   id: SortOrder
-  id_token: SortOrder
-  oauth_token: SortOrder
-  oauth_token_secret: SortOrder
-  provider: SortOrder
   providerAccountId: SortOrder
-  refresh_token: SortOrder
-  scope: SortOrder
-  session_state: SortOrder
-  token_type: SortOrder
-  type: SortOrder
+  providerId: SortOrder
+  providerType: SortOrder
+  refreshToken: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
@@ -248,18 +190,12 @@ input AccountOrderByRelationAggregateInput {
 }
 
 enum AccountOrderByRelevanceFieldEnum {
-  access_token
+  accessToken
   id
-  id_token
-  oauth_token
-  oauth_token_secret
-  provider
   providerAccountId
-  refresh_token
-  scope
-  session_state
-  token_type
-  type
+  providerId
+  providerType
+  refreshToken
   userId
 }
 
@@ -270,65 +206,51 @@ input AccountOrderByRelevanceInput {
 }
 
 input AccountOrderByWithAggregationInput {
-  _avg: AccountAvgOrderByAggregateInput
   _count: AccountCountOrderByAggregateInput
   _max: AccountMaxOrderByAggregateInput
   _min: AccountMinOrderByAggregateInput
-  _sum: AccountSumOrderByAggregateInput
-  access_token: SortOrder
-  expires_at: SortOrder
+  accessToken: SortOrder
+  accessTokenExpires: SortOrder
+  createdAt: SortOrder
   id: SortOrder
-  id_token: SortOrder
-  oauth_token: SortOrder
-  oauth_token_secret: SortOrder
-  provider: SortOrder
   providerAccountId: SortOrder
-  refresh_token: SortOrder
-  scope: SortOrder
-  session_state: SortOrder
-  token_type: SortOrder
-  type: SortOrder
+  providerId: SortOrder
+  providerType: SortOrder
+  refreshToken: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input AccountOrderByWithRelationAndSearchRelevanceInput {
   _relevance: AccountOrderByRelevanceInput
-  access_token: SortOrder
-  expires_at: SortOrder
+  accessToken: SortOrder
+  accessTokenExpires: SortOrder
+  createdAt: SortOrder
   id: SortOrder
-  id_token: SortOrder
-  oauth_token: SortOrder
-  oauth_token_secret: SortOrder
-  provider: SortOrder
   providerAccountId: SortOrder
-  refresh_token: SortOrder
-  scope: SortOrder
-  session_state: SortOrder
-  token_type: SortOrder
-  type: SortOrder
+  providerId: SortOrder
+  providerType: SortOrder
+  refreshToken: SortOrder
+  updatedAt: SortOrder
   user: UserOrderByWithRelationAndSearchRelevanceInput
   userId: SortOrder
 }
 
-input AccountProviderProviderAccountIdCompoundUniqueInput {
-  provider: String!
+input AccountProviderIdProviderAccountIdCompoundUniqueInput {
   providerAccountId: String!
+  providerId: String!
 }
 
 enum AccountScalarFieldEnum {
-  access_token
-  expires_at
+  accessToken
+  accessTokenExpires
+  createdAt
   id
-  id_token
-  oauth_token
-  oauth_token_secret
-  provider
   providerAccountId
-  refresh_token
-  scope
-  session_state
-  token_type
-  type
+  providerId
+  providerType
+  refreshToken
+  updatedAt
   userId
 }
 
@@ -336,19 +258,15 @@ input AccountScalarWhereInput {
   AND: [AccountScalarWhereInput!]
   NOT: [AccountScalarWhereInput!]
   OR: [AccountScalarWhereInput!]
-  access_token: StringNullableFilter
-  expires_at: IntNullableFilter
+  accessToken: StringNullableFilter
+  accessTokenExpires: DateTimeNullableFilter
+  createdAt: DateTimeFilter
   id: StringFilter
-  id_token: StringNullableFilter
-  oauth_token: StringNullableFilter
-  oauth_token_secret: StringNullableFilter
-  provider: StringFilter
   providerAccountId: StringFilter
-  refresh_token: StringNullableFilter
-  scope: StringNullableFilter
-  session_state: StringNullableFilter
-  token_type: StringNullableFilter
-  type: StringFilter
+  providerId: StringFilter
+  providerType: StringFilter
+  refreshToken: StringNullableFilter
+  updatedAt: DateTimeFilter
   userId: StringFilter
 }
 
@@ -356,61 +274,41 @@ input AccountScalarWhereWithAggregatesInput {
   AND: [AccountScalarWhereWithAggregatesInput!]
   NOT: [AccountScalarWhereWithAggregatesInput!]
   OR: [AccountScalarWhereWithAggregatesInput!]
-  access_token: StringNullableWithAggregatesFilter
-  expires_at: IntNullableWithAggregatesFilter
+  accessToken: StringNullableWithAggregatesFilter
+  accessTokenExpires: DateTimeNullableWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
   id: StringWithAggregatesFilter
-  id_token: StringNullableWithAggregatesFilter
-  oauth_token: StringNullableWithAggregatesFilter
-  oauth_token_secret: StringNullableWithAggregatesFilter
-  provider: StringWithAggregatesFilter
   providerAccountId: StringWithAggregatesFilter
-  refresh_token: StringNullableWithAggregatesFilter
-  scope: StringNullableWithAggregatesFilter
-  session_state: StringNullableWithAggregatesFilter
-  token_type: StringNullableWithAggregatesFilter
-  type: StringWithAggregatesFilter
+  providerId: StringWithAggregatesFilter
+  providerType: StringWithAggregatesFilter
+  refreshToken: StringNullableWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
   userId: StringWithAggregatesFilter
 }
 
-type AccountSumAggregate {
-  expires_at: Int
-}
-
-input AccountSumOrderByAggregateInput {
-  expires_at: SortOrder
-}
-
 input AccountUpdateInput {
-  access_token: NullableStringFieldUpdateOperationsInput
-  expires_at: NullableIntFieldUpdateOperationsInput
+  accessToken: NullableStringFieldUpdateOperationsInput
+  accessTokenExpires: NullableDateTimeFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  id_token: NullableStringFieldUpdateOperationsInput
-  oauth_token: NullableStringFieldUpdateOperationsInput
-  oauth_token_secret: NullableStringFieldUpdateOperationsInput
-  provider: StringFieldUpdateOperationsInput
   providerAccountId: StringFieldUpdateOperationsInput
-  refresh_token: NullableStringFieldUpdateOperationsInput
-  scope: NullableStringFieldUpdateOperationsInput
-  session_state: NullableStringFieldUpdateOperationsInput
-  token_type: NullableStringFieldUpdateOperationsInput
-  type: StringFieldUpdateOperationsInput
+  providerId: StringFieldUpdateOperationsInput
+  providerType: StringFieldUpdateOperationsInput
+  refreshToken: NullableStringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutAccountsInput
 }
 
 input AccountUpdateManyMutationInput {
-  access_token: NullableStringFieldUpdateOperationsInput
-  expires_at: NullableIntFieldUpdateOperationsInput
+  accessToken: NullableStringFieldUpdateOperationsInput
+  accessTokenExpires: NullableDateTimeFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  id_token: NullableStringFieldUpdateOperationsInput
-  oauth_token: NullableStringFieldUpdateOperationsInput
-  oauth_token_secret: NullableStringFieldUpdateOperationsInput
-  provider: StringFieldUpdateOperationsInput
   providerAccountId: StringFieldUpdateOperationsInput
-  refresh_token: NullableStringFieldUpdateOperationsInput
-  scope: NullableStringFieldUpdateOperationsInput
-  session_state: NullableStringFieldUpdateOperationsInput
-  token_type: NullableStringFieldUpdateOperationsInput
-  type: StringFieldUpdateOperationsInput
+  providerId: StringFieldUpdateOperationsInput
+  providerType: StringFieldUpdateOperationsInput
+  refreshToken: NullableStringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input AccountUpdateManyWithWhereWithoutUserInput {
@@ -438,19 +336,15 @@ input AccountUpdateWithWhereUniqueWithoutUserInput {
 }
 
 input AccountUpdateWithoutUserInput {
-  access_token: NullableStringFieldUpdateOperationsInput
-  expires_at: NullableIntFieldUpdateOperationsInput
+  accessToken: NullableStringFieldUpdateOperationsInput
+  accessTokenExpires: NullableDateTimeFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  id_token: NullableStringFieldUpdateOperationsInput
-  oauth_token: NullableStringFieldUpdateOperationsInput
-  oauth_token_secret: NullableStringFieldUpdateOperationsInput
-  provider: StringFieldUpdateOperationsInput
   providerAccountId: StringFieldUpdateOperationsInput
-  refresh_token: NullableStringFieldUpdateOperationsInput
-  scope: NullableStringFieldUpdateOperationsInput
-  session_state: NullableStringFieldUpdateOperationsInput
-  token_type: NullableStringFieldUpdateOperationsInput
-  type: StringFieldUpdateOperationsInput
+  providerId: StringFieldUpdateOperationsInput
+  providerType: StringFieldUpdateOperationsInput
+  refreshToken: NullableStringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input AccountUpsertWithWhereUniqueWithoutUserInput {
@@ -463,26 +357,22 @@ input AccountWhereInput {
   AND: [AccountWhereInput!]
   NOT: [AccountWhereInput!]
   OR: [AccountWhereInput!]
-  access_token: StringNullableFilter
-  expires_at: IntNullableFilter
+  accessToken: StringNullableFilter
+  accessTokenExpires: DateTimeNullableFilter
+  createdAt: DateTimeFilter
   id: StringFilter
-  id_token: StringNullableFilter
-  oauth_token: StringNullableFilter
-  oauth_token_secret: StringNullableFilter
-  provider: StringFilter
   providerAccountId: StringFilter
-  refresh_token: StringNullableFilter
-  scope: StringNullableFilter
-  session_state: StringNullableFilter
-  token_type: StringNullableFilter
-  type: StringFilter
+  providerId: StringFilter
+  providerType: StringFilter
+  refreshToken: StringNullableFilter
+  updatedAt: DateTimeFilter
   user: UserRelationFilter
   userId: StringFilter
 }
 
 input AccountWhereUniqueInput {
   id: String
-  provider_providerAccountId: AccountProviderProviderAccountIdCompoundUniqueInput
+  providerId_providerAccountId: AccountProviderIdProviderAccountIdCompoundUniqueInput
 }
 
 type Actor {
@@ -830,11 +720,9 @@ type AffectedRowsOutput {
 }
 
 type AggregateAccount {
-  _avg: AccountAvgAggregate
   _count: AccountCountAggregate
   _max: AccountMaxAggregate
   _min: AccountMinAggregate
-  _sum: AccountSumAggregate
 }
 
 type AggregateActor {
@@ -843,6 +731,12 @@ type AggregateActor {
   _max: ActorMaxAggregate
   _min: ActorMinAggregate
   _sum: ActorSumAggregate
+}
+
+type AggregateAppSettings {
+  _count: AppSettingsCountAggregate
+  _max: AppSettingsMaxAggregate
+  _min: AppSettingsMinAggregate
 }
 
 type AggregateDirector {
@@ -859,6 +753,14 @@ type AggregateEpisode {
   _max: EpisodeMaxAggregate
   _min: EpisodeMinAggregate
   _sum: EpisodeSumAggregate
+}
+
+type AggregateEpisodesWatchlist {
+  _avg: EpisodesWatchlistAvgAggregate
+  _count: EpisodesWatchlistCountAggregate
+  _max: EpisodesWatchlistMaxAggregate
+  _min: EpisodesWatchlistMinAggregate
+  _sum: EpisodesWatchlistSumAggregate
 }
 
 type AggregateGenre {
@@ -885,6 +787,14 @@ type AggregateMovie {
   _sum: MovieSumAggregate
 }
 
+type AggregateMoviesWatchlist {
+  _avg: MoviesWatchlistAvgAggregate
+  _count: MoviesWatchlistCountAggregate
+  _max: MoviesWatchlistMaxAggregate
+  _min: MoviesWatchlistMinAggregate
+  _sum: MoviesWatchlistSumAggregate
+}
+
 type AggregateSeason {
   _avg: SeasonAvgAggregate
   _count: SeasonCountAggregate
@@ -899,6 +809,14 @@ type AggregateSerie {
   _max: SerieMaxAggregate
   _min: SerieMinAggregate
   _sum: SerieSumAggregate
+}
+
+type AggregateSeriesWatchlist {
+  _avg: SeriesWatchlistAvgAggregate
+  _count: SeriesWatchlistCountAggregate
+  _max: SeriesWatchlistMaxAggregate
+  _min: SeriesWatchlistMinAggregate
+  _sum: SeriesWatchlistSumAggregate
 }
 
 type AggregateSession {
@@ -917,6 +835,335 @@ type AggregateVerificationRequest {
   _count: VerificationRequestCountAggregate
   _max: VerificationRequestMaxAggregate
   _min: VerificationRequestMinAggregate
+}
+
+type AggregateWatchlist {
+  _avg: WatchlistAvgAggregate
+  _count: WatchlistCountAggregate
+  _max: WatchlistMaxAggregate
+  _min: WatchlistMinAggregate
+  _sum: WatchlistSumAggregate
+}
+
+type AggregateWatchlistedEpisode {
+  _avg: WatchlistedEpisodeAvgAggregate
+  _count: WatchlistedEpisodeCountAggregate
+  _max: WatchlistedEpisodeMaxAggregate
+  _min: WatchlistedEpisodeMinAggregate
+  _sum: WatchlistedEpisodeSumAggregate
+}
+
+type AggregateWatchlistedMovie {
+  _avg: WatchlistedMovieAvgAggregate
+  _count: WatchlistedMovieCountAggregate
+  _max: WatchlistedMovieMaxAggregate
+  _min: WatchlistedMovieMinAggregate
+  _sum: WatchlistedMovieSumAggregate
+}
+
+type AggregateWatchlistedSerie {
+  _avg: WatchlistedSerieAvgAggregate
+  _count: WatchlistedSerieCountAggregate
+  _max: WatchlistedSerieMaxAggregate
+  _min: WatchlistedSerieMinAggregate
+  _sum: WatchlistedSerieSumAggregate
+}
+
+type AppSettings {
+  User: User
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  updatedAt: DateTime!
+  userId: String
+  value: String!
+}
+
+type AppSettingsCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  name: Int!
+  updatedAt: Int!
+  userId: Int!
+  value: Int!
+}
+
+input AppSettingsCountOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+  value: SortOrder
+}
+
+input AppSettingsCreateInput {
+  User: UserCreateNestedOneWithoutSettingsInput
+  createdAt: DateTime
+  id: String
+  name: String!
+  updatedAt: DateTime
+  value: String!
+}
+
+input AppSettingsCreateManyInput {
+  createdAt: DateTime
+  id: String
+  name: String!
+  updatedAt: DateTime
+  userId: String
+  value: String!
+}
+
+input AppSettingsCreateManyUserInput {
+  createdAt: DateTime
+  id: String
+  name: String!
+  updatedAt: DateTime
+  value: String!
+}
+
+input AppSettingsCreateManyUserInputEnvelope {
+  data: [AppSettingsCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input AppSettingsCreateNestedManyWithoutUserInput {
+  connect: [AppSettingsWhereUniqueInput!]
+  connectOrCreate: [AppSettingsCreateOrConnectWithoutUserInput!]
+  create: [AppSettingsCreateWithoutUserInput!]
+  createMany: AppSettingsCreateManyUserInputEnvelope
+}
+
+input AppSettingsCreateOrConnectWithoutUserInput {
+  create: AppSettingsCreateWithoutUserInput!
+  where: AppSettingsWhereUniqueInput!
+}
+
+input AppSettingsCreateWithoutUserInput {
+  createdAt: DateTime
+  id: String
+  name: String!
+  updatedAt: DateTime
+  value: String!
+}
+
+type AppSettingsGroupBy {
+  _count: AppSettingsCountAggregate
+  _max: AppSettingsMaxAggregate
+  _min: AppSettingsMinAggregate
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  updatedAt: DateTime!
+  userId: String
+  value: String!
+}
+
+input AppSettingsListRelationFilter {
+  every: AppSettingsWhereInput
+  none: AppSettingsWhereInput
+  some: AppSettingsWhereInput
+}
+
+type AppSettingsMaxAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+  updatedAt: DateTime
+  userId: String
+  value: String
+}
+
+input AppSettingsMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+  value: SortOrder
+}
+
+type AppSettingsMinAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+  updatedAt: DateTime
+  userId: String
+  value: String
+}
+
+input AppSettingsMinOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+  value: SortOrder
+}
+
+input AppSettingsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+enum AppSettingsOrderByRelevanceFieldEnum {
+  id
+  name
+  userId
+  value
+}
+
+input AppSettingsOrderByRelevanceInput {
+  fields: [AppSettingsOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input AppSettingsOrderByWithAggregationInput {
+  _count: AppSettingsCountOrderByAggregateInput
+  _max: AppSettingsMaxOrderByAggregateInput
+  _min: AppSettingsMinOrderByAggregateInput
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+  value: SortOrder
+}
+
+input AppSettingsOrderByWithRelationAndSearchRelevanceInput {
+  User: UserOrderByWithRelationAndSearchRelevanceInput
+  _relevance: AppSettingsOrderByRelevanceInput
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+  value: SortOrder
+}
+
+enum AppSettingsScalarFieldEnum {
+  createdAt
+  id
+  name
+  updatedAt
+  userId
+  value
+}
+
+input AppSettingsScalarWhereInput {
+  AND: [AppSettingsScalarWhereInput!]
+  NOT: [AppSettingsScalarWhereInput!]
+  OR: [AppSettingsScalarWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+  userId: StringNullableFilter
+  value: StringFilter
+}
+
+input AppSettingsScalarWhereWithAggregatesInput {
+  AND: [AppSettingsScalarWhereWithAggregatesInput!]
+  NOT: [AppSettingsScalarWhereWithAggregatesInput!]
+  OR: [AppSettingsScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  userId: StringNullableWithAggregatesFilter
+  value: StringWithAggregatesFilter
+}
+
+input AppSettingsUpdateInput {
+  User: UserUpdateOneWithoutSettingsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
+}
+
+input AppSettingsUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
+}
+
+input AppSettingsUpdateManyWithWhereWithoutUserInput {
+  data: AppSettingsUpdateManyMutationInput!
+  where: AppSettingsScalarWhereInput!
+}
+
+input AppSettingsUpdateManyWithoutUserInput {
+  connect: [AppSettingsWhereUniqueInput!]
+  connectOrCreate: [AppSettingsCreateOrConnectWithoutUserInput!]
+  create: [AppSettingsCreateWithoutUserInput!]
+  createMany: AppSettingsCreateManyUserInputEnvelope
+  delete: [AppSettingsWhereUniqueInput!]
+  deleteMany: [AppSettingsScalarWhereInput!]
+  disconnect: [AppSettingsWhereUniqueInput!]
+  set: [AppSettingsWhereUniqueInput!]
+  update: [AppSettingsUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [AppSettingsUpdateManyWithWhereWithoutUserInput!]
+  upsert: [AppSettingsUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input AppSettingsUpdateWithWhereUniqueWithoutUserInput {
+  data: AppSettingsUpdateWithoutUserInput!
+  where: AppSettingsWhereUniqueInput!
+}
+
+input AppSettingsUpdateWithoutUserInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
+}
+
+input AppSettingsUpsertWithWhereUniqueWithoutUserInput {
+  create: AppSettingsCreateWithoutUserInput!
+  update: AppSettingsUpdateWithoutUserInput!
+  where: AppSettingsWhereUniqueInput!
+}
+
+input AppSettingsWhereInput {
+  AND: [AppSettingsWhereInput!]
+  NOT: [AppSettingsWhereInput!]
+  OR: [AppSettingsWhereInput!]
+  User: UserRelationFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+  userId: StringNullableFilter
+  value: StringFilter
+}
+
+input AppSettingsWhereUniqueInput {
+  id: String
+  name: String
+}
+
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input BoolWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedBoolFilter
+  _min: NestedBoolFilter
+  equals: Boolean
+  not: NestedBoolWithAggregatesFilter
 }
 
 """
@@ -1340,6 +1587,8 @@ input EnumRoleWithAggregatesFilter {
 }
 
 type Episode {
+  _count: EpisodeCount
+  createdAt: DateTime!
   id: Int!
   imdbID: String!
   imdbRating: Float!
@@ -1349,6 +1598,8 @@ type Episode {
   season: Season!
   seasonId: Int!
   title: String!
+  updatedAt: DateTime!
+  watchlist(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
 }
 
 type EpisodeAvgAggregate {
@@ -1365,8 +1616,13 @@ input EpisodeAvgOrderByAggregateInput {
   seasonId: SortOrder
 }
 
+type EpisodeCount {
+  watchlist: Int!
+}
+
 type EpisodeCountAggregate {
   _all: Int!
+  createdAt: Int!
   id: Int!
   imdbID: Int!
   imdbRating: Int!
@@ -1375,9 +1631,11 @@ type EpisodeCountAggregate {
   runtime: Int!
   seasonId: Int!
   title: Int!
+  updatedAt: Int!
 }
 
 input EpisodeCountOrderByAggregateInput {
+  createdAt: SortOrder
   id: SortOrder
   imdbID: SortOrder
   imdbRating: SortOrder
@@ -1386,9 +1644,11 @@ input EpisodeCountOrderByAggregateInput {
   runtime: SortOrder
   seasonId: SortOrder
   title: SortOrder
+  updatedAt: SortOrder
 }
 
 input EpisodeCreateInput {
+  createdAt: DateTime
   imdbID: String!
   imdbRating: Float!
   plot: String!
@@ -1396,9 +1656,12 @@ input EpisodeCreateInput {
   runtime: Int!
   season: SeasonCreateNestedOneWithoutEpisodeIdsInput!
   title: String!
+  updatedAt: DateTime
+  watchlist: WatchlistedEpisodeCreateNestedManyWithoutEpisodeInput
 }
 
 input EpisodeCreateManyInput {
+  createdAt: DateTime
   id: Int
   imdbID: String!
   imdbRating: Float!
@@ -1407,9 +1670,11 @@ input EpisodeCreateManyInput {
   runtime: Int!
   seasonId: Int!
   title: String!
+  updatedAt: DateTime
 }
 
 input EpisodeCreateManySeasonInput {
+  createdAt: DateTime
   id: Int
   imdbID: String!
   imdbRating: Float!
@@ -1417,6 +1682,7 @@ input EpisodeCreateManySeasonInput {
   poster: String!
   runtime: Int!
   title: String!
+  updatedAt: DateTime
 }
 
 input EpisodeCreateManySeasonInputEnvelope {
@@ -1431,18 +1697,44 @@ input EpisodeCreateNestedManyWithoutSeasonInput {
   createMany: EpisodeCreateManySeasonInputEnvelope
 }
 
+input EpisodeCreateNestedOneWithoutWatchlistInput {
+  connect: EpisodeWhereUniqueInput
+  connectOrCreate: EpisodeCreateOrConnectWithoutWatchlistInput
+  create: EpisodeCreateWithoutWatchlistInput
+}
+
 input EpisodeCreateOrConnectWithoutSeasonInput {
   create: EpisodeCreateWithoutSeasonInput!
   where: EpisodeWhereUniqueInput!
 }
 
+input EpisodeCreateOrConnectWithoutWatchlistInput {
+  create: EpisodeCreateWithoutWatchlistInput!
+  where: EpisodeWhereUniqueInput!
+}
+
 input EpisodeCreateWithoutSeasonInput {
+  createdAt: DateTime
   imdbID: String!
   imdbRating: Float!
   plot: String!
   poster: String!
   runtime: Int!
   title: String!
+  updatedAt: DateTime
+  watchlist: WatchlistedEpisodeCreateNestedManyWithoutEpisodeInput
+}
+
+input EpisodeCreateWithoutWatchlistInput {
+  createdAt: DateTime
+  imdbID: String!
+  imdbRating: Float!
+  plot: String!
+  poster: String!
+  runtime: Int!
+  season: SeasonCreateNestedOneWithoutEpisodeIdsInput!
+  title: String!
+  updatedAt: DateTime
 }
 
 type EpisodeGroupBy {
@@ -1451,6 +1743,7 @@ type EpisodeGroupBy {
   _max: EpisodeMaxAggregate
   _min: EpisodeMinAggregate
   _sum: EpisodeSumAggregate
+  createdAt: DateTime!
   id: Int!
   imdbID: String!
   imdbRating: Float!
@@ -1459,6 +1752,7 @@ type EpisodeGroupBy {
   runtime: Int!
   seasonId: Int!
   title: String!
+  updatedAt: DateTime!
 }
 
 input EpisodeListRelationFilter {
@@ -1468,6 +1762,7 @@ input EpisodeListRelationFilter {
 }
 
 type EpisodeMaxAggregate {
+  createdAt: DateTime
   id: Int
   imdbID: String
   imdbRating: Float
@@ -1476,9 +1771,11 @@ type EpisodeMaxAggregate {
   runtime: Int
   seasonId: Int
   title: String
+  updatedAt: DateTime
 }
 
 input EpisodeMaxOrderByAggregateInput {
+  createdAt: SortOrder
   id: SortOrder
   imdbID: SortOrder
   imdbRating: SortOrder
@@ -1487,9 +1784,11 @@ input EpisodeMaxOrderByAggregateInput {
   runtime: SortOrder
   seasonId: SortOrder
   title: SortOrder
+  updatedAt: SortOrder
 }
 
 type EpisodeMinAggregate {
+  createdAt: DateTime
   id: Int
   imdbID: String
   imdbRating: Float
@@ -1498,9 +1797,11 @@ type EpisodeMinAggregate {
   runtime: Int
   seasonId: Int
   title: String
+  updatedAt: DateTime
 }
 
 input EpisodeMinOrderByAggregateInput {
+  createdAt: SortOrder
   id: SortOrder
   imdbID: SortOrder
   imdbRating: SortOrder
@@ -1509,6 +1810,7 @@ input EpisodeMinOrderByAggregateInput {
   runtime: SortOrder
   seasonId: SortOrder
   title: SortOrder
+  updatedAt: SortOrder
 }
 
 input EpisodeOrderByRelationAggregateInput {
@@ -1534,6 +1836,7 @@ input EpisodeOrderByWithAggregationInput {
   _max: EpisodeMaxOrderByAggregateInput
   _min: EpisodeMinOrderByAggregateInput
   _sum: EpisodeSumOrderByAggregateInput
+  createdAt: SortOrder
   id: SortOrder
   imdbID: SortOrder
   imdbRating: SortOrder
@@ -1542,10 +1845,12 @@ input EpisodeOrderByWithAggregationInput {
   runtime: SortOrder
   seasonId: SortOrder
   title: SortOrder
+  updatedAt: SortOrder
 }
 
 input EpisodeOrderByWithRelationAndSearchRelevanceInput {
   _relevance: EpisodeOrderByRelevanceInput
+  createdAt: SortOrder
   id: SortOrder
   imdbID: SortOrder
   imdbRating: SortOrder
@@ -1555,9 +1860,17 @@ input EpisodeOrderByWithRelationAndSearchRelevanceInput {
   season: SeasonOrderByWithRelationAndSearchRelevanceInput
   seasonId: SortOrder
   title: SortOrder
+  updatedAt: SortOrder
+  watchlist: WatchlistedEpisodeOrderByRelationAggregateInput
+}
+
+input EpisodeRelationFilter {
+  is: EpisodeWhereInput
+  isNot: EpisodeWhereInput
 }
 
 enum EpisodeScalarFieldEnum {
+  createdAt
   id
   imdbID
   imdbRating
@@ -1566,12 +1879,14 @@ enum EpisodeScalarFieldEnum {
   runtime
   seasonId
   title
+  updatedAt
 }
 
 input EpisodeScalarWhereInput {
   AND: [EpisodeScalarWhereInput!]
   NOT: [EpisodeScalarWhereInput!]
   OR: [EpisodeScalarWhereInput!]
+  createdAt: DateTimeFilter
   id: IntFilter
   imdbID: StringFilter
   imdbRating: FloatFilter
@@ -1580,12 +1895,14 @@ input EpisodeScalarWhereInput {
   runtime: IntFilter
   seasonId: IntFilter
   title: StringFilter
+  updatedAt: DateTimeFilter
 }
 
 input EpisodeScalarWhereWithAggregatesInput {
   AND: [EpisodeScalarWhereWithAggregatesInput!]
   NOT: [EpisodeScalarWhereWithAggregatesInput!]
   OR: [EpisodeScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
   id: IntWithAggregatesFilter
   imdbID: StringWithAggregatesFilter
   imdbRating: FloatWithAggregatesFilter
@@ -1594,6 +1911,7 @@ input EpisodeScalarWhereWithAggregatesInput {
   runtime: IntWithAggregatesFilter
   seasonId: IntWithAggregatesFilter
   title: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
 }
 
 type EpisodeSumAggregate {
@@ -1611,6 +1929,7 @@ input EpisodeSumOrderByAggregateInput {
 }
 
 input EpisodeUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
   imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
@@ -1618,15 +1937,19 @@ input EpisodeUpdateInput {
   runtime: IntFieldUpdateOperationsInput
   season: SeasonUpdateOneRequiredWithoutEpisodeIdsInput
   title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedEpisodeUpdateManyWithoutEpisodeInput
 }
 
 input EpisodeUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
   imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input EpisodeUpdateManyWithWhereWithoutSeasonInput {
@@ -1648,18 +1971,41 @@ input EpisodeUpdateManyWithoutSeasonInput {
   upsert: [EpisodeUpsertWithWhereUniqueWithoutSeasonInput!]
 }
 
+input EpisodeUpdateOneRequiredWithoutWatchlistInput {
+  connect: EpisodeWhereUniqueInput
+  connectOrCreate: EpisodeCreateOrConnectWithoutWatchlistInput
+  create: EpisodeCreateWithoutWatchlistInput
+  update: EpisodeUpdateWithoutWatchlistInput
+  upsert: EpisodeUpsertWithoutWatchlistInput
+}
+
 input EpisodeUpdateWithWhereUniqueWithoutSeasonInput {
   data: EpisodeUpdateWithoutSeasonInput!
   where: EpisodeWhereUniqueInput!
 }
 
 input EpisodeUpdateWithoutSeasonInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
   imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedEpisodeUpdateManyWithoutEpisodeInput
+}
+
+input EpisodeUpdateWithoutWatchlistInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  season: SeasonUpdateOneRequiredWithoutEpisodeIdsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input EpisodeUpsertWithWhereUniqueWithoutSeasonInput {
@@ -1668,10 +2014,16 @@ input EpisodeUpsertWithWhereUniqueWithoutSeasonInput {
   where: EpisodeWhereUniqueInput!
 }
 
+input EpisodeUpsertWithoutWatchlistInput {
+  create: EpisodeCreateWithoutWatchlistInput!
+  update: EpisodeUpdateWithoutWatchlistInput!
+}
+
 input EpisodeWhereInput {
   AND: [EpisodeWhereInput!]
   NOT: [EpisodeWhereInput!]
   OR: [EpisodeWhereInput!]
+  createdAt: DateTimeFilter
   id: IntFilter
   imdbID: StringFilter
   imdbRating: FloatFilter
@@ -1681,11 +2033,227 @@ input EpisodeWhereInput {
   season: SeasonRelationFilter
   seasonId: IntFilter
   title: StringFilter
+  updatedAt: DateTimeFilter
+  watchlist: WatchlistedEpisodeListRelationFilter
 }
 
 input EpisodeWhereUniqueInput {
   id: Int
   imdbID: String
+}
+
+type EpisodesWatchlist {
+  _count: EpisodesWatchlistCount
+  episodes(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
+  id: Int!
+  watchlist: Watchlist!
+  watchlistId: Int!
+}
+
+type EpisodesWatchlistAvgAggregate {
+  id: Float
+  watchlistId: Float
+}
+
+input EpisodesWatchlistAvgOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+type EpisodesWatchlistCount {
+  episodes: Int!
+}
+
+type EpisodesWatchlistCountAggregate {
+  _all: Int!
+  id: Int!
+  watchlistId: Int!
+}
+
+input EpisodesWatchlistCountOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input EpisodesWatchlistCreateInput {
+  episodes: WatchlistedEpisodeCreateNestedManyWithoutWatchlistInput
+  id: Int!
+  watchlist: WatchlistCreateNestedOneWithoutEpisodeWatchlistInput!
+}
+
+input EpisodesWatchlistCreateManyInput {
+  id: Int!
+  watchlistId: Int!
+}
+
+input EpisodesWatchlistCreateNestedOneWithoutEpisodesInput {
+  connect: EpisodesWatchlistWhereUniqueInput
+  connectOrCreate: EpisodesWatchlistCreateOrConnectWithoutEpisodesInput
+  create: EpisodesWatchlistCreateWithoutEpisodesInput
+}
+
+input EpisodesWatchlistCreateNestedOneWithoutWatchlistInput {
+  connect: EpisodesWatchlistWhereUniqueInput
+  connectOrCreate: EpisodesWatchlistCreateOrConnectWithoutWatchlistInput
+  create: EpisodesWatchlistCreateWithoutWatchlistInput
+}
+
+input EpisodesWatchlistCreateOrConnectWithoutEpisodesInput {
+  create: EpisodesWatchlistCreateWithoutEpisodesInput!
+  where: EpisodesWatchlistWhereUniqueInput!
+}
+
+input EpisodesWatchlistCreateOrConnectWithoutWatchlistInput {
+  create: EpisodesWatchlistCreateWithoutWatchlistInput!
+  where: EpisodesWatchlistWhereUniqueInput!
+}
+
+input EpisodesWatchlistCreateWithoutEpisodesInput {
+  id: Int!
+  watchlist: WatchlistCreateNestedOneWithoutEpisodeWatchlistInput!
+}
+
+input EpisodesWatchlistCreateWithoutWatchlistInput {
+  episodes: WatchlistedEpisodeCreateNestedManyWithoutWatchlistInput
+  id: Int!
+}
+
+type EpisodesWatchlistGroupBy {
+  _avg: EpisodesWatchlistAvgAggregate
+  _count: EpisodesWatchlistCountAggregate
+  _max: EpisodesWatchlistMaxAggregate
+  _min: EpisodesWatchlistMinAggregate
+  _sum: EpisodesWatchlistSumAggregate
+  id: Int!
+  watchlistId: Int!
+}
+
+type EpisodesWatchlistMaxAggregate {
+  id: Int
+  watchlistId: Int
+}
+
+input EpisodesWatchlistMaxOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+type EpisodesWatchlistMinAggregate {
+  id: Int
+  watchlistId: Int
+}
+
+input EpisodesWatchlistMinOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input EpisodesWatchlistOrderByWithAggregationInput {
+  _avg: EpisodesWatchlistAvgOrderByAggregateInput
+  _count: EpisodesWatchlistCountOrderByAggregateInput
+  _max: EpisodesWatchlistMaxOrderByAggregateInput
+  _min: EpisodesWatchlistMinOrderByAggregateInput
+  _sum: EpisodesWatchlistSumOrderByAggregateInput
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput {
+  episodes: WatchlistedEpisodeOrderByRelationAggregateInput
+  id: SortOrder
+  watchlist: WatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlistId: SortOrder
+}
+
+input EpisodesWatchlistRelationFilter {
+  is: EpisodesWatchlistWhereInput
+  isNot: EpisodesWatchlistWhereInput
+}
+
+enum EpisodesWatchlistScalarFieldEnum {
+  id
+  watchlistId
+}
+
+input EpisodesWatchlistScalarWhereWithAggregatesInput {
+  AND: [EpisodesWatchlistScalarWhereWithAggregatesInput!]
+  NOT: [EpisodesWatchlistScalarWhereWithAggregatesInput!]
+  OR: [EpisodesWatchlistScalarWhereWithAggregatesInput!]
+  id: IntWithAggregatesFilter
+  watchlistId: IntWithAggregatesFilter
+}
+
+type EpisodesWatchlistSumAggregate {
+  id: Int
+  watchlistId: Int
+}
+
+input EpisodesWatchlistSumOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input EpisodesWatchlistUpdateInput {
+  episodes: WatchlistedEpisodeUpdateManyWithoutWatchlistInput
+  id: IntFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateOneRequiredWithoutEpisodeWatchlistInput
+}
+
+input EpisodesWatchlistUpdateManyMutationInput {
+  id: IntFieldUpdateOperationsInput
+}
+
+input EpisodesWatchlistUpdateOneRequiredWithoutEpisodesInput {
+  connect: EpisodesWatchlistWhereUniqueInput
+  connectOrCreate: EpisodesWatchlistCreateOrConnectWithoutEpisodesInput
+  create: EpisodesWatchlistCreateWithoutEpisodesInput
+  update: EpisodesWatchlistUpdateWithoutEpisodesInput
+  upsert: EpisodesWatchlistUpsertWithoutEpisodesInput
+}
+
+input EpisodesWatchlistUpdateOneWithoutWatchlistInput {
+  connect: EpisodesWatchlistWhereUniqueInput
+  connectOrCreate: EpisodesWatchlistCreateOrConnectWithoutWatchlistInput
+  create: EpisodesWatchlistCreateWithoutWatchlistInput
+  delete: Boolean
+  disconnect: Boolean
+  update: EpisodesWatchlistUpdateWithoutWatchlistInput
+  upsert: EpisodesWatchlistUpsertWithoutWatchlistInput
+}
+
+input EpisodesWatchlistUpdateWithoutEpisodesInput {
+  id: IntFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateOneRequiredWithoutEpisodeWatchlistInput
+}
+
+input EpisodesWatchlistUpdateWithoutWatchlistInput {
+  episodes: WatchlistedEpisodeUpdateManyWithoutWatchlistInput
+  id: IntFieldUpdateOperationsInput
+}
+
+input EpisodesWatchlistUpsertWithoutEpisodesInput {
+  create: EpisodesWatchlistCreateWithoutEpisodesInput!
+  update: EpisodesWatchlistUpdateWithoutEpisodesInput!
+}
+
+input EpisodesWatchlistUpsertWithoutWatchlistInput {
+  create: EpisodesWatchlistCreateWithoutWatchlistInput!
+  update: EpisodesWatchlistUpdateWithoutWatchlistInput!
+}
+
+input EpisodesWatchlistWhereInput {
+  AND: [EpisodesWatchlistWhereInput!]
+  NOT: [EpisodesWatchlistWhereInput!]
+  OR: [EpisodesWatchlistWhereInput!]
+  episodes: WatchlistedEpisodeListRelationFilter
+  id: IntFilter
+  watchlist: WatchlistRelationFilter
+  watchlistId: IntFilter
+}
+
+input EpisodesWatchlistWhereUniqueInput {
+  id: Int
+  watchlistId: Int
 }
 
 input FloatFieldUpdateOperationsInput {
@@ -2446,6 +3014,7 @@ type Movie {
   runtime: Int!
   title: String!
   updatedAt: DateTime!
+  watchlist(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
   year: Int!
 }
 
@@ -2468,6 +3037,7 @@ type MovieCount {
   directors: Int!
   genres: Int!
   languages: Int!
+  watchlist: Int!
 }
 
 type MovieCountAggregate {
@@ -2516,6 +3086,7 @@ input MovieCreateInput {
   runtime: Int!
   title: String!
   updatedAt: DateTime
+  watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
   year: Int!
 }
 
@@ -2558,6 +3129,12 @@ input MovieCreateNestedManyWithoutLanguagesInput {
   create: [MovieCreateWithoutLanguagesInput!]
 }
 
+input MovieCreateNestedOneWithoutWatchlistInput {
+  connect: MovieWhereUniqueInput
+  connectOrCreate: MovieCreateOrConnectWithoutWatchlistInput
+  create: MovieCreateWithoutWatchlistInput
+}
+
 input MovieCreateOrConnectWithoutActorsInput {
   create: MovieCreateWithoutActorsInput!
   where: MovieWhereUniqueInput!
@@ -2578,6 +3155,11 @@ input MovieCreateOrConnectWithoutLanguagesInput {
   where: MovieWhereUniqueInput!
 }
 
+input MovieCreateOrConnectWithoutWatchlistInput {
+  create: MovieCreateWithoutWatchlistInput!
+  where: MovieWhereUniqueInput!
+}
+
 input MovieCreateWithoutActorsInput {
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
@@ -2592,6 +3174,7 @@ input MovieCreateWithoutActorsInput {
   runtime: Int!
   title: String!
   updatedAt: DateTime
+  watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
   year: Int!
 }
 
@@ -2609,6 +3192,7 @@ input MovieCreateWithoutDirectorsInput {
   runtime: Int!
   title: String!
   updatedAt: DateTime
+  watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
   year: Int!
 }
 
@@ -2626,6 +3210,7 @@ input MovieCreateWithoutGenresInput {
   runtime: Int!
   title: String!
   updatedAt: DateTime
+  watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
   year: Int!
 }
 
@@ -2636,6 +3221,25 @@ input MovieCreateWithoutLanguagesInput {
   genres: GenreCreateNestedManyWithoutMoviesInput
   imdbID: String!
   imdbRating: Float!
+  plot: String!
+  poster: String!
+  rating: String!
+  release: DateTime!
+  runtime: Int!
+  title: String!
+  updatedAt: DateTime
+  watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
+  year: Int!
+}
+
+input MovieCreateWithoutWatchlistInput {
+  actors: ActorCreateNestedManyWithoutMoviesInput
+  createdAt: DateTime
+  directors: DirectorCreateNestedManyWithoutMoviesInput
+  genres: GenreCreateNestedManyWithoutMoviesInput
+  imdbID: String!
+  imdbRating: Float!
+  languages: LanguageCreateNestedManyWithoutMoviesInput
   plot: String!
   poster: String!
   rating: String!
@@ -2787,7 +3391,13 @@ input MovieOrderByWithRelationAndSearchRelevanceInput {
   runtime: SortOrder
   title: SortOrder
   updatedAt: SortOrder
+  watchlist: WatchlistedMovieOrderByRelationAggregateInput
   year: SortOrder
+}
+
+input MovieRelationFilter {
+  is: MovieWhereInput
+  isNot: MovieWhereInput
 }
 
 enum MovieScalarFieldEnum {
@@ -2870,6 +3480,7 @@ input MovieUpdateInput {
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -2959,6 +3570,14 @@ input MovieUpdateManyWithoutLanguagesInput {
   upsert: [MovieUpsertWithWhereUniqueWithoutLanguagesInput!]
 }
 
+input MovieUpdateOneRequiredWithoutWatchlistInput {
+  connect: MovieWhereUniqueInput
+  connectOrCreate: MovieCreateOrConnectWithoutWatchlistInput
+  create: MovieCreateWithoutWatchlistInput
+  update: MovieUpdateWithoutWatchlistInput
+  upsert: MovieUpsertWithoutWatchlistInput
+}
+
 input MovieUpdateWithWhereUniqueWithoutActorsInput {
   data: MovieUpdateWithoutActorsInput!
   where: MovieWhereUniqueInput!
@@ -2993,6 +3612,7 @@ input MovieUpdateWithoutActorsInput {
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -3010,6 +3630,7 @@ input MovieUpdateWithoutDirectorsInput {
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -3027,6 +3648,7 @@ input MovieUpdateWithoutGenresInput {
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -3037,6 +3659,25 @@ input MovieUpdateWithoutLanguagesInput {
   genres: GenreUpdateManyWithoutMoviesInput
   imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  rating: StringFieldUpdateOperationsInput
+  release: DateTimeFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
+  year: IntFieldUpdateOperationsInput
+}
+
+input MovieUpdateWithoutWatchlistInput {
+  actors: ActorUpdateManyWithoutMoviesInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  directors: DirectorUpdateManyWithoutMoviesInput
+  genres: GenreUpdateManyWithoutMoviesInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  languages: LanguageUpdateManyWithoutMoviesInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
   rating: StringFieldUpdateOperationsInput
@@ -3071,6 +3712,11 @@ input MovieUpsertWithWhereUniqueWithoutLanguagesInput {
   where: MovieWhereUniqueInput!
 }
 
+input MovieUpsertWithoutWatchlistInput {
+  create: MovieCreateWithoutWatchlistInput!
+  update: MovieUpdateWithoutWatchlistInput!
+}
+
 input MovieWhereInput {
   AND: [MovieWhereInput!]
   NOT: [MovieWhereInput!]
@@ -3090,6 +3736,7 @@ input MovieWhereInput {
   runtime: IntFilter
   title: StringFilter
   updatedAt: DateTimeFilter
+  watchlist: WatchlistedMovieListRelationFilter
   year: IntFilter
 }
 
@@ -3098,91 +3745,374 @@ input MovieWhereUniqueInput {
   imdbID: String
 }
 
+type MoviesWatchlist {
+  _count: MoviesWatchlistCount
+  id: Int!
+  movies(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
+  watchlist: Watchlist!
+  watchlistId: Int!
+}
+
+type MoviesWatchlistAvgAggregate {
+  id: Float
+  watchlistId: Float
+}
+
+input MoviesWatchlistAvgOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+type MoviesWatchlistCount {
+  movies: Int!
+}
+
+type MoviesWatchlistCountAggregate {
+  _all: Int!
+  id: Int!
+  watchlistId: Int!
+}
+
+input MoviesWatchlistCountOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input MoviesWatchlistCreateInput {
+  id: Int!
+  movies: WatchlistedMovieCreateNestedManyWithoutWatchlistInput
+  watchlist: WatchlistCreateNestedOneWithoutMovieWatchlistInput!
+}
+
+input MoviesWatchlistCreateManyInput {
+  id: Int!
+  watchlistId: Int!
+}
+
+input MoviesWatchlistCreateNestedOneWithoutMoviesInput {
+  connect: MoviesWatchlistWhereUniqueInput
+  connectOrCreate: MoviesWatchlistCreateOrConnectWithoutMoviesInput
+  create: MoviesWatchlistCreateWithoutMoviesInput
+}
+
+input MoviesWatchlistCreateNestedOneWithoutWatchlistInput {
+  connect: MoviesWatchlistWhereUniqueInput
+  connectOrCreate: MoviesWatchlistCreateOrConnectWithoutWatchlistInput
+  create: MoviesWatchlistCreateWithoutWatchlistInput
+}
+
+input MoviesWatchlistCreateOrConnectWithoutMoviesInput {
+  create: MoviesWatchlistCreateWithoutMoviesInput!
+  where: MoviesWatchlistWhereUniqueInput!
+}
+
+input MoviesWatchlistCreateOrConnectWithoutWatchlistInput {
+  create: MoviesWatchlistCreateWithoutWatchlistInput!
+  where: MoviesWatchlistWhereUniqueInput!
+}
+
+input MoviesWatchlistCreateWithoutMoviesInput {
+  id: Int!
+  watchlist: WatchlistCreateNestedOneWithoutMovieWatchlistInput!
+}
+
+input MoviesWatchlistCreateWithoutWatchlistInput {
+  id: Int!
+  movies: WatchlistedMovieCreateNestedManyWithoutWatchlistInput
+}
+
+type MoviesWatchlistGroupBy {
+  _avg: MoviesWatchlistAvgAggregate
+  _count: MoviesWatchlistCountAggregate
+  _max: MoviesWatchlistMaxAggregate
+  _min: MoviesWatchlistMinAggregate
+  _sum: MoviesWatchlistSumAggregate
+  id: Int!
+  watchlistId: Int!
+}
+
+type MoviesWatchlistMaxAggregate {
+  id: Int
+  watchlistId: Int
+}
+
+input MoviesWatchlistMaxOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+type MoviesWatchlistMinAggregate {
+  id: Int
+  watchlistId: Int
+}
+
+input MoviesWatchlistMinOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input MoviesWatchlistOrderByWithAggregationInput {
+  _avg: MoviesWatchlistAvgOrderByAggregateInput
+  _count: MoviesWatchlistCountOrderByAggregateInput
+  _max: MoviesWatchlistMaxOrderByAggregateInput
+  _min: MoviesWatchlistMinOrderByAggregateInput
+  _sum: MoviesWatchlistSumOrderByAggregateInput
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput {
+  id: SortOrder
+  movies: WatchlistedMovieOrderByRelationAggregateInput
+  watchlist: WatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlistId: SortOrder
+}
+
+input MoviesWatchlistRelationFilter {
+  is: MoviesWatchlistWhereInput
+  isNot: MoviesWatchlistWhereInput
+}
+
+enum MoviesWatchlistScalarFieldEnum {
+  id
+  watchlistId
+}
+
+input MoviesWatchlistScalarWhereWithAggregatesInput {
+  AND: [MoviesWatchlistScalarWhereWithAggregatesInput!]
+  NOT: [MoviesWatchlistScalarWhereWithAggregatesInput!]
+  OR: [MoviesWatchlistScalarWhereWithAggregatesInput!]
+  id: IntWithAggregatesFilter
+  watchlistId: IntWithAggregatesFilter
+}
+
+type MoviesWatchlistSumAggregate {
+  id: Int
+  watchlistId: Int
+}
+
+input MoviesWatchlistSumOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input MoviesWatchlistUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  movies: WatchlistedMovieUpdateManyWithoutWatchlistInput
+  watchlist: WatchlistUpdateOneRequiredWithoutMovieWatchlistInput
+}
+
+input MoviesWatchlistUpdateManyMutationInput {
+  id: IntFieldUpdateOperationsInput
+}
+
+input MoviesWatchlistUpdateOneRequiredWithoutMoviesInput {
+  connect: MoviesWatchlistWhereUniqueInput
+  connectOrCreate: MoviesWatchlistCreateOrConnectWithoutMoviesInput
+  create: MoviesWatchlistCreateWithoutMoviesInput
+  update: MoviesWatchlistUpdateWithoutMoviesInput
+  upsert: MoviesWatchlistUpsertWithoutMoviesInput
+}
+
+input MoviesWatchlistUpdateOneWithoutWatchlistInput {
+  connect: MoviesWatchlistWhereUniqueInput
+  connectOrCreate: MoviesWatchlistCreateOrConnectWithoutWatchlistInput
+  create: MoviesWatchlistCreateWithoutWatchlistInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MoviesWatchlistUpdateWithoutWatchlistInput
+  upsert: MoviesWatchlistUpsertWithoutWatchlistInput
+}
+
+input MoviesWatchlistUpdateWithoutMoviesInput {
+  id: IntFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateOneRequiredWithoutMovieWatchlistInput
+}
+
+input MoviesWatchlistUpdateWithoutWatchlistInput {
+  id: IntFieldUpdateOperationsInput
+  movies: WatchlistedMovieUpdateManyWithoutWatchlistInput
+}
+
+input MoviesWatchlistUpsertWithoutMoviesInput {
+  create: MoviesWatchlistCreateWithoutMoviesInput!
+  update: MoviesWatchlistUpdateWithoutMoviesInput!
+}
+
+input MoviesWatchlistUpsertWithoutWatchlistInput {
+  create: MoviesWatchlistCreateWithoutWatchlistInput!
+  update: MoviesWatchlistUpdateWithoutWatchlistInput!
+}
+
+input MoviesWatchlistWhereInput {
+  AND: [MoviesWatchlistWhereInput!]
+  NOT: [MoviesWatchlistWhereInput!]
+  OR: [MoviesWatchlistWhereInput!]
+  id: IntFilter
+  movies: WatchlistedMovieListRelationFilter
+  watchlist: WatchlistRelationFilter
+  watchlistId: IntFilter
+}
+
+input MoviesWatchlistWhereUniqueInput {
+  id: Int
+  watchlistId: Int
+}
+
 type Mutation {
   createAccount(data: AccountCreateInput!): Account!
   createActor(data: ActorCreateInput!): Actor!
+  createAppSettings(data: AppSettingsCreateInput!): AppSettings!
   createDirector(data: DirectorCreateInput!): Director!
   createEpisode(data: EpisodeCreateInput!): Episode!
+  createEpisodesWatchlist(data: EpisodesWatchlistCreateInput!): EpisodesWatchlist!
   createGenre(data: GenreCreateInput!): Genre!
   createLanguage(data: LanguageCreateInput!): Language!
   createManyAccount(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyActor(data: [ActorCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyAppSettings(data: [AppSettingsCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyDirector(data: [DirectorCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyEpisode(data: [EpisodeCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyEpisodesWatchlist(data: [EpisodesWatchlistCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyGenre(data: [GenreCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyLanguage(data: [LanguageCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovie(data: [MovieCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyMoviesWatchlist(data: [MoviesWatchlistCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManySeason(data: [SeasonCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManySerie(data: [SerieCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManySeriesWatchlist(data: [SeriesWatchlistCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManySession(data: [SessionCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyUser(data: [UserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyVerificationRequest(data: [VerificationRequestCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyWatchlist(data: [WatchlistCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyWatchlistedEpisode(data: [WatchlistedEpisodeCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyWatchlistedMovie(data: [WatchlistedMovieCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyWatchlistedSerie(data: [WatchlistedSerieCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createMovie(data: MovieCreateInput!): Movie!
+  createMoviesWatchlist(data: MoviesWatchlistCreateInput!): MoviesWatchlist!
   createSeason(data: SeasonCreateInput!): Season!
   createSerie(data: SerieCreateInput!): Serie!
+  createSeriesWatchlist(data: SeriesWatchlistCreateInput!): SeriesWatchlist!
   createSession(data: SessionCreateInput!): Session!
   createUser(data: UserCreateInput!): User!
   createVerificationRequest(data: VerificationRequestCreateInput!): VerificationRequest!
+  createWatchlist(data: WatchlistCreateInput!): Watchlist!
+  createWatchlistedEpisode(data: WatchlistedEpisodeCreateInput!): WatchlistedEpisode!
+  createWatchlistedMovie(data: WatchlistedMovieCreateInput!): WatchlistedMovie!
+  createWatchlistedSerie(data: WatchlistedSerieCreateInput!): WatchlistedSerie!
   deleteAccount(where: AccountWhereUniqueInput!): Account
   deleteActor(where: ActorWhereUniqueInput!): Actor
+  deleteAppSettings(where: AppSettingsWhereUniqueInput!): AppSettings
   deleteDirector(where: DirectorWhereUniqueInput!): Director
   deleteEpisode(where: EpisodeWhereUniqueInput!): Episode
+  deleteEpisodesWatchlist(where: EpisodesWatchlistWhereUniqueInput!): EpisodesWatchlist
   deleteGenre(where: GenreWhereUniqueInput!): Genre
   deleteLanguage(where: LanguageWhereUniqueInput!): Language
   deleteManyAccount(where: AccountWhereInput): AffectedRowsOutput!
   deleteManyActor(where: ActorWhereInput): AffectedRowsOutput!
+  deleteManyAppSettings(where: AppSettingsWhereInput): AffectedRowsOutput!
   deleteManyDirector(where: DirectorWhereInput): AffectedRowsOutput!
   deleteManyEpisode(where: EpisodeWhereInput): AffectedRowsOutput!
+  deleteManyEpisodesWatchlist(where: EpisodesWatchlistWhereInput): AffectedRowsOutput!
   deleteManyGenre(where: GenreWhereInput): AffectedRowsOutput!
   deleteManyLanguage(where: LanguageWhereInput): AffectedRowsOutput!
   deleteManyMovie(where: MovieWhereInput): AffectedRowsOutput!
+  deleteManyMoviesWatchlist(where: MoviesWatchlistWhereInput): AffectedRowsOutput!
   deleteManySeason(where: SeasonWhereInput): AffectedRowsOutput!
   deleteManySerie(where: SerieWhereInput): AffectedRowsOutput!
+  deleteManySeriesWatchlist(where: SeriesWatchlistWhereInput): AffectedRowsOutput!
   deleteManySession(where: SessionWhereInput): AffectedRowsOutput!
   deleteManyUser(where: UserWhereInput): AffectedRowsOutput!
   deleteManyVerificationRequest(where: VerificationRequestWhereInput): AffectedRowsOutput!
+  deleteManyWatchlist(where: WatchlistWhereInput): AffectedRowsOutput!
+  deleteManyWatchlistedEpisode(where: WatchlistedEpisodeWhereInput): AffectedRowsOutput!
+  deleteManyWatchlistedMovie(where: WatchlistedMovieWhereInput): AffectedRowsOutput!
+  deleteManyWatchlistedSerie(where: WatchlistedSerieWhereInput): AffectedRowsOutput!
   deleteMovie(where: MovieWhereUniqueInput!): Movie
+  deleteMoviesWatchlist(where: MoviesWatchlistWhereUniqueInput!): MoviesWatchlist
   deleteSeason(where: SeasonWhereUniqueInput!): Season
   deleteSerie(where: SerieWhereUniqueInput!): Serie
+  deleteSeriesWatchlist(where: SeriesWatchlistWhereUniqueInput!): SeriesWatchlist
   deleteSession(where: SessionWhereUniqueInput!): Session
   deleteUser(where: UserWhereUniqueInput!): User
   deleteVerificationRequest(where: VerificationRequestWhereUniqueInput!): VerificationRequest
+  deleteWatchlist(where: WatchlistWhereUniqueInput!): Watchlist
+  deleteWatchlistedEpisode(where: WatchlistedEpisodeWhereUniqueInput!): WatchlistedEpisode
+  deleteWatchlistedMovie(where: WatchlistedMovieWhereUniqueInput!): WatchlistedMovie
+  deleteWatchlistedSerie(where: WatchlistedSerieWhereUniqueInput!): WatchlistedSerie
   updateAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
   updateActor(data: ActorUpdateInput!, where: ActorWhereUniqueInput!): Actor
+  updateAppSettings(data: AppSettingsUpdateInput!, where: AppSettingsWhereUniqueInput!): AppSettings
   updateDirector(data: DirectorUpdateInput!, where: DirectorWhereUniqueInput!): Director
   updateEpisode(data: EpisodeUpdateInput!, where: EpisodeWhereUniqueInput!): Episode
+  updateEpisodesWatchlist(data: EpisodesWatchlistUpdateInput!, where: EpisodesWatchlistWhereUniqueInput!): EpisodesWatchlist
   updateGenre(data: GenreUpdateInput!, where: GenreWhereUniqueInput!): Genre
   updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language
   updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
   updateManyActor(data: ActorUpdateManyMutationInput!, where: ActorWhereInput): AffectedRowsOutput!
+  updateManyAppSettings(data: AppSettingsUpdateManyMutationInput!, where: AppSettingsWhereInput): AffectedRowsOutput!
   updateManyDirector(data: DirectorUpdateManyMutationInput!, where: DirectorWhereInput): AffectedRowsOutput!
   updateManyEpisode(data: EpisodeUpdateManyMutationInput!, where: EpisodeWhereInput): AffectedRowsOutput!
+  updateManyEpisodesWatchlist(data: EpisodesWatchlistUpdateManyMutationInput!, where: EpisodesWatchlistWhereInput): AffectedRowsOutput!
   updateManyGenre(data: GenreUpdateManyMutationInput!, where: GenreWhereInput): AffectedRowsOutput!
   updateManyLanguage(data: LanguageUpdateManyMutationInput!, where: LanguageWhereInput): AffectedRowsOutput!
   updateManyMovie(data: MovieUpdateManyMutationInput!, where: MovieWhereInput): AffectedRowsOutput!
+  updateManyMoviesWatchlist(data: MoviesWatchlistUpdateManyMutationInput!, where: MoviesWatchlistWhereInput): AffectedRowsOutput!
   updateManySeason(data: SeasonUpdateManyMutationInput!, where: SeasonWhereInput): AffectedRowsOutput!
   updateManySerie(data: SerieUpdateManyMutationInput!, where: SerieWhereInput): AffectedRowsOutput!
+  updateManySeriesWatchlist(data: SeriesWatchlistUpdateManyMutationInput!, where: SeriesWatchlistWhereInput): AffectedRowsOutput!
   updateManySession(data: SessionUpdateManyMutationInput!, where: SessionWhereInput): AffectedRowsOutput!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): AffectedRowsOutput!
   updateManyVerificationRequest(data: VerificationRequestUpdateManyMutationInput!, where: VerificationRequestWhereInput): AffectedRowsOutput!
+  updateManyWatchlist(data: WatchlistUpdateManyMutationInput!, where: WatchlistWhereInput): AffectedRowsOutput!
+  updateManyWatchlistedEpisode(data: WatchlistedEpisodeUpdateManyMutationInput!, where: WatchlistedEpisodeWhereInput): AffectedRowsOutput!
+  updateManyWatchlistedMovie(data: WatchlistedMovieUpdateManyMutationInput!, where: WatchlistedMovieWhereInput): AffectedRowsOutput!
+  updateManyWatchlistedSerie(data: WatchlistedSerieUpdateManyMutationInput!, where: WatchlistedSerieWhereInput): AffectedRowsOutput!
   updateMovie(data: MovieUpdateInput!, where: MovieWhereUniqueInput!): Movie
+  updateMoviesWatchlist(data: MoviesWatchlistUpdateInput!, where: MoviesWatchlistWhereUniqueInput!): MoviesWatchlist
   updateSeason(data: SeasonUpdateInput!, where: SeasonWhereUniqueInput!): Season
   updateSerie(data: SerieUpdateInput!, where: SerieWhereUniqueInput!): Serie
+  updateSeriesWatchlist(data: SeriesWatchlistUpdateInput!, where: SeriesWatchlistWhereUniqueInput!): SeriesWatchlist
   updateSession(data: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateVerificationRequest(data: VerificationRequestUpdateInput!, where: VerificationRequestWhereUniqueInput!): VerificationRequest
+  updateWatchlist(data: WatchlistUpdateInput!, where: WatchlistWhereUniqueInput!): Watchlist
+  updateWatchlistedEpisode(data: WatchlistedEpisodeUpdateInput!, where: WatchlistedEpisodeWhereUniqueInput!): WatchlistedEpisode
+  updateWatchlistedMovie(data: WatchlistedMovieUpdateInput!, where: WatchlistedMovieWhereUniqueInput!): WatchlistedMovie
+  updateWatchlistedSerie(data: WatchlistedSerieUpdateInput!, where: WatchlistedSerieWhereUniqueInput!): WatchlistedSerie
   upsertAccount(create: AccountCreateInput!, update: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account!
   upsertActor(create: ActorCreateInput!, update: ActorUpdateInput!, where: ActorWhereUniqueInput!): Actor!
+  upsertAppSettings(create: AppSettingsCreateInput!, update: AppSettingsUpdateInput!, where: AppSettingsWhereUniqueInput!): AppSettings!
   upsertDirector(create: DirectorCreateInput!, update: DirectorUpdateInput!, where: DirectorWhereUniqueInput!): Director!
   upsertEpisode(create: EpisodeCreateInput!, update: EpisodeUpdateInput!, where: EpisodeWhereUniqueInput!): Episode!
+  upsertEpisodesWatchlist(create: EpisodesWatchlistCreateInput!, update: EpisodesWatchlistUpdateInput!, where: EpisodesWatchlistWhereUniqueInput!): EpisodesWatchlist!
   upsertGenre(create: GenreCreateInput!, update: GenreUpdateInput!, where: GenreWhereUniqueInput!): Genre!
   upsertLanguage(create: LanguageCreateInput!, update: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language!
   upsertMovie(create: MovieCreateInput!, update: MovieUpdateInput!, where: MovieWhereUniqueInput!): Movie!
+  upsertMoviesWatchlist(create: MoviesWatchlistCreateInput!, update: MoviesWatchlistUpdateInput!, where: MoviesWatchlistWhereUniqueInput!): MoviesWatchlist!
   upsertSeason(create: SeasonCreateInput!, update: SeasonUpdateInput!, where: SeasonWhereUniqueInput!): Season!
   upsertSerie(create: SerieCreateInput!, update: SerieUpdateInput!, where: SerieWhereUniqueInput!): Serie!
+  upsertSeriesWatchlist(create: SeriesWatchlistCreateInput!, update: SeriesWatchlistUpdateInput!, where: SeriesWatchlistWhereUniqueInput!): SeriesWatchlist!
   upsertSession(create: SessionCreateInput!, update: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session!
   upsertUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
   upsertVerificationRequest(create: VerificationRequestCreateInput!, update: VerificationRequestUpdateInput!, where: VerificationRequestWhereUniqueInput!): VerificationRequest!
+  upsertWatchlist(create: WatchlistCreateInput!, update: WatchlistUpdateInput!, where: WatchlistWhereUniqueInput!): Watchlist!
+  upsertWatchlistedEpisode(create: WatchlistedEpisodeCreateInput!, update: WatchlistedEpisodeUpdateInput!, where: WatchlistedEpisodeWhereUniqueInput!): WatchlistedEpisode!
+  upsertWatchlistedMovie(create: WatchlistedMovieCreateInput!, update: WatchlistedMovieUpdateInput!, where: WatchlistedMovieWhereUniqueInput!): WatchlistedMovie!
+  upsertWatchlistedSerie(create: WatchlistedSerieCreateInput!, update: WatchlistedSerieUpdateInput!, where: WatchlistedSerieWhereUniqueInput!): WatchlistedSerie!
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedBoolWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedBoolFilter
+  _min: NestedBoolFilter
+  equals: Boolean
+  not: NestedBoolWithAggregatesFilter
 }
 
 input NestedDateTimeFilter {
@@ -3433,60 +4363,100 @@ type Query {
   actors(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: ActorWhereInput): [Actor!]!
   aggregateAccount(cursor: AccountWhereUniqueInput, orderBy: [AccountOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AccountWhereInput): AggregateAccount!
   aggregateActor(cursor: ActorWhereUniqueInput, orderBy: [ActorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: ActorWhereInput): AggregateActor!
+  aggregateAppSettings(cursor: AppSettingsWhereUniqueInput, orderBy: [AppSettingsOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AggregateAppSettings!
   aggregateDirector(cursor: DirectorWhereUniqueInput, orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): AggregateDirector!
   aggregateEpisode(cursor: EpisodeWhereUniqueInput, orderBy: [EpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodeWhereInput): AggregateEpisode!
+  aggregateEpisodesWatchlist(cursor: EpisodesWatchlistWhereUniqueInput, orderBy: [EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): AggregateEpisodesWatchlist!
   aggregateGenre(cursor: GenreWhereUniqueInput, orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): AggregateGenre!
   aggregateLanguage(cursor: LanguageWhereUniqueInput, orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): AggregateLanguage!
   aggregateMovie(cursor: MovieWhereUniqueInput, orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): AggregateMovie!
+  aggregateMoviesWatchlist(cursor: MoviesWatchlistWhereUniqueInput, orderBy: [MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): AggregateMoviesWatchlist!
   aggregateSeason(cursor: SeasonWhereUniqueInput, orderBy: [SeasonOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeasonWhereInput): AggregateSeason!
   aggregateSerie(cursor: SerieWhereUniqueInput, orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SerieWhereInput): AggregateSerie!
+  aggregateSeriesWatchlist(cursor: SeriesWatchlistWhereUniqueInput, orderBy: [SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): AggregateSeriesWatchlist!
   aggregateSession(cursor: SessionWhereUniqueInput, orderBy: [SessionOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SessionWhereInput): AggregateSession!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
   aggregateVerificationRequest(cursor: VerificationRequestWhereUniqueInput, orderBy: [VerificationRequestOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): AggregateVerificationRequest!
+  aggregateWatchlist(cursor: WatchlistWhereUniqueInput, orderBy: [WatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistWhereInput): AggregateWatchlist!
+  aggregateWatchlistedEpisode(cursor: WatchlistedEpisodeWhereUniqueInput, orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): AggregateWatchlistedEpisode!
+  aggregateWatchlistedMovie(cursor: WatchlistedMovieWhereUniqueInput, orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): AggregateWatchlistedMovie!
+  aggregateWatchlistedSerie(cursor: WatchlistedSerieWhereUniqueInput, orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): AggregateWatchlistedSerie!
   director(where: DirectorWhereUniqueInput!): Director
   directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
   episode(where: EpisodeWhereUniqueInput!): Episode
   episodes(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodeWhereInput): [Episode!]!
+  episodesWatchlist(where: EpisodesWatchlistWhereUniqueInput!): EpisodesWatchlist
+  episodesWatchlists(cursor: EpisodesWatchlistWhereUniqueInput, distinct: [EpisodesWatchlistScalarFieldEnum!], orderBy: [EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): [EpisodesWatchlist!]!
   findFirstAccount(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AccountWhereInput): Account
   findFirstActor(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: ActorWhereInput): Actor
+  findFirstAppSettings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AppSettings
   findFirstDirector(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): Director
   findFirstEpisode(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodeWhereInput): Episode
+  findFirstEpisodesWatchlist(cursor: EpisodesWatchlistWhereUniqueInput, distinct: [EpisodesWatchlistScalarFieldEnum!], orderBy: [EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): EpisodesWatchlist
   findFirstGenre(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): Genre
   findFirstLanguage(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): Language
   findFirstMovie(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
+  findFirstMoviesWatchlist(cursor: MoviesWatchlistWhereUniqueInput, distinct: [MoviesWatchlistScalarFieldEnum!], orderBy: [MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): MoviesWatchlist
   findFirstSeason(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeasonWhereInput): Season
   findFirstSerie(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SerieWhereInput): Serie
+  findFirstSeriesWatchlist(cursor: SeriesWatchlistWhereUniqueInput, distinct: [SeriesWatchlistScalarFieldEnum!], orderBy: [SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): SeriesWatchlist
   findFirstSession(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SessionWhereInput): Session
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserWhereInput): User
   findFirstVerificationRequest(cursor: VerificationRequestWhereUniqueInput, distinct: [VerificationRequestScalarFieldEnum!], orderBy: [VerificationRequestOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): VerificationRequest
+  findFirstWatchlist(cursor: WatchlistWhereUniqueInput, distinct: [WatchlistScalarFieldEnum!], orderBy: [WatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistWhereInput): Watchlist
+  findFirstWatchlistedEpisode(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): WatchlistedEpisode
+  findFirstWatchlistedMovie(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): WatchlistedMovie
+  findFirstWatchlistedSerie(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): WatchlistedSerie
+  findManyAppSettings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettings!]!
+  findUniqueAppSettings(where: AppSettingsWhereUniqueInput!): AppSettings
   genre(where: GenreWhereUniqueInput!): Genre
   genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
   groupByAccount(by: [AccountScalarFieldEnum!]!, having: AccountScalarWhereWithAggregatesInput, orderBy: [AccountOrderByWithAggregationInput!], skip: Int, take: Int, where: AccountWhereInput): [AccountGroupBy!]!
   groupByActor(by: [ActorScalarFieldEnum!]!, having: ActorScalarWhereWithAggregatesInput, orderBy: [ActorOrderByWithAggregationInput!], skip: Int, take: Int, where: ActorWhereInput): [ActorGroupBy!]!
+  groupByAppSettings(by: [AppSettingsScalarFieldEnum!]!, having: AppSettingsScalarWhereWithAggregatesInput, orderBy: [AppSettingsOrderByWithAggregationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettingsGroupBy!]!
   groupByDirector(by: [DirectorScalarFieldEnum!]!, having: DirectorScalarWhereWithAggregatesInput, orderBy: [DirectorOrderByWithAggregationInput!], skip: Int, take: Int, where: DirectorWhereInput): [DirectorGroupBy!]!
   groupByEpisode(by: [EpisodeScalarFieldEnum!]!, having: EpisodeScalarWhereWithAggregatesInput, orderBy: [EpisodeOrderByWithAggregationInput!], skip: Int, take: Int, where: EpisodeWhereInput): [EpisodeGroupBy!]!
+  groupByEpisodesWatchlist(by: [EpisodesWatchlistScalarFieldEnum!]!, having: EpisodesWatchlistScalarWhereWithAggregatesInput, orderBy: [EpisodesWatchlistOrderByWithAggregationInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): [EpisodesWatchlistGroupBy!]!
   groupByGenre(by: [GenreScalarFieldEnum!]!, having: GenreScalarWhereWithAggregatesInput, orderBy: [GenreOrderByWithAggregationInput!], skip: Int, take: Int, where: GenreWhereInput): [GenreGroupBy!]!
   groupByLanguage(by: [LanguageScalarFieldEnum!]!, having: LanguageScalarWhereWithAggregatesInput, orderBy: [LanguageOrderByWithAggregationInput!], skip: Int, take: Int, where: LanguageWhereInput): [LanguageGroupBy!]!
   groupByMovie(by: [MovieScalarFieldEnum!]!, having: MovieScalarWhereWithAggregatesInput, orderBy: [MovieOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieWhereInput): [MovieGroupBy!]!
+  groupByMoviesWatchlist(by: [MoviesWatchlistScalarFieldEnum!]!, having: MoviesWatchlistScalarWhereWithAggregatesInput, orderBy: [MoviesWatchlistOrderByWithAggregationInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): [MoviesWatchlistGroupBy!]!
   groupBySeason(by: [SeasonScalarFieldEnum!]!, having: SeasonScalarWhereWithAggregatesInput, orderBy: [SeasonOrderByWithAggregationInput!], skip: Int, take: Int, where: SeasonWhereInput): [SeasonGroupBy!]!
   groupBySerie(by: [SerieScalarFieldEnum!]!, having: SerieScalarWhereWithAggregatesInput, orderBy: [SerieOrderByWithAggregationInput!], skip: Int, take: Int, where: SerieWhereInput): [SerieGroupBy!]!
+  groupBySeriesWatchlist(by: [SeriesWatchlistScalarFieldEnum!]!, having: SeriesWatchlistScalarWhereWithAggregatesInput, orderBy: [SeriesWatchlistOrderByWithAggregationInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): [SeriesWatchlistGroupBy!]!
   groupBySession(by: [SessionScalarFieldEnum!]!, having: SessionScalarWhereWithAggregatesInput, orderBy: [SessionOrderByWithAggregationInput!], skip: Int, take: Int, where: SessionWhereInput): [SessionGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
   groupByVerificationRequest(by: [VerificationRequestScalarFieldEnum!]!, having: VerificationRequestScalarWhereWithAggregatesInput, orderBy: [VerificationRequestOrderByWithAggregationInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): [VerificationRequestGroupBy!]!
+  groupByWatchlist(by: [WatchlistScalarFieldEnum!]!, having: WatchlistScalarWhereWithAggregatesInput, orderBy: [WatchlistOrderByWithAggregationInput!], skip: Int, take: Int, where: WatchlistWhereInput): [WatchlistGroupBy!]!
+  groupByWatchlistedEpisode(by: [WatchlistedEpisodeScalarFieldEnum!]!, having: WatchlistedEpisodeScalarWhereWithAggregatesInput, orderBy: [WatchlistedEpisodeOrderByWithAggregationInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisodeGroupBy!]!
+  groupByWatchlistedMovie(by: [WatchlistedMovieScalarFieldEnum!]!, having: WatchlistedMovieScalarWhereWithAggregatesInput, orderBy: [WatchlistedMovieOrderByWithAggregationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovieGroupBy!]!
+  groupByWatchlistedSerie(by: [WatchlistedSerieScalarFieldEnum!]!, having: WatchlistedSerieScalarWhereWithAggregatesInput, orderBy: [WatchlistedSerieOrderByWithAggregationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerieGroupBy!]!
   language(where: LanguageWhereUniqueInput!): Language
   languages(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): [Language!]!
   movie(where: MovieWhereUniqueInput!): Movie
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  moviesWatchlist(where: MoviesWatchlistWhereUniqueInput!): MoviesWatchlist
+  moviesWatchlists(cursor: MoviesWatchlistWhereUniqueInput, distinct: [MoviesWatchlistScalarFieldEnum!], orderBy: [MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): [MoviesWatchlist!]!
   season(where: SeasonWhereUniqueInput!): Season
   seasons(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeasonWhereInput): [Season!]!
   serie(where: SerieWhereUniqueInput!): Serie
   series(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SerieWhereInput): [Serie!]!
+  seriesWatchlist(where: SeriesWatchlistWhereUniqueInput!): SeriesWatchlist
+  seriesWatchlists(cursor: SeriesWatchlistWhereUniqueInput, distinct: [SeriesWatchlistScalarFieldEnum!], orderBy: [SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): [SeriesWatchlist!]!
   session(where: SessionWhereUniqueInput!): Session
   sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
   user(where: UserWhereUniqueInput!): User
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
   verificationRequest(where: VerificationRequestWhereUniqueInput!): VerificationRequest
   verificationRequests(cursor: VerificationRequestWhereUniqueInput, distinct: [VerificationRequestScalarFieldEnum!], orderBy: [VerificationRequestOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): [VerificationRequest!]!
+  watchlist(where: WatchlistWhereUniqueInput!): Watchlist
+  watchlistedEpisode(where: WatchlistedEpisodeWhereUniqueInput!): WatchlistedEpisode
+  watchlistedEpisodes(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
+  watchlistedMovie(where: WatchlistedMovieWhereUniqueInput!): WatchlistedMovie
+  watchlistedMovies(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
+  watchlistedSerie(where: WatchlistedSerieWhereUniqueInput!): WatchlistedSerie
+  watchlistedSeries(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
+  watchlists(cursor: WatchlistWhereUniqueInput, distinct: [WatchlistScalarFieldEnum!], orderBy: [WatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistWhereInput): [Watchlist!]!
 }
 
 enum QueryMode {
@@ -3924,6 +4894,7 @@ type Serie {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime!
+  watchlist(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
   year: Int!
 }
 
@@ -3949,6 +4920,7 @@ type SerieCount {
   genres: Int!
   languages: Int!
   seasons: Int!
+  watchlist: Int!
 }
 
 type SerieCountAggregate {
@@ -4001,6 +4973,7 @@ input SerieCreateInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
@@ -4050,6 +5023,12 @@ input SerieCreateNestedOneWithoutSeasonsInput {
   create: SerieCreateWithoutSeasonsInput
 }
 
+input SerieCreateNestedOneWithoutWatchlistInput {
+  connect: SerieWhereUniqueInput
+  connectOrCreate: SerieCreateOrConnectWithoutWatchlistInput
+  create: SerieCreateWithoutWatchlistInput
+}
+
 input SerieCreateOrConnectWithoutActorsInput {
   create: SerieCreateWithoutActorsInput!
   where: SerieWhereUniqueInput!
@@ -4075,6 +5054,11 @@ input SerieCreateOrConnectWithoutSeasonsInput {
   where: SerieWhereUniqueInput!
 }
 
+input SerieCreateOrConnectWithoutWatchlistInput {
+  create: SerieCreateWithoutWatchlistInput!
+  where: SerieWhereUniqueInput!
+}
+
 input SerieCreateWithoutActorsInput {
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
@@ -4091,6 +5075,7 @@ input SerieCreateWithoutActorsInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
@@ -4110,6 +5095,7 @@ input SerieCreateWithoutDirectorsInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
@@ -4129,6 +5115,7 @@ input SerieCreateWithoutGenresInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
@@ -4148,6 +5135,7 @@ input SerieCreateWithoutLanguagesInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
@@ -4164,6 +5152,27 @@ input SerieCreateWithoutSeasonsInput {
   rating: String!
   release: DateTime!
   runtime: Int!
+  title: String!
+  totalSeasons: Int!
+  updatedAt: DateTime
+  watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
+  year: Int!
+}
+
+input SerieCreateWithoutWatchlistInput {
+  actors: ActorCreateNestedManyWithoutSeriesInput
+  createdAt: DateTime
+  directors: DirectorCreateNestedManyWithoutSeriesInput
+  genres: GenreCreateNestedManyWithoutSeriesInput
+  imdbID: String!
+  imdbRating: Float!
+  languages: LanguageCreateNestedManyWithoutSeriesInput
+  plot: String!
+  poster: String!
+  rating: String!
+  release: DateTime!
+  runtime: Int!
+  seasons: SeasonCreateNestedManyWithoutSeriesInput
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
@@ -4319,6 +5328,7 @@ input SerieOrderByWithRelationAndSearchRelevanceInput {
   title: SortOrder
   totalSeasons: SortOrder
   updatedAt: SortOrder
+  watchlist: WatchlistedSerieOrderByRelationAggregateInput
   year: SortOrder
 }
 
@@ -4414,6 +5424,7 @@ input SerieUpdateInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -4476,6 +5487,14 @@ input SerieUpdateOneRequiredWithoutSeasonsInput {
   upsert: SerieUpsertWithoutSeasonsInput
 }
 
+input SerieUpdateOneRequiredWithoutWatchlistInput {
+  connect: SerieWhereUniqueInput
+  connectOrCreate: SerieCreateOrConnectWithoutWatchlistInput
+  create: SerieCreateWithoutWatchlistInput
+  update: SerieUpdateWithoutWatchlistInput
+  upsert: SerieUpsertWithoutWatchlistInput
+}
+
 input SerieUpdateOneWithoutActorsInput {
   connect: SerieWhereUniqueInput
   connectOrCreate: SerieCreateOrConnectWithoutActorsInput
@@ -4522,6 +5541,7 @@ input SerieUpdateWithoutActorsInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -4541,6 +5561,7 @@ input SerieUpdateWithoutDirectorsInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -4560,6 +5581,7 @@ input SerieUpdateWithoutGenresInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -4579,6 +5601,7 @@ input SerieUpdateWithoutLanguagesInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -4595,6 +5618,27 @@ input SerieUpdateWithoutSeasonsInput {
   rating: StringFieldUpdateOperationsInput
   release: DateTimeFieldUpdateOperationsInput
   runtime: IntFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  totalSeasons: IntFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
+  year: IntFieldUpdateOperationsInput
+}
+
+input SerieUpdateWithoutWatchlistInput {
+  actors: ActorUpdateManyWithoutSeriesInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  directors: DirectorUpdateManyWithoutSeriesInput
+  genres: GenreUpdateManyWithoutSeriesInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  languages: LanguageUpdateManyWithoutSeriesInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  rating: StringFieldUpdateOperationsInput
+  release: DateTimeFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  seasons: SeasonUpdateManyWithoutSeriesInput
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -4628,6 +5672,11 @@ input SerieUpsertWithoutSeasonsInput {
   update: SerieUpdateWithoutSeasonsInput!
 }
 
+input SerieUpsertWithoutWatchlistInput {
+  create: SerieCreateWithoutWatchlistInput!
+  update: SerieUpdateWithoutWatchlistInput!
+}
+
 input SerieWhereInput {
   AND: [SerieWhereInput!]
   NOT: [SerieWhereInput!]
@@ -4649,6 +5698,7 @@ input SerieWhereInput {
   title: StringFilter
   totalSeasons: IntFilter
   updatedAt: DateTimeFilter
+  watchlist: WatchlistedSerieListRelationFilter
   year: IntFilter
 }
 
@@ -4657,47 +5707,279 @@ input SerieWhereUniqueInput {
   imdbID: String
 }
 
+type SeriesWatchlist {
+  _count: SeriesWatchlistCount
+  id: Int!
+  series(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
+  watchlist: Watchlist!
+  watchlistId: Int!
+}
+
+type SeriesWatchlistAvgAggregate {
+  id: Float
+  watchlistId: Float
+}
+
+input SeriesWatchlistAvgOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+type SeriesWatchlistCount {
+  series: Int!
+}
+
+type SeriesWatchlistCountAggregate {
+  _all: Int!
+  id: Int!
+  watchlistId: Int!
+}
+
+input SeriesWatchlistCountOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input SeriesWatchlistCreateInput {
+  id: Int!
+  series: WatchlistedSerieCreateNestedManyWithoutWatchlistInput
+  watchlist: WatchlistCreateNestedOneWithoutSeriesWatchlistInput!
+}
+
+input SeriesWatchlistCreateManyInput {
+  id: Int!
+  watchlistId: Int!
+}
+
+input SeriesWatchlistCreateNestedOneWithoutSeriesInput {
+  connect: SeriesWatchlistWhereUniqueInput
+  connectOrCreate: SeriesWatchlistCreateOrConnectWithoutSeriesInput
+  create: SeriesWatchlistCreateWithoutSeriesInput
+}
+
+input SeriesWatchlistCreateNestedOneWithoutWatchlistInput {
+  connect: SeriesWatchlistWhereUniqueInput
+  connectOrCreate: SeriesWatchlistCreateOrConnectWithoutWatchlistInput
+  create: SeriesWatchlistCreateWithoutWatchlistInput
+}
+
+input SeriesWatchlistCreateOrConnectWithoutSeriesInput {
+  create: SeriesWatchlistCreateWithoutSeriesInput!
+  where: SeriesWatchlistWhereUniqueInput!
+}
+
+input SeriesWatchlistCreateOrConnectWithoutWatchlistInput {
+  create: SeriesWatchlistCreateWithoutWatchlistInput!
+  where: SeriesWatchlistWhereUniqueInput!
+}
+
+input SeriesWatchlistCreateWithoutSeriesInput {
+  id: Int!
+  watchlist: WatchlistCreateNestedOneWithoutSeriesWatchlistInput!
+}
+
+input SeriesWatchlistCreateWithoutWatchlistInput {
+  id: Int!
+  series: WatchlistedSerieCreateNestedManyWithoutWatchlistInput
+}
+
+type SeriesWatchlistGroupBy {
+  _avg: SeriesWatchlistAvgAggregate
+  _count: SeriesWatchlistCountAggregate
+  _max: SeriesWatchlistMaxAggregate
+  _min: SeriesWatchlistMinAggregate
+  _sum: SeriesWatchlistSumAggregate
+  id: Int!
+  watchlistId: Int!
+}
+
+type SeriesWatchlistMaxAggregate {
+  id: Int
+  watchlistId: Int
+}
+
+input SeriesWatchlistMaxOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+type SeriesWatchlistMinAggregate {
+  id: Int
+  watchlistId: Int
+}
+
+input SeriesWatchlistMinOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input SeriesWatchlistOrderByWithAggregationInput {
+  _avg: SeriesWatchlistAvgOrderByAggregateInput
+  _count: SeriesWatchlistCountOrderByAggregateInput
+  _max: SeriesWatchlistMaxOrderByAggregateInput
+  _min: SeriesWatchlistMinOrderByAggregateInput
+  _sum: SeriesWatchlistSumOrderByAggregateInput
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput {
+  id: SortOrder
+  series: WatchlistedSerieOrderByRelationAggregateInput
+  watchlist: WatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlistId: SortOrder
+}
+
+input SeriesWatchlistRelationFilter {
+  is: SeriesWatchlistWhereInput
+  isNot: SeriesWatchlistWhereInput
+}
+
+enum SeriesWatchlistScalarFieldEnum {
+  id
+  watchlistId
+}
+
+input SeriesWatchlistScalarWhereWithAggregatesInput {
+  AND: [SeriesWatchlistScalarWhereWithAggregatesInput!]
+  NOT: [SeriesWatchlistScalarWhereWithAggregatesInput!]
+  OR: [SeriesWatchlistScalarWhereWithAggregatesInput!]
+  id: IntWithAggregatesFilter
+  watchlistId: IntWithAggregatesFilter
+}
+
+type SeriesWatchlistSumAggregate {
+  id: Int
+  watchlistId: Int
+}
+
+input SeriesWatchlistSumOrderByAggregateInput {
+  id: SortOrder
+  watchlistId: SortOrder
+}
+
+input SeriesWatchlistUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  series: WatchlistedSerieUpdateManyWithoutWatchlistInput
+  watchlist: WatchlistUpdateOneRequiredWithoutSeriesWatchlistInput
+}
+
+input SeriesWatchlistUpdateManyMutationInput {
+  id: IntFieldUpdateOperationsInput
+}
+
+input SeriesWatchlistUpdateOneRequiredWithoutSeriesInput {
+  connect: SeriesWatchlistWhereUniqueInput
+  connectOrCreate: SeriesWatchlistCreateOrConnectWithoutSeriesInput
+  create: SeriesWatchlistCreateWithoutSeriesInput
+  update: SeriesWatchlistUpdateWithoutSeriesInput
+  upsert: SeriesWatchlistUpsertWithoutSeriesInput
+}
+
+input SeriesWatchlistUpdateOneWithoutWatchlistInput {
+  connect: SeriesWatchlistWhereUniqueInput
+  connectOrCreate: SeriesWatchlistCreateOrConnectWithoutWatchlistInput
+  create: SeriesWatchlistCreateWithoutWatchlistInput
+  delete: Boolean
+  disconnect: Boolean
+  update: SeriesWatchlistUpdateWithoutWatchlistInput
+  upsert: SeriesWatchlistUpsertWithoutWatchlistInput
+}
+
+input SeriesWatchlistUpdateWithoutSeriesInput {
+  id: IntFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateOneRequiredWithoutSeriesWatchlistInput
+}
+
+input SeriesWatchlistUpdateWithoutWatchlistInput {
+  id: IntFieldUpdateOperationsInput
+  series: WatchlistedSerieUpdateManyWithoutWatchlistInput
+}
+
+input SeriesWatchlistUpsertWithoutSeriesInput {
+  create: SeriesWatchlistCreateWithoutSeriesInput!
+  update: SeriesWatchlistUpdateWithoutSeriesInput!
+}
+
+input SeriesWatchlistUpsertWithoutWatchlistInput {
+  create: SeriesWatchlistCreateWithoutWatchlistInput!
+  update: SeriesWatchlistUpdateWithoutWatchlistInput!
+}
+
+input SeriesWatchlistWhereInput {
+  AND: [SeriesWatchlistWhereInput!]
+  NOT: [SeriesWatchlistWhereInput!]
+  OR: [SeriesWatchlistWhereInput!]
+  id: IntFilter
+  series: WatchlistedSerieListRelationFilter
+  watchlist: WatchlistRelationFilter
+  watchlistId: IntFilter
+}
+
+input SeriesWatchlistWhereUniqueInput {
+  id: Int
+  watchlistId: Int
+}
+
 type Session {
+  accessToken: String!
+  createdAt: DateTime!
   expires: DateTime!
   id: String!
   sessionToken: String!
+  updatedAt: DateTime!
   user: User!
   userId: String!
 }
 
 type SessionCountAggregate {
   _all: Int!
+  accessToken: Int!
+  createdAt: Int!
   expires: Int!
   id: Int!
   sessionToken: Int!
+  updatedAt: Int!
   userId: Int!
 }
 
 input SessionCountOrderByAggregateInput {
+  accessToken: SortOrder
+  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input SessionCreateInput {
+  accessToken: String!
+  createdAt: DateTime
   expires: DateTime!
   id: String
   sessionToken: String!
+  updatedAt: DateTime
   user: UserCreateNestedOneWithoutSessionsInput!
 }
 
 input SessionCreateManyInput {
+  accessToken: String!
+  createdAt: DateTime
   expires: DateTime!
   id: String
   sessionToken: String!
+  updatedAt: DateTime
   userId: String!
 }
 
 input SessionCreateManyUserInput {
+  accessToken: String!
+  createdAt: DateTime
   expires: DateTime!
   id: String
   sessionToken: String!
+  updatedAt: DateTime
 }
 
 input SessionCreateManyUserInputEnvelope {
@@ -4718,18 +6000,24 @@ input SessionCreateOrConnectWithoutUserInput {
 }
 
 input SessionCreateWithoutUserInput {
+  accessToken: String!
+  createdAt: DateTime
   expires: DateTime!
   id: String
   sessionToken: String!
+  updatedAt: DateTime
 }
 
 type SessionGroupBy {
   _count: SessionCountAggregate
   _max: SessionMaxAggregate
   _min: SessionMinAggregate
+  accessToken: String!
+  createdAt: DateTime!
   expires: DateTime!
   id: String!
   sessionToken: String!
+  updatedAt: DateTime!
   userId: String!
 }
 
@@ -4740,30 +6028,42 @@ input SessionListRelationFilter {
 }
 
 type SessionMaxAggregate {
+  accessToken: String
+  createdAt: DateTime
   expires: DateTime
   id: String
   sessionToken: String
+  updatedAt: DateTime
   userId: String
 }
 
 input SessionMaxOrderByAggregateInput {
+  accessToken: SortOrder
+  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
 type SessionMinAggregate {
+  accessToken: String
+  createdAt: DateTime
   expires: DateTime
   id: String
   sessionToken: String
+  updatedAt: DateTime
   userId: String
 }
 
 input SessionMinOrderByAggregateInput {
+  accessToken: SortOrder
+  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
@@ -4772,6 +6072,7 @@ input SessionOrderByRelationAggregateInput {
 }
 
 enum SessionOrderByRelevanceFieldEnum {
+  accessToken
   id
   sessionToken
   userId
@@ -4787,25 +6088,34 @@ input SessionOrderByWithAggregationInput {
   _count: SessionCountOrderByAggregateInput
   _max: SessionMaxOrderByAggregateInput
   _min: SessionMinOrderByAggregateInput
+  accessToken: SortOrder
+  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input SessionOrderByWithRelationAndSearchRelevanceInput {
   _relevance: SessionOrderByRelevanceInput
+  accessToken: SortOrder
+  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
+  updatedAt: SortOrder
   user: UserOrderByWithRelationAndSearchRelevanceInput
   userId: SortOrder
 }
 
 enum SessionScalarFieldEnum {
+  accessToken
+  createdAt
   expires
   id
   sessionToken
+  updatedAt
   userId
 }
 
@@ -4813,9 +6123,12 @@ input SessionScalarWhereInput {
   AND: [SessionScalarWhereInput!]
   NOT: [SessionScalarWhereInput!]
   OR: [SessionScalarWhereInput!]
+  accessToken: StringFilter
+  createdAt: DateTimeFilter
   expires: DateTimeFilter
   id: StringFilter
   sessionToken: StringFilter
+  updatedAt: DateTimeFilter
   userId: StringFilter
 }
 
@@ -4823,23 +6136,32 @@ input SessionScalarWhereWithAggregatesInput {
   AND: [SessionScalarWhereWithAggregatesInput!]
   NOT: [SessionScalarWhereWithAggregatesInput!]
   OR: [SessionScalarWhereWithAggregatesInput!]
+  accessToken: StringWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
   expires: DateTimeWithAggregatesFilter
   id: StringWithAggregatesFilter
   sessionToken: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
   userId: StringWithAggregatesFilter
 }
 
 input SessionUpdateInput {
+  accessToken: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   expires: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   sessionToken: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutSessionsInput
 }
 
 input SessionUpdateManyMutationInput {
+  accessToken: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   expires: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   sessionToken: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input SessionUpdateManyWithWhereWithoutUserInput {
@@ -4867,9 +6189,12 @@ input SessionUpdateWithWhereUniqueWithoutUserInput {
 }
 
 input SessionUpdateWithoutUserInput {
+  accessToken: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   expires: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   sessionToken: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input SessionUpsertWithWhereUniqueWithoutUserInput {
@@ -4882,14 +6207,18 @@ input SessionWhereInput {
   AND: [SessionWhereInput!]
   NOT: [SessionWhereInput!]
   OR: [SessionWhereInput!]
+  accessToken: StringFilter
+  createdAt: DateTimeFilter
   expires: DateTimeFilter
   id: StringFilter
   sessionToken: StringFilter
+  updatedAt: DateTimeFilter
   user: UserRelationFilter
   userId: StringFilter
 }
 
 input SessionWhereUniqueInput {
+  accessToken: String
   id: String
   sessionToken: String
 }
@@ -4985,13 +6314,17 @@ type User {
   lastName: String
   role: Role!
   sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
+  settings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettings!]!
   updatedAt: DateTime!
   username: String
+  watchlist(cursor: WatchlistWhereUniqueInput, distinct: [WatchlistScalarFieldEnum!], orderBy: [WatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistWhereInput): [Watchlist!]!
 }
 
 type UserCount {
   accounts: Int!
   sessions: Int!
+  settings: Int!
+  watchlist: Int!
 }
 
 type UserCountAggregate {
@@ -5032,8 +6365,10 @@ input UserCreateInput {
   lastName: String
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
+  settings: AppSettingsCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String
+  watchlist: WatchlistCreateNestedManyWithoutUserInput
 }
 
 input UserCreateManyInput {
@@ -5061,6 +6396,18 @@ input UserCreateNestedOneWithoutSessionsInput {
   create: UserCreateWithoutSessionsInput
 }
 
+input UserCreateNestedOneWithoutSettingsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutSettingsInput
+  create: UserCreateWithoutSettingsInput
+}
+
+input UserCreateNestedOneWithoutWatchlistInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutWatchlistInput
+  create: UserCreateWithoutWatchlistInput
+}
+
 input UserCreateOrConnectWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput!
   where: UserWhereUniqueInput!
@@ -5068,6 +6415,16 @@ input UserCreateOrConnectWithoutAccountsInput {
 
 input UserCreateOrConnectWithoutSessionsInput {
   create: UserCreateWithoutSessionsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateOrConnectWithoutSettingsInput {
+  create: UserCreateWithoutSettingsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateOrConnectWithoutWatchlistInput {
+  create: UserCreateWithoutWatchlistInput!
   where: UserWhereUniqueInput!
 }
 
@@ -5081,8 +6438,10 @@ input UserCreateWithoutAccountsInput {
   lastName: String
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
+  settings: AppSettingsCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String
+  watchlist: WatchlistCreateNestedManyWithoutUserInput
 }
 
 input UserCreateWithoutSessionsInput {
@@ -5095,6 +6454,40 @@ input UserCreateWithoutSessionsInput {
   image: String
   lastName: String
   role: Role
+  settings: AppSettingsCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String
+  watchlist: WatchlistCreateNestedManyWithoutUserInput
+}
+
+input UserCreateWithoutSettingsInput {
+  accounts: AccountCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  emailVerified: DateTime
+  firstName: String
+  id: String
+  image: String
+  lastName: String
+  role: Role
+  sessions: SessionCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String
+  watchlist: WatchlistCreateNestedManyWithoutUserInput
+}
+
+input UserCreateWithoutWatchlistInput {
+  accounts: AccountCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  emailVerified: DateTime
+  firstName: String
+  id: String
+  image: String
+  lastName: String
+  role: Role
+  sessions: SessionCreateNestedManyWithoutUserInput
+  settings: AppSettingsCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String
 }
@@ -5210,8 +6603,10 @@ input UserOrderByWithRelationAndSearchRelevanceInput {
   lastName: SortOrder
   role: SortOrder
   sessions: SessionOrderByRelationAggregateInput
+  settings: AppSettingsOrderByRelationAggregateInput
   updatedAt: SortOrder
   username: SortOrder
+  watchlist: WatchlistOrderByRelationAggregateInput
 }
 
 input UserRelationFilter {
@@ -5259,8 +6654,10 @@ input UserUpdateInput {
   lastName: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
+  settings: AppSettingsUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   username: NullableStringFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateManyWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
@@ -5292,6 +6689,24 @@ input UserUpdateOneRequiredWithoutSessionsInput {
   upsert: UserUpsertWithoutSessionsInput
 }
 
+input UserUpdateOneRequiredWithoutWatchlistInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutWatchlistInput
+  create: UserCreateWithoutWatchlistInput
+  update: UserUpdateWithoutWatchlistInput
+  upsert: UserUpsertWithoutWatchlistInput
+}
+
+input UserUpdateOneWithoutSettingsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutSettingsInput
+  create: UserCreateWithoutSettingsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: UserUpdateWithoutSettingsInput
+  upsert: UserUpsertWithoutSettingsInput
+}
+
 input UserUpdateWithoutAccountsInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
@@ -5302,8 +6717,10 @@ input UserUpdateWithoutAccountsInput {
   lastName: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
+  settings: AppSettingsUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   username: NullableStringFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutSessionsInput {
@@ -5316,6 +6733,40 @@ input UserUpdateWithoutSessionsInput {
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
+  settings: AppSettingsUpdateManyWithoutUserInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  username: NullableStringFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutSettingsInput {
+  accounts: AccountUpdateManyWithoutUserInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: NullableStringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
+  lastName: NullableStringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
+  sessions: SessionUpdateManyWithoutUserInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  username: NullableStringFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutWatchlistInput {
+  accounts: AccountUpdateManyWithoutUserInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: NullableStringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
+  lastName: NullableStringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
+  sessions: SessionUpdateManyWithoutUserInput
+  settings: AppSettingsUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   username: NullableStringFieldUpdateOperationsInput
 }
@@ -5328,6 +6779,16 @@ input UserUpsertWithoutAccountsInput {
 input UserUpsertWithoutSessionsInput {
   create: UserCreateWithoutSessionsInput!
   update: UserUpdateWithoutSessionsInput!
+}
+
+input UserUpsertWithoutSettingsInput {
+  create: UserCreateWithoutSettingsInput!
+  update: UserUpdateWithoutSettingsInput!
+}
+
+input UserUpsertWithoutWatchlistInput {
+  create: UserCreateWithoutWatchlistInput!
+  update: UserUpdateWithoutWatchlistInput!
 }
 
 input UserWhereInput {
@@ -5344,8 +6805,10 @@ input UserWhereInput {
   lastName: StringNullableFilter
   role: EnumRoleFilter
   sessions: SessionListRelationFilter
+  settings: AppSettingsListRelationFilter
   updatedAt: DateTimeFilter
   username: StringNullableFilter
+  watchlist: WatchlistListRelationFilter
 }
 
 input UserWhereUniqueInput {
@@ -5355,43 +6818,61 @@ input UserWhereUniqueInput {
 }
 
 type VerificationRequest {
+  createdAt: DateTime!
   expires: DateTime!
+  id: String!
   identifier: String!
   token: String!
+  updatedAt: DateTime!
 }
 
 type VerificationRequestCountAggregate {
   _all: Int!
+  createdAt: Int!
   expires: Int!
+  id: Int!
   identifier: Int!
   token: Int!
+  updatedAt: Int!
 }
 
 input VerificationRequestCountOrderByAggregateInput {
+  createdAt: SortOrder
   expires: SortOrder
+  id: SortOrder
   identifier: SortOrder
   token: SortOrder
+  updatedAt: SortOrder
 }
 
 input VerificationRequestCreateInput {
+  createdAt: DateTime
   expires: DateTime!
+  id: String
   identifier: String!
   token: String!
+  updatedAt: DateTime
 }
 
 input VerificationRequestCreateManyInput {
+  createdAt: DateTime
   expires: DateTime!
+  id: String
   identifier: String!
   token: String!
+  updatedAt: DateTime
 }
 
 type VerificationRequestGroupBy {
   _count: VerificationRequestCountAggregate
   _max: VerificationRequestMaxAggregate
   _min: VerificationRequestMinAggregate
+  createdAt: DateTime!
   expires: DateTime!
+  id: String!
   identifier: String!
   token: String!
+  updatedAt: DateTime!
 }
 
 input VerificationRequestIdentifierTokenCompoundUniqueInput {
@@ -5400,30 +6881,43 @@ input VerificationRequestIdentifierTokenCompoundUniqueInput {
 }
 
 type VerificationRequestMaxAggregate {
+  createdAt: DateTime
   expires: DateTime
+  id: String
   identifier: String
   token: String
+  updatedAt: DateTime
 }
 
 input VerificationRequestMaxOrderByAggregateInput {
+  createdAt: SortOrder
   expires: SortOrder
+  id: SortOrder
   identifier: SortOrder
   token: SortOrder
+  updatedAt: SortOrder
 }
 
 type VerificationRequestMinAggregate {
+  createdAt: DateTime
   expires: DateTime
+  id: String
   identifier: String
   token: String
+  updatedAt: DateTime
 }
 
 input VerificationRequestMinOrderByAggregateInput {
+  createdAt: SortOrder
   expires: SortOrder
+  id: SortOrder
   identifier: SortOrder
   token: SortOrder
+  updatedAt: SortOrder
 }
 
 enum VerificationRequestOrderByRelevanceFieldEnum {
+  id
   identifier
   token
 }
@@ -5438,55 +6932,1556 @@ input VerificationRequestOrderByWithAggregationInput {
   _count: VerificationRequestCountOrderByAggregateInput
   _max: VerificationRequestMaxOrderByAggregateInput
   _min: VerificationRequestMinOrderByAggregateInput
+  createdAt: SortOrder
   expires: SortOrder
+  id: SortOrder
   identifier: SortOrder
   token: SortOrder
+  updatedAt: SortOrder
 }
 
 input VerificationRequestOrderByWithRelationAndSearchRelevanceInput {
   _relevance: VerificationRequestOrderByRelevanceInput
+  createdAt: SortOrder
   expires: SortOrder
+  id: SortOrder
   identifier: SortOrder
   token: SortOrder
+  updatedAt: SortOrder
 }
 
 enum VerificationRequestScalarFieldEnum {
+  createdAt
   expires
+  id
   identifier
   token
+  updatedAt
 }
 
 input VerificationRequestScalarWhereWithAggregatesInput {
   AND: [VerificationRequestScalarWhereWithAggregatesInput!]
   NOT: [VerificationRequestScalarWhereWithAggregatesInput!]
   OR: [VerificationRequestScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
   expires: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
   identifier: StringWithAggregatesFilter
   token: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
 }
 
 input VerificationRequestUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
   expires: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
   identifier: StringFieldUpdateOperationsInput
   token: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input VerificationRequestUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
   expires: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
   identifier: StringFieldUpdateOperationsInput
   token: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input VerificationRequestWhereInput {
   AND: [VerificationRequestWhereInput!]
   NOT: [VerificationRequestWhereInput!]
   OR: [VerificationRequestWhereInput!]
+  createdAt: DateTimeFilter
   expires: DateTimeFilter
+  id: StringFilter
   identifier: StringFilter
   token: StringFilter
+  updatedAt: DateTimeFilter
 }
 
 input VerificationRequestWhereUniqueInput {
+  id: String
   identifier_token: VerificationRequestIdentifierTokenCompoundUniqueInput
   token: String
+}
+
+type Watchlist {
+  createdAt: DateTime!
+  default: Boolean!
+  episodeWatchlist: EpisodesWatchlist
+  id: Int!
+  movieWatchlist: MoviesWatchlist
+  name: String
+  seriesWatchlist: SeriesWatchlist
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type WatchlistAvgAggregate {
+  id: Float
+}
+
+input WatchlistAvgOrderByAggregateInput {
+  id: SortOrder
+}
+
+type WatchlistCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  default: Int!
+  id: Int!
+  name: Int!
+  updatedAt: Int!
+  userId: Int!
+}
+
+input WatchlistCountOrderByAggregateInput {
+  createdAt: SortOrder
+  default: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input WatchlistCreateInput {
+  createdAt: DateTime
+  default: Boolean!
+  episodeWatchlist: EpisodesWatchlistCreateNestedOneWithoutWatchlistInput
+  movieWatchlist: MoviesWatchlistCreateNestedOneWithoutWatchlistInput
+  name: String
+  seriesWatchlist: SeriesWatchlistCreateNestedOneWithoutWatchlistInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutWatchlistInput!
+}
+
+input WatchlistCreateManyInput {
+  createdAt: DateTime
+  default: Boolean!
+  id: Int
+  name: String
+  updatedAt: DateTime
+  userId: String!
+}
+
+input WatchlistCreateManyUserInput {
+  createdAt: DateTime
+  default: Boolean!
+  id: Int
+  name: String
+  updatedAt: DateTime
+}
+
+input WatchlistCreateManyUserInputEnvelope {
+  data: [WatchlistCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input WatchlistCreateNestedManyWithoutUserInput {
+  connect: [WatchlistWhereUniqueInput!]
+  connectOrCreate: [WatchlistCreateOrConnectWithoutUserInput!]
+  create: [WatchlistCreateWithoutUserInput!]
+  createMany: WatchlistCreateManyUserInputEnvelope
+}
+
+input WatchlistCreateNestedOneWithoutEpisodeWatchlistInput {
+  connect: WatchlistWhereUniqueInput
+  connectOrCreate: WatchlistCreateOrConnectWithoutEpisodeWatchlistInput
+  create: WatchlistCreateWithoutEpisodeWatchlistInput
+}
+
+input WatchlistCreateNestedOneWithoutMovieWatchlistInput {
+  connect: WatchlistWhereUniqueInput
+  connectOrCreate: WatchlistCreateOrConnectWithoutMovieWatchlistInput
+  create: WatchlistCreateWithoutMovieWatchlistInput
+}
+
+input WatchlistCreateNestedOneWithoutSeriesWatchlistInput {
+  connect: WatchlistWhereUniqueInput
+  connectOrCreate: WatchlistCreateOrConnectWithoutSeriesWatchlistInput
+  create: WatchlistCreateWithoutSeriesWatchlistInput
+}
+
+input WatchlistCreateOrConnectWithoutEpisodeWatchlistInput {
+  create: WatchlistCreateWithoutEpisodeWatchlistInput!
+  where: WatchlistWhereUniqueInput!
+}
+
+input WatchlistCreateOrConnectWithoutMovieWatchlistInput {
+  create: WatchlistCreateWithoutMovieWatchlistInput!
+  where: WatchlistWhereUniqueInput!
+}
+
+input WatchlistCreateOrConnectWithoutSeriesWatchlistInput {
+  create: WatchlistCreateWithoutSeriesWatchlistInput!
+  where: WatchlistWhereUniqueInput!
+}
+
+input WatchlistCreateOrConnectWithoutUserInput {
+  create: WatchlistCreateWithoutUserInput!
+  where: WatchlistWhereUniqueInput!
+}
+
+input WatchlistCreateWithoutEpisodeWatchlistInput {
+  createdAt: DateTime
+  default: Boolean!
+  movieWatchlist: MoviesWatchlistCreateNestedOneWithoutWatchlistInput
+  name: String
+  seriesWatchlist: SeriesWatchlistCreateNestedOneWithoutWatchlistInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutWatchlistInput!
+}
+
+input WatchlistCreateWithoutMovieWatchlistInput {
+  createdAt: DateTime
+  default: Boolean!
+  episodeWatchlist: EpisodesWatchlistCreateNestedOneWithoutWatchlistInput
+  name: String
+  seriesWatchlist: SeriesWatchlistCreateNestedOneWithoutWatchlistInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutWatchlistInput!
+}
+
+input WatchlistCreateWithoutSeriesWatchlistInput {
+  createdAt: DateTime
+  default: Boolean!
+  episodeWatchlist: EpisodesWatchlistCreateNestedOneWithoutWatchlistInput
+  movieWatchlist: MoviesWatchlistCreateNestedOneWithoutWatchlistInput
+  name: String
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutWatchlistInput!
+}
+
+input WatchlistCreateWithoutUserInput {
+  createdAt: DateTime
+  default: Boolean!
+  episodeWatchlist: EpisodesWatchlistCreateNestedOneWithoutWatchlistInput
+  movieWatchlist: MoviesWatchlistCreateNestedOneWithoutWatchlistInput
+  name: String
+  seriesWatchlist: SeriesWatchlistCreateNestedOneWithoutWatchlistInput
+  updatedAt: DateTime
+}
+
+type WatchlistGroupBy {
+  _avg: WatchlistAvgAggregate
+  _count: WatchlistCountAggregate
+  _max: WatchlistMaxAggregate
+  _min: WatchlistMinAggregate
+  _sum: WatchlistSumAggregate
+  createdAt: DateTime!
+  default: Boolean!
+  id: Int!
+  name: String
+  updatedAt: DateTime!
+  userId: String!
+}
+
+input WatchlistListRelationFilter {
+  every: WatchlistWhereInput
+  none: WatchlistWhereInput
+  some: WatchlistWhereInput
+}
+
+type WatchlistMaxAggregate {
+  createdAt: DateTime
+  default: Boolean
+  id: Int
+  name: String
+  updatedAt: DateTime
+  userId: String
+}
+
+input WatchlistMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  default: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+type WatchlistMinAggregate {
+  createdAt: DateTime
+  default: Boolean
+  id: Int
+  name: String
+  updatedAt: DateTime
+  userId: String
+}
+
+input WatchlistMinOrderByAggregateInput {
+  createdAt: SortOrder
+  default: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input WatchlistOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+enum WatchlistOrderByRelevanceFieldEnum {
+  name
+  userId
+}
+
+input WatchlistOrderByRelevanceInput {
+  fields: [WatchlistOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input WatchlistOrderByWithAggregationInput {
+  _avg: WatchlistAvgOrderByAggregateInput
+  _count: WatchlistCountOrderByAggregateInput
+  _max: WatchlistMaxOrderByAggregateInput
+  _min: WatchlistMinOrderByAggregateInput
+  _sum: WatchlistSumOrderByAggregateInput
+  createdAt: SortOrder
+  default: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input WatchlistOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: WatchlistOrderByRelevanceInput
+  createdAt: SortOrder
+  default: SortOrder
+  episodeWatchlist: EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  id: SortOrder
+  movieWatchlist: MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  name: SortOrder
+  seriesWatchlist: SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  updatedAt: SortOrder
+  user: UserOrderByWithRelationAndSearchRelevanceInput
+  userId: SortOrder
+}
+
+input WatchlistRelationFilter {
+  is: WatchlistWhereInput
+  isNot: WatchlistWhereInput
+}
+
+enum WatchlistScalarFieldEnum {
+  createdAt
+  default
+  id
+  name
+  updatedAt
+  userId
+}
+
+input WatchlistScalarWhereInput {
+  AND: [WatchlistScalarWhereInput!]
+  NOT: [WatchlistScalarWhereInput!]
+  OR: [WatchlistScalarWhereInput!]
+  createdAt: DateTimeFilter
+  default: BoolFilter
+  id: IntFilter
+  name: StringNullableFilter
+  updatedAt: DateTimeFilter
+  userId: StringFilter
+}
+
+input WatchlistScalarWhereWithAggregatesInput {
+  AND: [WatchlistScalarWhereWithAggregatesInput!]
+  NOT: [WatchlistScalarWhereWithAggregatesInput!]
+  OR: [WatchlistScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  default: BoolWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  name: StringNullableWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  userId: StringWithAggregatesFilter
+}
+
+type WatchlistSumAggregate {
+  id: Int
+}
+
+input WatchlistSumOrderByAggregateInput {
+  id: SortOrder
+}
+
+input WatchlistUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  default: BoolFieldUpdateOperationsInput
+  episodeWatchlist: EpisodesWatchlistUpdateOneWithoutWatchlistInput
+  movieWatchlist: MoviesWatchlistUpdateOneWithoutWatchlistInput
+  name: NullableStringFieldUpdateOperationsInput
+  seriesWatchlist: SeriesWatchlistUpdateOneWithoutWatchlistInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutWatchlistInput
+}
+
+input WatchlistUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  default: BoolFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input WatchlistUpdateManyWithWhereWithoutUserInput {
+  data: WatchlistUpdateManyMutationInput!
+  where: WatchlistScalarWhereInput!
+}
+
+input WatchlistUpdateManyWithoutUserInput {
+  connect: [WatchlistWhereUniqueInput!]
+  connectOrCreate: [WatchlistCreateOrConnectWithoutUserInput!]
+  create: [WatchlistCreateWithoutUserInput!]
+  createMany: WatchlistCreateManyUserInputEnvelope
+  delete: [WatchlistWhereUniqueInput!]
+  deleteMany: [WatchlistScalarWhereInput!]
+  disconnect: [WatchlistWhereUniqueInput!]
+  set: [WatchlistWhereUniqueInput!]
+  update: [WatchlistUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [WatchlistUpdateManyWithWhereWithoutUserInput!]
+  upsert: [WatchlistUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input WatchlistUpdateOneRequiredWithoutEpisodeWatchlistInput {
+  connect: WatchlistWhereUniqueInput
+  connectOrCreate: WatchlistCreateOrConnectWithoutEpisodeWatchlistInput
+  create: WatchlistCreateWithoutEpisodeWatchlistInput
+  update: WatchlistUpdateWithoutEpisodeWatchlistInput
+  upsert: WatchlistUpsertWithoutEpisodeWatchlistInput
+}
+
+input WatchlistUpdateOneRequiredWithoutMovieWatchlistInput {
+  connect: WatchlistWhereUniqueInput
+  connectOrCreate: WatchlistCreateOrConnectWithoutMovieWatchlistInput
+  create: WatchlistCreateWithoutMovieWatchlistInput
+  update: WatchlistUpdateWithoutMovieWatchlistInput
+  upsert: WatchlistUpsertWithoutMovieWatchlistInput
+}
+
+input WatchlistUpdateOneRequiredWithoutSeriesWatchlistInput {
+  connect: WatchlistWhereUniqueInput
+  connectOrCreate: WatchlistCreateOrConnectWithoutSeriesWatchlistInput
+  create: WatchlistCreateWithoutSeriesWatchlistInput
+  update: WatchlistUpdateWithoutSeriesWatchlistInput
+  upsert: WatchlistUpsertWithoutSeriesWatchlistInput
+}
+
+input WatchlistUpdateWithWhereUniqueWithoutUserInput {
+  data: WatchlistUpdateWithoutUserInput!
+  where: WatchlistWhereUniqueInput!
+}
+
+input WatchlistUpdateWithoutEpisodeWatchlistInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  default: BoolFieldUpdateOperationsInput
+  movieWatchlist: MoviesWatchlistUpdateOneWithoutWatchlistInput
+  name: NullableStringFieldUpdateOperationsInput
+  seriesWatchlist: SeriesWatchlistUpdateOneWithoutWatchlistInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutWatchlistInput
+}
+
+input WatchlistUpdateWithoutMovieWatchlistInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  default: BoolFieldUpdateOperationsInput
+  episodeWatchlist: EpisodesWatchlistUpdateOneWithoutWatchlistInput
+  name: NullableStringFieldUpdateOperationsInput
+  seriesWatchlist: SeriesWatchlistUpdateOneWithoutWatchlistInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutWatchlistInput
+}
+
+input WatchlistUpdateWithoutSeriesWatchlistInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  default: BoolFieldUpdateOperationsInput
+  episodeWatchlist: EpisodesWatchlistUpdateOneWithoutWatchlistInput
+  movieWatchlist: MoviesWatchlistUpdateOneWithoutWatchlistInput
+  name: NullableStringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutWatchlistInput
+}
+
+input WatchlistUpdateWithoutUserInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  default: BoolFieldUpdateOperationsInput
+  episodeWatchlist: EpisodesWatchlistUpdateOneWithoutWatchlistInput
+  movieWatchlist: MoviesWatchlistUpdateOneWithoutWatchlistInput
+  name: NullableStringFieldUpdateOperationsInput
+  seriesWatchlist: SeriesWatchlistUpdateOneWithoutWatchlistInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input WatchlistUpsertWithWhereUniqueWithoutUserInput {
+  create: WatchlistCreateWithoutUserInput!
+  update: WatchlistUpdateWithoutUserInput!
+  where: WatchlistWhereUniqueInput!
+}
+
+input WatchlistUpsertWithoutEpisodeWatchlistInput {
+  create: WatchlistCreateWithoutEpisodeWatchlistInput!
+  update: WatchlistUpdateWithoutEpisodeWatchlistInput!
+}
+
+input WatchlistUpsertWithoutMovieWatchlistInput {
+  create: WatchlistCreateWithoutMovieWatchlistInput!
+  update: WatchlistUpdateWithoutMovieWatchlistInput!
+}
+
+input WatchlistUpsertWithoutSeriesWatchlistInput {
+  create: WatchlistCreateWithoutSeriesWatchlistInput!
+  update: WatchlistUpdateWithoutSeriesWatchlistInput!
+}
+
+input WatchlistWhereInput {
+  AND: [WatchlistWhereInput!]
+  NOT: [WatchlistWhereInput!]
+  OR: [WatchlistWhereInput!]
+  createdAt: DateTimeFilter
+  default: BoolFilter
+  episodeWatchlist: EpisodesWatchlistRelationFilter
+  id: IntFilter
+  movieWatchlist: MoviesWatchlistRelationFilter
+  name: StringNullableFilter
+  seriesWatchlist: SeriesWatchlistRelationFilter
+  updatedAt: DateTimeFilter
+  user: UserRelationFilter
+  userId: StringFilter
+}
+
+input WatchlistWhereUniqueInput {
+  id: Int
+}
+
+type WatchlistedEpisode {
+  addedAt: DateTime!
+  episode: Episode!
+  episodeId: Int!
+  seen: Boolean!
+  seenAt: DateTime
+  watchlist: EpisodesWatchlist!
+  watchlistId: Int!
+}
+
+type WatchlistedEpisodeAvgAggregate {
+  episodeId: Float
+  watchlistId: Float
+}
+
+input WatchlistedEpisodeAvgOrderByAggregateInput {
+  episodeId: SortOrder
+  watchlistId: SortOrder
+}
+
+type WatchlistedEpisodeCountAggregate {
+  _all: Int!
+  addedAt: Int!
+  episodeId: Int!
+  seen: Int!
+  seenAt: Int!
+  watchlistId: Int!
+}
+
+input WatchlistedEpisodeCountOrderByAggregateInput {
+  addedAt: SortOrder
+  episodeId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedEpisodeCreateInput {
+  addedAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutWatchlistInput!
+  seen: Boolean
+  seenAt: DateTime
+  watchlist: EpisodesWatchlistCreateNestedOneWithoutEpisodesInput!
+}
+
+input WatchlistedEpisodeCreateManyEpisodeInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  watchlistId: Int!
+}
+
+input WatchlistedEpisodeCreateManyEpisodeInputEnvelope {
+  data: [WatchlistedEpisodeCreateManyEpisodeInput!]!
+  skipDuplicates: Boolean
+}
+
+input WatchlistedEpisodeCreateManyInput {
+  addedAt: DateTime
+  episodeId: Int!
+  seen: Boolean
+  seenAt: DateTime
+  watchlistId: Int!
+}
+
+input WatchlistedEpisodeCreateManyWatchlistInput {
+  addedAt: DateTime
+  episodeId: Int!
+  seen: Boolean
+  seenAt: DateTime
+}
+
+input WatchlistedEpisodeCreateManyWatchlistInputEnvelope {
+  data: [WatchlistedEpisodeCreateManyWatchlistInput!]!
+  skipDuplicates: Boolean
+}
+
+input WatchlistedEpisodeCreateNestedManyWithoutEpisodeInput {
+  connect: [WatchlistedEpisodeWhereUniqueInput!]
+  connectOrCreate: [WatchlistedEpisodeCreateOrConnectWithoutEpisodeInput!]
+  create: [WatchlistedEpisodeCreateWithoutEpisodeInput!]
+  createMany: WatchlistedEpisodeCreateManyEpisodeInputEnvelope
+}
+
+input WatchlistedEpisodeCreateNestedManyWithoutWatchlistInput {
+  connect: [WatchlistedEpisodeWhereUniqueInput!]
+  connectOrCreate: [WatchlistedEpisodeCreateOrConnectWithoutWatchlistInput!]
+  create: [WatchlistedEpisodeCreateWithoutWatchlistInput!]
+  createMany: WatchlistedEpisodeCreateManyWatchlistInputEnvelope
+}
+
+input WatchlistedEpisodeCreateOrConnectWithoutEpisodeInput {
+  create: WatchlistedEpisodeCreateWithoutEpisodeInput!
+  where: WatchlistedEpisodeWhereUniqueInput!
+}
+
+input WatchlistedEpisodeCreateOrConnectWithoutWatchlistInput {
+  create: WatchlistedEpisodeCreateWithoutWatchlistInput!
+  where: WatchlistedEpisodeWhereUniqueInput!
+}
+
+input WatchlistedEpisodeCreateWithoutEpisodeInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  watchlist: EpisodesWatchlistCreateNestedOneWithoutEpisodesInput!
+}
+
+input WatchlistedEpisodeCreateWithoutWatchlistInput {
+  addedAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutWatchlistInput!
+  seen: Boolean
+  seenAt: DateTime
+}
+
+input WatchlistedEpisodeEpisodeIdWatchlistIdCompoundUniqueInput {
+  episodeId: Int!
+  watchlistId: Int!
+}
+
+type WatchlistedEpisodeGroupBy {
+  _avg: WatchlistedEpisodeAvgAggregate
+  _count: WatchlistedEpisodeCountAggregate
+  _max: WatchlistedEpisodeMaxAggregate
+  _min: WatchlistedEpisodeMinAggregate
+  _sum: WatchlistedEpisodeSumAggregate
+  addedAt: DateTime!
+  episodeId: Int!
+  seen: Boolean!
+  seenAt: DateTime
+  watchlistId: Int!
+}
+
+input WatchlistedEpisodeListRelationFilter {
+  every: WatchlistedEpisodeWhereInput
+  none: WatchlistedEpisodeWhereInput
+  some: WatchlistedEpisodeWhereInput
+}
+
+type WatchlistedEpisodeMaxAggregate {
+  addedAt: DateTime
+  episodeId: Int
+  seen: Boolean
+  seenAt: DateTime
+  watchlistId: Int
+}
+
+input WatchlistedEpisodeMaxOrderByAggregateInput {
+  addedAt: SortOrder
+  episodeId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlistId: SortOrder
+}
+
+type WatchlistedEpisodeMinAggregate {
+  addedAt: DateTime
+  episodeId: Int
+  seen: Boolean
+  seenAt: DateTime
+  watchlistId: Int
+}
+
+input WatchlistedEpisodeMinOrderByAggregateInput {
+  addedAt: SortOrder
+  episodeId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedEpisodeOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input WatchlistedEpisodeOrderByWithAggregationInput {
+  _avg: WatchlistedEpisodeAvgOrderByAggregateInput
+  _count: WatchlistedEpisodeCountOrderByAggregateInput
+  _max: WatchlistedEpisodeMaxOrderByAggregateInput
+  _min: WatchlistedEpisodeMinOrderByAggregateInput
+  _sum: WatchlistedEpisodeSumOrderByAggregateInput
+  addedAt: SortOrder
+  episodeId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput {
+  addedAt: SortOrder
+  episode: EpisodeOrderByWithRelationAndSearchRelevanceInput
+  episodeId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlist: EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlistId: SortOrder
+}
+
+enum WatchlistedEpisodeScalarFieldEnum {
+  addedAt
+  episodeId
+  seen
+  seenAt
+  watchlistId
+}
+
+input WatchlistedEpisodeScalarWhereInput {
+  AND: [WatchlistedEpisodeScalarWhereInput!]
+  NOT: [WatchlistedEpisodeScalarWhereInput!]
+  OR: [WatchlistedEpisodeScalarWhereInput!]
+  addedAt: DateTimeFilter
+  episodeId: IntFilter
+  seen: BoolFilter
+  seenAt: DateTimeNullableFilter
+  watchlistId: IntFilter
+}
+
+input WatchlistedEpisodeScalarWhereWithAggregatesInput {
+  AND: [WatchlistedEpisodeScalarWhereWithAggregatesInput!]
+  NOT: [WatchlistedEpisodeScalarWhereWithAggregatesInput!]
+  OR: [WatchlistedEpisodeScalarWhereWithAggregatesInput!]
+  addedAt: DateTimeWithAggregatesFilter
+  episodeId: IntWithAggregatesFilter
+  seen: BoolWithAggregatesFilter
+  seenAt: DateTimeNullableWithAggregatesFilter
+  watchlistId: IntWithAggregatesFilter
+}
+
+type WatchlistedEpisodeSumAggregate {
+  episodeId: Int
+  watchlistId: Int
+}
+
+input WatchlistedEpisodeSumOrderByAggregateInput {
+  episodeId: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedEpisodeUpdateInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneRequiredWithoutWatchlistInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+  watchlist: EpisodesWatchlistUpdateOneRequiredWithoutEpisodesInput
+}
+
+input WatchlistedEpisodeUpdateManyMutationInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input WatchlistedEpisodeUpdateManyWithWhereWithoutEpisodeInput {
+  data: WatchlistedEpisodeUpdateManyMutationInput!
+  where: WatchlistedEpisodeScalarWhereInput!
+}
+
+input WatchlistedEpisodeUpdateManyWithWhereWithoutWatchlistInput {
+  data: WatchlistedEpisodeUpdateManyMutationInput!
+  where: WatchlistedEpisodeScalarWhereInput!
+}
+
+input WatchlistedEpisodeUpdateManyWithoutEpisodeInput {
+  connect: [WatchlistedEpisodeWhereUniqueInput!]
+  connectOrCreate: [WatchlistedEpisodeCreateOrConnectWithoutEpisodeInput!]
+  create: [WatchlistedEpisodeCreateWithoutEpisodeInput!]
+  createMany: WatchlistedEpisodeCreateManyEpisodeInputEnvelope
+  delete: [WatchlistedEpisodeWhereUniqueInput!]
+  deleteMany: [WatchlistedEpisodeScalarWhereInput!]
+  disconnect: [WatchlistedEpisodeWhereUniqueInput!]
+  set: [WatchlistedEpisodeWhereUniqueInput!]
+  update: [WatchlistedEpisodeUpdateWithWhereUniqueWithoutEpisodeInput!]
+  updateMany: [WatchlistedEpisodeUpdateManyWithWhereWithoutEpisodeInput!]
+  upsert: [WatchlistedEpisodeUpsertWithWhereUniqueWithoutEpisodeInput!]
+}
+
+input WatchlistedEpisodeUpdateManyWithoutWatchlistInput {
+  connect: [WatchlistedEpisodeWhereUniqueInput!]
+  connectOrCreate: [WatchlistedEpisodeCreateOrConnectWithoutWatchlistInput!]
+  create: [WatchlistedEpisodeCreateWithoutWatchlistInput!]
+  createMany: WatchlistedEpisodeCreateManyWatchlistInputEnvelope
+  delete: [WatchlistedEpisodeWhereUniqueInput!]
+  deleteMany: [WatchlistedEpisodeScalarWhereInput!]
+  disconnect: [WatchlistedEpisodeWhereUniqueInput!]
+  set: [WatchlistedEpisodeWhereUniqueInput!]
+  update: [WatchlistedEpisodeUpdateWithWhereUniqueWithoutWatchlistInput!]
+  updateMany: [WatchlistedEpisodeUpdateManyWithWhereWithoutWatchlistInput!]
+  upsert: [WatchlistedEpisodeUpsertWithWhereUniqueWithoutWatchlistInput!]
+}
+
+input WatchlistedEpisodeUpdateWithWhereUniqueWithoutEpisodeInput {
+  data: WatchlistedEpisodeUpdateWithoutEpisodeInput!
+  where: WatchlistedEpisodeWhereUniqueInput!
+}
+
+input WatchlistedEpisodeUpdateWithWhereUniqueWithoutWatchlistInput {
+  data: WatchlistedEpisodeUpdateWithoutWatchlistInput!
+  where: WatchlistedEpisodeWhereUniqueInput!
+}
+
+input WatchlistedEpisodeUpdateWithoutEpisodeInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+  watchlist: EpisodesWatchlistUpdateOneRequiredWithoutEpisodesInput
+}
+
+input WatchlistedEpisodeUpdateWithoutWatchlistInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneRequiredWithoutWatchlistInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input WatchlistedEpisodeUpsertWithWhereUniqueWithoutEpisodeInput {
+  create: WatchlistedEpisodeCreateWithoutEpisodeInput!
+  update: WatchlistedEpisodeUpdateWithoutEpisodeInput!
+  where: WatchlistedEpisodeWhereUniqueInput!
+}
+
+input WatchlistedEpisodeUpsertWithWhereUniqueWithoutWatchlistInput {
+  create: WatchlistedEpisodeCreateWithoutWatchlistInput!
+  update: WatchlistedEpisodeUpdateWithoutWatchlistInput!
+  where: WatchlistedEpisodeWhereUniqueInput!
+}
+
+input WatchlistedEpisodeWhereInput {
+  AND: [WatchlistedEpisodeWhereInput!]
+  NOT: [WatchlistedEpisodeWhereInput!]
+  OR: [WatchlistedEpisodeWhereInput!]
+  addedAt: DateTimeFilter
+  episode: EpisodeRelationFilter
+  episodeId: IntFilter
+  seen: BoolFilter
+  seenAt: DateTimeNullableFilter
+  watchlist: EpisodesWatchlistRelationFilter
+  watchlistId: IntFilter
+}
+
+input WatchlistedEpisodeWhereUniqueInput {
+  episodeId_watchlistId: WatchlistedEpisodeEpisodeIdWatchlistIdCompoundUniqueInput
+}
+
+type WatchlistedMovie {
+  addedAt: DateTime!
+  movie: Movie!
+  movieId: Int!
+  seen: Boolean!
+  seenAt: DateTime
+  watchlist: MoviesWatchlist!
+  watchlistId: Int!
+}
+
+type WatchlistedMovieAvgAggregate {
+  movieId: Float
+  watchlistId: Float
+}
+
+input WatchlistedMovieAvgOrderByAggregateInput {
+  movieId: SortOrder
+  watchlistId: SortOrder
+}
+
+type WatchlistedMovieCountAggregate {
+  _all: Int!
+  addedAt: Int!
+  movieId: Int!
+  seen: Int!
+  seenAt: Int!
+  watchlistId: Int!
+}
+
+input WatchlistedMovieCountOrderByAggregateInput {
+  addedAt: SortOrder
+  movieId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedMovieCreateInput {
+  addedAt: DateTime
+  movie: MovieCreateNestedOneWithoutWatchlistInput!
+  seen: Boolean
+  seenAt: DateTime
+  watchlist: MoviesWatchlistCreateNestedOneWithoutMoviesInput!
+}
+
+input WatchlistedMovieCreateManyInput {
+  addedAt: DateTime
+  movieId: Int!
+  seen: Boolean
+  seenAt: DateTime
+  watchlistId: Int!
+}
+
+input WatchlistedMovieCreateManyMovieInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  watchlistId: Int!
+}
+
+input WatchlistedMovieCreateManyMovieInputEnvelope {
+  data: [WatchlistedMovieCreateManyMovieInput!]!
+  skipDuplicates: Boolean
+}
+
+input WatchlistedMovieCreateManyWatchlistInput {
+  addedAt: DateTime
+  movieId: Int!
+  seen: Boolean
+  seenAt: DateTime
+}
+
+input WatchlistedMovieCreateManyWatchlistInputEnvelope {
+  data: [WatchlistedMovieCreateManyWatchlistInput!]!
+  skipDuplicates: Boolean
+}
+
+input WatchlistedMovieCreateNestedManyWithoutMovieInput {
+  connect: [WatchlistedMovieWhereUniqueInput!]
+  connectOrCreate: [WatchlistedMovieCreateOrConnectWithoutMovieInput!]
+  create: [WatchlistedMovieCreateWithoutMovieInput!]
+  createMany: WatchlistedMovieCreateManyMovieInputEnvelope
+}
+
+input WatchlistedMovieCreateNestedManyWithoutWatchlistInput {
+  connect: [WatchlistedMovieWhereUniqueInput!]
+  connectOrCreate: [WatchlistedMovieCreateOrConnectWithoutWatchlistInput!]
+  create: [WatchlistedMovieCreateWithoutWatchlistInput!]
+  createMany: WatchlistedMovieCreateManyWatchlistInputEnvelope
+}
+
+input WatchlistedMovieCreateOrConnectWithoutMovieInput {
+  create: WatchlistedMovieCreateWithoutMovieInput!
+  where: WatchlistedMovieWhereUniqueInput!
+}
+
+input WatchlistedMovieCreateOrConnectWithoutWatchlistInput {
+  create: WatchlistedMovieCreateWithoutWatchlistInput!
+  where: WatchlistedMovieWhereUniqueInput!
+}
+
+input WatchlistedMovieCreateWithoutMovieInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  watchlist: MoviesWatchlistCreateNestedOneWithoutMoviesInput!
+}
+
+input WatchlistedMovieCreateWithoutWatchlistInput {
+  addedAt: DateTime
+  movie: MovieCreateNestedOneWithoutWatchlistInput!
+  seen: Boolean
+  seenAt: DateTime
+}
+
+type WatchlistedMovieGroupBy {
+  _avg: WatchlistedMovieAvgAggregate
+  _count: WatchlistedMovieCountAggregate
+  _max: WatchlistedMovieMaxAggregate
+  _min: WatchlistedMovieMinAggregate
+  _sum: WatchlistedMovieSumAggregate
+  addedAt: DateTime!
+  movieId: Int!
+  seen: Boolean!
+  seenAt: DateTime
+  watchlistId: Int!
+}
+
+input WatchlistedMovieListRelationFilter {
+  every: WatchlistedMovieWhereInput
+  none: WatchlistedMovieWhereInput
+  some: WatchlistedMovieWhereInput
+}
+
+type WatchlistedMovieMaxAggregate {
+  addedAt: DateTime
+  movieId: Int
+  seen: Boolean
+  seenAt: DateTime
+  watchlistId: Int
+}
+
+input WatchlistedMovieMaxOrderByAggregateInput {
+  addedAt: SortOrder
+  movieId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlistId: SortOrder
+}
+
+type WatchlistedMovieMinAggregate {
+  addedAt: DateTime
+  movieId: Int
+  seen: Boolean
+  seenAt: DateTime
+  watchlistId: Int
+}
+
+input WatchlistedMovieMinOrderByAggregateInput {
+  addedAt: SortOrder
+  movieId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedMovieMovieIdWatchlistIdCompoundUniqueInput {
+  movieId: Int!
+  watchlistId: Int!
+}
+
+input WatchlistedMovieOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input WatchlistedMovieOrderByWithAggregationInput {
+  _avg: WatchlistedMovieAvgOrderByAggregateInput
+  _count: WatchlistedMovieCountOrderByAggregateInput
+  _max: WatchlistedMovieMaxOrderByAggregateInput
+  _min: WatchlistedMovieMinOrderByAggregateInput
+  _sum: WatchlistedMovieSumOrderByAggregateInput
+  addedAt: SortOrder
+  movieId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput {
+  addedAt: SortOrder
+  movie: MovieOrderByWithRelationAndSearchRelevanceInput
+  movieId: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  watchlist: MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlistId: SortOrder
+}
+
+enum WatchlistedMovieScalarFieldEnum {
+  addedAt
+  movieId
+  seen
+  seenAt
+  watchlistId
+}
+
+input WatchlistedMovieScalarWhereInput {
+  AND: [WatchlistedMovieScalarWhereInput!]
+  NOT: [WatchlistedMovieScalarWhereInput!]
+  OR: [WatchlistedMovieScalarWhereInput!]
+  addedAt: DateTimeFilter
+  movieId: IntFilter
+  seen: BoolFilter
+  seenAt: DateTimeNullableFilter
+  watchlistId: IntFilter
+}
+
+input WatchlistedMovieScalarWhereWithAggregatesInput {
+  AND: [WatchlistedMovieScalarWhereWithAggregatesInput!]
+  NOT: [WatchlistedMovieScalarWhereWithAggregatesInput!]
+  OR: [WatchlistedMovieScalarWhereWithAggregatesInput!]
+  addedAt: DateTimeWithAggregatesFilter
+  movieId: IntWithAggregatesFilter
+  seen: BoolWithAggregatesFilter
+  seenAt: DateTimeNullableWithAggregatesFilter
+  watchlistId: IntWithAggregatesFilter
+}
+
+type WatchlistedMovieSumAggregate {
+  movieId: Int
+  watchlistId: Int
+}
+
+input WatchlistedMovieSumOrderByAggregateInput {
+  movieId: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedMovieUpdateInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  movie: MovieUpdateOneRequiredWithoutWatchlistInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+  watchlist: MoviesWatchlistUpdateOneRequiredWithoutMoviesInput
+}
+
+input WatchlistedMovieUpdateManyMutationInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input WatchlistedMovieUpdateManyWithWhereWithoutMovieInput {
+  data: WatchlistedMovieUpdateManyMutationInput!
+  where: WatchlistedMovieScalarWhereInput!
+}
+
+input WatchlistedMovieUpdateManyWithWhereWithoutWatchlistInput {
+  data: WatchlistedMovieUpdateManyMutationInput!
+  where: WatchlistedMovieScalarWhereInput!
+}
+
+input WatchlistedMovieUpdateManyWithoutMovieInput {
+  connect: [WatchlistedMovieWhereUniqueInput!]
+  connectOrCreate: [WatchlistedMovieCreateOrConnectWithoutMovieInput!]
+  create: [WatchlistedMovieCreateWithoutMovieInput!]
+  createMany: WatchlistedMovieCreateManyMovieInputEnvelope
+  delete: [WatchlistedMovieWhereUniqueInput!]
+  deleteMany: [WatchlistedMovieScalarWhereInput!]
+  disconnect: [WatchlistedMovieWhereUniqueInput!]
+  set: [WatchlistedMovieWhereUniqueInput!]
+  update: [WatchlistedMovieUpdateWithWhereUniqueWithoutMovieInput!]
+  updateMany: [WatchlistedMovieUpdateManyWithWhereWithoutMovieInput!]
+  upsert: [WatchlistedMovieUpsertWithWhereUniqueWithoutMovieInput!]
+}
+
+input WatchlistedMovieUpdateManyWithoutWatchlistInput {
+  connect: [WatchlistedMovieWhereUniqueInput!]
+  connectOrCreate: [WatchlistedMovieCreateOrConnectWithoutWatchlistInput!]
+  create: [WatchlistedMovieCreateWithoutWatchlistInput!]
+  createMany: WatchlistedMovieCreateManyWatchlistInputEnvelope
+  delete: [WatchlistedMovieWhereUniqueInput!]
+  deleteMany: [WatchlistedMovieScalarWhereInput!]
+  disconnect: [WatchlistedMovieWhereUniqueInput!]
+  set: [WatchlistedMovieWhereUniqueInput!]
+  update: [WatchlistedMovieUpdateWithWhereUniqueWithoutWatchlistInput!]
+  updateMany: [WatchlistedMovieUpdateManyWithWhereWithoutWatchlistInput!]
+  upsert: [WatchlistedMovieUpsertWithWhereUniqueWithoutWatchlistInput!]
+}
+
+input WatchlistedMovieUpdateWithWhereUniqueWithoutMovieInput {
+  data: WatchlistedMovieUpdateWithoutMovieInput!
+  where: WatchlistedMovieWhereUniqueInput!
+}
+
+input WatchlistedMovieUpdateWithWhereUniqueWithoutWatchlistInput {
+  data: WatchlistedMovieUpdateWithoutWatchlistInput!
+  where: WatchlistedMovieWhereUniqueInput!
+}
+
+input WatchlistedMovieUpdateWithoutMovieInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+  watchlist: MoviesWatchlistUpdateOneRequiredWithoutMoviesInput
+}
+
+input WatchlistedMovieUpdateWithoutWatchlistInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  movie: MovieUpdateOneRequiredWithoutWatchlistInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input WatchlistedMovieUpsertWithWhereUniqueWithoutMovieInput {
+  create: WatchlistedMovieCreateWithoutMovieInput!
+  update: WatchlistedMovieUpdateWithoutMovieInput!
+  where: WatchlistedMovieWhereUniqueInput!
+}
+
+input WatchlistedMovieUpsertWithWhereUniqueWithoutWatchlistInput {
+  create: WatchlistedMovieCreateWithoutWatchlistInput!
+  update: WatchlistedMovieUpdateWithoutWatchlistInput!
+  where: WatchlistedMovieWhereUniqueInput!
+}
+
+input WatchlistedMovieWhereInput {
+  AND: [WatchlistedMovieWhereInput!]
+  NOT: [WatchlistedMovieWhereInput!]
+  OR: [WatchlistedMovieWhereInput!]
+  addedAt: DateTimeFilter
+  movie: MovieRelationFilter
+  movieId: IntFilter
+  seen: BoolFilter
+  seenAt: DateTimeNullableFilter
+  watchlist: MoviesWatchlistRelationFilter
+  watchlistId: IntFilter
+}
+
+input WatchlistedMovieWhereUniqueInput {
+  movieId_watchlistId: WatchlistedMovieMovieIdWatchlistIdCompoundUniqueInput
+}
+
+type WatchlistedSerie {
+  addedAt: DateTime!
+  seen: Boolean!
+  seenAt: DateTime
+  serie: Serie!
+  serieId: Int!
+  watchlist: SeriesWatchlist!
+  watchlistId: Int!
+}
+
+type WatchlistedSerieAvgAggregate {
+  serieId: Float
+  watchlistId: Float
+}
+
+input WatchlistedSerieAvgOrderByAggregateInput {
+  serieId: SortOrder
+  watchlistId: SortOrder
+}
+
+type WatchlistedSerieCountAggregate {
+  _all: Int!
+  addedAt: Int!
+  seen: Int!
+  seenAt: Int!
+  serieId: Int!
+  watchlistId: Int!
+}
+
+input WatchlistedSerieCountOrderByAggregateInput {
+  addedAt: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  serieId: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedSerieCreateInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  serie: SerieCreateNestedOneWithoutWatchlistInput!
+  watchlist: SeriesWatchlistCreateNestedOneWithoutSeriesInput!
+}
+
+input WatchlistedSerieCreateManyInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  serieId: Int!
+  watchlistId: Int!
+}
+
+input WatchlistedSerieCreateManySerieInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  watchlistId: Int!
+}
+
+input WatchlistedSerieCreateManySerieInputEnvelope {
+  data: [WatchlistedSerieCreateManySerieInput!]!
+  skipDuplicates: Boolean
+}
+
+input WatchlistedSerieCreateManyWatchlistInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  serieId: Int!
+}
+
+input WatchlistedSerieCreateManyWatchlistInputEnvelope {
+  data: [WatchlistedSerieCreateManyWatchlistInput!]!
+  skipDuplicates: Boolean
+}
+
+input WatchlistedSerieCreateNestedManyWithoutSerieInput {
+  connect: [WatchlistedSerieWhereUniqueInput!]
+  connectOrCreate: [WatchlistedSerieCreateOrConnectWithoutSerieInput!]
+  create: [WatchlistedSerieCreateWithoutSerieInput!]
+  createMany: WatchlistedSerieCreateManySerieInputEnvelope
+}
+
+input WatchlistedSerieCreateNestedManyWithoutWatchlistInput {
+  connect: [WatchlistedSerieWhereUniqueInput!]
+  connectOrCreate: [WatchlistedSerieCreateOrConnectWithoutWatchlistInput!]
+  create: [WatchlistedSerieCreateWithoutWatchlistInput!]
+  createMany: WatchlistedSerieCreateManyWatchlistInputEnvelope
+}
+
+input WatchlistedSerieCreateOrConnectWithoutSerieInput {
+  create: WatchlistedSerieCreateWithoutSerieInput!
+  where: WatchlistedSerieWhereUniqueInput!
+}
+
+input WatchlistedSerieCreateOrConnectWithoutWatchlistInput {
+  create: WatchlistedSerieCreateWithoutWatchlistInput!
+  where: WatchlistedSerieWhereUniqueInput!
+}
+
+input WatchlistedSerieCreateWithoutSerieInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  watchlist: SeriesWatchlistCreateNestedOneWithoutSeriesInput!
+}
+
+input WatchlistedSerieCreateWithoutWatchlistInput {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  serie: SerieCreateNestedOneWithoutWatchlistInput!
+}
+
+type WatchlistedSerieGroupBy {
+  _avg: WatchlistedSerieAvgAggregate
+  _count: WatchlistedSerieCountAggregate
+  _max: WatchlistedSerieMaxAggregate
+  _min: WatchlistedSerieMinAggregate
+  _sum: WatchlistedSerieSumAggregate
+  addedAt: DateTime!
+  seen: Boolean!
+  seenAt: DateTime
+  serieId: Int!
+  watchlistId: Int!
+}
+
+input WatchlistedSerieListRelationFilter {
+  every: WatchlistedSerieWhereInput
+  none: WatchlistedSerieWhereInput
+  some: WatchlistedSerieWhereInput
+}
+
+type WatchlistedSerieMaxAggregate {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  serieId: Int
+  watchlistId: Int
+}
+
+input WatchlistedSerieMaxOrderByAggregateInput {
+  addedAt: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  serieId: SortOrder
+  watchlistId: SortOrder
+}
+
+type WatchlistedSerieMinAggregate {
+  addedAt: DateTime
+  seen: Boolean
+  seenAt: DateTime
+  serieId: Int
+  watchlistId: Int
+}
+
+input WatchlistedSerieMinOrderByAggregateInput {
+  addedAt: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  serieId: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedSerieOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input WatchlistedSerieOrderByWithAggregationInput {
+  _avg: WatchlistedSerieAvgOrderByAggregateInput
+  _count: WatchlistedSerieCountOrderByAggregateInput
+  _max: WatchlistedSerieMaxOrderByAggregateInput
+  _min: WatchlistedSerieMinOrderByAggregateInput
+  _sum: WatchlistedSerieSumOrderByAggregateInput
+  addedAt: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  serieId: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput {
+  addedAt: SortOrder
+  seen: SortOrder
+  seenAt: SortOrder
+  serie: SerieOrderByWithRelationAndSearchRelevanceInput
+  serieId: SortOrder
+  watchlist: SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlistId: SortOrder
+}
+
+enum WatchlistedSerieScalarFieldEnum {
+  addedAt
+  seen
+  seenAt
+  serieId
+  watchlistId
+}
+
+input WatchlistedSerieScalarWhereInput {
+  AND: [WatchlistedSerieScalarWhereInput!]
+  NOT: [WatchlistedSerieScalarWhereInput!]
+  OR: [WatchlistedSerieScalarWhereInput!]
+  addedAt: DateTimeFilter
+  seen: BoolFilter
+  seenAt: DateTimeNullableFilter
+  serieId: IntFilter
+  watchlistId: IntFilter
+}
+
+input WatchlistedSerieScalarWhereWithAggregatesInput {
+  AND: [WatchlistedSerieScalarWhereWithAggregatesInput!]
+  NOT: [WatchlistedSerieScalarWhereWithAggregatesInput!]
+  OR: [WatchlistedSerieScalarWhereWithAggregatesInput!]
+  addedAt: DateTimeWithAggregatesFilter
+  seen: BoolWithAggregatesFilter
+  seenAt: DateTimeNullableWithAggregatesFilter
+  serieId: IntWithAggregatesFilter
+  watchlistId: IntWithAggregatesFilter
+}
+
+input WatchlistedSerieSerieIdWatchlistIdCompoundUniqueInput {
+  serieId: Int!
+  watchlistId: Int!
+}
+
+type WatchlistedSerieSumAggregate {
+  serieId: Int
+  watchlistId: Int
+}
+
+input WatchlistedSerieSumOrderByAggregateInput {
+  serieId: SortOrder
+  watchlistId: SortOrder
+}
+
+input WatchlistedSerieUpdateInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+  serie: SerieUpdateOneRequiredWithoutWatchlistInput
+  watchlist: SeriesWatchlistUpdateOneRequiredWithoutSeriesInput
+}
+
+input WatchlistedSerieUpdateManyMutationInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input WatchlistedSerieUpdateManyWithWhereWithoutSerieInput {
+  data: WatchlistedSerieUpdateManyMutationInput!
+  where: WatchlistedSerieScalarWhereInput!
+}
+
+input WatchlistedSerieUpdateManyWithWhereWithoutWatchlistInput {
+  data: WatchlistedSerieUpdateManyMutationInput!
+  where: WatchlistedSerieScalarWhereInput!
+}
+
+input WatchlistedSerieUpdateManyWithoutSerieInput {
+  connect: [WatchlistedSerieWhereUniqueInput!]
+  connectOrCreate: [WatchlistedSerieCreateOrConnectWithoutSerieInput!]
+  create: [WatchlistedSerieCreateWithoutSerieInput!]
+  createMany: WatchlistedSerieCreateManySerieInputEnvelope
+  delete: [WatchlistedSerieWhereUniqueInput!]
+  deleteMany: [WatchlistedSerieScalarWhereInput!]
+  disconnect: [WatchlistedSerieWhereUniqueInput!]
+  set: [WatchlistedSerieWhereUniqueInput!]
+  update: [WatchlistedSerieUpdateWithWhereUniqueWithoutSerieInput!]
+  updateMany: [WatchlistedSerieUpdateManyWithWhereWithoutSerieInput!]
+  upsert: [WatchlistedSerieUpsertWithWhereUniqueWithoutSerieInput!]
+}
+
+input WatchlistedSerieUpdateManyWithoutWatchlistInput {
+  connect: [WatchlistedSerieWhereUniqueInput!]
+  connectOrCreate: [WatchlistedSerieCreateOrConnectWithoutWatchlistInput!]
+  create: [WatchlistedSerieCreateWithoutWatchlistInput!]
+  createMany: WatchlistedSerieCreateManyWatchlistInputEnvelope
+  delete: [WatchlistedSerieWhereUniqueInput!]
+  deleteMany: [WatchlistedSerieScalarWhereInput!]
+  disconnect: [WatchlistedSerieWhereUniqueInput!]
+  set: [WatchlistedSerieWhereUniqueInput!]
+  update: [WatchlistedSerieUpdateWithWhereUniqueWithoutWatchlistInput!]
+  updateMany: [WatchlistedSerieUpdateManyWithWhereWithoutWatchlistInput!]
+  upsert: [WatchlistedSerieUpsertWithWhereUniqueWithoutWatchlistInput!]
+}
+
+input WatchlistedSerieUpdateWithWhereUniqueWithoutSerieInput {
+  data: WatchlistedSerieUpdateWithoutSerieInput!
+  where: WatchlistedSerieWhereUniqueInput!
+}
+
+input WatchlistedSerieUpdateWithWhereUniqueWithoutWatchlistInput {
+  data: WatchlistedSerieUpdateWithoutWatchlistInput!
+  where: WatchlistedSerieWhereUniqueInput!
+}
+
+input WatchlistedSerieUpdateWithoutSerieInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+  watchlist: SeriesWatchlistUpdateOneRequiredWithoutSeriesInput
+}
+
+input WatchlistedSerieUpdateWithoutWatchlistInput {
+  addedAt: DateTimeFieldUpdateOperationsInput
+  seen: BoolFieldUpdateOperationsInput
+  seenAt: NullableDateTimeFieldUpdateOperationsInput
+  serie: SerieUpdateOneRequiredWithoutWatchlistInput
+}
+
+input WatchlistedSerieUpsertWithWhereUniqueWithoutSerieInput {
+  create: WatchlistedSerieCreateWithoutSerieInput!
+  update: WatchlistedSerieUpdateWithoutSerieInput!
+  where: WatchlistedSerieWhereUniqueInput!
+}
+
+input WatchlistedSerieUpsertWithWhereUniqueWithoutWatchlistInput {
+  create: WatchlistedSerieCreateWithoutWatchlistInput!
+  update: WatchlistedSerieUpdateWithoutWatchlistInput!
+  where: WatchlistedSerieWhereUniqueInput!
+}
+
+input WatchlistedSerieWhereInput {
+  AND: [WatchlistedSerieWhereInput!]
+  NOT: [WatchlistedSerieWhereInput!]
+  OR: [WatchlistedSerieWhereInput!]
+  addedAt: DateTimeFilter
+  seen: BoolFilter
+  seenAt: DateTimeNullableFilter
+  serie: SerieRelationFilter
+  serieId: IntFilter
+  watchlist: SeriesWatchlistRelationFilter
+  watchlistId: IntFilter
+}
+
+input WatchlistedSerieWhereUniqueInput {
+  serieId_watchlistId: WatchlistedSerieSerieIdWatchlistIdCompoundUniqueInput
 }
