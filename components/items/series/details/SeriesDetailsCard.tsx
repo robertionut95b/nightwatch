@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 import EpisodeCard from '../../episodes/card/EpisodeCard';
 import { Placeholder } from '../../../utils/layout/placeholders/placeholder';
 import { useRouter } from 'next/dist/client/router';
-import { createStandaloneToast } from '@chakra-ui/toast';
+import { createStandaloneToast } from '@chakra-ui/react';
 import { toastDefaults } from '../../../../assets/constants/config';
 import { useIsBookmarked } from '../card/useIsBookmarked';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';

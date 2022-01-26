@@ -1,19 +1,16 @@
 import Link from 'next/link';
 import { useSession } from '../../node_modules/next-auth/client';
 import { useRouter } from 'next/dist/client/router';
-import ThemeSwitch from '../utils/layout/themes/themeSwitch';
 import React from 'react';
 import MobileNavigationBar from './MobileNavigationBar';
 import SearchBar from './SearchBar';
 import Logo from './Logo';
 import Profile from './Profile';
-import { useThemeMode } from '../utils/hooks/useThemeMode';
 import useWindowDimensions from '../utils/hooks/useWindowDimensions';
 import { MinimalSpinner } from '../utils/layout/spinners/minimalSpinner';
 
 export default function NavigationBar(): JSX.Element {
   const [session, loading] = useSession();
-  const [theme] = useThemeMode();
   const { pathname } = useRouter();
   const isHome = pathname === '/';
 
@@ -58,7 +55,6 @@ export default function NavigationBar(): JSX.Element {
                   <Profile minimal />
                 </a>
               </Link>
-              <ThemeSwitch className="p-1.5" toggled={theme === 'dark'} />
               {!session && (
                 <Link href="/auth/signin" passHref>
                   <button className="btn-primary">Log in</button>

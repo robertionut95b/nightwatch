@@ -4,7 +4,7 @@ import { Movie, SearchMovieByTitleQuery } from '../../../../generated/graphql';
 import { Ribbon } from '../../../utils/layout/card-fillers/ribbon';
 import { toastDefaults } from '../../../../assets/constants/config';
 import { useIsBookmarked } from './useIsBookmarked';
-import { createStandaloneToast } from '@chakra-ui/toast';
+import { createStandaloneToast } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
 
 export default function MovieCard({
@@ -39,7 +39,7 @@ export default function MovieCard({
     },
   });
   return (
-    <div className="movie-card cursor-pointer">
+    <div className="movie-card cursor-pointer transition hover:scale-110">
       <div className="flex flex-col mx-auto relative w-[180px]">
         <Link href={`/movies/${movie.imdbID}`}>
           <a>

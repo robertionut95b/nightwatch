@@ -1,13 +1,8 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es2018",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext",
-      "es2018",
-      "esnext.asynciterable"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext", "es2018", "esnext.asynciterable"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowJs": false,
@@ -23,13 +18,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "typeRoots": [
-      "node_modules/@types",
-      "types",
-      "./generated"
-    ],
+    "typeRoots": ["node_modules/@types", "types", "./generated"],
     "plugins": [],
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@components/*": ["components/*"]
+    }
   },
   "include": [
     "./typegen.d.ts",
@@ -39,8 +33,5 @@
     "types.d.ts",
     "./generated/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "**/generated/**"
-  ]
+  "exclude": ["node_modules", "**/generated/**"]
 }

@@ -1,4 +1,4 @@
-import { UseToastOptions } from '@chakra-ui/toast';
+import { UseToastOptions } from '@chakra-ui/react';
 
 export const cfg = {
   API_ITEMS_PAGINATION_SKIP: 1,

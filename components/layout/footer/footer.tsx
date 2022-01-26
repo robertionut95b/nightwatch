@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
 export default function Footer(): JSX.Element {
-  // const [mode, setTheme] = useThemeMode();
-
   return (
     <div className="pt-12">
       <footer id="footer" className="relative z-50 bg-background-dark pt-4">

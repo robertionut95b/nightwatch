@@ -9,7 +9,7 @@ import { Placeholder } from '../../../utils/layout/placeholders/placeholder';
 import { Ribbon } from '../../../utils/layout/card-fillers/ribbon';
 import { useIsBookmarked } from './useIsBookmarked';
 import { toastDefaults } from '../../../../assets/constants/config';
-import { createStandaloneToast } from '@chakra-ui/toast';
+import { createStandaloneToast } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
 import { Season as PrismaSeason } from '@prisma/client';
 

@@ -17,11 +17,12 @@ export default function Layout({
 }): JSX.Element {
   const [session] = useSession();
   return (
-    <>
+    <div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="og:title" content={process.env.APP_SITE_NAME} />
         <meta name="twitter:card" content="summary_large_image" />
+        <title>{`${process.env.APP_SITE_NAME}`}</title>
       </Head>
       <header className={home ? styles.headingImage : styles.headerWrapper}>
         <NavigationBar />
@@ -52,6 +53,6 @@ export default function Layout({
         <AskBanner />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

@@ -303,3 +303,38 @@ export const removeEpisodeFromWatchlist = gql`
     }
   }
 `;
+
+export const createManyAppSettings = gql`
+  mutation createManyAppSettings(
+    $data: [AppSettingsCreateManyInput!]!
+    $skipDuplicates: Boolean
+  ) {
+    createManyAppSettings(data: $data, skipDuplicates: $skipDuplicates) {
+      count
+    }
+  }
+`;
+
+export const updateManyAppSettings = gql`
+  mutation updateManyAppSettings(
+    $data: AppSettingsUpdateManyMutationInput!
+    $where: AppSettingsWhereInput!
+  ) {
+    updateManyAppSettings(data: $data, where: $where) {
+      count
+    }
+  }
+`;
+
+export const upsertAppSettings = gql`
+  mutation upsertAppSettings(
+    $create: AppSettingsCreateInput!
+    $update: AppSettingsUpdateInput!
+    $where: AppSettingsWhereUniqueInput!
+  ) {
+    upsertAppSettings(create: $create, update: $update, where: $where) {
+      name
+      value
+    }
+  }
+`;

@@ -2,11 +2,14 @@ import NextAuth, { Session } from 'next-auth';
 import Providers from '../../../node_modules/next-auth/providers';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '../../../lib/PrismaClient/prisma';
-import { AppSettings, Role } from '@prisma/client';
+import { Role } from '@prisma/client';
 
 export interface AppSession extends Session {
-  userSettings?: AppSettings[];
+  userSettings?: { name: string; value: string }[];
   role: string;
+  user: Session['user'] & {
+    id?: string;
+  };
 }
 
 export default NextAuth({
@@ -36,15 +39,24 @@ export default NextAuth({
     async session(session, user) {
       if (!user) return session;
 
+      const appSession = session as AppSession;
       const id = user.id as string;
       const userRecord = await prisma.user.findUnique({
         where: { id: id },
         include: {
-          settings: true,
+          settings: {
+            select: {
+              name: true,
+              value: true,
+            },
+          },
         },
       });
-      session.userSettings = userRecord?.settings || [];
-      session.role = userRecord?.role || Role.USER;
+      if (appSession.user) {
+        appSession.user.id = userRecord?.id;
+      }
+      appSession.userSettings = userRecord?.settings || [];
+      appSession.role = userRecord?.role || Role.USER;
       return session;
     },
   },

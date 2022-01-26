@@ -1,4 +1,4 @@
-import { Avatar } from '@chakra-ui/avatar';
+import { Avatar } from '@chakra-ui/react';
 import { useSession } from 'next-auth/client';
 import Image from 'next/image';
 import React from 'react';

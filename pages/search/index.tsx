@@ -30,7 +30,7 @@ import { OMDBSearchSeries } from '../../src/utils/convertors/OMDBSearchSeries';
 import { OMDBSearchMovie } from '../../src/utils/convertors/OMDBSearchMovies';
 import SearchedMoviesCard from '../../components/items/movies/searched/card/SearchedMovieCard';
 import Link from 'next/link';
-import { createStandaloneToast } from '@chakra-ui/toast';
+import { createStandaloneToast } from '@chakra-ui/react';
 import { toastDefaults } from '../../assets/constants/config';
 
 export default function SearchResults({

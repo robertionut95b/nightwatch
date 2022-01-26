@@ -5,7 +5,7 @@ import {
   SearchSeriesByTitleQuery,
   AllSeriesQuery,
 } from '../../../../generated/graphql';
-import { createStandaloneToast } from '@chakra-ui/toast';
+import { createStandaloneToast } from '@chakra-ui/react';
 import { toastDefaults } from '../../../../assets/constants/config';
 import React from 'react';
 import { Ribbon } from '../../../utils/layout/card-fillers/ribbon';
@@ -48,7 +48,7 @@ export default function SeriesCard({
   });
 
   return (
-    <div className="series-card cursor-pointer">
+    <div className="series-card cursor-pointer transition hover:scale-110">
       <div className="flex flex-col mx-auto relative w-[180px]">
         <Link href={`/series/${series.imdbID}`}>
           <a>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Movie } from '../../../../generated/graphql';
 import { useIsBookmarked } from '../card/useIsBookmarked';
 import { toastDefaults } from '../../../../assets/constants/config';
-import { createStandaloneToast } from '@chakra-ui/toast';
+import { createStandaloneToast } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
 
 export default function MovieDetailsCard({
