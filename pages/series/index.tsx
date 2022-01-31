@@ -175,7 +175,9 @@ export default function SeriesPage({
       <Head>
         <title>Series</title>
       </Head>
-      <h4 className="mb-4 text-2xl font-bold">Series</h4>
+      <h4 className="mb-4 text-2xl font-bold text-black dark:text-white">
+        Series
+      </h4>
       <section className="series-filters mb-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row gap-x-6 gap-y-2 md:flex-wrap">
           {genres?.length > 0 && (

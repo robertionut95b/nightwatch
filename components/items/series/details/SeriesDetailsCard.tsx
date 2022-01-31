@@ -135,7 +135,7 @@ export default function SeriesDetailsCard({
   }, [data]);
 
   return (
-    <div className="series-card-details">
+    <div className="series-card-details text-black dark:text-white">
       <div className="grid grid-cols-1 md:grid-cols-3 relative place-items-start gap-x-2">
         <div className="content-info flex flex-col items-center md:items-start gap-y-2 col-span-2">
           <h6 className="mb-2 font-bold text-3xl">{series.title}</h6>

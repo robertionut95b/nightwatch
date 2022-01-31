@@ -9,6 +9,9 @@ export interface AppSession extends Session {
   role: string;
   user: Session['user'] & {
     id?: string;
+    username?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
   };
 }
 
@@ -54,6 +57,9 @@ export default NextAuth({
       });
       if (appSession.user) {
         appSession.user.id = userRecord?.id;
+        appSession.user.username = userRecord?.username;
+        appSession.user.firstName = userRecord?.firstName;
+        appSession.user.lastName = userRecord?.lastName;
       }
       appSession.userSettings = userRecord?.settings || [];
       appSession.role = userRecord?.role || Role.USER;

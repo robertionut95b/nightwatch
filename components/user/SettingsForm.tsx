@@ -24,18 +24,18 @@ export const SettingsForm = (): JSX.Element => {
   if (loading) return <MinimalSpinner />;
 
   return (
-    <section>
+    <section className="text-black dark:text-white">
       <form className="flex flex-col gap-y-6" onSubmit={(e) => onSubmitForm(e)}>
         <article>
           <h4 className="font-bold text-xl tracking-wide">Account settings</h4>
-          <p className="text-gray-200">
+          <p className="dark:text-gray-200">
             This section will contain various global settings used across the
             application
           </p>
         </article>
         <article>
           <h4 className="font-bold text-lg tracking-wide">Styling</h4>
-          <p className="text-gray-200 mb-4 text-base">
+          <p className="dark:text-gray-200 mb-4 text-base">
             Website&apos;s appearance and layout settings
           </p>
           <FormControl display="flex flex-col" alignItems="center">
@@ -77,7 +77,7 @@ export const SettingsForm = (): JSX.Element => {
         </article>
         <article>
           <h4 className="font-bold text-lg tracking-wide">Notifications</h4>
-          <p className="text-gray-200 mb-4">
+          <p className="dark:text-gray-200 mb-4">
             Event based notifications to stay in sync with all updates
           </p>
           <FormControl display="flex flex-col" alignItems="center">
@@ -117,7 +117,7 @@ export const SettingsForm = (): JSX.Element => {
           <h4 className="font-bold text-lg tracking-wide">
             Locales and geolocation
           </h4>
-          <p className="text-gray-200 mb-4">
+          <p className="dark:text-gray-200 mb-4">
             Region based settings like app language and location
           </p>
           <FormControl display="flex flex-col" alignItems="center">

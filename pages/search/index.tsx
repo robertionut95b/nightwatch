@@ -221,7 +221,7 @@ export default function SearchResults({
           Search {query.q as string} - {process.env.APP_SITE_NAME}
         </title>
       </Head>
-      <div className="flex flex-col gap-y-4">
+      <div className="flex flex-col gap-y-4 text-black dark:text-white">
         {movies?.length > 0 && (
           <>
             <Link href="/movies" passHref>

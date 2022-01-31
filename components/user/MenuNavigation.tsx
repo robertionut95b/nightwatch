@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const MenuNavigationComponent = (): JSX.Element => {
   return (
     <ul>
-      <li className="p-2 py-3 hover:text-primary hover:bg-backgroundSecondary cursor-pointer rounded">
+      <li className="p-2 py-3 text-black dark:text-white dark:hover:text-primary dark:hover:bg-backgroundSecondary hover:text-white hover:bg-primary cursor-pointer rounded">
         <Link href="/user/profile" passHref>
           <div className="flex gap-x-2">
             <svg
@@ -24,7 +24,7 @@ export const MenuNavigationComponent = (): JSX.Element => {
           </div>
         </Link>
       </li>
-      <li className="p-2 py-3 hover:text-primary hover:bg-backgroundSecondary cursor-pointer rounded">
+      <li className="p-2 py-3 text-black dark:text-white dark:hover:text-primary dark:hover:bg-backgroundSecondary hover:text-white hover:bg-primary cursor-pointer rounded">
         <Link href="/user/watchlists" passHref>
           <div className="flex gap-x-2">
             <svg
@@ -45,7 +45,7 @@ export const MenuNavigationComponent = (): JSX.Element => {
           </div>
         </Link>
       </li>
-      <li className="p-2 py-3 hover:text-primary hover:bg-backgroundSecondary cursor-pointer rounded">
+      <li className="p-2 py-3 text-black dark:text-white dark:hover:text-primary dark:hover:bg-backgroundSecondary hover:text-white hover:bg-primary cursor-pointer rounded">
         <Link href="/user/profile/settings" passHref>
           <div className="flex gap-x-2">
             <svg
@@ -72,7 +72,7 @@ export const MenuNavigationComponent = (): JSX.Element => {
           </div>
         </Link>
       </li>
-      <li className="p-2 py-3 hover:text-primary hover:bg-backgroundSecondary cursor-pointer rounded">
+      <li className="p-2 py-3 text-black dark:text-white dark:hover:text-primary dark:hover:bg-backgroundSecondary hover:text-white hover:bg-primary cursor-pointer rounded">
         <Link href="/user/profile/security" passHref>
           <div className="flex gap-x-2">
             <svg
@@ -93,7 +93,7 @@ export const MenuNavigationComponent = (): JSX.Element => {
           </div>
         </Link>
       </li>
-      <li className="p-2 py-3 hover:text-primary hover:bg-backgroundSecondary cursor-pointer rounded">
+      <li className="p-2 py-3 text-black dark:text-white dark:hover:text-primary dark:hover:bg-backgroundSecondary hover:text-white hover:bg-primary cursor-pointer rounded">
         <Link href="/auth/signout" passHref>
           <div className="flex gap-x-2">
             <svg

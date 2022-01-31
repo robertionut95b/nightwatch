@@ -53,7 +53,7 @@ export const StringDropdown = ({
   return (
     <div className="dropdown relative" ref={ref}>
       <button
-        className="text-gray-500 bg-backgroundSecondary font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+        className="text-black dark:text-gray-500 bg-gray-200 dark:bg-backgroundSecondary font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
         type="button"
         onClick={() => setIsComponentVisible(!isComponentVisible)}
         data-dropdown-toggle="dropdown"
@@ -84,7 +84,7 @@ export const StringDropdown = ({
       <div
         className={`${
           isComponentVisible ? 'block' : 'hidden'
-        } bg-backgroundSecondary text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 absolute w-full max-h-96 overflow-y-auto border border-gray-800`}
+        } bg-gray-200 dark:bg-backgroundSecondary text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 absolute w-full max-h-96 overflow-y-auto border border-gray-800`}
       >
         {header && (
           <div className="px-4 py-3">
@@ -100,7 +100,7 @@ export const StringDropdown = ({
           {itms.map((item, index) => (
             <li key={index}>
               <span
-                className="text-sm hover:bg-background text-gray-500 hover:text-primary no-underline block px-4 py-2 cursor-pointer"
+                className="text-sm hover:bg-background hover:bg-gray-300 dark:hover:bg-background text-gray-500 hover:text-primary no-underline block px-4 py-2 cursor-pointer"
                 onClick={() => onChangeEvent(item)}
               >
                 {item.label}
@@ -150,7 +150,7 @@ export const StringListDropdown = ({
   return (
     <div className="dropdown relative" ref={ref}>
       <button
-        className="text-gray-500 bg-backgroundSecondary font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center w-full"
+        className="text-black dark:text-gray-500 bg-gray-200 dark:bg-backgroundSecondary font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center w-full"
         type="button"
         onClick={() => setIsComponentVisible(!isComponentVisible)}
         data-dropdown-toggle="dropdown"
@@ -177,7 +177,7 @@ export const StringListDropdown = ({
       <div
         className={`${
           isComponentVisible ? 'block' : 'hidden'
-        } bg-backgroundSecondary absolute max-w-max text-base z-50 list-none rounded shadow my-4`}
+        } bg-gray-200 dark:bg-backgroundSecondary absolute max-w-max text-base z-50 list-none rounded shadow my-4`}
         style={{ minWidth: '9rem' }}
       >
         <div className="w-full max-h-96 overflow-y-auto border border-gray-800">
@@ -194,7 +194,7 @@ export const StringListDropdown = ({
           <ul className="py-1" aria-labelledby="dropdown">
             {itms.map((item, index) => (
               <li
-                className="flex flex-row w-full items-center hover:bg-background text-gray-500 hover:text-primary"
+                className="flex flex-row w-full items-center hover:bg-gray-300 dark:hover:bg-background text-gray-500 hover:text-primary"
                 key={index}
                 onClick={() => onChangeEvent(item)}
               >
@@ -217,7 +217,7 @@ export const StringListDropdown = ({
             ))}
           </ul>
         </div>
-        <div className="dropdown-submit p-2 flex gap-x-1">
+        <div className="dropdown-submit p-2 flex gap-x-1 border border-t-0 border-gray-800">
           <button
             className="btn-primary p-0.5 text-sm w-full"
             onClick={() => onSubmitChanges()}

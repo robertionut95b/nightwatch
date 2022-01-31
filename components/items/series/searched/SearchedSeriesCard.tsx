@@ -40,7 +40,7 @@ export default function SearchedSeriesCard({
           style={{ transform: 'translate(-50%, -50%)' }}
         >
           <button
-            className="bg-primary hover:bg-primary-hover font-bold py-2 px-4 rounded-full text-base shadow-sm"
+            className="bg-primary hover:bg-primary-hover text-white font-bold py-2 px-4 rounded-full text-base shadow-sm"
             onClick={() => createSerieCb(series.imdbID)}
             disabled={disabled}
           >
@@ -61,7 +61,7 @@ export default function SearchedSeriesCard({
           </button>
         </div>
         <h6
-          className="text-center mt-1 truncate font-medium tracking-wide"
+          className="text-center mt-1 truncate font-medium tracking-wide text-black dark:text-white"
           title={series.Title}
         >
           {series.Title}

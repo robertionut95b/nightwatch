@@ -20,9 +20,11 @@ const Profile = ({ minimal }: { minimal?: boolean }): JSX.Element => {
               name={email}
               width={34}
               height={34}
+              bgColor="gray.800"
               showBorder
               borderRadius={'50%'}
-              borderColor={'var(--color-primary)'}
+              borderWidth={1}
+              borderColor={'gray'}
             />
           )}
         </div>
@@ -39,6 +41,7 @@ const Profile = ({ minimal }: { minimal?: boolean }): JSX.Element => {
             width={54}
             height={54}
             showBorder
+            bgColor="gray.800"
             borderRadius={'50%'}
             borderColor={'var(--color-primary)'}
           />

@@ -6,6 +6,7 @@ import {
 import { useSession } from 'next-auth/client';
 import { AppSession } from 'pages/api/auth/[...nextauth]';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 
 type ISettingsMapProps = {
   darkMode: boolean;
@@ -24,6 +25,8 @@ interface UseSettingsResult {
 
 export const useSettings = (): UseSettingsResult => {
   const [session, loading] = useSession();
+
+  const { setTheme } = useTheme();
 
   const [settings, setSettings] = useState<ISettingsMapProps>({
     darkMode: true,
@@ -46,7 +49,12 @@ export const useSettings = (): UseSettingsResult => {
   const [createManyAppSettingsMutation, { loading: createLoading }] =
     useCreateManyAppSettingsMutation();
   const [updateManyAppSettings, { loading: updateLoading }] =
-    useUpdateManyAppSettingsMutation();
+    useUpdateManyAppSettingsMutation({
+      onCompleted: () => {
+        setOriginalSettings(settings);
+        setTheme(settings.darkMode ? 'dark' : 'light');
+      },
+    });
 
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -109,12 +117,6 @@ export const useSettings = (): UseSettingsResult => {
                 equals: appSession?.user?.id,
               },
             },
-          },
-          onCompleted: () => {
-            setOriginalSettings({
-              ...originalSettings,
-              [key]: settings[key as keyof ISettingsMapProps],
-            });
           },
         });
       }

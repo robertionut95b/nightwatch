@@ -3,8 +3,11 @@ import Link from 'next/link';
 export default function Footer(): JSX.Element {
   return (
     <div className="pt-12">
-      <footer id="footer" className="relative z-50 bg-background-dark pt-4">
-        <div className="border-b border-gray-800 dark:border-gray-700 py-16">
+      <footer
+        id="footer"
+        className="relative z-50 bg-gray-50 dark:border-gray-900 border border-t dark:bg-background-dark pt-4"
+      >
+        <div className="border-b border-gray-200 dark:border-gray-900 py-16">
           <div className="mx-auto container px-4 xl:px-12 2xl:px-4">
             <div className="lg:flex">
               <div className="w-full lg:w-1/2 mb-16 lg:mb-0 flex">
@@ -12,28 +15,28 @@ export default function Footer(): JSX.Element {
                   <ul>
                     <li>
                       <Link href="/movies">
-                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-400 dark:text-gray-50">
+                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-black dark:text-gray-50">
                           Movies
                         </a>
                       </Link>
                     </li>
                     <li className="mt-6">
                       <Link href="/series">
-                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-400 dark:text-gray-50">
+                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-black dark:text-gray-50">
                           TV Shows
                         </a>
                       </Link>
                     </li>
                     <li className="mt-6">
                       <Link href="/ask">
-                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-400 dark:text-gray-50">
+                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-black dark:text-gray-50">
                           Ask
                         </a>
                       </Link>
                     </li>
                     <li className="mt-6">
                       <Link href="#">
-                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-400 dark:text-gray-50">
+                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-black dark:text-gray-50">
                           FAQ
                         </a>
                       </Link>
@@ -44,7 +47,7 @@ export default function Footer(): JSX.Element {
                   <ul>
                     <li>
                       <Link href="/user/watchlists">
-                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-400 dark:text-gray-50">
+                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-black dark:text-gray-50">
                           Watchlist
                         </a>
                       </Link>
@@ -52,14 +55,14 @@ export default function Footer(): JSX.Element {
 
                     <li className="mt-6">
                       <Link href="#">
-                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-400 dark:text-gray-50">
+                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-black dark:text-gray-50">
                           Blog
                         </a>
                       </Link>
                     </li>
                     <li className="mt-6">
                       <Link href="#">
-                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-400 dark:text-gray-50">
+                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-black dark:text-gray-50">
                           Changelog
                         </a>
                       </Link>
@@ -73,14 +76,14 @@ export default function Footer(): JSX.Element {
                     <li>
                       <a
                         href="#"
-                        className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-400 dark:text-gray-50"
+                        className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-black dark:text-gray-50"
                       >
                         Privacy policy
                       </a>
                     </li>
                     <li className="mt-6">
                       <Link href="#">
-                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-400 dark:text-gray-50">
+                        <a className="text-base lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-black dark:text-gray-50">
                           Terms of service
                         </a>
                       </Link>
@@ -90,7 +93,7 @@ export default function Footer(): JSX.Element {
                 <div className="w-full lg:w-1/2 px-6 flex flex-col justify-between">
                   <div className="flex items-center mb-6">
                     <a href="#">
-                      <div className="text-gray-400 dark:text-gray-50 cursor-pointer hover:text-brand dark:hover:text-brand ">
+                      <div className="text-black dark:text-gray-50 cursor-pointer hover:text-brand dark:hover:text-brand ">
                         <svg
                           className="footer-icon feather feather-github"
                           xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +113,7 @@ export default function Footer(): JSX.Element {
                     <a href="#">
                       <div className="pl-4">
                         <svg
-                          className="footer-icon feather feather-twitter text-gray-400 dark:text-gray-50 cursor-pointer hover:text-brand dark:hover:text-brand "
+                          className="footer-icon feather feather-twitter text-black dark:text-gray-50 cursor-pointer hover:text-brand dark:hover:text-brand "
                           xmlns="http://www.w3.org/2000/svg"
                           width={24}
                           height={24}
@@ -131,11 +134,11 @@ export default function Footer(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="py-12 flex flex-col justify-center items-center">
+        <div className="py-12 flex flex-col justify-center items-center bg-gray-100 dark:bg-background">
           <Link href="#">
             <a></a>
           </Link>
-          <p className="mt-6 text-base lg:text-sm leading-none text-gray-400">
+          <p className="mt-6 text-base lg:text-sm leading-none text-black dark:text-gray-50">
             2020-{new Date().getFullYear()} © NightWatch. All Rights Reserved.
           </p>
         </div>

@@ -80,7 +80,7 @@ export default function MovieDetailsCard({
     );
   };
   return (
-    <div className="movie-card-details">
+    <div className="movie-card-details text-black dark:text-white">
       <div className="grid grid-cols-1 md:grid-cols-3 relative place-items-start gap-x-2">
         <div className="content-info flex flex-col items-center md:items-start gap-y-2 col-span-2">
           <h6 className="mb-4 font-bold text-3xl">{movie.title}</h6>

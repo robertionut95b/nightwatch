@@ -1,7 +1,11 @@
+import { createStandaloneToast } from '@chakra-ui/react';
 import Profile from '@components/nav/Profile';
 import Divider from '@components/utils/layout/divider/divider';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
 import { User } from '@prisma/client';
+import { toastDefaults } from 'assets/constants/config';
+import { useUpdateUserMutation } from 'generated/graphql';
 import { useSession } from 'next-auth/client';
 import { useState, useEffect, FormEvent } from 'react';
 
@@ -23,6 +27,26 @@ interface IProfileDetailsFormProps {
 export const ProfileForm = (): JSX.Element => {
   const [session, loading] = useSession();
   const [user, setUser] = useState<User>(session?.user as User);
+  const toast = createStandaloneToast();
+
+  const [updateUserMutation, { loading: updateLoading }] =
+    useUpdateUserMutation({
+      onCompleted: (newUserData) => {
+        setUser({ ...user, ...newUserData });
+        toast({
+          title: 'User information updated',
+          status: 'success',
+          ...toastDefaults,
+        });
+      },
+      onError: () => {
+        toast({
+          title: 'Could not update user information',
+          status: 'error',
+          ...toastDefaults,
+        });
+      },
+    });
 
   useEffect(() => {
     if (session) setUser(session.user as User);
@@ -54,13 +78,33 @@ export const ProfileForm = (): JSX.Element => {
   ): void => {
     e.preventDefault();
     const { email, firstName, lastName, userName } = e.target.elements;
-    console.log(email?.value);
+    updateUserMutation({
+      variables: {
+        data: {
+          email: {
+            set: email?.value,
+          },
+          firstName: {
+            set: firstName?.value,
+          },
+          lastName: {
+            set: lastName?.value,
+          },
+          username: {
+            set: userName?.value,
+          },
+        },
+        where: {
+          id: user.id,
+        },
+      },
+    });
   };
 
   return (
-    <section>
+    <section className="text-black dark:text-white">
       <h4 className="font-bold text-xl tracking-wide">Profile</h4>
-      <p className="text-gray-200 mb-4">
+      <p className="dark:text-gray-200 mb-4">
         This section will contain the public information about the user&apos;s
         profile
       </p>
@@ -70,21 +114,16 @@ export const ProfileForm = (): JSX.Element => {
         <>
           <form className="profile-pic flex flex-col gap-y-2">
             <h4 className="font-bold text-lg tracking-wide">Avatar</h4>
-            <p className="text-gray-200 mb-4">User personal photography</p>
+            <p className="dark:text-gray-200 mb-4">User personal photograph</p>
             <span className="font-semibold text-md">Photo</span>
             <div className="flex items-center gap-x-2">
               {renderAvatar()}
-              <input
-                className="btn-primary"
-                type="file"
-                id="profilePic"
-                name="profilePic"
-              />
+              <input type="file" id="profilePic" name="profilePic" />
             </div>
           </form>
           <Divider />
           <form
-            className="basic-profile-information flex flex-col gap-y-2"
+            className="basic-profile-information"
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             onSubmit={(e) => submitProfileDetailsForm(e)}
@@ -92,44 +131,46 @@ export const ProfileForm = (): JSX.Element => {
             <h4 className="font-bold text-lg tracking-wide">
               Personal information
             </h4>
-            <p className="text-gray-200 mb-4">
+            <p className="dark:text-gray-200 mb-4">
               Basic information such as email address, last name, first name,
               address
             </p>
-            <label htmlFor="email">Email address *</label>
-            <input
-              className="rounded py-1 px-2"
-              name="email"
-              type="email"
-              placeholder="johndoe@nightwatch.org"
-              disabled
-              defaultValue={user?.email}
-            />
-            <label htmlFor="username">Username</label>
-            <input
-              className="rounded py-1 px-2 text-black placeholder-gray-800"
-              name="username"
-              type="username"
-              placeholder="johndoe"
-              defaultValue={user?.username || undefined}
-            />
-            <label htmlFor="firstName">First name</label>
-            <input
-              className="rounded py-1 px-2 text-black placeholder-gray-800"
-              name="firstName"
-              type="text"
-              placeholder="John"
-              defaultValue={user?.firstName || undefined}
-            />
-            <label htmlFor="lastName">Last name</label>
-            <input
-              className="rounded py-1 px-2 text-black placeholder-gray-800"
-              name="lastName"
-              type="text"
-              placeholder="Doe"
-              defaultValue={user?.lastName || undefined}
-            />
-            <div className="button-groups mt-4 self-end flex gap-x-2">
+            <div className="form-inputs flex flex-col gap-y-2">
+              <label htmlFor="email">Email address *</label>
+              <input
+                className="rounded py-1 px-2"
+                name="email"
+                type="email"
+                placeholder="johndoe@nightwatch.org"
+                disabled
+                defaultValue={user?.email}
+              />
+              <label htmlFor="username">Username</label>
+              <input
+                className="rounded py-1 px-2 bg-gray-100 dark:bg-white text-black placeholder-gray-800"
+                name="userName"
+                type="userName"
+                placeholder="johndoe"
+                defaultValue={user?.username || undefined}
+              />
+              <label htmlFor="firstName">First name</label>
+              <input
+                className="rounded py-1 px-2 bg-gray-100 text-black placeholder-gray-800"
+                name="firstName"
+                type="text"
+                placeholder="John"
+                defaultValue={user?.firstName || undefined}
+              />
+              <label htmlFor="lastName">Last name</label>
+              <input
+                className="rounded py-1 px-2 bg-gray-100 text-black placeholder-gray-800"
+                name="lastName"
+                type="text"
+                placeholder="Doe"
+                defaultValue={user?.lastName || undefined}
+              />
+            </div>
+            <div className="button-groups mt-8 flex justify-end gap-x-2">
               <button
                 className="btn-primary bg-gray-200 text-primary hover:bg-gray-400 font-semibold"
                 type="reset"
@@ -137,10 +178,13 @@ export const ProfileForm = (): JSX.Element => {
                 Cancel
               </button>
               <button
-                className="btn-primary bg-primary font-semibold"
+                className="btn-primary bg-primary text-white disabled:bg-slate-700"
                 type="submit"
+                disabled={updateLoading}
               >
-                Save
+                <ShowIfElse if={updateLoading} else={'Save'}>
+                  <MinimalSpinner color={'white'} />
+                </ShowIfElse>
               </button>
             </div>
           </form>

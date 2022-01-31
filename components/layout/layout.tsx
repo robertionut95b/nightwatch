@@ -7,6 +7,7 @@ import { AskBanner } from './banners/askBanner';
 import Footer from './footer/footer';
 import styles from './layout.module.css';
 import HeroMain from './home/heroMain';
+import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
 
 export default function Layout({
   children,
@@ -15,9 +16,14 @@ export default function Layout({
   children: React.ReactNode;
   home?: boolean;
 }): JSX.Element {
-  const [session] = useSession();
+  const [session, loading] = useSession();
+  const loadHero = () => {
+    if (loading) return <MinimalSpinner />;
+    if (session) return <HeroMain />;
+    return <SignInForm />;
+  };
   return (
-    <div>
+    <div className="bg-white dark:bg-background">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="og:title" content={process.env.APP_SITE_NAME} />
@@ -40,14 +46,13 @@ export default function Layout({
                 Build your watchlist and explore thousands of movies, series and
                 documentaries
               </h6>
-              {!session && <SignInForm />}
-              {session && <HeroMain />}
+              {loadHero()}
             </div>
           </div>
         )}
       </header>
       <main
-        className={`${styles.layoutMainContainer} w-full container mx-auto p-2`}
+        className={`${styles.layoutMainContainer} w-full container mx-auto p-2 text-black dark:text-white`}
       >
         {children}
         <AskBanner />

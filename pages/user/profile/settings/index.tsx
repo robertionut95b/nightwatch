@@ -12,7 +12,7 @@ export const Profile = (): JSX.Element => {
         </Head>
         <section>
           <div className="wrapper flex flex-col md:flex-row gap-y-4 gap-x-4">
-            <div className="menu-container-sidebar w-full md:w-1/4 p-4 bg-background-dark h-min rounded border border-gray-800">
+            <div className="menu-container-sidebar w-full md:w-1/4 p-4 bg-white dark:bg-background-dark h-min rounded border border-gray-800">
               <MenuNavigationComponent />
             </div>
             <div className="page-container w-full md:w-3/4 border border-gray-800 rounded-lg p-4">

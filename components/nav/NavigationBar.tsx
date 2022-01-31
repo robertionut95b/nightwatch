@@ -8,11 +8,15 @@ import Logo from './Logo';
 import Profile from './Profile';
 import useWindowDimensions from '../utils/hooks/useWindowDimensions';
 import { MinimalSpinner } from '../utils/layout/spinners/minimalSpinner';
+import ShowIf from '@components/utils/layout/showConditional/showIf';
 
 export default function NavigationBar(): JSX.Element {
   const [session, loading] = useSession();
   const { pathname } = useRouter();
   const isHome = pathname === '/';
+
+  const isHomeClassNames =
+    'flex flex-row bg-black text-white shadow z-10 justify-between px-5 md:px-12 items-center sticky top-0 py-3 backdrop-blur-sm bg-opacity-60';
 
   const [isFullMenuToggled, setIsFullMenuToggled] =
     React.useState<boolean>(false);
@@ -36,9 +40,11 @@ export default function NavigationBar(): JSX.Element {
 
   return (
     <nav
-      className={`flex flex-row z-10 justify-between px-5 md:px-12 items-center sticky top-0 py-3 backdrop-blur-sm ${
-        isHome ? 'bg-black' : 'bg-background-dark'
-      } bg-opacity-60`}
+      className={
+        isHome
+          ? isHomeClassNames
+          : 'flex flex-row bg-gray-100 dark:bg-background-dark text-black dark:text-white shadow z-10 justify-between px-5 md:px-12 items-center sticky top-0 py-3 backdrop-blur-sm bg-opacity-60'
+      }
     >
       <Logo />
       <div className="searchbar relative hidden md:block w-1/3">
@@ -60,11 +66,11 @@ export default function NavigationBar(): JSX.Element {
                   <button className="btn-primary">Log in</button>
                 </Link>
               )}
-              {session && (
+              <ShowIf if={session}>
                 <Link href="/auth/signout" passHref>
                   <button className="btn-primary">Log out</button>
                 </Link>
-              )}
+              </ShowIf>
             </>
           )}
         </div>

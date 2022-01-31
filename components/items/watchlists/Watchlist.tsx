@@ -11,11 +11,11 @@ export const WatchlistComponent = ({
 
   return (
     <section>
-      <div className="flex flex-col gap-y-6">
+      <div className="flex flex-col gap-y-6 text-black dark:text-white">
         <h2 className="text-xl font-bold tracking-wide">{watchlist.name}</h2>
         <div className="selector">
           <select
-            className="text-gray-500 bg-backgroundSecondary font-medium rounded-lg text-sm px-4 py-2 focus:outline-none focus:ring appearance-none"
+            className="text-black dark:text-gray-500 bg-gray-200 dark:bg-backgroundSecondary font-medium rounded-lg text-sm px-4 py-2 focus:outline-none focus:ring appearance-none"
             placeholder="Select a section"
             onChange={(e) => setSelectedSection(e.target.value)}
           >

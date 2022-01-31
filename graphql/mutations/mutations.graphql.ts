@@ -338,3 +338,14 @@ export const upsertAppSettings = gql`
     }
   }
 `;
+
+export const updateUser = gql`
+  mutation updateUser($data: UserUpdateInput!, $where: UserWhereUniqueInput!) {
+    updateUser(data: $data, where: $where) {
+      email
+      username
+      firstName
+      lastName
+    }
+  }
+`;

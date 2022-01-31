@@ -10,6 +10,7 @@ import { Router } from 'next/dist/client/router';
 import NProgress from 'nprogress';
 import { AppProps } from 'next/app';
 import { ChakraProvider, theme } from '@chakra-ui/react';
+import { ThemeProvider } from 'next-themes';
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   Router.events.on('routeChangeStart', NProgress.start);
@@ -24,11 +25,13 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       options={{ clientMaxAge: 0, keepAlive: 0 }}
       session={pageProps.session}
     >
-      <ApolloProvider client={apolloClient}>
-        <ChakraProvider resetCSS={false}>
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </ApolloProvider>
+      <ThemeProvider attribute="class">
+        <ApolloProvider client={apolloClient}>
+          <ChakraProvider resetCSS={false}>
+            <Component {...pageProps} />
+          </ChakraProvider>
+        </ApolloProvider>
+      </ThemeProvider>
     </Provider>
   );
 }

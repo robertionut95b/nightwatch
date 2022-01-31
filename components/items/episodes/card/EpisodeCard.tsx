@@ -80,7 +80,7 @@ export default function EpisodeCard({
             )}
           </Link>
           <h6
-            className="text-center mt-1 truncate font-medium tracking-wide"
+            className="text-center mt-1 truncate font-medium tracking-wide text-black dark:text-white"
             title={episode.title}
           >
             {episode.title}
