@@ -1,6 +1,5 @@
 import { Avatar } from '@chakra-ui/react';
 import { useSession } from 'next-auth/client';
-import Image from 'next/image';
 import React from 'react';
 
 const Profile = ({ minimal }: { minimal?: boolean }): JSX.Element => {
@@ -14,7 +13,9 @@ const Profile = ({ minimal }: { minimal?: boolean }): JSX.Element => {
     return (
       <div className="profile">
         <div className="profile-picture flex rounded-full justify-between">
-          {image && <Image src={image} alt="profile picture" />}
+          {image && (
+            <Avatar src={image} alt="profile picture" width={34} height={34} />
+          )}
           {!image && (
             <Avatar
               name={email}
@@ -34,7 +35,9 @@ const Profile = ({ minimal }: { minimal?: boolean }): JSX.Element => {
   return (
     <div className="profile">
       <div className="profile-picture flex rounded-full gap-x-4 py-1 px-2 items-center justify-between">
-        {image && <Image src={image} alt="profile picture" />}
+        {image && (
+          <Avatar src={image} alt="profile picture" width={34} height={34} />
+        )}
         {!image && (
           <Avatar
             name={email}

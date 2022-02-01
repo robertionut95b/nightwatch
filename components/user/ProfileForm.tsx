@@ -1,10 +1,11 @@
-import { createStandaloneToast } from '@chakra-ui/react';
+import { Avatar, createStandaloneToast } from '@chakra-ui/react';
 import Profile from '@components/nav/Profile';
 import Divider from '@components/utils/layout/divider/divider';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
 import { User } from '@prisma/client';
 import { toastDefaults } from 'assets/constants/config';
+import axios from 'axios';
 import { useUpdateUserMutation } from 'generated/graphql';
 import { useSession } from 'next-auth/client';
 import { useState, useEffect, FormEvent } from 'react';
@@ -27,6 +28,7 @@ interface IProfileDetailsFormProps {
 export const ProfileForm = (): JSX.Element => {
   const [session, loading] = useSession();
   const [user, setUser] = useState<User>(session?.user as User);
+  const [userImage, setUserImage] = useState<string | ArrayBuffer | null>();
   const toast = createStandaloneToast();
 
   const [updateUserMutation, { loading: updateLoading }] =
@@ -53,7 +55,8 @@ export const ProfileForm = (): JSX.Element => {
   }, [session]);
 
   const renderAvatar = (): JSX.Element => {
-    if (user.image) return <Profile />;
+    if (userImage) return <Avatar src={userImage as string} size={'sm'} />;
+    if (user.image) return <Profile minimal />;
     else
       return (
         <svg
@@ -71,13 +74,29 @@ export const ProfileForm = (): JSX.Element => {
       );
   };
 
-  const submitProfileDetailsForm = (
-    e: FormEvent<HTMLFormElement> & {
-      target: { elements: IProfileDetailsFormProps };
-    },
-  ): void => {
+  const submitProfileDetailsForm = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const { email, firstName, lastName, userName } = e.target.elements;
+    const { email, firstName, lastName, userName } =
+      e.target as typeof e.target & IProfileDetailsFormProps;
+
+    if (
+      email &&
+      email.value === user.email &&
+      firstName &&
+      firstName.value === user.firstName &&
+      lastName &&
+      lastName.value === user.lastName &&
+      userName &&
+      userName.value === user.username
+    ) {
+      toast({
+        title: 'Nothing has changed!',
+        status: 'warning',
+        ...toastDefaults,
+      });
+      return;
+    }
+
     updateUserMutation({
       variables: {
         data: {
@@ -101,6 +120,24 @@ export const ProfileForm = (): JSX.Element => {
     });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const submitProfilePictureForm = (e: any): void => {
+    e.preventDefault();
+
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target?.files[0]);
+    reader.onloadend = async () => {
+      setUserImage(reader.result);
+      const {
+        data: { imagePath },
+      } = await axios.post('/api/uploads/changeAvatar', {
+        image: reader.result,
+        user: user.id,
+      });
+      setUserImage(imagePath);
+    };
+  };
+
   return (
     <section className="text-black dark:text-white">
       <h4 className="font-bold text-xl tracking-wide">Profile</h4>
@@ -118,14 +155,21 @@ export const ProfileForm = (): JSX.Element => {
             <span className="font-semibold text-md">Photo</span>
             <div className="flex items-center gap-x-2">
               {renderAvatar()}
-              <input type="file" id="profilePic" name="profilePic" />
+              <input
+                className="hidden"
+                type="file"
+                id="profilePic"
+                name="profilePic"
+                onChange={(e) => submitProfilePictureForm(e)}
+              />
+              <label htmlFor="profilePic" className="btn-primary">
+                Upload file
+              </label>
             </div>
           </form>
           <Divider />
           <form
             className="basic-profile-information"
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             onSubmit={(e) => submitProfileDetailsForm(e)}
           >
             <h4 className="font-bold text-lg tracking-wide">
