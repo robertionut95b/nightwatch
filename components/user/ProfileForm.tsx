@@ -1,5 +1,4 @@
 import { Avatar, createStandaloneToast } from '@chakra-ui/react';
-import Profile from '@components/nav/Profile';
 import Divider from '@components/utils/layout/divider/divider';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
@@ -55,8 +54,8 @@ export const ProfileForm = (): JSX.Element => {
   }, [session]);
 
   const renderAvatar = (): JSX.Element => {
-    if (userImage) return <Avatar src={userImage as string} size={'sm'} />;
-    if (user.image) return <Profile minimal />;
+    if (userImage) return <Avatar src={userImage as string} size={'lg'} />;
+    if (user.image) return <Avatar src={user.image} size={'lg'} />;
     else
       return (
         <svg
@@ -127,6 +126,29 @@ export const ProfileForm = (): JSX.Element => {
     const reader = new FileReader();
     reader.readAsDataURL(e.target?.files[0]);
     reader.onloadend = async () => {
+      const image = reader.result;
+
+      if (!image) {
+        toast({
+          title: 'Could upload image',
+          status: 'error',
+          ...toastDefaults,
+        });
+      }
+
+      // check type
+      if (image) {
+        const [, type] = image.toString().split(';')[0].split('/');
+        if (type !== 'jpeg' && type !== 'png' && type !== 'gif') {
+          toast({
+            title: 'Image must be a jpeg or png',
+            status: 'error',
+            ...toastDefaults,
+          });
+          return;
+        }
+      }
+
       setUserImage(reader.result);
       const {
         data: { imagePath },
@@ -149,7 +171,7 @@ export const ProfileForm = (): JSX.Element => {
         <MinimalSpinner />
       ) : (
         <>
-          <form className="profile-pic flex flex-col gap-y-2">
+          <article className="profile-pic flex flex-col gap-y-2">
             <h4 className="font-bold text-lg tracking-wide">Avatar</h4>
             <p className="dark:text-gray-200 mb-4">User personal photograph</p>
             <span className="font-semibold text-md">Photo</span>
@@ -160,78 +182,81 @@ export const ProfileForm = (): JSX.Element => {
                 type="file"
                 id="profilePic"
                 name="profilePic"
+                accept="image/png, image/gif, image/jpeg"
                 onChange={(e) => submitProfilePictureForm(e)}
               />
               <label htmlFor="profilePic" className="btn-primary">
-                Upload file
+                Change photo
               </label>
             </div>
-          </form>
+          </article>
           <Divider />
-          <form
-            className="basic-profile-information"
-            onSubmit={(e) => submitProfileDetailsForm(e)}
-          >
-            <h4 className="font-bold text-lg tracking-wide">
-              Personal information
-            </h4>
-            <p className="dark:text-gray-200 mb-4">
-              Basic information such as email address, last name, first name,
-              address
-            </p>
-            <div className="form-inputs flex flex-col gap-y-2">
-              <label htmlFor="email">Email address *</label>
-              <input
-                className="rounded py-1 px-2"
-                name="email"
-                type="email"
-                placeholder="johndoe@nightwatch.org"
-                disabled
-                defaultValue={user?.email}
-              />
-              <label htmlFor="username">Username</label>
-              <input
-                className="rounded py-1 px-2 bg-gray-100 dark:bg-white text-black placeholder-gray-800"
-                name="userName"
-                type="userName"
-                placeholder="johndoe"
-                defaultValue={user?.username || undefined}
-              />
-              <label htmlFor="firstName">First name</label>
-              <input
-                className="rounded py-1 px-2 bg-gray-100 text-black placeholder-gray-800"
-                name="firstName"
-                type="text"
-                placeholder="John"
-                defaultValue={user?.firstName || undefined}
-              />
-              <label htmlFor="lastName">Last name</label>
-              <input
-                className="rounded py-1 px-2 bg-gray-100 text-black placeholder-gray-800"
-                name="lastName"
-                type="text"
-                placeholder="Doe"
-                defaultValue={user?.lastName || undefined}
-              />
-            </div>
-            <div className="button-groups mt-8 flex justify-end gap-x-2">
-              <button
-                className="btn-primary bg-gray-200 text-primary hover:bg-gray-400 font-semibold"
-                type="reset"
-              >
-                Cancel
-              </button>
-              <button
-                className="btn-primary bg-primary text-white disabled:bg-slate-700"
-                type="submit"
-                disabled={updateLoading}
-              >
-                <ShowIfElse if={updateLoading} else={'Save'}>
-                  <MinimalSpinner color={'white'} />
-                </ShowIfElse>
-              </button>
-            </div>
-          </form>
+          <article className="form-basic">
+            <form
+              className="basic-profile-information"
+              onSubmit={(e) => submitProfileDetailsForm(e)}
+            >
+              <h4 className="font-bold text-lg tracking-wide">
+                Personal information
+              </h4>
+              <p className="dark:text-gray-200 mb-4">
+                Basic information such as email address, last name, first name,
+                address
+              </p>
+              <div className="form-inputs flex flex-col gap-y-2">
+                <label htmlFor="email">Email address *</label>
+                <input
+                  className="rounded py-1 px-2 border bg-slate-200 dark:bg-inherit cursor-not-allowed"
+                  name="email"
+                  type="email"
+                  placeholder="johndoe@nightwatch.org"
+                  disabled
+                  defaultValue={user?.email}
+                />
+                <label htmlFor="username">Username</label>
+                <input
+                  className="rounded py-1 px-2 bg-gray-100 dark:bg-white border text-black placeholder-gray-800"
+                  name="userName"
+                  type="userName"
+                  placeholder="johndoe"
+                  defaultValue={user?.username || undefined}
+                />
+                <label htmlFor="firstName">First name</label>
+                <input
+                  className="rounded py-1 px-2 bg-gray-100 text-black border placeholder-gray-800"
+                  name="firstName"
+                  type="text"
+                  placeholder="John"
+                  defaultValue={user?.firstName || undefined}
+                />
+                <label htmlFor="lastName">Last name</label>
+                <input
+                  className="rounded py-1 px-2 bg-gray-100 text-black border placeholder-gray-800"
+                  name="lastName"
+                  type="text"
+                  placeholder="Doe"
+                  defaultValue={user?.lastName || undefined}
+                />
+              </div>
+              <div className="button-groups mt-8 flex justify-end gap-x-2">
+                <button
+                  className="btn-primary bg-gray-200 text-primary hover:bg-gray-400 font-semibold"
+                  type="reset"
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn-primary bg-primary text-white disabled:bg-slate-700"
+                  type="submit"
+                  disabled={updateLoading}
+                >
+                  <ShowIfElse if={updateLoading} else={'Save'}>
+                    <MinimalSpinner color={'white'} />
+                  </ShowIfElse>
+                </button>
+              </div>
+            </form>
+          </article>
         </>
       )}
     </section>

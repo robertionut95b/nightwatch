@@ -43,7 +43,7 @@ export default function NavigationBar(): JSX.Element {
       className={
         isHome
           ? isHomeClassNames
-          : 'flex flex-row bg-gray-100 dark:bg-background-dark text-black dark:text-white shadow z-10 justify-between px-5 md:px-12 items-center sticky top-0 py-3 backdrop-blur-sm bg-opacity-60'
+          : 'flex flex-row bg-gray-100 dark:bg-background-dark text-black dark:text-white shadow-md z-10 justify-between px-5 md:px-12 items-center sticky top-0 py-3 backdrop-blur-sm bg-opacity-60 dark:border-b dark:border-gray-900'
       }
     >
       <Logo />
