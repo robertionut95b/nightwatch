@@ -17,9 +17,18 @@ const SignOut = (): JSX.Element => {
       <Head>
         <title>{`Sign out - ${process.env.APP_SITE_NAME}`}</title>
       </Head>
-      <div className="container">
-        <p>Successfully logged out</p>
-        <Link href="/">Go back home</Link>
+      <div className="container flex gap-y-8 justify-center items-center">
+        <div className="info">
+          <h4 className="font-bold text-xl tracking-wide mb-8">
+            Sad to see you going!
+          </h4>
+          <p>But you have succesfully logged out</p>
+        </div>
+        <div className="redirect-home">
+          <Link href="/" passHref>
+            <button className="btn-primary">Go back home</button>
+          </Link>
+        </div>
       </div>
     </Layout>
   );

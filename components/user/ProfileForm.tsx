@@ -55,7 +55,8 @@ export const ProfileForm = (): JSX.Element => {
 
   const renderAvatar = (): JSX.Element => {
     if (userImage) return <Avatar src={userImage as string} size={'lg'} />;
-    if (user.image) return <Avatar src={user.image} size={'lg'} />;
+    if (user?.image)
+      return <Avatar src={user?.image || undefined} size={'lg'} />;
     else
       return (
         <svg
