@@ -19,6 +19,7 @@ import { generateYearsArray } from '../../src/utils/generators/years';
 import { imdbRatingsArray } from '../../assets/constants/imdbRatingsArr';
 import { StringListDropdown } from '../../components/utils/layout/dropdowns/dropdown';
 import { Spinner } from '../../components/utils/layout/spinners/spinner';
+import { getSession } from 'next-auth/client';
 
 export default function Movies({
   movies,
@@ -273,6 +274,7 @@ export default function Movies({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
+  const session = getSession(context);
   const { data, error } = await apolloClient.query<
     AllMoviesLangGenreQuery,
     AllMoviesLangGenreQueryVariables
@@ -372,6 +374,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       movies: movies,
       genres: genres,
       languages: languages,
+      session: JSON.parse(JSON.stringify(session)),
     },
   };
 };

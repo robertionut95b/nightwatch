@@ -250,7 +250,7 @@ export default function SeriesDetailsCard({
             </Link>
           </div>
         )}
-        <div className="series-episodes-slider mt-2 w-full overflow-x-auto whitespace-nowrap flex gap-4">
+        <div className="series-episodes-slider mt-2 p-2 w-full overflow-x-auto whitespace-nowrap flex gap-4">
           {selectedSeasonData &&
             selectedSeasonData.episodeIds.map((ep, idx) => (
               <div className="inline-block" key={idx}>

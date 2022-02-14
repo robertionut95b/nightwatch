@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from 'querystring';
 import MovieDetailsCard from '../../components/items/movies/details/MovieDetailsCard';
 import { Movie } from '../../generated/graphql';
 import prisma from '../../lib/PrismaClient/prisma';
+import { getSession } from 'next-auth/client';
 
 interface IParams extends ParsedUrlQuery {
   id: string;

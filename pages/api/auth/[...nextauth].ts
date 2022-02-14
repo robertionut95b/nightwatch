@@ -5,13 +5,14 @@ import prisma from '../../../lib/PrismaClient/prisma';
 import { Role } from '@prisma/client';
 
 export interface AppSession extends Session {
-  userSettings?: { name: string; value: string }[];
+  userSettings?: { id: string; name: string; value: string }[];
   role: string;
   user: Session['user'] & {
     id?: string;
     username?: string | null;
     firstName?: string | null;
     lastName?: string | null;
+    role?: string | null;
   };
 }
 
@@ -49,6 +50,7 @@ export default NextAuth({
         include: {
           settings: {
             select: {
+              id: true,
               name: true,
               value: true,
             },

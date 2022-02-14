@@ -9,11 +9,14 @@ import Profile from './Profile';
 import useWindowDimensions from '../utils/hooks/useWindowDimensions';
 import { MinimalSpinner } from '../utils/layout/spinners/minimalSpinner';
 import ShowIf from '@components/utils/layout/showConditional/showIf';
+import useMounted from '../layout/loading/loading';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 
 export default function NavigationBar(): JSX.Element {
   const [session, loading] = useSession();
   const { pathname } = useRouter();
   const isHome = pathname === '/';
+  const mounted = useMounted();
 
   const isHomeClassNames =
     'flex flex-row bg-black text-white shadow z-10 justify-between px-5 md:px-12 items-center sticky top-0 py-3 backdrop-blur-sm bg-opacity-60';
@@ -52,26 +55,28 @@ export default function NavigationBar(): JSX.Element {
       </div>
       <div className="nav-right-menu">
         <div className="flex-row gap-x-4 items-center hidden md:flex">
-          {loading ? (
-            <MinimalSpinner />
-          ) : (
-            <>
-              <Link href="/user/profile" passHref>
-                <a>
-                  <Profile minimal />
-                </a>
-              </Link>
-              {!session && (
-                <Link href="/auth/signin" passHref>
-                  <button className="btn-primary">Log in</button>
-                </Link>
-              )}
-              <ShowIf if={session}>
-                <Link href="/auth/signout" passHref>
-                  <button className="btn-primary">Log out</button>
-                </Link>
-              </ShowIf>
-            </>
+          {mounted && (
+            <ShowIfElse if={!loading} else={<MinimalSpinner />}>
+              <>
+                <ShowIf if={session}>
+                  <Link href="/user/profile" passHref>
+                    <a>
+                      <Profile minimal />
+                    </a>
+                  </Link>
+                </ShowIf>
+                <ShowIf if={!session}>
+                  <Link href="/auth/signin" passHref>
+                    <button className="btn-primary">Log in</button>
+                  </Link>
+                </ShowIf>
+                <ShowIf if={session}>
+                  <Link href="/auth/signout" passHref>
+                    <button className="btn-primary">Log out</button>
+                  </Link>
+                </ShowIf>
+              </>
+            </ShowIfElse>
           )}
         </div>
         <div

@@ -26,7 +26,7 @@ export interface WatchlistsPageProps {
               episodes: (WatchlistedEpisode & {
                 episode: Episode & {
                   season: Season & {
-                    series: { imdbID: string };
+                    series: { imdbID: string; title: string };
                   };
                 };
               })[];
@@ -70,8 +70,8 @@ export default function WatchlistsPage({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const session = await getSession();
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
   const watchlist = await prisma.watchlist.findFirst({
     where: {
       default: true,
@@ -91,6 +91,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
                       series: {
                         select: {
                           imdbID: true,
+                          title: true,
                         },
                       },
                     },
@@ -98,6 +99,24 @@ export const getServerSideProps: GetServerSideProps = async () => {
                 },
               },
             },
+            orderBy: [
+              {
+                episode: {
+                  season: {
+                    series: {
+                      title: 'asc',
+                    },
+                  },
+                },
+              },
+              {
+                episode: {
+                  season: {
+                    index: 'asc',
+                  },
+                },
+              },
+            ],
           },
         },
       },

@@ -8,6 +8,7 @@ import Footer from './footer/footer';
 import styles from './layout.module.css';
 import HeroMain from './home/heroMain';
 import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
+import useMounted from './loading/loading';
 
 export default function Layout({
   children,
@@ -17,6 +18,7 @@ export default function Layout({
   home?: boolean;
 }): JSX.Element {
   const [session, loading] = useSession();
+  const mounted = useMounted();
   const loadHero = () => {
     if (loading) return <MinimalSpinner />;
     if (session) return <HeroMain />;
@@ -46,7 +48,7 @@ export default function Layout({
                 Build your watchlist and explore thousands of movies, series and
                 documentaries
               </h6>
-              {loadHero()}
+              {mounted && loadHero()}
             </div>
           </div>
         )}

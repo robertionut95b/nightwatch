@@ -1,9 +1,11 @@
-import { Episode } from '@prisma/client';
+import { Episode, Season } from '@prisma/client';
 import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
-import Layout from '../../../../../../components/layout/layout';
+import Layout from '@components/layout/layout';
 import prisma from '../../../../../../lib/PrismaClient/prisma';
+import { useRouter } from 'next/router';
+import EpisodeDetailsCard from '@components/items/episodes/details/EpisodeCardDetails';
 
 interface IParams extends ParsedUrlQuery {
   seriesId: string;
@@ -11,7 +13,13 @@ interface IParams extends ParsedUrlQuery {
   episodeId: string;
 }
 
-export const EpisodePage = ({ episode }: { episode: Episode }): JSX.Element => {
+export const EpisodePage = ({
+  episode,
+}: {
+  episode: Episode & {
+    season: Season;
+  };
+}): JSX.Element => {
   return (
     <>
       <Layout home={false}>
@@ -19,7 +27,7 @@ export const EpisodePage = ({ episode }: { episode: Episode }): JSX.Element => {
           <title>{`${episode.title} - ${process.env.APP_SITE_NAME} || ${process.env.APP_SITE_NAME}`}</title>
         </Head>
         <article>
-          <h1>Episode Page</h1>
+          <EpisodeDetailsCard episode={episode} />
         </article>
       </Layout>
     </>

@@ -11,14 +11,17 @@ import React from 'react';
 import { Ribbon } from '../../../utils/layout/card-fillers/ribbon';
 import { useIsBookmarked } from './useIsBookmarked';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 
 export default function SeriesCard({
   series,
+  bookmarked = false,
 }: {
   series:
     | Serie
     | AllSeriesQuery['series'][0]
     | SearchSeriesByTitleQuery['series'][0];
+  bookmarked?: boolean;
 }): JSX.Element {
   const { id } = series;
   const toast = createStandaloneToast();
@@ -71,13 +74,22 @@ export default function SeriesCard({
           className="ribbon-wrapper"
           onClick={() => !loading && addToWatchlist()}
         >
-          {loading ? (
-            <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
-              <MinimalSpinner />
-            </div>
-          ) : (
-            <Ribbon marked={isBookmarked} />
-          )}
+          <ShowIfElse
+            if={bookmarked}
+            else={
+              <>
+                {loading ? (
+                  <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
+                    <MinimalSpinner />
+                  </div>
+                ) : (
+                  <Ribbon marked={isBookmarked} />
+                )}
+              </>
+            }
+          >
+            <Ribbon marked={bookmarked} />
+          </ShowIfElse>
         </div>
       </div>
     </div>

@@ -18,9 +18,9 @@ export interface Context {
 
 const apolloServer = new ApolloServer({
   schema: schema,
-  context: async ({ req }): Promise<Context> => {
+  context: async ({ req, res }): Promise<Context> => {
     const session = await getSession({ req });
-    return { prisma, session: session as AppSession };
+    return { prisma, session: session as AppSession, res, req };
   },
 });
 

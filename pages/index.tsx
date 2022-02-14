@@ -14,6 +14,7 @@ import {
 } from '../generated/graphql';
 import SeriesCard from '../components/items/series/card/SeriesCard';
 import { cfg } from '../assets/constants/config';
+import { getSession } from 'next-auth/client';
 
 export default function Home({
   movies,
@@ -49,7 +50,8 @@ export default function Home({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = getSession(context);
   const { data, error } = await apolloClient.query<
     AllMoviesQuery,
     AllMoviesQueryVariables
@@ -79,6 +81,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       movies: movies,
       series: series,
+      session: JSON.parse(JSON.stringify(session)),
     },
   };
 };

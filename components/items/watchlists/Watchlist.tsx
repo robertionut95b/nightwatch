@@ -3,6 +3,8 @@ import MovieCard from '../movies/card/MovieCard';
 import SeriesCard from '../series/card/SeriesCard';
 import EpisodeCard from '../episodes/card/EpisodeCard';
 import { useState } from 'react';
+import ShowIf from '@components/utils/layout/showConditional/showIf';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 
 export const WatchlistComponent = ({
   watchlist,
@@ -12,7 +14,9 @@ export const WatchlistComponent = ({
   return (
     <section>
       <div className="flex flex-col gap-y-6 text-black dark:text-white">
-        <h2 className="text-xl font-bold tracking-wide">{watchlist.name}</h2>
+        <h2 className="text-xl font-bold tracking-wide">
+          {watchlist.name || 'Watchlist'}
+        </h2>
         <div className="selector">
           <select
             className="text-black dark:text-gray-500 bg-gray-200 dark:bg-backgroundSecondary font-medium rounded-lg text-sm px-4 py-2 focus:outline-none focus:ring appearance-none"
@@ -24,41 +28,66 @@ export const WatchlistComponent = ({
             <option value="episodes">Episodes</option>
           </select>
         </div>
-        {selectedSection === 'movies' && (
+        <ShowIf if={selectedSection === 'movies'}>
           <div className="movies">
-            <h2 className="text-lg font-bold">Movies</h2>
-            <div className="movies-wrapper mt-2 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-12">
-              {watchlist.movieWatchlist?.movies?.map(({ movie }) => (
-                <MovieCard key={movie.id} movie={movie} />
-              ))}
-            </div>
+            <ShowIfElse
+              if={
+                watchlist?.movieWatchlist &&
+                watchlist?.movieWatchlist?.movies?.length > 0
+              }
+              else={'No movies in this watchlist'}
+            >
+              <h2 className="text-lg font-bold">Movies</h2>
+              <div className="movies-wrapper mt-3 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-12">
+                {watchlist.movieWatchlist?.movies?.map(({ movie }) => (
+                  <MovieCard key={movie.id} movie={movie} bookmarked />
+                ))}
+              </div>
+            </ShowIfElse>
           </div>
-        )}
-        {selectedSection === 'series' && (
+        </ShowIf>
+        <ShowIf if={selectedSection === 'series'}>
           <div className="series">
-            <h2 className="text-lg font-bold">Series</h2>
-            <div className="series-wrapper mt-2 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-12">
-              {watchlist.seriesWatchlist?.series?.map(({ serie }) => (
-                <SeriesCard key={serie.id} series={serie} />
-              ))}
-            </div>
+            <ShowIfElse
+              if={
+                watchlist?.seriesWatchlist &&
+                watchlist?.seriesWatchlist?.series.length > 0
+              }
+              else={'No series in this watchlist'}
+            >
+              <h2 className="text-lg font-bold">Series</h2>
+              <div className="series-wrapper mt-3 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-12">
+                {watchlist.seriesWatchlist?.series?.map(({ serie }) => (
+                  <SeriesCard key={serie.id} series={serie} bookmarked />
+                ))}
+              </div>
+            </ShowIfElse>
           </div>
-        )}
-        {selectedSection === 'episodes' && (
+        </ShowIf>
+        <ShowIf if={selectedSection === 'episodes'}>
           <div className="episodes">
             <h2 className="text-lg font-bold">Episodes</h2>
             <div className="series-wrapper mt-2 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-12">
               {watchlist.episodeWatchlist?.episodes?.map(({ episode }) => (
-                <EpisodeCard
-                  key={episode.id}
-                  seriesImdbID={episode.season.series.imdbID}
-                  episode={episode}
-                  season={episode.season}
-                />
+                <div
+                  className="flex flex-col items-center"
+                  key={episode.imdbID}
+                >
+                  <span className="font-normal text-md">
+                    {episode.season.series.title} - S{episode.season.index}
+                  </span>
+                  <EpisodeCard
+                    key={episode.id}
+                    seriesImdbID={episode.season.series.imdbID}
+                    episode={episode}
+                    season={episode.season}
+                    bookmarked
+                  />
+                </div>
               ))}
             </div>
           </div>
-        )}
+        </ShowIf>
       </div>
     </section>
   );

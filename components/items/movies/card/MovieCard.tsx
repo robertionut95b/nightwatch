@@ -6,11 +6,14 @@ import { toastDefaults } from '../../../../assets/constants/config';
 import { useIsBookmarked } from './useIsBookmarked';
 import { createStandaloneToast } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 
 export default function MovieCard({
   movie,
+  bookmarked = false,
 }: {
   movie: Movie | SearchMovieByTitleQuery['movies'][0];
+  bookmarked?: boolean;
 }): JSX.Element {
   const { id } = movie;
   const toast = createStandaloneToast();
@@ -62,13 +65,22 @@ export default function MovieCard({
           className="ribbon-wrapper"
           onClick={() => !loading && addToWatchlist()}
         >
-          {loading ? (
-            <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
-              <MinimalSpinner />
-            </div>
-          ) : (
-            <Ribbon marked={isBookmarked} />
-          )}
+          <ShowIfElse
+            if={bookmarked}
+            else={
+              <>
+                {loading ? (
+                  <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
+                    <MinimalSpinner />
+                  </div>
+                ) : (
+                  <Ribbon marked={isBookmarked} />
+                )}
+              </>
+            }
+          >
+            <Ribbon marked={bookmarked} />
+          </ShowIfElse>
         </div>
       </div>
     </div>

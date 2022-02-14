@@ -1,13 +1,19 @@
 import { Avatar } from '@chakra-ui/react';
 import { useSession } from 'next-auth/client';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Profile = ({ minimal }: { minimal?: boolean }): JSX.Element => {
   const [session] = useSession();
   const [email] = React.useState<string>(session?.user?.email || '');
-  const [image] = React.useState<string | null | undefined>(
+  const [image, setImage] = React.useState<string | null | undefined>(
     session?.user?.image,
   );
+
+  useEffect(() => {
+    if (session?.user?.image) {
+      setImage(session.user.image);
+    }
+  }, [session?.user?.image]);
 
   if (minimal)
     return (

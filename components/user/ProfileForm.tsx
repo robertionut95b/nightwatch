@@ -205,7 +205,7 @@ export const ProfileForm = (): JSX.Element => {
                 address
               </p>
               <div className="form-inputs flex flex-col gap-y-2">
-                <label htmlFor="email">Email address *</label>
+                <label htmlFor="email">Email address*</label>
                 <input
                   className="rounded py-1 px-2 border bg-slate-200 dark:bg-inherit cursor-not-allowed"
                   name="email"

@@ -5,7 +5,7 @@ import {
   useAddSeriesToWatchlistMutation,
   useRemoveSeriesFromWatchlistMutation,
   WatchlistsQuery,
-  useWatchlistsQuery,
+  useWatchlistsLazyQuery,
   WatchlistsDocument,
 } from '../../../../generated/graphql';
 import { ApolloError } from '@apollo/client';
@@ -32,28 +32,47 @@ export const useIsBookmarked = (
     onSuccess?: () => void;
     onError?: (err: ApolloError | undefined) => void;
   },
+  defaultBookmarked?: boolean,
 ): IUseIsBookmarkedResults => {
   const { onSuccess, onError } = options;
   const [session, loading] = useSession();
-  const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
+  const [isBookmarked, setIsBookmarked] = useState<boolean>(
+    defaultBookmarked || false,
+  );
+  const [bookmarkLoading, setBookmarkLoading] = useState<boolean>(true);
+
   const [defaultWatchlist, setDefaultWatchlist] =
     useState<WatchlistsQuery['watchlists'][0]>();
-  const { data: watchlistQueryData, loading: watchlistLoading } =
-    useWatchlistsQuery({
-      variables: {
-        where: {
-          default: {
-            equals: true,
+  const [
+    getDefaultWatchlist,
+    { data: watchlistQueryData, loading: watchlistLoading },
+  ] = useWatchlistsLazyQuery({
+    variables: {
+      where: {
+        AND: [
+          {
+            default: {
+              equals: true,
+            },
           },
-        },
+          {
+            user: {
+              is: {
+                email: {
+                  equals: session?.user?.email,
+                },
+              },
+            },
+          },
+        ],
       },
-      onError: (err) => {
-        if (typeof window === 'undefined') {
-          console.error(err);
-        }
-      },
-    });
-  const [bookmarkLoading, setBookmarkLoading] = useState<boolean>(false);
+    },
+    onError: (err) => {
+      if (typeof window === 'undefined') {
+        console.error(err);
+      }
+    },
+  });
 
   const [addSeriesToWatchlistMutation, { loading: addLoading }] =
     useAddSeriesToWatchlistMutation({
@@ -94,9 +113,22 @@ export const useIsBookmarked = (
           query: WatchlistsDocument,
           variables: {
             where: {
-              default: {
-                equals: true,
-              },
+              AND: [
+                {
+                  default: {
+                    equals: true,
+                  },
+                },
+                {
+                  user: {
+                    is: {
+                      email: {
+                        equals: session?.user?.email,
+                      },
+                    },
+                  },
+                },
+              ],
             },
           },
         },
@@ -138,16 +170,21 @@ export const useIsBookmarked = (
     });
 
   useEffect(() => {
+    if (session?.user?.email) {
+      getDefaultWatchlist();
+    }
+  }, [getDefaultWatchlist, session?.user?.email]);
+
+  useEffect(() => {
     if (watchlistQueryData) {
       setDefaultWatchlist(watchlistQueryData.watchlists[0]);
     }
   }, [watchlistQueryData]);
 
   useEffect(() => {
-    if (!session || !defaultWatchlist) return;
-    if (checkIfBookmarked(seriesId, defaultWatchlist)) {
-      setIsBookmarked(true);
-    }
+    if (!session || Object.keys(session).length === 0 || !defaultWatchlist)
+      return;
+    setIsBookmarked(checkIfBookmarked(seriesId, defaultWatchlist));
   }, [seriesId, session, defaultWatchlist]);
 
   useEffect(() => {

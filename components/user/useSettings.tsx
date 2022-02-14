@@ -1,8 +1,5 @@
 import isEqual from 'lodash.isequal';
-import {
-  useCreateManyAppSettingsMutation,
-  useUpdateManyAppSettingsMutation,
-} from 'generated/graphql';
+import { useUpsertAppSettingsMutation } from 'generated/graphql';
 import { useSession } from 'next-auth/client';
 import { AppSession } from 'pages/api/auth/[...nextauth]';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
@@ -44,12 +41,8 @@ export const useSettings = (): UseSettingsResult => {
     language: 'en',
   });
 
-  const { darkMode, listType, notifications, emailAlerts, language } = settings;
-
-  const [createManyAppSettingsMutation, { loading: createLoading }] =
-    useCreateManyAppSettingsMutation();
-  const [updateManyAppSettings, { loading: updateLoading }] =
-    useUpdateManyAppSettingsMutation({
+  const [upsertAppSettings, { loading: updateLoading }] =
+    useUpsertAppSettingsMutation({
       onCompleted: () => {
         setOriginalSettings(settings);
         setTheme(settings.darkMode ? 'dark' : 'light');
@@ -60,41 +53,8 @@ export const useSettings = (): UseSettingsResult => {
     e.preventDefault();
     const appSession = session as AppSession;
 
-    if (isEqual(originalSettings, settings)) return;
-
-    if (!appSession.userSettings) {
-      createManyAppSettingsMutation({
-        variables: {
-          data: [
-            {
-              name: 'darkMode',
-              value: String(darkMode),
-              userId: appSession?.user?.id,
-            },
-            {
-              name: 'listType',
-              value: listType,
-              userId: appSession?.user?.id,
-            },
-            {
-              name: 'notifications',
-              value: String(notifications),
-              userId: appSession?.user?.id,
-            },
-            {
-              name: 'emailAlerts',
-              value: String(emailAlerts),
-              userId: appSession?.user?.id,
-            },
-            {
-              name: 'language',
-              value: language,
-              userId: appSession?.user?.id,
-            },
-          ],
-          skipDuplicates: true,
-        },
-      });
+    if (isEqual(originalSettings, settings)) {
+      return;
     }
 
     Object.keys(settings).forEach((key) => {
@@ -102,20 +62,26 @@ export const useSettings = (): UseSettingsResult => {
         originalSettings[key as keyof ISettingsMapProps] !==
         settings[key as keyof ISettingsMapProps]
       ) {
-        updateManyAppSettings({
+        upsertAppSettings({
           variables: {
-            data: {
+            create: {
+              name: key,
+              value: String(settings[key as keyof ISettingsMapProps]),
+              User: {
+                connect: {
+                  email: appSession?.user?.email,
+                },
+              },
+            },
+            update: {
               value: {
                 set: String(settings[key as keyof ISettingsMapProps]),
               },
             },
             where: {
-              name: {
-                equals: key,
-              },
-              userId: {
-                equals: appSession?.user?.id,
-              },
+              id:
+                appSession?.userSettings?.filter((s) => s.name === key)[0]
+                  ?.id || '',
             },
           },
         });
@@ -130,30 +96,30 @@ export const useSettings = (): UseSettingsResult => {
 
     setSettings((prevState) => ({
       ...prevState,
-      listType: usrSttgs.filter((s) => s.name === 'listType')[0].value,
+      listType: usrSttgs.filter((s) => s.name === 'listType')[0]?.value,
       darkMode:
-        usrSttgs.filter((s) => s.name === 'darkMode')[0].value === 'true',
+        usrSttgs.filter((s) => s.name === 'darkMode')[0]?.value === 'true',
       notifications:
-        usrSttgs.filter((s) => s.name === 'notifications')[0].value === 'true',
+        usrSttgs.filter((s) => s.name === 'notifications')[0]?.value === 'true',
       emailAlerts:
-        usrSttgs.filter((s) => s.name === 'emailAlerts')[0].value === 'true',
-      language: usrSttgs.filter((s) => s.name === 'language')[0].value,
+        usrSttgs.filter((s) => s.name === 'emailAlerts')[0]?.value === 'true',
+      language: usrSttgs.filter((s) => s.name === 'language')[0]?.value,
     }));
 
     setOriginalSettings({
-      listType: usrSttgs.filter((s) => s.name === 'listType')[0].value,
+      listType: usrSttgs.filter((s) => s.name === 'listType')[0]?.value,
       darkMode:
-        usrSttgs.filter((s) => s.name === 'darkMode')[0].value === 'true',
+        usrSttgs.filter((s) => s.name === 'darkMode')[0]?.value === 'true',
       notifications:
-        usrSttgs.filter((s) => s.name === 'notifications')[0].value === 'true',
+        usrSttgs.filter((s) => s.name === 'notifications')[0]?.value === 'true',
       emailAlerts:
-        usrSttgs.filter((s) => s.name === 'emailAlerts')[0].value === 'true',
-      language: usrSttgs.filter((s) => s.name === 'language')[0].value,
+        usrSttgs.filter((s) => s.name === 'emailAlerts')[0]?.value === 'true',
+      language: usrSttgs.filter((s) => s.name === 'language')[0]?.value,
     });
   }, [session]);
 
   return {
-    loading: loading || createLoading || updateLoading,
+    loading: loading || updateLoading,
     settings,
     setSettings,
     onSubmitForm,

@@ -12,15 +12,18 @@ import { toastDefaults } from '../../../../assets/constants/config';
 import { createStandaloneToast } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
 import { Season as PrismaSeason } from '@prisma/client';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 
 export default function EpisodeCard({
   seriesImdbID,
   season,
   episode,
+  bookmarked = false,
 }: {
   seriesImdbID: string;
   season: Season | CreateSeasonMutation['createSeason'] | PrismaSeason;
   episode: Episode | CreateSeasonMutation['createSeason']['episodeIds'][0];
+  bookmarked?: boolean;
 }): JSX.Element {
   const toast = createStandaloneToast();
   const { isBookmarked, addToWatchlist, loading } = useIsBookmarked(
@@ -58,8 +61,13 @@ export default function EpisodeCard({
             href={`/series/${seriesImdbID}/seasons/${season.index}/episodes/${episode.imdbID}`}
             passHref
           >
-            {episode.poster ? (
-              <a>
+            <a>
+              <ShowIfElse
+                else={
+                  <Placeholder width={180} height={250} label="No poster" />
+                }
+                if={episode.poster}
+              >
                 <Image
                   src={episode.poster}
                   width={180}
@@ -67,17 +75,8 @@ export default function EpisodeCard({
                   alt="poster"
                   objectFit="cover"
                 />
-              </a>
-            ) : (
-              <Link
-                href={`/series/${seriesImdbID}/seasons/${season.index}/episodes/${episode.imdbID}`}
-                passHref
-              >
-                <a>
-                  <Placeholder width={180} height={250} label="No poster" />
-                </a>
-              </Link>
-            )}
+              </ShowIfElse>
+            </a>
           </Link>
           <h6
             className="text-center mt-1 truncate font-medium tracking-wide text-black dark:text-white"
@@ -89,13 +88,22 @@ export default function EpisodeCard({
             className="ribbon-wrapper"
             onClick={() => !loading && addToWatchlist()}
           >
-            {loading ? (
-              <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
-                <MinimalSpinner />
-              </div>
-            ) : (
-              <Ribbon marked={isBookmarked} />
-            )}
+            <ShowIfElse
+              if={bookmarked}
+              else={
+                <>
+                  {loading ? (
+                    <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
+                      <MinimalSpinner />
+                    </div>
+                  ) : (
+                    <Ribbon marked={isBookmarked} />
+                  )}
+                </>
+              }
+            >
+              <Ribbon marked={bookmarked} />
+            </ShowIfElse>
           </div>
         </div>
       </div>
