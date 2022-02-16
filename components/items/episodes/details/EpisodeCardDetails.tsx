@@ -2,15 +2,20 @@ import Image from 'next/image';
 import { toastDefaults } from '../../../../assets/constants/config';
 import { createStandaloneToast } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
-import { Episode } from '@prisma/client';
+import { Episode, Season, Serie } from '@prisma/client';
 import { useIsBookmarked } from '../card/useIsBookmarked';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import { Placeholder } from '@components/utils/layout/placeholders/placeholder';
+import Link from 'next/link';
 
 export default function EpisodeDetailsCard({
   episode,
 }: {
-  episode: Episode;
+  episode: Episode & {
+    season: Season & {
+      series: Serie;
+    };
+  };
 }): JSX.Element {
   const toast = createStandaloneToast();
   const { isBookmarked, addToWatchlist, loading } = useIsBookmarked(
@@ -83,7 +88,15 @@ export default function EpisodeDetailsCard({
     <div className="movie-card-details text-black dark:text-white">
       <div className="grid grid-cols-1 md:grid-cols-3 relative place-items-start gap-x-2">
         <div className="content-info flex flex-col items-center md:items-start gap-y-2 col-span-2">
-          <h6 className="mb-4 font-bold text-3xl">{episode.title}</h6>
+          <Link
+            href={`/series/${episode.season.series.imdbID}/seasons/${episode.season.index}/episodes/`}
+            passHref
+          >
+            <a>
+              <h2 className="mb-4 font-bold text-3xl">{episode.title}</h2>
+              <h4 className="mb-4 font-bold text-1xl">{`${episode.season.series?.title} - Season ${episode.season.index}`}</h4>
+            </a>
+          </Link>
           <ul className="flex flex-row items-center md:items-start gap-x-4 gap-y-2 flex-wrap">
             {/* <li>📅 {<DateComponent dateString={episode.release} />}</li> */}
             <li>

@@ -44,5 +44,7 @@
     "html": "html",
     "javascript": "javascript",
     "css": "css"
-  }
+  },
+  "WillLuke.nextjs.addTypesOnSave": true,
+  "WillLuke.nextjs.hasPrompted": true
 }

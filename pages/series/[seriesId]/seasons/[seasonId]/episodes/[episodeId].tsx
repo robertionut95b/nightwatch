@@ -1,10 +1,9 @@
-import { Episode, Season } from '@prisma/client';
+import { Episode, Season, Serie } from '@prisma/client';
 import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
 import Layout from '@components/layout/layout';
 import prisma from '../../../../../../lib/PrismaClient/prisma';
-import { useRouter } from 'next/router';
 import EpisodeDetailsCard from '@components/items/episodes/details/EpisodeCardDetails';
 
 interface IParams extends ParsedUrlQuery {
@@ -17,7 +16,9 @@ export const EpisodePage = ({
   episode,
 }: {
   episode: Episode & {
-    season: Season;
+    season: Season & {
+      series: Serie;
+    };
   };
 }): JSX.Element => {
   return (
@@ -65,12 +66,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       imdbID: episodeId,
     },
     include: {
-      season: true,
+      season: {
+        include: {
+          series: true,
+        },
+      },
     },
   });
 
   const episodeStr = JSON.stringify(episode);
   episode = JSON.parse(episodeStr);
+
+  if (!episode) {
+    return { notFound: true };
+  }
 
   return {
     props: {

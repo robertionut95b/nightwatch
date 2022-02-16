@@ -40,9 +40,16 @@ export const ProfileForm = (): JSX.Element => {
           ...toastDefaults,
         });
       },
-      onError: () => {
+      onError: (err) => {
+        let msg = 'Could not update user information';
+        if (
+          err.message?.toLowerCase()?.includes('unique constraint') ||
+          err.message?.toLowerCase()?.includes('username')
+        ) {
+          msg = 'Username already taken';
+        }
         toast({
-          title: 'Could not update user information',
+          title: msg,
           status: 'error',
           ...toastDefaults,
         });

@@ -73,7 +73,7 @@ export const WatchlistComponent = ({
                   className="flex flex-col items-center"
                   key={episode.imdbID}
                 >
-                  <span className="font-normal text-md">
+                  <span className="font-normal text-md truncate">
                     {episode.season.series.title} - S{episode.season.index}
                   </span>
                   <EpisodeCard

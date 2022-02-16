@@ -3,7 +3,8 @@ import { ParsedUrlQuery } from 'querystring';
 import Layout from '../../../../components/layout/layout';
 import prisma from '../../../../lib/PrismaClient/prisma';
 import Head from 'next/head';
-import { Season } from '@prisma/client';
+import { Episode, Season, Serie } from '@prisma/client';
+import SeriesCard from '../../../../components/items/series/card/SeriesCard';
 
 interface IParams extends ParsedUrlQuery {
   seriesId: string;
@@ -12,7 +13,10 @@ interface IParams extends ParsedUrlQuery {
 export const SeasonsPage = ({
   seasons,
 }: {
-  seasons: Season[];
+  seasons: (Season & {
+    series: Serie;
+    episodeIds: Episode[];
+  })[];
 }): JSX.Element => {
   return (
     <>
@@ -23,7 +27,19 @@ export const SeasonsPage = ({
           </title>
         </Head>
         <article>
-          <h1>Seasons Page</h1>
+          <h2 className="font-bold text-3xl mb-4">{`${seasons?.[0]?.series?.title}`}</h2>
+          <h4 className="font-normal text-2xl mb-8">Seasons</h4>
+          <div className="seasons grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row gap-x-6 gap-y-2 md:flex-wrap">
+            {seasons?.map((season) => (
+              <div
+                key={season.id}
+                className="series-card flex flex-col items-center"
+              >
+                <SeriesCard series={season.series} />
+                <span>{`Season ${season.index}`}</span>
+              </div>
+            ))}
+          </div>
         </article>
       </Layout>
     </>

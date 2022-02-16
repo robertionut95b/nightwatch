@@ -21,7 +21,11 @@ export default function EpisodeCard({
   bookmarked = false,
 }: {
   seriesImdbID: string;
-  season: Season | CreateSeasonMutation['createSeason'] | PrismaSeason;
+  season:
+    | Season
+    | CreateSeasonMutation['createSeason']
+    | PrismaSeason
+    | { index: Season['index'] };
   episode: Episode | CreateSeasonMutation['createSeason']['episodeIds'][0];
   bookmarked?: boolean;
 }): JSX.Element {

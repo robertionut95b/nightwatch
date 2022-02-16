@@ -4,7 +4,7 @@ import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner
 import { toastDefaults } from 'assets/constants/config';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
-import { FormEvent } from 'react';
+import { FormEvent, useCallback } from 'react';
 import { useUpdateUserMutation } from '../../generated/graphql';
 
 const SecurityForm = (): JSX.Element => {
@@ -36,34 +36,39 @@ const SecurityForm = (): JSX.Element => {
       },
     });
 
-  const submitChangeEmail = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    const { email } = e.target as typeof e.target & {
-      email: { value: string };
-    };
+  const submitChangeEmail = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      return (): void => {
+        e.preventDefault();
+        const { email } = e.target as typeof e.target & {
+          email: { value: string };
+        };
 
-    if (email.value === session?.user?.email) {
-      toast({
-        title: 'Nothing to change',
-        status: 'warning',
-        ...toastDefaults,
-      });
-      return;
-    }
+        if (email.value === session?.user?.email) {
+          toast({
+            title: 'Nothing to change',
+            status: 'warning',
+            ...toastDefaults,
+          });
+          return;
+        }
 
-    updateUserMutation({
-      variables: {
-        data: {
-          email: {
-            set: email.value,
+        updateUserMutation({
+          variables: {
+            data: {
+              email: {
+                set: email.value,
+              },
+            },
+            where: {
+              email: session?.user?.email,
+            },
           },
-        },
-        where: {
-          email: session?.user?.email,
-        },
-      },
-    });
-  };
+        });
+      };
+    },
+    [session?.user?.email, toast, updateUserMutation],
+  );
 
   if (loading) return <MinimalSpinner />;
   return (

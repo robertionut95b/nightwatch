@@ -98,6 +98,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const relatedSeriesStr = JSON.stringify(relatedSeries);
   relatedSeries = JSON.parse(relatedSeriesStr);
 
+  if (!serie) {
+    return { notFound: true };
+  }
+
   return {
     props: {
       series: serie,
