@@ -1,8 +1,3 @@
-import {
-  CreateSeasonMutation,
-  Episode,
-  Season,
-} from '../../../../generated/graphql';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Placeholder } from '../../../utils/layout/placeholders/placeholder';
@@ -11,8 +6,9 @@ import { useIsBookmarked } from './useIsBookmarked';
 import { toastDefaults } from '../../../../assets/constants/config';
 import { createStandaloneToast } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
-import { Season as PrismaSeason } from '@prisma/client';
+import { Episode, Season as PrismaSeason, Season } from '@prisma/client';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
+import { CreateSeasonMutation } from 'generated/graphql';
 
 export default function EpisodeCard({
   seriesImdbID,
