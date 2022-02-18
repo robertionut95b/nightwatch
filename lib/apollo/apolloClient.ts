@@ -11,7 +11,7 @@ const errorLink = onError(({ graphQLErrors }) => {
 });
 
 const httpLink = new HttpLink({
-  uri: process.env.API_GRAPHQL_URL,
+  uri: process.env.API_GRAPHQL_URL + '/api/graphql',
 });
 
 const apolloClient = new ApolloClient({
