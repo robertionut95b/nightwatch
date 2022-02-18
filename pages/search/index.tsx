@@ -1,13 +1,8 @@
 import { GetServerSideProps } from 'next';
 import Layout from '../../components/layout/layout';
-import apolloClient from '../../lib/apollo/apolloClient';
 import MovieCard from '../../components/items/movies/card/MovieCard';
 import {
   SearchMovieByTitleDocument,
-  SearchMovieByTitleQuery,
-  SearchMovieByTitleQueryVariables,
-  SearchSeriesByTitleQuery,
-  SearchSeriesByTitleQueryVariables,
   SearchSeriesByTitleDocument,
   useCreateSerieSearchMutation,
   CreateSerieSearchMutation,
@@ -32,13 +27,15 @@ import SearchedMoviesCard from '../../components/items/movies/searched/card/Sear
 import Link from 'next/link';
 import { createStandaloneToast } from '@chakra-ui/react';
 import { toastDefaults } from '../../assets/constants/config';
+import prisma from 'lib/PrismaClient/prisma';
+import { Movie, Serie } from '@prisma/client';
 
 export default function SearchResults({
   movies,
   series,
 }: {
-  movies: SearchMovieByTitleQuery['movies'];
-  series: SearchSeriesByTitleQuery['series'];
+  movies: Movie[];
+  series: Serie[];
 }): JSX.Element {
   const [session] = useSession();
   const router = useRouter();
@@ -324,34 +321,26 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     ? query.q.join(' | ')
     : query.q?.replaceAll(' ', ' | ');
 
-  const { data, error } = await apolloClient.query<
-    SearchMovieByTitleQuery,
-    SearchMovieByTitleQueryVariables
-  >({
-    fetchPolicy: 'no-cache',
-    query: SearchMovieByTitleDocument,
-    variables: { title: searchQuery || '' },
+  const movies = await prisma.movie.findMany({
+    where: {
+      title: {
+        search: searchQuery,
+      },
+    },
   });
 
-  if (error) console.error(error);
-  const movies = data?.movies || [];
-
-  const { data: seriesData, error: seriesError } = await apolloClient.query<
-    SearchSeriesByTitleQuery,
-    SearchSeriesByTitleQueryVariables
-  >({
-    fetchPolicy: 'no-cache',
-    query: SearchSeriesByTitleDocument,
-    variables: { title: searchQuery || '' },
+  const series = await prisma.serie.findMany({
+    where: {
+      title: {
+        search: searchQuery,
+      },
+    },
   });
-
-  if (seriesError) console.error(error);
-  const series = seriesData?.series || [];
 
   return {
     props: {
-      movies: movies,
-      series: series,
+      movies: JSON.parse(JSON.stringify(movies)),
+      series: JSON.parse(JSON.stringify(series)),
     },
   };
 };

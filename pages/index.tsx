@@ -3,17 +3,17 @@ import Layout from '../components/layout/layout';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import MovieCard from '../components/items/movies/card/MovieCard';
-import { AllMoviesQuery, AllSeriesQuery } from '../generated/graphql';
 import SeriesCard from '../components/items/series/card/SeriesCard';
 import { cfg } from '../assets/constants/config';
 import prisma from 'lib/PrismaClient/prisma';
+import { Movie, Serie } from '@prisma/client';
 
 export default function Home({
   movies,
   series,
 }: {
-  movies: AllMoviesQuery['movies'];
-  series: AllSeriesQuery['series'];
+  movies: Movie[];
+  series: Serie[];
 }): JSX.Element | null {
   return (
     <Layout home>
