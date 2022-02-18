@@ -1,20 +1,12 @@
 import Head from 'next/head';
 import Layout from '../components/layout/layout';
 import Link from 'next/link';
-import { GetServerSideProps } from 'next';
-import apolloClient from '../lib/apollo/apolloClient';
+import { GetStaticProps } from 'next';
 import MovieCard from '../components/items/movies/card/MovieCard';
-import {
-  AllMoviesDocument,
-  AllMoviesQuery,
-  AllMoviesQueryVariables,
-  AllSeriesDocument,
-  AllSeriesQuery,
-  AllSeriesQueryVariables,
-} from '../generated/graphql';
+import { AllMoviesQuery, AllSeriesQuery } from '../generated/graphql';
 import SeriesCard from '../components/items/series/card/SeriesCard';
 import { cfg } from '../assets/constants/config';
-import { getSession } from 'next-auth/client';
+import prisma from 'lib/PrismaClient/prisma';
 
 export default function Home({
   movies,
@@ -50,38 +42,25 @@ export default function Home({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = getSession(context);
-  const { data, error } = await apolloClient.query<
-    AllMoviesQuery,
-    AllMoviesQueryVariables
-  >({
-    query: AllMoviesDocument,
-    variables: {
-      take: cfg.API_ITEMS_PAGINATION_COUNT,
+export const getStaticProps: GetStaticProps = async () => {
+  const movies = await prisma.movie.findMany({
+    orderBy: {
+      createdAt: 'desc',
     },
+    take: cfg.API_ITEMS_PAGINATION_COUNT,
   });
-  if (error) console.error(error);
 
-  const { data: seriesData, error: seriesError } = await apolloClient.query<
-    AllSeriesQuery,
-    AllSeriesQueryVariables
-  >({
-    query: AllSeriesDocument,
-    variables: {
-      take: cfg.API_ITEMS_PAGINATION_COUNT,
+  const series = await prisma.serie.findMany({
+    orderBy: {
+      createdAt: 'desc',
     },
+    take: cfg.API_ITEMS_PAGINATION_COUNT,
   });
-  if (seriesError) console.error(error);
-
-  const movies = data?.movies || [];
-  const series = seriesData?.series || [];
 
   return {
     props: {
-      movies: movies,
-      series: series,
-      session: JSON.parse(JSON.stringify(session)),
+      movies: JSON.parse(JSON.stringify(movies)),
+      series: JSON.parse(JSON.stringify(series)),
     },
   };
 };
