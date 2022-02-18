@@ -4,7 +4,7 @@ export const AllMovies = gql`
   query allMovies(
     $cursor: MovieWhereUniqueInput
     $where: MovieWhereInput
-    $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!]
+    $orderBy: [MovieOrderByWithRelationInput!]
     $skip: Int
     $take: Int
   ) {
@@ -30,7 +30,7 @@ export const AllMoviesLangGenre = gql`
   query AllMoviesLangGenre(
     $cursor: MovieWhereUniqueInput
     $where: MovieWhereInput
-    $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!]
+    $orderBy: [MovieOrderByWithRelationInput!]
     $skip: Int
     $take: Int
   ) {
@@ -150,7 +150,7 @@ export const AllSeries = gql`
   query allSeries(
     $cursor: SerieWhereUniqueInput
     $where: SerieWhereInput
-    $orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!]
+    $orderBy: [SerieOrderByWithRelationInput!]
     $skip: Int
     $take: Int
   ) {
@@ -176,7 +176,7 @@ export const AllSeriesLangGenre = gql`
   query allSeriesLangGenre(
     $cursor: SerieWhereUniqueInput
     $where: SerieWhereInput
-    $orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!]
+    $orderBy: [SerieOrderByWithRelationInput!]
     $skip: Int
     $take: Int
   ) {
@@ -259,7 +259,7 @@ export const SeriesById = gql`
 
 export const searchSeriesByTitle = gql`
   query searchSeriesByTitle($title: String!) {
-    series(where: { title: { search: $title } }) {
+    series(where: { title: { contains: $title, mode: insensitive } }) {
       id
       title
       poster
