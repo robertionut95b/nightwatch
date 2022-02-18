@@ -1,3 +1,5 @@
+import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/client';
 import Head from 'next/head';
 import Layout from '../../../../components/layout/layout';
 import { MenuNavigationComponent } from '../../../../components/user/MenuNavigation';
@@ -26,3 +28,13 @@ export const Profile = (): JSX.Element => {
 };
 
 export default Profile;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
+
+  if (!session) return { redirect: { destination: '/', permanent: false } };
+
+  return {
+    props: {},
+  };
+};

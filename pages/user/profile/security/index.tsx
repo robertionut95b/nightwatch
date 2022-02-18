@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Layout from '../../../../components/layout/layout';
 import Sidebar from '@components/user/Sidebar';
 import SecurityForm from '../../../../components/user/SecurityForm';
+import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/client';
 
 export const Profile = (): JSX.Element => {
   return (
@@ -24,3 +26,13 @@ export const Profile = (): JSX.Element => {
 };
 
 export default Profile;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
+
+  if (!session) return { redirect: { destination: '/', permanent: false } };
+
+  return {
+    props: {},
+  };
+};

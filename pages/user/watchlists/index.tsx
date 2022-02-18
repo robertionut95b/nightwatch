@@ -72,6 +72,9 @@ export default function WatchlistsPage({
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx);
+
+  if (!session) return { redirect: { destination: '/', permanent: false } };
+
   const watchlist = await prisma.watchlist.findFirst({
     where: {
       default: true,

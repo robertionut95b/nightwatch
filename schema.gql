@@ -189,22 +189,6 @@ input AccountOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum AccountOrderByRelevanceFieldEnum {
-  accessToken
-  id
-  providerAccountId
-  providerId
-  providerType
-  refreshToken
-  userId
-}
-
-input AccountOrderByRelevanceInput {
-  fields: [AccountOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input AccountOrderByWithAggregationInput {
   _count: AccountCountOrderByAggregateInput
   _max: AccountMaxOrderByAggregateInput
@@ -221,8 +205,7 @@ input AccountOrderByWithAggregationInput {
   userId: SortOrder
 }
 
-input AccountOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: AccountOrderByRelevanceInput
+input AccountOrderByWithRelationInput {
   accessToken: SortOrder
   accessTokenExpires: SortOrder
   createdAt: SortOrder
@@ -232,7 +215,7 @@ input AccountOrderByWithRelationAndSearchRelevanceInput {
   providerType: SortOrder
   refreshToken: SortOrder
   updatedAt: SortOrder
-  user: UserOrderByWithRelationAndSearchRelevanceInput
+  user: UserOrderByWithRelationInput
   userId: SortOrder
 }
 
@@ -379,7 +362,7 @@ type Actor {
   _count: ActorCount
   createdAt: DateTime!
   id: Int!
-  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   name: String!
   series: Serie
   seriesId: Int
@@ -537,16 +520,6 @@ input ActorOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum ActorOrderByRelevanceFieldEnum {
-  name
-}
-
-input ActorOrderByRelevanceInput {
-  fields: [ActorOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input ActorOrderByWithAggregationInput {
   _avg: ActorAvgOrderByAggregateInput
   _count: ActorCountOrderByAggregateInput
@@ -560,13 +533,12 @@ input ActorOrderByWithAggregationInput {
   updatedAt: SortOrder
 }
 
-input ActorOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: ActorOrderByRelevanceInput
+input ActorOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
   movies: MovieOrderByRelationAggregateInput
   name: SortOrder
-  series: SerieOrderByWithRelationAndSearchRelevanceInput
+  series: SerieOrderByWithRelationInput
   seriesId: SortOrder
   updatedAt: SortOrder
 }
@@ -1012,19 +984,6 @@ input AppSettingsOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum AppSettingsOrderByRelevanceFieldEnum {
-  id
-  name
-  userId
-  value
-}
-
-input AppSettingsOrderByRelevanceInput {
-  fields: [AppSettingsOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input AppSettingsOrderByWithAggregationInput {
   _count: AppSettingsCountOrderByAggregateInput
   _max: AppSettingsMaxOrderByAggregateInput
@@ -1037,9 +996,8 @@ input AppSettingsOrderByWithAggregationInput {
   value: SortOrder
 }
 
-input AppSettingsOrderByWithRelationAndSearchRelevanceInput {
-  User: UserOrderByWithRelationAndSearchRelevanceInput
-  _relevance: AppSettingsOrderByRelevanceInput
+input AppSettingsOrderByWithRelationInput {
+  User: UserOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
   name: SortOrder
@@ -1234,7 +1192,7 @@ type Director {
   _count: DirectorCount
   createdAt: DateTime!
   id: Int!
-  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   name: String!
   series: Serie
   seriesId: Int
@@ -1392,16 +1350,6 @@ input DirectorOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum DirectorOrderByRelevanceFieldEnum {
-  name
-}
-
-input DirectorOrderByRelevanceInput {
-  fields: [DirectorOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input DirectorOrderByWithAggregationInput {
   _avg: DirectorAvgOrderByAggregateInput
   _count: DirectorCountOrderByAggregateInput
@@ -1415,13 +1363,12 @@ input DirectorOrderByWithAggregationInput {
   updatedAt: SortOrder
 }
 
-input DirectorOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: DirectorOrderByRelevanceInput
+input DirectorOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
   movies: MovieOrderByRelationAggregateInput
   name: SortOrder
-  series: SerieOrderByWithRelationAndSearchRelevanceInput
+  series: SerieOrderByWithRelationInput
   seriesId: SortOrder
   updatedAt: SortOrder
 }
@@ -1604,7 +1551,7 @@ type Episode {
   seasonId: Int!
   title: String!
   updatedAt: DateTime!
-  watchlist(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
+  watchlist(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
 }
 
 type EpisodeAvgAggregate {
@@ -1822,19 +1769,6 @@ input EpisodeOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum EpisodeOrderByRelevanceFieldEnum {
-  imdbID
-  plot
-  poster
-  title
-}
-
-input EpisodeOrderByRelevanceInput {
-  fields: [EpisodeOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input EpisodeOrderByWithAggregationInput {
   _avg: EpisodeAvgOrderByAggregateInput
   _count: EpisodeCountOrderByAggregateInput
@@ -1853,8 +1787,7 @@ input EpisodeOrderByWithAggregationInput {
   updatedAt: SortOrder
 }
 
-input EpisodeOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: EpisodeOrderByRelevanceInput
+input EpisodeOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
   imdbID: SortOrder
@@ -1862,7 +1795,7 @@ input EpisodeOrderByWithRelationAndSearchRelevanceInput {
   plot: SortOrder
   poster: SortOrder
   runtime: SortOrder
-  season: SeasonOrderByWithRelationAndSearchRelevanceInput
+  season: SeasonOrderByWithRelationInput
   seasonId: SortOrder
   title: SortOrder
   updatedAt: SortOrder
@@ -2049,7 +1982,7 @@ input EpisodeWhereUniqueInput {
 
 type EpisodesWatchlist {
   _count: EpisodesWatchlistCount
-  episodes(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
+  episodes(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
   id: Int!
   watchlist: Watchlist!
   watchlistId: Int!
@@ -2163,10 +2096,10 @@ input EpisodesWatchlistOrderByWithAggregationInput {
   watchlistId: SortOrder
 }
 
-input EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput {
+input EpisodesWatchlistOrderByWithRelationInput {
   episodes: WatchlistedEpisodeOrderByRelationAggregateInput
   id: SortOrder
-  watchlist: WatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlist: WatchlistOrderByWithRelationInput
   watchlistId: SortOrder
 }
 
@@ -2300,9 +2233,9 @@ type Genre {
   _count: GenreCount
   createdAt: DateTime!
   id: Int!
-  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   name: String!
-  series(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SerieWhereInput): [Serie!]!
+  series(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationInput!], skip: Int, take: Int, where: SerieWhereInput): [Serie!]!
   updatedAt: DateTime!
 }
 
@@ -2435,16 +2368,6 @@ input GenreOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum GenreOrderByRelevanceFieldEnum {
-  name
-}
-
-input GenreOrderByRelevanceInput {
-  fields: [GenreOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input GenreOrderByWithAggregationInput {
   _avg: GenreAvgOrderByAggregateInput
   _count: GenreCountOrderByAggregateInput
@@ -2457,8 +2380,7 @@ input GenreOrderByWithAggregationInput {
   updatedAt: SortOrder
 }
 
-input GenreOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: GenreOrderByRelevanceInput
+input GenreOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
   movies: MovieOrderByRelationAggregateInput
@@ -2671,9 +2593,9 @@ type Language {
   _count: LanguageCount
   createdAt: DateTime!
   id: Int!
-  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   name: String!
-  series(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SerieWhereInput): [Serie!]!
+  series(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationInput!], skip: Int, take: Int, where: SerieWhereInput): [Serie!]!
   seriesId: Int
   updatedAt: DateTime!
 }
@@ -2820,16 +2742,6 @@ input LanguageOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum LanguageOrderByRelevanceFieldEnum {
-  name
-}
-
-input LanguageOrderByRelevanceInput {
-  fields: [LanguageOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input LanguageOrderByWithAggregationInput {
   _avg: LanguageAvgOrderByAggregateInput
   _count: LanguageCountOrderByAggregateInput
@@ -2843,8 +2755,7 @@ input LanguageOrderByWithAggregationInput {
   updatedAt: SortOrder
 }
 
-input LanguageOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: LanguageOrderByRelevanceInput
+input LanguageOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
   movies: MovieOrderByRelationAggregateInput
@@ -3004,14 +2915,14 @@ input LanguageWhereUniqueInput {
 
 type Movie {
   _count: MovieCount
-  actors(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: ActorWhereInput): [Actor!]!
+  actors(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): [Actor!]!
   createdAt: DateTime!
-  directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
-  genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
+  directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
+  genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
   id: Int!
   imdbID: String!
   imdbRating: Float!
-  languages(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): [Language!]!
+  languages(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationInput!], skip: Int, take: Int, where: LanguageWhereInput): [Language!]!
   plot: String!
   poster: String!
   rating: String!
@@ -3019,7 +2930,7 @@ type Movie {
   runtime: Int!
   title: String!
   updatedAt: DateTime!
-  watchlist(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
+  watchlist(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
   year: Int!
 }
 
@@ -3345,20 +3256,6 @@ input MovieOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum MovieOrderByRelevanceFieldEnum {
-  imdbID
-  plot
-  poster
-  rating
-  title
-}
-
-input MovieOrderByRelevanceInput {
-  fields: [MovieOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input MovieOrderByWithAggregationInput {
   _avg: MovieAvgOrderByAggregateInput
   _count: MovieCountOrderByAggregateInput
@@ -3379,8 +3276,7 @@ input MovieOrderByWithAggregationInput {
   year: SortOrder
 }
 
-input MovieOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: MovieOrderByRelevanceInput
+input MovieOrderByWithRelationInput {
   actors: ActorOrderByRelationAggregateInput
   createdAt: SortOrder
   directors: DirectorOrderByRelationAggregateInput
@@ -3753,7 +3649,7 @@ input MovieWhereUniqueInput {
 type MoviesWatchlist {
   _count: MoviesWatchlistCount
   id: Int!
-  movies(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
+  movies(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
   watchlist: Watchlist!
   watchlistId: Int!
 }
@@ -3866,10 +3762,10 @@ input MoviesWatchlistOrderByWithAggregationInput {
   watchlistId: SortOrder
 }
 
-input MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput {
+input MoviesWatchlistOrderByWithRelationInput {
   id: SortOrder
   movies: WatchlistedMovieOrderByRelationAggregateInput
-  watchlist: WatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlist: WatchlistOrderByWithRelationInput
   watchlistId: SortOrder
 }
 
@@ -4290,7 +4186,6 @@ input NestedStringFilter {
   lte: String
   not: NestedStringFilter
   notIn: [String!]
-  search: String
   startsWith: String
 }
 
@@ -4305,7 +4200,6 @@ input NestedStringNullableFilter {
   lte: String
   not: NestedStringNullableFilter
   notIn: [String!]
-  search: String
   startsWith: String
 }
 
@@ -4323,7 +4217,6 @@ input NestedStringNullableWithAggregatesFilter {
   lte: String
   not: NestedStringNullableWithAggregatesFilter
   notIn: [String!]
-  search: String
   startsWith: String
 }
 
@@ -4341,7 +4234,6 @@ input NestedStringWithAggregatesFilter {
   lte: String
   not: NestedStringWithAggregatesFilter
   notIn: [String!]
-  search: String
   startsWith: String
 }
 
@@ -4363,59 +4255,59 @@ input NullableStringFieldUpdateOperationsInput {
 
 type Query {
   account(where: AccountWhereUniqueInput!): Account
-  accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
+  accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
   actor(where: ActorWhereUniqueInput!): Actor
-  actors(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: ActorWhereInput): [Actor!]!
-  aggregateAccount(cursor: AccountWhereUniqueInput, orderBy: [AccountOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AccountWhereInput): AggregateAccount!
-  aggregateActor(cursor: ActorWhereUniqueInput, orderBy: [ActorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: ActorWhereInput): AggregateActor!
-  aggregateAppSettings(cursor: AppSettingsWhereUniqueInput, orderBy: [AppSettingsOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AggregateAppSettings!
-  aggregateDirector(cursor: DirectorWhereUniqueInput, orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): AggregateDirector!
-  aggregateEpisode(cursor: EpisodeWhereUniqueInput, orderBy: [EpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodeWhereInput): AggregateEpisode!
-  aggregateEpisodesWatchlist(cursor: EpisodesWatchlistWhereUniqueInput, orderBy: [EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): AggregateEpisodesWatchlist!
-  aggregateGenre(cursor: GenreWhereUniqueInput, orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): AggregateGenre!
-  aggregateLanguage(cursor: LanguageWhereUniqueInput, orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): AggregateLanguage!
-  aggregateMovie(cursor: MovieWhereUniqueInput, orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): AggregateMovie!
-  aggregateMoviesWatchlist(cursor: MoviesWatchlistWhereUniqueInput, orderBy: [MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): AggregateMoviesWatchlist!
-  aggregateSeason(cursor: SeasonWhereUniqueInput, orderBy: [SeasonOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeasonWhereInput): AggregateSeason!
-  aggregateSerie(cursor: SerieWhereUniqueInput, orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SerieWhereInput): AggregateSerie!
-  aggregateSeriesWatchlist(cursor: SeriesWatchlistWhereUniqueInput, orderBy: [SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): AggregateSeriesWatchlist!
-  aggregateSession(cursor: SessionWhereUniqueInput, orderBy: [SessionOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SessionWhereInput): AggregateSession!
-  aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
-  aggregateVerificationRequest(cursor: VerificationRequestWhereUniqueInput, orderBy: [VerificationRequestOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): AggregateVerificationRequest!
-  aggregateWatchlist(cursor: WatchlistWhereUniqueInput, orderBy: [WatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistWhereInput): AggregateWatchlist!
-  aggregateWatchlistedEpisode(cursor: WatchlistedEpisodeWhereUniqueInput, orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): AggregateWatchlistedEpisode!
-  aggregateWatchlistedMovie(cursor: WatchlistedMovieWhereUniqueInput, orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): AggregateWatchlistedMovie!
-  aggregateWatchlistedSerie(cursor: WatchlistedSerieWhereUniqueInput, orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): AggregateWatchlistedSerie!
+  actors(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): [Actor!]!
+  aggregateAccount(cursor: AccountWhereUniqueInput, orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): AggregateAccount!
+  aggregateActor(cursor: ActorWhereUniqueInput, orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): AggregateActor!
+  aggregateAppSettings(cursor: AppSettingsWhereUniqueInput, orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AggregateAppSettings!
+  aggregateDirector(cursor: DirectorWhereUniqueInput, orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): AggregateDirector!
+  aggregateEpisode(cursor: EpisodeWhereUniqueInput, orderBy: [EpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodeWhereInput): AggregateEpisode!
+  aggregateEpisodesWatchlist(cursor: EpisodesWatchlistWhereUniqueInput, orderBy: [EpisodesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): AggregateEpisodesWatchlist!
+  aggregateGenre(cursor: GenreWhereUniqueInput, orderBy: [GenreOrderByWithRelationInput!], skip: Int, take: Int, where: GenreWhereInput): AggregateGenre!
+  aggregateLanguage(cursor: LanguageWhereUniqueInput, orderBy: [LanguageOrderByWithRelationInput!], skip: Int, take: Int, where: LanguageWhereInput): AggregateLanguage!
+  aggregateMovie(cursor: MovieWhereUniqueInput, orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): AggregateMovie!
+  aggregateMoviesWatchlist(cursor: MoviesWatchlistWhereUniqueInput, orderBy: [MoviesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): AggregateMoviesWatchlist!
+  aggregateSeason(cursor: SeasonWhereUniqueInput, orderBy: [SeasonOrderByWithRelationInput!], skip: Int, take: Int, where: SeasonWhereInput): AggregateSeason!
+  aggregateSerie(cursor: SerieWhereUniqueInput, orderBy: [SerieOrderByWithRelationInput!], skip: Int, take: Int, where: SerieWhereInput): AggregateSerie!
+  aggregateSeriesWatchlist(cursor: SeriesWatchlistWhereUniqueInput, orderBy: [SeriesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): AggregateSeriesWatchlist!
+  aggregateSession(cursor: SessionWhereUniqueInput, orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): AggregateSession!
+  aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
+  aggregateVerificationRequest(cursor: VerificationRequestWhereUniqueInput, orderBy: [VerificationRequestOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): AggregateVerificationRequest!
+  aggregateWatchlist(cursor: WatchlistWhereUniqueInput, orderBy: [WatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistWhereInput): AggregateWatchlist!
+  aggregateWatchlistedEpisode(cursor: WatchlistedEpisodeWhereUniqueInput, orderBy: [WatchlistedEpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): AggregateWatchlistedEpisode!
+  aggregateWatchlistedMovie(cursor: WatchlistedMovieWhereUniqueInput, orderBy: [WatchlistedMovieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): AggregateWatchlistedMovie!
+  aggregateWatchlistedSerie(cursor: WatchlistedSerieWhereUniqueInput, orderBy: [WatchlistedSerieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): AggregateWatchlistedSerie!
   director(where: DirectorWhereUniqueInput!): Director
-  directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
+  directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
   episode(where: EpisodeWhereUniqueInput!): Episode
-  episodes(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodeWhereInput): [Episode!]!
+  episodes(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodeWhereInput): [Episode!]!
   episodesWatchlist(where: EpisodesWatchlistWhereUniqueInput!): EpisodesWatchlist
-  episodesWatchlists(cursor: EpisodesWatchlistWhereUniqueInput, distinct: [EpisodesWatchlistScalarFieldEnum!], orderBy: [EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): [EpisodesWatchlist!]!
-  findFirstAccount(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AccountWhereInput): Account
-  findFirstActor(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: ActorWhereInput): Actor
-  findFirstAppSettings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AppSettings
-  findFirstDirector(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): Director
-  findFirstEpisode(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodeWhereInput): Episode
-  findFirstEpisodesWatchlist(cursor: EpisodesWatchlistWhereUniqueInput, distinct: [EpisodesWatchlistScalarFieldEnum!], orderBy: [EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): EpisodesWatchlist
-  findFirstGenre(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): Genre
-  findFirstLanguage(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): Language
-  findFirstMovie(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
-  findFirstMoviesWatchlist(cursor: MoviesWatchlistWhereUniqueInput, distinct: [MoviesWatchlistScalarFieldEnum!], orderBy: [MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): MoviesWatchlist
-  findFirstSeason(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeasonWhereInput): Season
-  findFirstSerie(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SerieWhereInput): Serie
-  findFirstSeriesWatchlist(cursor: SeriesWatchlistWhereUniqueInput, distinct: [SeriesWatchlistScalarFieldEnum!], orderBy: [SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): SeriesWatchlist
-  findFirstSession(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SessionWhereInput): Session
-  findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserWhereInput): User
-  findFirstVerificationRequest(cursor: VerificationRequestWhereUniqueInput, distinct: [VerificationRequestScalarFieldEnum!], orderBy: [VerificationRequestOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): VerificationRequest
-  findFirstWatchlist(cursor: WatchlistWhereUniqueInput, distinct: [WatchlistScalarFieldEnum!], orderBy: [WatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistWhereInput): Watchlist
-  findFirstWatchlistedEpisode(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): WatchlistedEpisode
-  findFirstWatchlistedMovie(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): WatchlistedMovie
-  findFirstWatchlistedSerie(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): WatchlistedSerie
-  findManyAppSettings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettings!]!
+  episodesWatchlists(cursor: EpisodesWatchlistWhereUniqueInput, distinct: [EpisodesWatchlistScalarFieldEnum!], orderBy: [EpisodesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): [EpisodesWatchlist!]!
+  findFirstAccount(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
+  findFirstActor(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): Actor
+  findFirstAppSettings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AppSettings
+  findFirstDirector(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): Director
+  findFirstEpisode(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodeWhereInput): Episode
+  findFirstEpisodesWatchlist(cursor: EpisodesWatchlistWhereUniqueInput, distinct: [EpisodesWatchlistScalarFieldEnum!], orderBy: [EpisodesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): EpisodesWatchlist
+  findFirstGenre(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationInput!], skip: Int, take: Int, where: GenreWhereInput): Genre
+  findFirstLanguage(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationInput!], skip: Int, take: Int, where: LanguageWhereInput): Language
+  findFirstMovie(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
+  findFirstMoviesWatchlist(cursor: MoviesWatchlistWhereUniqueInput, distinct: [MoviesWatchlistScalarFieldEnum!], orderBy: [MoviesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): MoviesWatchlist
+  findFirstSeason(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationInput!], skip: Int, take: Int, where: SeasonWhereInput): Season
+  findFirstSerie(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationInput!], skip: Int, take: Int, where: SerieWhereInput): Serie
+  findFirstSeriesWatchlist(cursor: SeriesWatchlistWhereUniqueInput, distinct: [SeriesWatchlistScalarFieldEnum!], orderBy: [SeriesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): SeriesWatchlist
+  findFirstSession(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): Session
+  findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
+  findFirstVerificationRequest(cursor: VerificationRequestWhereUniqueInput, distinct: [VerificationRequestScalarFieldEnum!], orderBy: [VerificationRequestOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): VerificationRequest
+  findFirstWatchlist(cursor: WatchlistWhereUniqueInput, distinct: [WatchlistScalarFieldEnum!], orderBy: [WatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistWhereInput): Watchlist
+  findFirstWatchlistedEpisode(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): WatchlistedEpisode
+  findFirstWatchlistedMovie(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): WatchlistedMovie
+  findFirstWatchlistedSerie(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): WatchlistedSerie
+  findManyAppSettings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettings!]!
   findUniqueAppSettings(where: AppSettingsWhereUniqueInput!): AppSettings
   genre(where: GenreWhereUniqueInput!): Genre
-  genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
+  genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
   groupByAccount(by: [AccountScalarFieldEnum!]!, having: AccountScalarWhereWithAggregatesInput, orderBy: [AccountOrderByWithAggregationInput!], skip: Int, take: Int, where: AccountWhereInput): [AccountGroupBy!]!
   groupByActor(by: [ActorScalarFieldEnum!]!, having: ActorScalarWhereWithAggregatesInput, orderBy: [ActorOrderByWithAggregationInput!], skip: Int, take: Int, where: ActorWhereInput): [ActorGroupBy!]!
   groupByAppSettings(by: [AppSettingsScalarFieldEnum!]!, having: AppSettingsScalarWhereWithAggregatesInput, orderBy: [AppSettingsOrderByWithAggregationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettingsGroupBy!]!
@@ -4437,31 +4329,31 @@ type Query {
   groupByWatchlistedMovie(by: [WatchlistedMovieScalarFieldEnum!]!, having: WatchlistedMovieScalarWhereWithAggregatesInput, orderBy: [WatchlistedMovieOrderByWithAggregationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovieGroupBy!]!
   groupByWatchlistedSerie(by: [WatchlistedSerieScalarFieldEnum!]!, having: WatchlistedSerieScalarWhereWithAggregatesInput, orderBy: [WatchlistedSerieOrderByWithAggregationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerieGroupBy!]!
   language(where: LanguageWhereUniqueInput!): Language
-  languages(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): [Language!]!
+  languages(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationInput!], skip: Int, take: Int, where: LanguageWhereInput): [Language!]!
   movie(where: MovieWhereUniqueInput!): Movie
-  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   moviesWatchlist(where: MoviesWatchlistWhereUniqueInput!): MoviesWatchlist
-  moviesWatchlists(cursor: MoviesWatchlistWhereUniqueInput, distinct: [MoviesWatchlistScalarFieldEnum!], orderBy: [MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): [MoviesWatchlist!]!
+  moviesWatchlists(cursor: MoviesWatchlistWhereUniqueInput, distinct: [MoviesWatchlistScalarFieldEnum!], orderBy: [MoviesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): [MoviesWatchlist!]!
   season(where: SeasonWhereUniqueInput!): Season
-  seasons(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeasonWhereInput): [Season!]!
+  seasons(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationInput!], skip: Int, take: Int, where: SeasonWhereInput): [Season!]!
   serie(where: SerieWhereUniqueInput!): Serie
-  series(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SerieWhereInput): [Serie!]!
+  series(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationInput!], skip: Int, take: Int, where: SerieWhereInput): [Serie!]!
   seriesWatchlist(where: SeriesWatchlistWhereUniqueInput!): SeriesWatchlist
-  seriesWatchlists(cursor: SeriesWatchlistWhereUniqueInput, distinct: [SeriesWatchlistScalarFieldEnum!], orderBy: [SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): [SeriesWatchlist!]!
+  seriesWatchlists(cursor: SeriesWatchlistWhereUniqueInput, distinct: [SeriesWatchlistScalarFieldEnum!], orderBy: [SeriesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): [SeriesWatchlist!]!
   session(where: SessionWhereUniqueInput!): Session
-  sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
+  sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
   user(where: UserWhereUniqueInput!): User
-  users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
+  users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
   verificationRequest(where: VerificationRequestWhereUniqueInput!): VerificationRequest
-  verificationRequests(cursor: VerificationRequestWhereUniqueInput, distinct: [VerificationRequestScalarFieldEnum!], orderBy: [VerificationRequestOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): [VerificationRequest!]!
+  verificationRequests(cursor: VerificationRequestWhereUniqueInput, distinct: [VerificationRequestScalarFieldEnum!], orderBy: [VerificationRequestOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): [VerificationRequest!]!
   watchlist(where: WatchlistWhereUniqueInput!): Watchlist
   watchlistedEpisode(where: WatchlistedEpisodeWhereUniqueInput!): WatchlistedEpisode
-  watchlistedEpisodes(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
+  watchlistedEpisodes(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
   watchlistedMovie(where: WatchlistedMovieWhereUniqueInput!): WatchlistedMovie
-  watchlistedMovies(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
+  watchlistedMovies(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
   watchlistedSerie(where: WatchlistedSerieWhereUniqueInput!): WatchlistedSerie
-  watchlistedSeries(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
-  watchlists(cursor: WatchlistWhereUniqueInput, distinct: [WatchlistScalarFieldEnum!], orderBy: [WatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistWhereInput): [Watchlist!]!
+  watchlistedSeries(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
+  watchlists(cursor: WatchlistWhereUniqueInput, distinct: [WatchlistScalarFieldEnum!], orderBy: [WatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistWhereInput): [Watchlist!]!
 }
 
 enum QueryMode {
@@ -4477,7 +4369,7 @@ enum Role {
 type Season {
   _count: SeasonCount
   createdAt: DateTime!
-  episodeIds(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: EpisodeWhereInput): [Episode!]!
+  episodeIds(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodeWhereInput): [Episode!]!
   episodes: Int!
   id: Int!
   index: Int!
@@ -4679,16 +4571,6 @@ input SeasonOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum SeasonOrderByRelevanceFieldEnum {
-  title
-}
-
-input SeasonOrderByRelevanceInput {
-  fields: [SeasonOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input SeasonOrderByWithAggregationInput {
   _avg: SeasonAvgOrderByAggregateInput
   _count: SeasonCountOrderByAggregateInput
@@ -4705,15 +4587,14 @@ input SeasonOrderByWithAggregationInput {
   updatedAt: SortOrder
 }
 
-input SeasonOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: SeasonOrderByRelevanceInput
+input SeasonOrderByWithRelationInput {
   createdAt: SortOrder
   episodeIds: EpisodeOrderByRelationAggregateInput
   episodes: SortOrder
   id: SortOrder
   index: SortOrder
   launchDate: SortOrder
-  series: SerieOrderByWithRelationAndSearchRelevanceInput
+  series: SerieOrderByWithRelationInput
   seriesId: SortOrder
   title: SortOrder
   updatedAt: SortOrder
@@ -4888,24 +4769,24 @@ input SeasonWhereUniqueInput {
 
 type Serie {
   _count: SerieCount
-  actors(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: ActorWhereInput): [Actor!]!
+  actors(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): [Actor!]!
   createdAt: DateTime!
-  directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
-  genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
+  directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
+  genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
   id: Int!
   imdbID: String!
   imdbRating: Float!
-  languages(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: LanguageWhereInput): [Language!]!
+  languages(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationInput!], skip: Int, take: Int, where: LanguageWhereInput): [Language!]!
   plot: String!
   poster: String!
   rating: String!
   release: DateTime!
   runtime: Int!
-  seasons(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SeasonWhereInput): [Season!]!
+  seasons(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationInput!], skip: Int, take: Int, where: SeasonWhereInput): [Season!]!
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime!
-  watchlist(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
+  watchlist(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
   year: Int!
 }
 
@@ -5285,20 +5166,6 @@ input SerieOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum SerieOrderByRelevanceFieldEnum {
-  imdbID
-  plot
-  poster
-  rating
-  title
-}
-
-input SerieOrderByRelevanceInput {
-  fields: [SerieOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input SerieOrderByWithAggregationInput {
   _avg: SerieAvgOrderByAggregateInput
   _count: SerieCountOrderByAggregateInput
@@ -5320,8 +5187,7 @@ input SerieOrderByWithAggregationInput {
   year: SortOrder
 }
 
-input SerieOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: SerieOrderByRelevanceInput
+input SerieOrderByWithRelationInput {
   actors: ActorOrderByRelationAggregateInput
   createdAt: SortOrder
   directors: DirectorOrderByRelationAggregateInput
@@ -5721,7 +5587,7 @@ input SerieWhereUniqueInput {
 type SeriesWatchlist {
   _count: SeriesWatchlistCount
   id: Int!
-  series(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
+  series(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
   watchlist: Watchlist!
   watchlistId: Int!
 }
@@ -5834,10 +5700,10 @@ input SeriesWatchlistOrderByWithAggregationInput {
   watchlistId: SortOrder
 }
 
-input SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput {
+input SeriesWatchlistOrderByWithRelationInput {
   id: SortOrder
   series: WatchlistedSerieOrderByRelationAggregateInput
-  watchlist: WatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlist: WatchlistOrderByWithRelationInput
   watchlistId: SortOrder
 }
 
@@ -6082,19 +5948,6 @@ input SessionOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum SessionOrderByRelevanceFieldEnum {
-  accessToken
-  id
-  sessionToken
-  userId
-}
-
-input SessionOrderByRelevanceInput {
-  fields: [SessionOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input SessionOrderByWithAggregationInput {
   _count: SessionCountOrderByAggregateInput
   _max: SessionMaxOrderByAggregateInput
@@ -6108,15 +5961,14 @@ input SessionOrderByWithAggregationInput {
   userId: SortOrder
 }
 
-input SessionOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: SessionOrderByRelevanceInput
+input SessionOrderByWithRelationInput {
   accessToken: SortOrder
   createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
   updatedAt: SortOrder
-  user: UserOrderByWithRelationAndSearchRelevanceInput
+  user: UserOrderByWithRelationInput
   userId: SortOrder
 }
 
@@ -6255,7 +6107,6 @@ input StringFilter {
   mode: QueryMode
   not: NestedStringFilter
   notIn: [String!]
-  search: String
   startsWith: String
 }
 
@@ -6271,7 +6122,6 @@ input StringNullableFilter {
   mode: QueryMode
   not: NestedStringNullableFilter
   notIn: [String!]
-  search: String
   startsWith: String
 }
 
@@ -6290,7 +6140,6 @@ input StringNullableWithAggregatesFilter {
   mode: QueryMode
   not: NestedStringNullableWithAggregatesFilter
   notIn: [String!]
-  search: String
   startsWith: String
 }
 
@@ -6309,13 +6158,12 @@ input StringWithAggregatesFilter {
   mode: QueryMode
   not: NestedStringWithAggregatesFilter
   notIn: [String!]
-  search: String
   startsWith: String
 }
 
 type User {
   _count: UserCount
-  accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
+  accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
   createdAt: DateTime!
   email: String!
   emailVerified: DateTime
@@ -6324,11 +6172,11 @@ type User {
   image: String
   lastName: String
   role: Role!
-  sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
-  settings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettings!]!
+  sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
+  settings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettings!]!
   updatedAt: DateTime!
   username: String
-  watchlist(cursor: WatchlistWhereUniqueInput, distinct: [WatchlistScalarFieldEnum!], orderBy: [WatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: WatchlistWhereInput): [Watchlist!]!
+  watchlist(cursor: WatchlistWhereUniqueInput, distinct: [WatchlistScalarFieldEnum!], orderBy: [WatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistWhereInput): [Watchlist!]!
 }
 
 type UserCount {
@@ -6571,21 +6419,6 @@ input UserMinOrderByAggregateInput {
   username: SortOrder
 }
 
-enum UserOrderByRelevanceFieldEnum {
-  email
-  firstName
-  id
-  image
-  lastName
-  username
-}
-
-input UserOrderByRelevanceInput {
-  fields: [UserOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input UserOrderByWithAggregationInput {
   _count: UserCountOrderByAggregateInput
   _max: UserMaxOrderByAggregateInput
@@ -6602,8 +6435,7 @@ input UserOrderByWithAggregationInput {
   username: SortOrder
 }
 
-input UserOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: UserOrderByRelevanceInput
+input UserOrderByWithRelationInput {
   accounts: AccountOrderByRelationAggregateInput
   createdAt: SortOrder
   email: SortOrder
@@ -6927,18 +6759,6 @@ input VerificationRequestMinOrderByAggregateInput {
   updatedAt: SortOrder
 }
 
-enum VerificationRequestOrderByRelevanceFieldEnum {
-  id
-  identifier
-  token
-}
-
-input VerificationRequestOrderByRelevanceInput {
-  fields: [VerificationRequestOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input VerificationRequestOrderByWithAggregationInput {
   _count: VerificationRequestCountOrderByAggregateInput
   _max: VerificationRequestMaxOrderByAggregateInput
@@ -6951,8 +6771,7 @@ input VerificationRequestOrderByWithAggregationInput {
   updatedAt: SortOrder
 }
 
-input VerificationRequestOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: VerificationRequestOrderByRelevanceInput
+input VerificationRequestOrderByWithRelationInput {
   createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
@@ -7236,17 +7055,6 @@ input WatchlistOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-enum WatchlistOrderByRelevanceFieldEnum {
-  name
-  userId
-}
-
-input WatchlistOrderByRelevanceInput {
-  fields: [WatchlistOrderByRelevanceFieldEnum!]!
-  search: String!
-  sort: SortOrder!
-}
-
 input WatchlistOrderByWithAggregationInput {
   _avg: WatchlistAvgOrderByAggregateInput
   _count: WatchlistCountOrderByAggregateInput
@@ -7261,17 +7069,16 @@ input WatchlistOrderByWithAggregationInput {
   userId: SortOrder
 }
 
-input WatchlistOrderByWithRelationAndSearchRelevanceInput {
-  _relevance: WatchlistOrderByRelevanceInput
+input WatchlistOrderByWithRelationInput {
   createdAt: SortOrder
   default: SortOrder
-  episodeWatchlist: EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  episodeWatchlist: EpisodesWatchlistOrderByWithRelationInput
   id: SortOrder
-  movieWatchlist: MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  movieWatchlist: MoviesWatchlistOrderByWithRelationInput
   name: SortOrder
-  seriesWatchlist: SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  seriesWatchlist: SeriesWatchlistOrderByWithRelationInput
   updatedAt: SortOrder
-  user: UserOrderByWithRelationAndSearchRelevanceInput
+  user: UserOrderByWithRelationInput
   userId: SortOrder
 }
 
@@ -7656,13 +7463,13 @@ input WatchlistedEpisodeOrderByWithAggregationInput {
   watchlistId: SortOrder
 }
 
-input WatchlistedEpisodeOrderByWithRelationAndSearchRelevanceInput {
+input WatchlistedEpisodeOrderByWithRelationInput {
   addedAt: SortOrder
-  episode: EpisodeOrderByWithRelationAndSearchRelevanceInput
+  episode: EpisodeOrderByWithRelationInput
   episodeId: SortOrder
   seen: SortOrder
   seenAt: SortOrder
-  watchlist: EpisodesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlist: EpisodesWatchlistOrderByWithRelationInput
   watchlistId: SortOrder
 }
 
@@ -7999,13 +7806,13 @@ input WatchlistedMovieOrderByWithAggregationInput {
   watchlistId: SortOrder
 }
 
-input WatchlistedMovieOrderByWithRelationAndSearchRelevanceInput {
+input WatchlistedMovieOrderByWithRelationInput {
   addedAt: SortOrder
-  movie: MovieOrderByWithRelationAndSearchRelevanceInput
+  movie: MovieOrderByWithRelationInput
   movieId: SortOrder
   seen: SortOrder
   seenAt: SortOrder
-  watchlist: MoviesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlist: MoviesWatchlistOrderByWithRelationInput
   watchlistId: SortOrder
 }
 
@@ -8337,13 +8144,13 @@ input WatchlistedSerieOrderByWithAggregationInput {
   watchlistId: SortOrder
 }
 
-input WatchlistedSerieOrderByWithRelationAndSearchRelevanceInput {
+input WatchlistedSerieOrderByWithRelationInput {
   addedAt: SortOrder
   seen: SortOrder
   seenAt: SortOrder
-  serie: SerieOrderByWithRelationAndSearchRelevanceInput
+  serie: SerieOrderByWithRelationInput
   serieId: SortOrder
-  watchlist: SeriesWatchlistOrderByWithRelationAndSearchRelevanceInput
+  watchlist: SeriesWatchlistOrderByWithRelationInput
   watchlistId: SortOrder
 }
 

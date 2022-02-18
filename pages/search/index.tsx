@@ -95,9 +95,7 @@ export default function SearchResults({
         {
           query: SearchSeriesByTitleDocument,
           variables: {
-            title: Array.isArray(query.q)
-              ? query.q.join(' | ')
-              : query.q?.replaceAll(' ', ' | '),
+            title: Array.isArray(query.q) ? query.q.join(' ') : query.q,
           },
         },
       ],
@@ -127,9 +125,7 @@ export default function SearchResults({
         {
           query: SearchMovieByTitleDocument,
           variables: {
-            title: Array.isArray(query.q)
-              ? query.q.join(' | ')
-              : query.q?.replaceAll(' ', ' | '),
+            title: Array.isArray(query.q) ? query.q.join(' ') : query.q,
           },
         },
       ],

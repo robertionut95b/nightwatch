@@ -106,7 +106,7 @@ export const MovieById = gql`
 
 export const searchMovieByTitle = gql`
   query searchMovieByTitle($title: String!) {
-    movies(where: { title: { search: $title } }) {
+    movies(where: { title: { contains: $title, mode: insensitive } }) {
       id
       title
       poster
