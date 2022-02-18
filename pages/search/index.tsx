@@ -317,14 +317,16 @@ export default function SearchResults({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const searchQuery: string | undefined = Array.isArray(query.q)
-    ? query.q.join(' | ')
-    : query.q?.replaceAll(' ', ' | ');
+  let searchQuery: string | string[] | undefined = query.q;
+  if (Array.isArray(searchQuery)) {
+    searchQuery = searchQuery.join(' ');
+  }
 
   const movies = await prisma.movie.findMany({
     where: {
       title: {
-        search: searchQuery,
+        contains: searchQuery,
+        mode: 'insensitive',
       },
     },
   });
@@ -332,7 +334,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const series = await prisma.serie.findMany({
     where: {
       title: {
-        search: searchQuery,
+        contains: searchQuery,
+        mode: 'insensitive',
       },
     },
   });
