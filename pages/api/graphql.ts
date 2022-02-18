@@ -28,8 +28,6 @@ const startServer = apolloServer.start();
 
 startServer.catch((err) => console.error(err));
 
-const API_GRAPHQL_URL = process.env.API_GRAPHQL_URL || 'api/graphql';
-
 export default cors(async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     res.end();
@@ -38,8 +36,10 @@ export default cors(async function handler(req, res) {
 
   await startServer;
 
+  console.log(process.env.API_GRAPHQL_URL);
+
   return apolloServer.createHandler({
-    path: `/${API_GRAPHQL_URL}`,
+    path: '/api/graphql',
   })(req, res);
 });
 
