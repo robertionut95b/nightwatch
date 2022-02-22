@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from 'querystring';
 import MovieDetailsCard from '../../components/items/movies/details/MovieDetailsCard';
 import { Movie } from '../../generated/graphql';
 import prisma from '../../lib/PrismaClient/prisma';
+import { Actor, Director, Genre, Language, Comment } from '@prisma/client';
 
 interface IParams extends ParsedUrlQuery {
   id: string;
@@ -14,7 +15,24 @@ export default function MoviePage({
   movie,
   relatedMovies,
 }: {
-  movie: Movie;
+  movie: Movie & {
+    genres: Genre[];
+    actors: Actor[];
+    directors: Director[];
+    languages: Language[];
+    comments: (Comment & {
+      user: {
+        email: string;
+        image: string | null;
+      };
+      comments: (Comment & {
+        user: {
+          email: string;
+          image: string | null;
+        };
+      })[];
+    })[];
+  };
   relatedMovies: Movie[];
 }): JSX.Element {
   return (
@@ -37,6 +55,35 @@ export const getStaticPaths: GetStaticPaths =
         actors: true,
         directors: true,
         languages: true,
+        comments: {
+          where: {
+            active: true,
+            parent: {
+              is: null,
+            },
+          },
+          include: {
+            user: {
+              select: {
+                email: true,
+                image: true,
+              },
+            },
+            comments: {
+              include: {
+                user: {
+                  select: {
+                    email: true,
+                    image: true,
+                  },
+                },
+              },
+            },
+          },
+          orderBy: {
+            createdAt: 'asc',
+          },
+        },
       },
     });
     return {
@@ -61,6 +108,35 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       actors: true,
       directors: true,
       languages: true,
+      comments: {
+        where: {
+          active: true,
+          parent: {
+            is: null,
+          },
+        },
+        include: {
+          user: {
+            select: {
+              email: true,
+              image: true,
+            },
+          },
+          comments: {
+            include: {
+              user: {
+                select: {
+                  email: true,
+                  image: true,
+                },
+              },
+            },
+          },
+        },
+        orderBy: {
+          createdAt: 'asc',
+        },
+      },
     },
   });
 

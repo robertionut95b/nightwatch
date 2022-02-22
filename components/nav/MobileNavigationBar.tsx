@@ -7,11 +7,11 @@ export default function MobileNavigationBar(): JSX.Element {
   const [session] = useSession();
 
   return (
-    <div className="z-20 absolute flex flex-col h-screen overflow-auto top-[52px] left-0 pb-4 w-full bg-background">
-      <ul className="flex flex-col p-4 gap-y-4">
+    <div className="absolute top-[52px] left-0 z-20 flex h-screen w-full flex-col overflow-auto bg-white pb-4 dark:bg-background">
+      <ul className="flex flex-col gap-y-4 p-4">
         <SearchBar />
         {session && (
-          <div className="profile rounded hover:bg-gray-900 transition-colors ease-out duration-300">
+          <div className="profile rounded transition-colors duration-300 ease-out hover:bg-gray-200 dark:hover:bg-gray-900">
             <Link href="/user/profile" passHref>
               <a>
                 <Profile />

@@ -133,27 +133,17 @@ export default function SearchResults({
 
   const searchOMDBAPISeries = async (q: string): Promise<void> => {
     setOmdbSeries([]);
-    try {
-      const searchedSeries = await OMDBApiUtils.fetchOMDBSeriesBySearchTitle(q);
-      if (searchedSeries) {
-        setOmdbSeries([...omdbSeries, ...searchedSeries]);
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Unfortunately the request has failed. Try again later');
+    const searchedSeries = await OMDBApiUtils.fetchOMDBSeriesBySearchTitle(q);
+    if (searchedSeries) {
+      setOmdbSeries([...omdbSeries, ...searchedSeries]);
     }
   };
 
   const searchOMDBAPIMovies = async (q: string): Promise<void> => {
     setOmdbMovies([]);
-    try {
-      const searchedMovies = await OMDBApiUtils.fetchOMDBMoviesBySearchTitle(q);
-      if (searchedMovies) {
-        setOmdbMovies([...omdbMovies, ...searchedMovies]);
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Unfortunately the request has failed. Try again later');
+    const searchedMovies = await OMDBApiUtils.fetchOMDBMoviesBySearchTitle(q);
+    if (searchedMovies) {
+      setOmdbMovies([...omdbMovies, ...searchedMovies]);
     }
   };
 
@@ -162,18 +152,18 @@ export default function SearchResults({
       alert('Series already exist');
       return;
     }
-    try {
-      const searchedSeries = await OMDBApiUtils.fetchOMDBSeriesByID(id);
-      if (searchedSeries) {
-        await createSerieSearchMutation({
-          variables: {
-            ...searchedSeries.toCreateVariables(),
-          },
-        });
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Unfortunately the request has failed. Try again later');
+    toast({
+      title: `Adding series. Please wait ...`,
+      status: 'info',
+      ...toastDefaults,
+    });
+    const searchedSeries = await OMDBApiUtils.fetchOMDBSeriesByID(id);
+    if (searchedSeries) {
+      await createSerieSearchMutation({
+        variables: {
+          ...searchedSeries.toCreateVariables(),
+        },
+      });
     }
   };
 
@@ -182,18 +172,18 @@ export default function SearchResults({
       alert('Movie already exist');
       return;
     }
-    try {
-      const searchedMovie = await OMDBApiUtils.fetchOMDBMovieByID(id);
-      if (searchedMovie) {
-        await createMovieSearchMutation({
-          variables: {
-            ...searchedMovie.toCreateVariables(),
-          },
-        });
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Unfortunately the request has failed. Try again later');
+    toast({
+      title: `Adding movie. Please wait ...`,
+      status: 'info',
+      ...toastDefaults,
+    });
+    const searchedMovie = await OMDBApiUtils.fetchOMDBMovieByID(id);
+    if (searchedMovie) {
+      await createMovieSearchMutation({
+        variables: {
+          ...searchedMovie.toCreateVariables(),
+        },
+      });
     }
   };
 
@@ -249,7 +239,7 @@ export default function SearchResults({
           </p>
           <button
             type="button"
-            className="btn-primary-outline mt-4 disabled:bg-zinc-600"
+            className="btn-primary-outline dark:text-white mt-4 disabled:bg-zinc-600"
             disabled={loading || loadingMovies}
             onClick={() => {
               if (!session) {
@@ -303,7 +293,6 @@ export default function SearchResults({
                 />
               ))}
             </div>
-            {loading ? <Spinner /> : null}
           </>
         )}
       </div>

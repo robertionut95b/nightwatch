@@ -2,21 +2,49 @@ import Image from 'next/image';
 import DateComponent from '../../../utils/helpers/date';
 import MovieCard from '../card/MovieCard';
 import Link from 'next/link';
-import { Movie } from '../../../../generated/graphql';
 import { useIsBookmarked } from '../card/useIsBookmarked';
 import { toastDefaults } from '../../../../assets/constants/config';
 import { createStandaloneToast } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
+import {
+  Actor,
+  Director,
+  Genre,
+  Language,
+  Movie,
+  Comment,
+} from '@prisma/client';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
+import CommentCard from '@components/items/comments/commentCard';
+import Divider from '../../../utils/layout/divider/divider';
 
 export default function MovieDetailsCard({
   movie,
   relatedMovies,
 }: {
-  movie: Movie;
+  movie: Movie & {
+    genres: Genre[];
+    actors: Actor[];
+    directors: Director[];
+    languages: Language[];
+    comments: (Comment & {
+      user: {
+        email: string;
+        image: string | null;
+      };
+      comments: (Comment & {
+        user: { email: string; image: string | null };
+      })[];
+    })[];
+  };
   relatedMovies: Movie[];
 }): JSX.Element {
   const toast = createStandaloneToast();
-  const { isBookmarked, addToWatchlist, loading } = useIsBookmarked(movie.id, {
+  const {
+    isBookmarked,
+    addToWatchlist,
+    loading: bookmarkLoading,
+  } = useIsBookmarked(movie.id, {
     onSuccess: () => {
       toast({
         title: isBookmarked ? 'Removed from watchlist' : 'Added to watchlist',
@@ -41,9 +69,9 @@ export default function MovieDetailsCard({
     },
   });
   const bookmarkButton = (): JSX.Element => {
-    if (loading) {
+    if (bookmarkLoading) {
       return (
-        <button className="mt-6 md:mt-12 btn-primary flex p-2">
+        <button className="btn-primary mt-6 flex p-2 md:mt-12">
           <MinimalSpinner color="white" />
           <span className="hidden">.</span>
         </button>
@@ -52,7 +80,7 @@ export default function MovieDetailsCard({
     if (isBookmarked) {
       return (
         <button
-          className="mt-6 md:mt-12 btn-primary flex gap-x-1"
+          className="btn-primary mt-6 flex gap-x-1 md:mt-12"
           onClick={addToWatchlist}
         >
           <svg
@@ -74,23 +102,23 @@ export default function MovieDetailsCard({
       );
     }
     return (
-      <button className="mt-6 md:mt-12 btn-primary" onClick={addToWatchlist}>
+      <button className="btn-primary mt-6 md:mt-12" onClick={addToWatchlist}>
         Add to watchlist
       </button>
     );
   };
   return (
     <div className="movie-card-details text-black dark:text-white">
-      <div className="grid grid-cols-1 md:grid-cols-3 relative place-items-start gap-x-2">
-        <div className="content-info flex flex-col items-center md:items-start gap-y-2 col-span-2">
-          <h6 className="mb-4 font-bold text-3xl">{movie.title}</h6>
+      <div className="relative grid grid-cols-1 place-items-start gap-x-2 md:grid-cols-3">
+        <div className="content-info col-span-2 flex flex-col items-center gap-y-2 md:items-start">
+          <h6 className="mb-4 text-3xl font-bold">{movie.title}</h6>
           <div className="genres mb-2">
             {movie?.genres && (
-              <ul className="flex items-center md:items-start md:flex-row gap-x-2 gap-y-2 flex-wrap">
+              <ul className="flex flex-wrap items-center gap-x-2 gap-y-2 md:flex-row md:items-start">
                 {movie?.genres.map((g, idx) => (
                   <li
                     key={idx}
-                    className="border border-solid rounded-lg px-1.5"
+                    className="rounded-lg border border-solid px-1.5"
                   >
                     <Link href={`/movies?g=${g?.name}`}>{g?.name}</Link>
                   </li>
@@ -98,8 +126,10 @@ export default function MovieDetailsCard({
               </ul>
             )}
           </div>
-          <ul className="flex flex-row items-center md:items-start gap-x-4 gap-y-2 flex-wrap">
-            <li>📅 {<DateComponent dateString={movie.release} />}</li>
+          <ul className="flex flex-row flex-wrap items-center gap-x-4 gap-y-2 md:items-start">
+            <li>
+              📅 {<DateComponent dateString={movie.release.toString()} />}
+            </li>
             <li>
               🎥 {movie.runtime} <small>minutes</small>
             </li>
@@ -110,10 +140,10 @@ export default function MovieDetailsCard({
           </ul>
           <p className="mt-4 text-center md:text-left">{movie.plot}</p>
           {movie?.languages?.length > 0 && (
-            <ul className="languages mt-4 flex items-center md:items-start md:flex-row gap-x-2 gap-y-2 flex-wrap">
+            <ul className="languages mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 md:flex-row md:items-start">
               <span>Languages</span>
               {movie?.languages.map((l, idx) => (
-                <li key={idx} className="border border-solid rounded-lg px-1.5">
+                <li key={idx} className="rounded-lg border border-solid px-1.5">
                   {l?.name}
                 </li>
               ))}
@@ -121,15 +151,15 @@ export default function MovieDetailsCard({
           )}
           {bookmarkButton()}
         </div>
-        <div className="image-poster relative place-self-center order-first md:order-last">
+        <div className="image-poster relative order-first place-self-center md:order-last">
           <Image src={movie.poster} width={290} height={400} alt="poster" />
         </div>
       </div>
       {relatedMovies?.length > 0 && (
-        <div className="similar-movies flex flex-col justify-center md:justify-start mt-12">
-          <h6 className="mb-4 font-bold text-3xl">More like this</h6>
+        <div className="similar-movies mt-12 flex flex-col justify-center md:justify-start">
+          <h6 className="mb-4 text-3xl font-bold">More like this</h6>
           <div className="related-movies">
-            <section className="related-movies grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-y-3">
+            <section className="related-movies grid grid-cols-2 items-center gap-y-3 md:grid-cols-3 lg:grid-cols-6">
               <>
                 {relatedMovies?.map((m) => (
                   <MovieCard movie={m} key={m.id} />
@@ -139,6 +169,46 @@ export default function MovieDetailsCard({
           </div>
         </div>
       )}
+      <div className="comments mt-16">
+        <h6 className="mb-4 text-3xl font-bold">Comments</h6>
+        <div className="comments-list flex flex-col gap-y-4">
+          <ShowIfElse
+            if={movie?.comments?.length > 0}
+            else={
+              <h4 className="text-md font-normal">
+                No comments yet. Be the first to comment!
+              </h4>
+            }
+          >
+            <>
+              {movie?.comments?.map((comment, idx) => (
+                <CommentCard key={idx} {...comment} showChildComments />
+              ))}
+            </>
+          </ShowIfElse>
+        </div>
+        <Divider />
+        <div className="comments-form flex flex-col">
+          <h4 className="mb-4 text-lg font-semibold">Save your comment</h4>
+          <form className="flex flex-col gap-y-2">
+            <label htmlFor="message">Message</label>
+            <textarea
+              className="w-full rounded-lg bg-gray-100 p-2 px-3 text-black dark:border-none dark:bg-none dark:text-gray-700"
+              name="message"
+              id="message-input"
+              placeholder="Aa"
+              required
+              rows={3}
+            />
+          </form>
+          <button
+            className="btn-primary-outline mt-4 place-self-end disabled:bg-zinc-600 dark:text-white"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

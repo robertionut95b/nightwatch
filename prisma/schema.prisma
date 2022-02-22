@@ -7,7 +7,7 @@ datasource db {
 }
 
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 generator typegraphql {
@@ -33,9 +33,10 @@ model User {
   accounts      Account[]
   sessions      Session[]
   settings      AppSettings[]
-  watchlist    Watchlist[]
+  watchlist     Watchlist[]
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
+  comments      Comment[]
 }
 
 model AppSettings {
@@ -51,7 +52,7 @@ model AppSettings {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
+  id                 String    @id @default(cuid())
   userId             String
   providerType       String
   providerId         String
@@ -128,7 +129,7 @@ model Language {
 }
 
 model Movie {
-  id         Int        @id @default(autoincrement())
+  id         Int                @id @default(autoincrement())
   title      String
   year       Int
   rating     String
@@ -141,14 +142,16 @@ model Movie {
   languages  Language[]
   poster     String
   imdbRating Float
-  imdbID     String     @unique
+  imdbID     String             @unique
   watchlist  WatchlistedMovie[]
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+  comments   Comment[]
+  userRating     Rating[]
 }
 
 model Serie {
-  id           Int        @id @default(autoincrement())
+  id           Int                @id @default(autoincrement())
   title        String
   year         Int
   rating       String
@@ -161,12 +164,14 @@ model Serie {
   languages    Language[]
   poster       String
   imdbRating   Float
-  imdbID       String     @unique
+  imdbID       String             @unique
   totalSeasons Int
   seasons      Season[]
-  watchlist   WatchlistedSerie[]
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  watchlist    WatchlistedSerie[]
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  comments     Comment[]
+  userRating       Rating[]
 }
 
 model Season {
@@ -185,86 +190,121 @@ model Season {
 }
 
 model Episode {
-  id         Int    @id @default(autoincrement())
+  id         Int                  @id @default(autoincrement())
   title      String
   runtime    Int
   plot       String
   poster     String
   imdbRating Float
-  imdbID     String @unique
-  season     Season @relation(fields: [seasonId], references: [id])
+  imdbID     String               @unique
+  season     Season               @relation(fields: [seasonId], references: [id])
   seasonId   Int
   watchlist  WatchlistedEpisode[]
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  createdAt  DateTime             @default(now())
+  updatedAt  DateTime             @updatedAt
+  comments   Comment[]
+  userRating     Rating[]
 }
 
 model Watchlist {
-  id Int @id @default(autoincrement())
-  userId String
-  default Boolean
-  name String?
-  user User @relation(fields: [userId], references: [id])
-  movieWatchlist MoviesWatchlist?
+  id               Int                @id @default(autoincrement())
+  userId           String
+  default          Boolean
+  name             String?
+  user             User               @relation(fields: [userId], references: [id])
+  movieWatchlist   MoviesWatchlist?
   episodeWatchlist EpisodesWatchlist?
-  seriesWatchlist SeriesWatchlist?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  seriesWatchlist  SeriesWatchlist?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
 }
 
 model MoviesWatchlist {
-  id Int @id
-  watchlistId Int
-  movies WatchlistedMovie[]
-  watchlist Watchlist @relation(fields: [watchlistId], references: [id])
+  id          Int                @id
+  watchlistId Int                @unique
+  movies      WatchlistedMovie[]
+  watchlist   Watchlist          @relation(fields: [watchlistId], references: [id])
 }
 
 model WatchlistedMovie {
-  movieId Int
-  movie Movie @relation(fields: [movieId], references: [id])
+  movieId     Int
+  movie       Movie           @relation(fields: [movieId], references: [id])
   watchlistId Int
-  watchlist MoviesWatchlist @relation(fields: [watchlistId], references: [id])
-  addedAt DateTime @default(now())
-  seen Boolean @default(false)
-  seenAt DateTime?
+  watchlist   MoviesWatchlist @relation(fields: [watchlistId], references: [id])
+  addedAt     DateTime        @default(now())
+  seen        Boolean         @default(false)
+  seenAt      DateTime?
 
   @@id([movieId, watchlistId])
 }
 
 model SeriesWatchlist {
-  id Int @id
-  watchlistId Int
-  series WatchlistedSerie[]
-  watchlist Watchlist @relation(fields: [watchlistId], references: [id])
+  id          Int                @id
+  watchlistId Int                @unique
+  series      WatchlistedSerie[]
+  watchlist   Watchlist          @relation(fields: [watchlistId], references: [id])
 }
 
 model WatchlistedSerie {
-  serieId Int
-  serie Serie @relation(fields: [serieId], references: [id])
+  serieId     Int
+  serie       Serie           @relation(fields: [serieId], references: [id])
   watchlistId Int
-  watchlist SeriesWatchlist @relation(fields: [watchlistId], references: [id])
-  addedAt DateTime @default(now())
-  seen Boolean @default(false)
-  seenAt DateTime?
+  watchlist   SeriesWatchlist @relation(fields: [watchlistId], references: [id])
+  addedAt     DateTime        @default(now())
+  seen        Boolean         @default(false)
+  seenAt      DateTime?
 
   @@id([serieId, watchlistId])
 }
 
 model EpisodesWatchlist {
-  id Int @id
-  watchlistId Int
-  episodes WatchlistedEpisode[]
-  watchlist Watchlist @relation(fields: [watchlistId], references: [id])
+  id          Int                  @id
+  watchlistId Int                  @unique
+  episodes    WatchlistedEpisode[]
+  watchlist   Watchlist            @relation(fields: [watchlistId], references: [id])
 }
 
 model WatchlistedEpisode {
-  episodeId Int
-  episode Episode @relation(fields: [episodeId], references: [id])
+  episodeId   Int
+  episode     Episode           @relation(fields: [episodeId], references: [id])
   watchlistId Int
-  watchlist EpisodesWatchlist @relation(fields: [watchlistId], references: [id])
-  addedAt DateTime @default(now())
-  seen Boolean @default(false)
-  seenAt DateTime?
+  watchlist   EpisodesWatchlist @relation(fields: [watchlistId], references: [id])
+  addedAt     DateTime          @default(now())
+  seen        Boolean           @default(false)
+  seenAt      DateTime?
 
   @@id([episodeId, watchlistId])
+}
+
+model Comment {
+  id        String    @id @default(cuid())
+  userId    String
+  movieId   Int?
+  serieId   Int?
+  episodeId Int?
+  message   String
+  parentId  String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  active    Boolean   @default(true)
+  user      User      @relation(fields: [userId], references: [id])
+  movie     Movie?    @relation(fields: [movieId], references: [id])
+  serie     Serie?    @relation(fields: [serieId], references: [id])
+  episode   Episode?  @relation(fields: [episodeId], references: [id])
+  parent    Comment?  @relation("CommentHierarchy", fields: [parentId], references: [id])
+  comments  Comment[] @relation("CommentHierarchy")
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  userId    String
+  movieId   Int
+  serieId   Int
+  episodeId Int
+  rating    Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  movie     Movie?   @relation(fields: [movieId], references: [id])
+  serie     Serie?   @relation(fields: [serieId], references: [id])
+  episode   Episode? @relation(fields: [episodeId], references: [id])
 }

@@ -711,6 +711,14 @@ type AggregateAppSettings {
   _min: AppSettingsMinAggregate
 }
 
+type AggregateComment {
+  _avg: CommentAvgAggregate
+  _count: CommentCountAggregate
+  _max: CommentMaxAggregate
+  _min: CommentMinAggregate
+  _sum: CommentSumAggregate
+}
+
 type AggregateDirector {
   _avg: DirectorAvgAggregate
   _count: DirectorCountAggregate
@@ -765,6 +773,14 @@ type AggregateMoviesWatchlist {
   _max: MoviesWatchlistMaxAggregate
   _min: MoviesWatchlistMinAggregate
   _sum: MoviesWatchlistSumAggregate
+}
+
+type AggregateRating {
+  _avg: RatingAvgAggregate
+  _count: RatingCountAggregate
+  _max: RatingMaxAggregate
+  _min: RatingMinAggregate
+  _sum: RatingSumAggregate
 }
 
 type AggregateSeason {
@@ -1127,6 +1143,800 @@ input BoolWithAggregatesFilter {
   _min: NestedBoolFilter
   equals: Boolean
   not: NestedBoolWithAggregatesFilter
+}
+
+type Comment {
+  _count: CommentCount
+  active: Boolean!
+  comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
+  createdAt: DateTime!
+  episode: Episode
+  episodeId: Int
+  id: String!
+  message: String!
+  movie: Movie
+  movieId: Int
+  parent: Comment
+  parentId: String
+  serie: Serie
+  serieId: Int
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type CommentAvgAggregate {
+  episodeId: Float
+  movieId: Float
+  serieId: Float
+}
+
+input CommentAvgOrderByAggregateInput {
+  episodeId: SortOrder
+  movieId: SortOrder
+  serieId: SortOrder
+}
+
+type CommentCount {
+  comments: Int!
+}
+
+type CommentCountAggregate {
+  _all: Int!
+  active: Int!
+  createdAt: Int!
+  episodeId: Int!
+  id: Int!
+  message: Int!
+  movieId: Int!
+  parentId: Int!
+  serieId: Int!
+  updatedAt: Int!
+  userId: Int!
+}
+
+input CommentCountOrderByAggregateInput {
+  active: SortOrder
+  createdAt: SortOrder
+  episodeId: SortOrder
+  id: SortOrder
+  message: SortOrder
+  movieId: SortOrder
+  parentId: SortOrder
+  serieId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input CommentCreateInput {
+  active: Boolean
+  comments: CommentCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutCommentsInput
+  id: String
+  message: String!
+  movie: MovieCreateNestedOneWithoutCommentsInput
+  parent: CommentCreateNestedOneWithoutCommentsInput
+  serie: SerieCreateNestedOneWithoutCommentsInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateManyEpisodeInput {
+  active: Boolean
+  createdAt: DateTime
+  id: String
+  message: String!
+  movieId: Int
+  parentId: String
+  serieId: Int
+  updatedAt: DateTime
+  userId: String!
+}
+
+input CommentCreateManyEpisodeInputEnvelope {
+  data: [CommentCreateManyEpisodeInput!]!
+  skipDuplicates: Boolean
+}
+
+input CommentCreateManyInput {
+  active: Boolean
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  message: String!
+  movieId: Int
+  parentId: String
+  serieId: Int
+  updatedAt: DateTime
+  userId: String!
+}
+
+input CommentCreateManyMovieInput {
+  active: Boolean
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  message: String!
+  parentId: String
+  serieId: Int
+  updatedAt: DateTime
+  userId: String!
+}
+
+input CommentCreateManyMovieInputEnvelope {
+  data: [CommentCreateManyMovieInput!]!
+  skipDuplicates: Boolean
+}
+
+input CommentCreateManyParentInput {
+  active: Boolean
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  message: String!
+  movieId: Int
+  serieId: Int
+  updatedAt: DateTime
+  userId: String!
+}
+
+input CommentCreateManyParentInputEnvelope {
+  data: [CommentCreateManyParentInput!]!
+  skipDuplicates: Boolean
+}
+
+input CommentCreateManySerieInput {
+  active: Boolean
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  message: String!
+  movieId: Int
+  parentId: String
+  updatedAt: DateTime
+  userId: String!
+}
+
+input CommentCreateManySerieInputEnvelope {
+  data: [CommentCreateManySerieInput!]!
+  skipDuplicates: Boolean
+}
+
+input CommentCreateManyUserInput {
+  active: Boolean
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  message: String!
+  movieId: Int
+  parentId: String
+  serieId: Int
+  updatedAt: DateTime
+}
+
+input CommentCreateManyUserInputEnvelope {
+  data: [CommentCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input CommentCreateNestedManyWithoutEpisodeInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutEpisodeInput!]
+  create: [CommentCreateWithoutEpisodeInput!]
+  createMany: CommentCreateManyEpisodeInputEnvelope
+}
+
+input CommentCreateNestedManyWithoutMovieInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutMovieInput!]
+  create: [CommentCreateWithoutMovieInput!]
+  createMany: CommentCreateManyMovieInputEnvelope
+}
+
+input CommentCreateNestedManyWithoutParentInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutParentInput!]
+  create: [CommentCreateWithoutParentInput!]
+  createMany: CommentCreateManyParentInputEnvelope
+}
+
+input CommentCreateNestedManyWithoutSerieInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutSerieInput!]
+  create: [CommentCreateWithoutSerieInput!]
+  createMany: CommentCreateManySerieInputEnvelope
+}
+
+input CommentCreateNestedManyWithoutUserInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutUserInput!]
+  create: [CommentCreateWithoutUserInput!]
+  createMany: CommentCreateManyUserInputEnvelope
+}
+
+input CommentCreateNestedOneWithoutCommentsInput {
+  connect: CommentWhereUniqueInput
+  connectOrCreate: CommentCreateOrConnectWithoutCommentsInput
+  create: CommentCreateWithoutCommentsInput
+}
+
+input CommentCreateOrConnectWithoutCommentsInput {
+  create: CommentCreateWithoutCommentsInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutEpisodeInput {
+  create: CommentCreateWithoutEpisodeInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutMovieInput {
+  create: CommentCreateWithoutMovieInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutParentInput {
+  create: CommentCreateWithoutParentInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutSerieInput {
+  create: CommentCreateWithoutSerieInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutUserInput {
+  create: CommentCreateWithoutUserInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateWithoutCommentsInput {
+  active: Boolean
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutCommentsInput
+  id: String
+  message: String!
+  movie: MovieCreateNestedOneWithoutCommentsInput
+  parent: CommentCreateNestedOneWithoutCommentsInput
+  serie: SerieCreateNestedOneWithoutCommentsInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateWithoutEpisodeInput {
+  active: Boolean
+  comments: CommentCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  id: String
+  message: String!
+  movie: MovieCreateNestedOneWithoutCommentsInput
+  parent: CommentCreateNestedOneWithoutCommentsInput
+  serie: SerieCreateNestedOneWithoutCommentsInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateWithoutMovieInput {
+  active: Boolean
+  comments: CommentCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutCommentsInput
+  id: String
+  message: String!
+  parent: CommentCreateNestedOneWithoutCommentsInput
+  serie: SerieCreateNestedOneWithoutCommentsInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateWithoutParentInput {
+  active: Boolean
+  comments: CommentCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutCommentsInput
+  id: String
+  message: String!
+  movie: MovieCreateNestedOneWithoutCommentsInput
+  serie: SerieCreateNestedOneWithoutCommentsInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateWithoutSerieInput {
+  active: Boolean
+  comments: CommentCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutCommentsInput
+  id: String
+  message: String!
+  movie: MovieCreateNestedOneWithoutCommentsInput
+  parent: CommentCreateNestedOneWithoutCommentsInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateWithoutUserInput {
+  active: Boolean
+  comments: CommentCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutCommentsInput
+  id: String
+  message: String!
+  movie: MovieCreateNestedOneWithoutCommentsInput
+  parent: CommentCreateNestedOneWithoutCommentsInput
+  serie: SerieCreateNestedOneWithoutCommentsInput
+  updatedAt: DateTime
+}
+
+type CommentGroupBy {
+  _avg: CommentAvgAggregate
+  _count: CommentCountAggregate
+  _max: CommentMaxAggregate
+  _min: CommentMinAggregate
+  _sum: CommentSumAggregate
+  active: Boolean!
+  createdAt: DateTime!
+  episodeId: Int
+  id: String!
+  message: String!
+  movieId: Int
+  parentId: String
+  serieId: Int
+  updatedAt: DateTime!
+  userId: String!
+}
+
+input CommentListRelationFilter {
+  every: CommentWhereInput
+  none: CommentWhereInput
+  some: CommentWhereInput
+}
+
+type CommentMaxAggregate {
+  active: Boolean
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  message: String
+  movieId: Int
+  parentId: String
+  serieId: Int
+  updatedAt: DateTime
+  userId: String
+}
+
+input CommentMaxOrderByAggregateInput {
+  active: SortOrder
+  createdAt: SortOrder
+  episodeId: SortOrder
+  id: SortOrder
+  message: SortOrder
+  movieId: SortOrder
+  parentId: SortOrder
+  serieId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+type CommentMinAggregate {
+  active: Boolean
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  message: String
+  movieId: Int
+  parentId: String
+  serieId: Int
+  updatedAt: DateTime
+  userId: String
+}
+
+input CommentMinOrderByAggregateInput {
+  active: SortOrder
+  createdAt: SortOrder
+  episodeId: SortOrder
+  id: SortOrder
+  message: SortOrder
+  movieId: SortOrder
+  parentId: SortOrder
+  serieId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input CommentOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input CommentOrderByWithAggregationInput {
+  _avg: CommentAvgOrderByAggregateInput
+  _count: CommentCountOrderByAggregateInput
+  _max: CommentMaxOrderByAggregateInput
+  _min: CommentMinOrderByAggregateInput
+  _sum: CommentSumOrderByAggregateInput
+  active: SortOrder
+  createdAt: SortOrder
+  episodeId: SortOrder
+  id: SortOrder
+  message: SortOrder
+  movieId: SortOrder
+  parentId: SortOrder
+  serieId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input CommentOrderByWithRelationInput {
+  active: SortOrder
+  comments: CommentOrderByRelationAggregateInput
+  createdAt: SortOrder
+  episode: EpisodeOrderByWithRelationInput
+  episodeId: SortOrder
+  id: SortOrder
+  message: SortOrder
+  movie: MovieOrderByWithRelationInput
+  movieId: SortOrder
+  parent: CommentOrderByWithRelationInput
+  parentId: SortOrder
+  serie: SerieOrderByWithRelationInput
+  serieId: SortOrder
+  updatedAt: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+input CommentRelationFilter {
+  is: CommentWhereInput
+  isNot: CommentWhereInput
+}
+
+enum CommentScalarFieldEnum {
+  active
+  createdAt
+  episodeId
+  id
+  message
+  movieId
+  parentId
+  serieId
+  updatedAt
+  userId
+}
+
+input CommentScalarWhereInput {
+  AND: [CommentScalarWhereInput!]
+  NOT: [CommentScalarWhereInput!]
+  OR: [CommentScalarWhereInput!]
+  active: BoolFilter
+  createdAt: DateTimeFilter
+  episodeId: IntNullableFilter
+  id: StringFilter
+  message: StringFilter
+  movieId: IntNullableFilter
+  parentId: StringNullableFilter
+  serieId: IntNullableFilter
+  updatedAt: DateTimeFilter
+  userId: StringFilter
+}
+
+input CommentScalarWhereWithAggregatesInput {
+  AND: [CommentScalarWhereWithAggregatesInput!]
+  NOT: [CommentScalarWhereWithAggregatesInput!]
+  OR: [CommentScalarWhereWithAggregatesInput!]
+  active: BoolWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
+  episodeId: IntNullableWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  message: StringWithAggregatesFilter
+  movieId: IntNullableWithAggregatesFilter
+  parentId: StringNullableWithAggregatesFilter
+  serieId: IntNullableWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  userId: StringWithAggregatesFilter
+}
+
+type CommentSumAggregate {
+  episodeId: Int
+  movieId: Int
+  serieId: Int
+}
+
+input CommentSumOrderByAggregateInput {
+  episodeId: SortOrder
+  movieId: SortOrder
+  serieId: SortOrder
+}
+
+input CommentUpdateInput {
+  active: BoolFieldUpdateOperationsInput
+  comments: CommentUpdateManyWithoutParentInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutCommentsInput
+  id: StringFieldUpdateOperationsInput
+  message: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutCommentsInput
+  parent: CommentUpdateOneWithoutCommentsInput
+  serie: SerieUpdateOneWithoutCommentsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutCommentsInput
+}
+
+input CommentUpdateManyMutationInput {
+  active: BoolFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  message: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CommentUpdateManyWithWhereWithoutEpisodeInput {
+  data: CommentUpdateManyMutationInput!
+  where: CommentScalarWhereInput!
+}
+
+input CommentUpdateManyWithWhereWithoutMovieInput {
+  data: CommentUpdateManyMutationInput!
+  where: CommentScalarWhereInput!
+}
+
+input CommentUpdateManyWithWhereWithoutParentInput {
+  data: CommentUpdateManyMutationInput!
+  where: CommentScalarWhereInput!
+}
+
+input CommentUpdateManyWithWhereWithoutSerieInput {
+  data: CommentUpdateManyMutationInput!
+  where: CommentScalarWhereInput!
+}
+
+input CommentUpdateManyWithWhereWithoutUserInput {
+  data: CommentUpdateManyMutationInput!
+  where: CommentScalarWhereInput!
+}
+
+input CommentUpdateManyWithoutEpisodeInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutEpisodeInput!]
+  create: [CommentCreateWithoutEpisodeInput!]
+  createMany: CommentCreateManyEpisodeInputEnvelope
+  delete: [CommentWhereUniqueInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutEpisodeInput!]
+  updateMany: [CommentUpdateManyWithWhereWithoutEpisodeInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutEpisodeInput!]
+}
+
+input CommentUpdateManyWithoutMovieInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutMovieInput!]
+  create: [CommentCreateWithoutMovieInput!]
+  createMany: CommentCreateManyMovieInputEnvelope
+  delete: [CommentWhereUniqueInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutMovieInput!]
+  updateMany: [CommentUpdateManyWithWhereWithoutMovieInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutMovieInput!]
+}
+
+input CommentUpdateManyWithoutParentInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutParentInput!]
+  create: [CommentCreateWithoutParentInput!]
+  createMany: CommentCreateManyParentInputEnvelope
+  delete: [CommentWhereUniqueInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutParentInput!]
+  updateMany: [CommentUpdateManyWithWhereWithoutParentInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutParentInput!]
+}
+
+input CommentUpdateManyWithoutSerieInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutSerieInput!]
+  create: [CommentCreateWithoutSerieInput!]
+  createMany: CommentCreateManySerieInputEnvelope
+  delete: [CommentWhereUniqueInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutSerieInput!]
+  updateMany: [CommentUpdateManyWithWhereWithoutSerieInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutSerieInput!]
+}
+
+input CommentUpdateManyWithoutUserInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutUserInput!]
+  create: [CommentCreateWithoutUserInput!]
+  createMany: CommentCreateManyUserInputEnvelope
+  delete: [CommentWhereUniqueInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [CommentUpdateManyWithWhereWithoutUserInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input CommentUpdateOneWithoutCommentsInput {
+  connect: CommentWhereUniqueInput
+  connectOrCreate: CommentCreateOrConnectWithoutCommentsInput
+  create: CommentCreateWithoutCommentsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: CommentUpdateWithoutCommentsInput
+  upsert: CommentUpsertWithoutCommentsInput
+}
+
+input CommentUpdateWithWhereUniqueWithoutEpisodeInput {
+  data: CommentUpdateWithoutEpisodeInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpdateWithWhereUniqueWithoutMovieInput {
+  data: CommentUpdateWithoutMovieInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpdateWithWhereUniqueWithoutParentInput {
+  data: CommentUpdateWithoutParentInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpdateWithWhereUniqueWithoutSerieInput {
+  data: CommentUpdateWithoutSerieInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpdateWithWhereUniqueWithoutUserInput {
+  data: CommentUpdateWithoutUserInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpdateWithoutCommentsInput {
+  active: BoolFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutCommentsInput
+  id: StringFieldUpdateOperationsInput
+  message: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutCommentsInput
+  parent: CommentUpdateOneWithoutCommentsInput
+  serie: SerieUpdateOneWithoutCommentsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutCommentsInput
+}
+
+input CommentUpdateWithoutEpisodeInput {
+  active: BoolFieldUpdateOperationsInput
+  comments: CommentUpdateManyWithoutParentInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  message: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutCommentsInput
+  parent: CommentUpdateOneWithoutCommentsInput
+  serie: SerieUpdateOneWithoutCommentsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutCommentsInput
+}
+
+input CommentUpdateWithoutMovieInput {
+  active: BoolFieldUpdateOperationsInput
+  comments: CommentUpdateManyWithoutParentInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutCommentsInput
+  id: StringFieldUpdateOperationsInput
+  message: StringFieldUpdateOperationsInput
+  parent: CommentUpdateOneWithoutCommentsInput
+  serie: SerieUpdateOneWithoutCommentsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutCommentsInput
+}
+
+input CommentUpdateWithoutParentInput {
+  active: BoolFieldUpdateOperationsInput
+  comments: CommentUpdateManyWithoutParentInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutCommentsInput
+  id: StringFieldUpdateOperationsInput
+  message: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutCommentsInput
+  serie: SerieUpdateOneWithoutCommentsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutCommentsInput
+}
+
+input CommentUpdateWithoutSerieInput {
+  active: BoolFieldUpdateOperationsInput
+  comments: CommentUpdateManyWithoutParentInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutCommentsInput
+  id: StringFieldUpdateOperationsInput
+  message: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutCommentsInput
+  parent: CommentUpdateOneWithoutCommentsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutCommentsInput
+}
+
+input CommentUpdateWithoutUserInput {
+  active: BoolFieldUpdateOperationsInput
+  comments: CommentUpdateManyWithoutParentInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutCommentsInput
+  id: StringFieldUpdateOperationsInput
+  message: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutCommentsInput
+  parent: CommentUpdateOneWithoutCommentsInput
+  serie: SerieUpdateOneWithoutCommentsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CommentUpsertWithWhereUniqueWithoutEpisodeInput {
+  create: CommentCreateWithoutEpisodeInput!
+  update: CommentUpdateWithoutEpisodeInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpsertWithWhereUniqueWithoutMovieInput {
+  create: CommentCreateWithoutMovieInput!
+  update: CommentUpdateWithoutMovieInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpsertWithWhereUniqueWithoutParentInput {
+  create: CommentCreateWithoutParentInput!
+  update: CommentUpdateWithoutParentInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpsertWithWhereUniqueWithoutSerieInput {
+  create: CommentCreateWithoutSerieInput!
+  update: CommentUpdateWithoutSerieInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpsertWithWhereUniqueWithoutUserInput {
+  create: CommentCreateWithoutUserInput!
+  update: CommentUpdateWithoutUserInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpsertWithoutCommentsInput {
+  create: CommentCreateWithoutCommentsInput!
+  update: CommentUpdateWithoutCommentsInput!
+}
+
+input CommentWhereInput {
+  AND: [CommentWhereInput!]
+  NOT: [CommentWhereInput!]
+  OR: [CommentWhereInput!]
+  active: BoolFilter
+  comments: CommentListRelationFilter
+  createdAt: DateTimeFilter
+  episode: EpisodeRelationFilter
+  episodeId: IntNullableFilter
+  id: StringFilter
+  message: StringFilter
+  movie: MovieRelationFilter
+  movieId: IntNullableFilter
+  parent: CommentRelationFilter
+  parentId: StringNullableFilter
+  serie: SerieRelationFilter
+  serieId: IntNullableFilter
+  updatedAt: DateTimeFilter
+  user: UserRelationFilter
+  userId: StringFilter
+}
+
+input CommentWhereUniqueInput {
+  id: String
 }
 
 """
@@ -1540,6 +2350,7 @@ input EnumRoleWithAggregatesFilter {
 
 type Episode {
   _count: EpisodeCount
+  comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
   createdAt: DateTime!
   id: Int!
   imdbID: String!
@@ -1551,6 +2362,7 @@ type Episode {
   seasonId: Int!
   title: String!
   updatedAt: DateTime!
+  userRating(cursor: RatingWhereUniqueInput, distinct: [RatingScalarFieldEnum!], orderBy: [RatingOrderByWithRelationInput!], skip: Int, take: Int, where: RatingWhereInput): [Rating!]!
   watchlist(cursor: WatchlistedEpisodeWhereUniqueInput, distinct: [WatchlistedEpisodeScalarFieldEnum!], orderBy: [WatchlistedEpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): [WatchlistedEpisode!]!
 }
 
@@ -1569,6 +2381,8 @@ input EpisodeAvgOrderByAggregateInput {
 }
 
 type EpisodeCount {
+  comments: Int!
+  userRating: Int!
   watchlist: Int!
 }
 
@@ -1600,6 +2414,7 @@ input EpisodeCountOrderByAggregateInput {
 }
 
 input EpisodeCreateInput {
+  comments: CommentCreateNestedManyWithoutEpisodeInput
   createdAt: DateTime
   imdbID: String!
   imdbRating: Float!
@@ -1609,6 +2424,7 @@ input EpisodeCreateInput {
   season: SeasonCreateNestedOneWithoutEpisodeIdsInput!
   title: String!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutEpisodeInput
   watchlist: WatchlistedEpisodeCreateNestedManyWithoutEpisodeInput
 }
 
@@ -1649,14 +2465,36 @@ input EpisodeCreateNestedManyWithoutSeasonInput {
   createMany: EpisodeCreateManySeasonInputEnvelope
 }
 
+input EpisodeCreateNestedOneWithoutCommentsInput {
+  connect: EpisodeWhereUniqueInput
+  connectOrCreate: EpisodeCreateOrConnectWithoutCommentsInput
+  create: EpisodeCreateWithoutCommentsInput
+}
+
+input EpisodeCreateNestedOneWithoutUserRatingInput {
+  connect: EpisodeWhereUniqueInput
+  connectOrCreate: EpisodeCreateOrConnectWithoutUserRatingInput
+  create: EpisodeCreateWithoutUserRatingInput
+}
+
 input EpisodeCreateNestedOneWithoutWatchlistInput {
   connect: EpisodeWhereUniqueInput
   connectOrCreate: EpisodeCreateOrConnectWithoutWatchlistInput
   create: EpisodeCreateWithoutWatchlistInput
 }
 
+input EpisodeCreateOrConnectWithoutCommentsInput {
+  create: EpisodeCreateWithoutCommentsInput!
+  where: EpisodeWhereUniqueInput!
+}
+
 input EpisodeCreateOrConnectWithoutSeasonInput {
   create: EpisodeCreateWithoutSeasonInput!
+  where: EpisodeWhereUniqueInput!
+}
+
+input EpisodeCreateOrConnectWithoutUserRatingInput {
+  create: EpisodeCreateWithoutUserRatingInput!
   where: EpisodeWhereUniqueInput!
 }
 
@@ -1665,19 +2503,7 @@ input EpisodeCreateOrConnectWithoutWatchlistInput {
   where: EpisodeWhereUniqueInput!
 }
 
-input EpisodeCreateWithoutSeasonInput {
-  createdAt: DateTime
-  imdbID: String!
-  imdbRating: Float!
-  plot: String!
-  poster: String!
-  runtime: Int!
-  title: String!
-  updatedAt: DateTime
-  watchlist: WatchlistedEpisodeCreateNestedManyWithoutEpisodeInput
-}
-
-input EpisodeCreateWithoutWatchlistInput {
+input EpisodeCreateWithoutCommentsInput {
   createdAt: DateTime
   imdbID: String!
   imdbRating: Float!
@@ -1687,6 +2513,50 @@ input EpisodeCreateWithoutWatchlistInput {
   season: SeasonCreateNestedOneWithoutEpisodeIdsInput!
   title: String!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutEpisodeInput
+  watchlist: WatchlistedEpisodeCreateNestedManyWithoutEpisodeInput
+}
+
+input EpisodeCreateWithoutSeasonInput {
+  comments: CommentCreateNestedManyWithoutEpisodeInput
+  createdAt: DateTime
+  imdbID: String!
+  imdbRating: Float!
+  plot: String!
+  poster: String!
+  runtime: Int!
+  title: String!
+  updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutEpisodeInput
+  watchlist: WatchlistedEpisodeCreateNestedManyWithoutEpisodeInput
+}
+
+input EpisodeCreateWithoutUserRatingInput {
+  comments: CommentCreateNestedManyWithoutEpisodeInput
+  createdAt: DateTime
+  imdbID: String!
+  imdbRating: Float!
+  plot: String!
+  poster: String!
+  runtime: Int!
+  season: SeasonCreateNestedOneWithoutEpisodeIdsInput!
+  title: String!
+  updatedAt: DateTime
+  watchlist: WatchlistedEpisodeCreateNestedManyWithoutEpisodeInput
+}
+
+input EpisodeCreateWithoutWatchlistInput {
+  comments: CommentCreateNestedManyWithoutEpisodeInput
+  createdAt: DateTime
+  imdbID: String!
+  imdbRating: Float!
+  plot: String!
+  poster: String!
+  runtime: Int!
+  season: SeasonCreateNestedOneWithoutEpisodeIdsInput!
+  title: String!
+  updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutEpisodeInput
 }
 
 type EpisodeGroupBy {
@@ -1788,6 +2658,7 @@ input EpisodeOrderByWithAggregationInput {
 }
 
 input EpisodeOrderByWithRelationInput {
+  comments: CommentOrderByRelationAggregateInput
   createdAt: SortOrder
   id: SortOrder
   imdbID: SortOrder
@@ -1799,6 +2670,7 @@ input EpisodeOrderByWithRelationInput {
   seasonId: SortOrder
   title: SortOrder
   updatedAt: SortOrder
+  userRating: RatingOrderByRelationAggregateInput
   watchlist: WatchlistedEpisodeOrderByRelationAggregateInput
 }
 
@@ -1867,6 +2739,7 @@ input EpisodeSumOrderByAggregateInput {
 }
 
 input EpisodeUpdateInput {
+  comments: CommentUpdateManyWithoutEpisodeInput
   createdAt: DateTimeFieldUpdateOperationsInput
   imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
@@ -1876,6 +2749,7 @@ input EpisodeUpdateInput {
   season: SeasonUpdateOneRequiredWithoutEpisodeIdsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutEpisodeInput
   watchlist: WatchlistedEpisodeUpdateManyWithoutEpisodeInput
 }
 
@@ -1917,24 +2791,32 @@ input EpisodeUpdateOneRequiredWithoutWatchlistInput {
   upsert: EpisodeUpsertWithoutWatchlistInput
 }
 
+input EpisodeUpdateOneWithoutCommentsInput {
+  connect: EpisodeWhereUniqueInput
+  connectOrCreate: EpisodeCreateOrConnectWithoutCommentsInput
+  create: EpisodeCreateWithoutCommentsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: EpisodeUpdateWithoutCommentsInput
+  upsert: EpisodeUpsertWithoutCommentsInput
+}
+
+input EpisodeUpdateOneWithoutUserRatingInput {
+  connect: EpisodeWhereUniqueInput
+  connectOrCreate: EpisodeCreateOrConnectWithoutUserRatingInput
+  create: EpisodeCreateWithoutUserRatingInput
+  delete: Boolean
+  disconnect: Boolean
+  update: EpisodeUpdateWithoutUserRatingInput
+  upsert: EpisodeUpsertWithoutUserRatingInput
+}
+
 input EpisodeUpdateWithWhereUniqueWithoutSeasonInput {
   data: EpisodeUpdateWithoutSeasonInput!
   where: EpisodeWhereUniqueInput!
 }
 
-input EpisodeUpdateWithoutSeasonInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  imdbID: StringFieldUpdateOperationsInput
-  imdbRating: FloatFieldUpdateOperationsInput
-  plot: StringFieldUpdateOperationsInput
-  poster: StringFieldUpdateOperationsInput
-  runtime: IntFieldUpdateOperationsInput
-  title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  watchlist: WatchlistedEpisodeUpdateManyWithoutEpisodeInput
-}
-
-input EpisodeUpdateWithoutWatchlistInput {
+input EpisodeUpdateWithoutCommentsInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
@@ -1944,12 +2826,66 @@ input EpisodeUpdateWithoutWatchlistInput {
   season: SeasonUpdateOneRequiredWithoutEpisodeIdsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutEpisodeInput
+  watchlist: WatchlistedEpisodeUpdateManyWithoutEpisodeInput
+}
+
+input EpisodeUpdateWithoutSeasonInput {
+  comments: CommentUpdateManyWithoutEpisodeInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutEpisodeInput
+  watchlist: WatchlistedEpisodeUpdateManyWithoutEpisodeInput
+}
+
+input EpisodeUpdateWithoutUserRatingInput {
+  comments: CommentUpdateManyWithoutEpisodeInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  season: SeasonUpdateOneRequiredWithoutEpisodeIdsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  watchlist: WatchlistedEpisodeUpdateManyWithoutEpisodeInput
+}
+
+input EpisodeUpdateWithoutWatchlistInput {
+  comments: CommentUpdateManyWithoutEpisodeInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  season: SeasonUpdateOneRequiredWithoutEpisodeIdsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutEpisodeInput
 }
 
 input EpisodeUpsertWithWhereUniqueWithoutSeasonInput {
   create: EpisodeCreateWithoutSeasonInput!
   update: EpisodeUpdateWithoutSeasonInput!
   where: EpisodeWhereUniqueInput!
+}
+
+input EpisodeUpsertWithoutCommentsInput {
+  create: EpisodeCreateWithoutCommentsInput!
+  update: EpisodeUpdateWithoutCommentsInput!
+}
+
+input EpisodeUpsertWithoutUserRatingInput {
+  create: EpisodeCreateWithoutUserRatingInput!
+  update: EpisodeUpdateWithoutUserRatingInput!
 }
 
 input EpisodeUpsertWithoutWatchlistInput {
@@ -1961,6 +2897,7 @@ input EpisodeWhereInput {
   AND: [EpisodeWhereInput!]
   NOT: [EpisodeWhereInput!]
   OR: [EpisodeWhereInput!]
+  comments: CommentListRelationFilter
   createdAt: DateTimeFilter
   id: IntFilter
   imdbID: StringFilter
@@ -1972,6 +2909,7 @@ input EpisodeWhereInput {
   seasonId: IntFilter
   title: StringFilter
   updatedAt: DateTimeFilter
+  userRating: RatingListRelationFilter
   watchlist: WatchlistedEpisodeListRelationFilter
 }
 
@@ -2916,6 +3854,7 @@ input LanguageWhereUniqueInput {
 type Movie {
   _count: MovieCount
   actors(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): [Actor!]!
+  comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
   createdAt: DateTime!
   directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
   genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
@@ -2930,6 +3869,7 @@ type Movie {
   runtime: Int!
   title: String!
   updatedAt: DateTime!
+  userRating(cursor: RatingWhereUniqueInput, distinct: [RatingScalarFieldEnum!], orderBy: [RatingOrderByWithRelationInput!], skip: Int, take: Int, where: RatingWhereInput): [Rating!]!
   watchlist(cursor: WatchlistedMovieWhereUniqueInput, distinct: [WatchlistedMovieScalarFieldEnum!], orderBy: [WatchlistedMovieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): [WatchlistedMovie!]!
   year: Int!
 }
@@ -2950,9 +3890,11 @@ input MovieAvgOrderByAggregateInput {
 
 type MovieCount {
   actors: Int!
+  comments: Int!
   directors: Int!
   genres: Int!
   languages: Int!
+  userRating: Int!
   watchlist: Int!
 }
 
@@ -2989,6 +3931,7 @@ input MovieCountOrderByAggregateInput {
 
 input MovieCreateInput {
   actors: ActorCreateNestedManyWithoutMoviesInput
+  comments: CommentCreateNestedManyWithoutMovieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
   genres: GenreCreateNestedManyWithoutMoviesInput
@@ -3002,6 +3945,7 @@ input MovieCreateInput {
   runtime: Int!
   title: String!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutMovieInput
   watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
   year: Int!
 }
@@ -3045,6 +3989,18 @@ input MovieCreateNestedManyWithoutLanguagesInput {
   create: [MovieCreateWithoutLanguagesInput!]
 }
 
+input MovieCreateNestedOneWithoutCommentsInput {
+  connect: MovieWhereUniqueInput
+  connectOrCreate: MovieCreateOrConnectWithoutCommentsInput
+  create: MovieCreateWithoutCommentsInput
+}
+
+input MovieCreateNestedOneWithoutUserRatingInput {
+  connect: MovieWhereUniqueInput
+  connectOrCreate: MovieCreateOrConnectWithoutUserRatingInput
+  create: MovieCreateWithoutUserRatingInput
+}
+
 input MovieCreateNestedOneWithoutWatchlistInput {
   connect: MovieWhereUniqueInput
   connectOrCreate: MovieCreateOrConnectWithoutWatchlistInput
@@ -3053,6 +4009,11 @@ input MovieCreateNestedOneWithoutWatchlistInput {
 
 input MovieCreateOrConnectWithoutActorsInput {
   create: MovieCreateWithoutActorsInput!
+  where: MovieWhereUniqueInput!
+}
+
+input MovieCreateOrConnectWithoutCommentsInput {
+  create: MovieCreateWithoutCommentsInput!
   where: MovieWhereUniqueInput!
 }
 
@@ -3071,12 +4032,18 @@ input MovieCreateOrConnectWithoutLanguagesInput {
   where: MovieWhereUniqueInput!
 }
 
+input MovieCreateOrConnectWithoutUserRatingInput {
+  create: MovieCreateWithoutUserRatingInput!
+  where: MovieWhereUniqueInput!
+}
+
 input MovieCreateOrConnectWithoutWatchlistInput {
   create: MovieCreateWithoutWatchlistInput!
   where: MovieWhereUniqueInput!
 }
 
 input MovieCreateWithoutActorsInput {
+  comments: CommentCreateNestedManyWithoutMovieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
   genres: GenreCreateNestedManyWithoutMoviesInput
@@ -3090,12 +4057,34 @@ input MovieCreateWithoutActorsInput {
   runtime: Int!
   title: String!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutMovieInput
+  watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
+  year: Int!
+}
+
+input MovieCreateWithoutCommentsInput {
+  actors: ActorCreateNestedManyWithoutMoviesInput
+  createdAt: DateTime
+  directors: DirectorCreateNestedManyWithoutMoviesInput
+  genres: GenreCreateNestedManyWithoutMoviesInput
+  imdbID: String!
+  imdbRating: Float!
+  languages: LanguageCreateNestedManyWithoutMoviesInput
+  plot: String!
+  poster: String!
+  rating: String!
+  release: DateTime!
+  runtime: Int!
+  title: String!
+  updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutMovieInput
   watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
   year: Int!
 }
 
 input MovieCreateWithoutDirectorsInput {
   actors: ActorCreateNestedManyWithoutMoviesInput
+  comments: CommentCreateNestedManyWithoutMovieInput
   createdAt: DateTime
   genres: GenreCreateNestedManyWithoutMoviesInput
   imdbID: String!
@@ -3108,12 +4097,14 @@ input MovieCreateWithoutDirectorsInput {
   runtime: Int!
   title: String!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutMovieInput
   watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
   year: Int!
 }
 
 input MovieCreateWithoutGenresInput {
   actors: ActorCreateNestedManyWithoutMoviesInput
+  comments: CommentCreateNestedManyWithoutMovieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
   imdbID: String!
@@ -3126,17 +4117,40 @@ input MovieCreateWithoutGenresInput {
   runtime: Int!
   title: String!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutMovieInput
   watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
   year: Int!
 }
 
 input MovieCreateWithoutLanguagesInput {
   actors: ActorCreateNestedManyWithoutMoviesInput
+  comments: CommentCreateNestedManyWithoutMovieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
   genres: GenreCreateNestedManyWithoutMoviesInput
   imdbID: String!
   imdbRating: Float!
+  plot: String!
+  poster: String!
+  rating: String!
+  release: DateTime!
+  runtime: Int!
+  title: String!
+  updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutMovieInput
+  watchlist: WatchlistedMovieCreateNestedManyWithoutMovieInput
+  year: Int!
+}
+
+input MovieCreateWithoutUserRatingInput {
+  actors: ActorCreateNestedManyWithoutMoviesInput
+  comments: CommentCreateNestedManyWithoutMovieInput
+  createdAt: DateTime
+  directors: DirectorCreateNestedManyWithoutMoviesInput
+  genres: GenreCreateNestedManyWithoutMoviesInput
+  imdbID: String!
+  imdbRating: Float!
+  languages: LanguageCreateNestedManyWithoutMoviesInput
   plot: String!
   poster: String!
   rating: String!
@@ -3150,6 +4164,7 @@ input MovieCreateWithoutLanguagesInput {
 
 input MovieCreateWithoutWatchlistInput {
   actors: ActorCreateNestedManyWithoutMoviesInput
+  comments: CommentCreateNestedManyWithoutMovieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutMoviesInput
   genres: GenreCreateNestedManyWithoutMoviesInput
@@ -3163,6 +4178,7 @@ input MovieCreateWithoutWatchlistInput {
   runtime: Int!
   title: String!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutMovieInput
   year: Int!
 }
 
@@ -3278,6 +4294,7 @@ input MovieOrderByWithAggregationInput {
 
 input MovieOrderByWithRelationInput {
   actors: ActorOrderByRelationAggregateInput
+  comments: CommentOrderByRelationAggregateInput
   createdAt: SortOrder
   directors: DirectorOrderByRelationAggregateInput
   genres: GenreOrderByRelationAggregateInput
@@ -3292,6 +4309,7 @@ input MovieOrderByWithRelationInput {
   runtime: SortOrder
   title: SortOrder
   updatedAt: SortOrder
+  userRating: RatingOrderByRelationAggregateInput
   watchlist: WatchlistedMovieOrderByRelationAggregateInput
   year: SortOrder
 }
@@ -3368,6 +4386,7 @@ input MovieSumOrderByAggregateInput {
 
 input MovieUpdateInput {
   actors: ActorUpdateManyWithoutMoviesInput
+  comments: CommentUpdateManyWithoutMovieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutMoviesInput
   genres: GenreUpdateManyWithoutMoviesInput
@@ -3381,6 +4400,7 @@ input MovieUpdateInput {
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutMovieInput
   watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
   year: IntFieldUpdateOperationsInput
 }
@@ -3479,6 +4499,26 @@ input MovieUpdateOneRequiredWithoutWatchlistInput {
   upsert: MovieUpsertWithoutWatchlistInput
 }
 
+input MovieUpdateOneWithoutCommentsInput {
+  connect: MovieWhereUniqueInput
+  connectOrCreate: MovieCreateOrConnectWithoutCommentsInput
+  create: MovieCreateWithoutCommentsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MovieUpdateWithoutCommentsInput
+  upsert: MovieUpsertWithoutCommentsInput
+}
+
+input MovieUpdateOneWithoutUserRatingInput {
+  connect: MovieWhereUniqueInput
+  connectOrCreate: MovieCreateOrConnectWithoutUserRatingInput
+  create: MovieCreateWithoutUserRatingInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MovieUpdateWithoutUserRatingInput
+  upsert: MovieUpsertWithoutUserRatingInput
+}
+
 input MovieUpdateWithWhereUniqueWithoutActorsInput {
   data: MovieUpdateWithoutActorsInput!
   where: MovieWhereUniqueInput!
@@ -3500,6 +4540,7 @@ input MovieUpdateWithWhereUniqueWithoutLanguagesInput {
 }
 
 input MovieUpdateWithoutActorsInput {
+  comments: CommentUpdateManyWithoutMovieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutMoviesInput
   genres: GenreUpdateManyWithoutMoviesInput
@@ -3513,12 +4554,34 @@ input MovieUpdateWithoutActorsInput {
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutMovieInput
+  watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
+  year: IntFieldUpdateOperationsInput
+}
+
+input MovieUpdateWithoutCommentsInput {
+  actors: ActorUpdateManyWithoutMoviesInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  directors: DirectorUpdateManyWithoutMoviesInput
+  genres: GenreUpdateManyWithoutMoviesInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  languages: LanguageUpdateManyWithoutMoviesInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  rating: StringFieldUpdateOperationsInput
+  release: DateTimeFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutMovieInput
   watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
   year: IntFieldUpdateOperationsInput
 }
 
 input MovieUpdateWithoutDirectorsInput {
   actors: ActorUpdateManyWithoutMoviesInput
+  comments: CommentUpdateManyWithoutMovieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   genres: GenreUpdateManyWithoutMoviesInput
   imdbID: StringFieldUpdateOperationsInput
@@ -3531,12 +4594,14 @@ input MovieUpdateWithoutDirectorsInput {
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutMovieInput
   watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
   year: IntFieldUpdateOperationsInput
 }
 
 input MovieUpdateWithoutGenresInput {
   actors: ActorUpdateManyWithoutMoviesInput
+  comments: CommentUpdateManyWithoutMovieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutMoviesInput
   imdbID: StringFieldUpdateOperationsInput
@@ -3549,17 +4614,40 @@ input MovieUpdateWithoutGenresInput {
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutMovieInput
   watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
   year: IntFieldUpdateOperationsInput
 }
 
 input MovieUpdateWithoutLanguagesInput {
   actors: ActorUpdateManyWithoutMoviesInput
+  comments: CommentUpdateManyWithoutMovieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutMoviesInput
   genres: GenreUpdateManyWithoutMoviesInput
   imdbID: StringFieldUpdateOperationsInput
   imdbRating: FloatFieldUpdateOperationsInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  rating: StringFieldUpdateOperationsInput
+  release: DateTimeFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutMovieInput
+  watchlist: WatchlistedMovieUpdateManyWithoutMovieInput
+  year: IntFieldUpdateOperationsInput
+}
+
+input MovieUpdateWithoutUserRatingInput {
+  actors: ActorUpdateManyWithoutMoviesInput
+  comments: CommentUpdateManyWithoutMovieInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  directors: DirectorUpdateManyWithoutMoviesInput
+  genres: GenreUpdateManyWithoutMoviesInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  languages: LanguageUpdateManyWithoutMoviesInput
   plot: StringFieldUpdateOperationsInput
   poster: StringFieldUpdateOperationsInput
   rating: StringFieldUpdateOperationsInput
@@ -3573,6 +4661,7 @@ input MovieUpdateWithoutLanguagesInput {
 
 input MovieUpdateWithoutWatchlistInput {
   actors: ActorUpdateManyWithoutMoviesInput
+  comments: CommentUpdateManyWithoutMovieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutMoviesInput
   genres: GenreUpdateManyWithoutMoviesInput
@@ -3586,6 +4675,7 @@ input MovieUpdateWithoutWatchlistInput {
   runtime: IntFieldUpdateOperationsInput
   title: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutMovieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -3613,6 +4703,16 @@ input MovieUpsertWithWhereUniqueWithoutLanguagesInput {
   where: MovieWhereUniqueInput!
 }
 
+input MovieUpsertWithoutCommentsInput {
+  create: MovieCreateWithoutCommentsInput!
+  update: MovieUpdateWithoutCommentsInput!
+}
+
+input MovieUpsertWithoutUserRatingInput {
+  create: MovieCreateWithoutUserRatingInput!
+  update: MovieUpdateWithoutUserRatingInput!
+}
+
 input MovieUpsertWithoutWatchlistInput {
   create: MovieCreateWithoutWatchlistInput!
   update: MovieUpdateWithoutWatchlistInput!
@@ -3623,6 +4723,7 @@ input MovieWhereInput {
   NOT: [MovieWhereInput!]
   OR: [MovieWhereInput!]
   actors: ActorListRelationFilter
+  comments: CommentListRelationFilter
   createdAt: DateTimeFilter
   directors: DirectorListRelationFilter
   genres: GenreListRelationFilter
@@ -3637,6 +4738,7 @@ input MovieWhereInput {
   runtime: IntFilter
   title: StringFilter
   updatedAt: DateTimeFilter
+  userRating: RatingListRelationFilter
   watchlist: WatchlistedMovieListRelationFilter
   year: IntFilter
 }
@@ -3864,6 +4966,7 @@ type Mutation {
   createAccount(data: AccountCreateInput!): Account!
   createActor(data: ActorCreateInput!): Actor!
   createAppSettings(data: AppSettingsCreateInput!): AppSettings!
+  createComment(data: CommentCreateInput!): Comment!
   createDirector(data: DirectorCreateInput!): Director!
   createEpisode(data: EpisodeCreateInput!): Episode!
   createEpisodesWatchlist(data: EpisodesWatchlistCreateInput!): EpisodesWatchlist!
@@ -3872,6 +4975,7 @@ type Mutation {
   createManyAccount(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyActor(data: [ActorCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyAppSettings(data: [AppSettingsCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyComment(data: [CommentCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyDirector(data: [DirectorCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyEpisode(data: [EpisodeCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyEpisodesWatchlist(data: [EpisodesWatchlistCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
@@ -3879,6 +4983,7 @@ type Mutation {
   createManyLanguage(data: [LanguageCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovie(data: [MovieCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMoviesWatchlist(data: [MoviesWatchlistCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyRating(data: [RatingCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManySeason(data: [SeasonCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManySerie(data: [SerieCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManySeriesWatchlist(data: [SeriesWatchlistCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
@@ -3891,6 +4996,7 @@ type Mutation {
   createManyWatchlistedSerie(data: [WatchlistedSerieCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createMovie(data: MovieCreateInput!): Movie!
   createMoviesWatchlist(data: MoviesWatchlistCreateInput!): MoviesWatchlist!
+  createRating(data: RatingCreateInput!): Rating!
   createSeason(data: SeasonCreateInput!): Season!
   createSerie(data: SerieCreateInput!): Serie!
   createSeriesWatchlist(data: SeriesWatchlistCreateInput!): SeriesWatchlist!
@@ -3904,6 +5010,7 @@ type Mutation {
   deleteAccount(where: AccountWhereUniqueInput!): Account
   deleteActor(where: ActorWhereUniqueInput!): Actor
   deleteAppSettings(where: AppSettingsWhereUniqueInput!): AppSettings
+  deleteComment(where: CommentWhereUniqueInput!): Comment
   deleteDirector(where: DirectorWhereUniqueInput!): Director
   deleteEpisode(where: EpisodeWhereUniqueInput!): Episode
   deleteEpisodesWatchlist(where: EpisodesWatchlistWhereUniqueInput!): EpisodesWatchlist
@@ -3912,6 +5019,7 @@ type Mutation {
   deleteManyAccount(where: AccountWhereInput): AffectedRowsOutput!
   deleteManyActor(where: ActorWhereInput): AffectedRowsOutput!
   deleteManyAppSettings(where: AppSettingsWhereInput): AffectedRowsOutput!
+  deleteManyComment(where: CommentWhereInput): AffectedRowsOutput!
   deleteManyDirector(where: DirectorWhereInput): AffectedRowsOutput!
   deleteManyEpisode(where: EpisodeWhereInput): AffectedRowsOutput!
   deleteManyEpisodesWatchlist(where: EpisodesWatchlistWhereInput): AffectedRowsOutput!
@@ -3919,6 +5027,7 @@ type Mutation {
   deleteManyLanguage(where: LanguageWhereInput): AffectedRowsOutput!
   deleteManyMovie(where: MovieWhereInput): AffectedRowsOutput!
   deleteManyMoviesWatchlist(where: MoviesWatchlistWhereInput): AffectedRowsOutput!
+  deleteManyRating(where: RatingWhereInput): AffectedRowsOutput!
   deleteManySeason(where: SeasonWhereInput): AffectedRowsOutput!
   deleteManySerie(where: SerieWhereInput): AffectedRowsOutput!
   deleteManySeriesWatchlist(where: SeriesWatchlistWhereInput): AffectedRowsOutput!
@@ -3931,6 +5040,7 @@ type Mutation {
   deleteManyWatchlistedSerie(where: WatchlistedSerieWhereInput): AffectedRowsOutput!
   deleteMovie(where: MovieWhereUniqueInput!): Movie
   deleteMoviesWatchlist(where: MoviesWatchlistWhereUniqueInput!): MoviesWatchlist
+  deleteRating(where: RatingWhereUniqueInput!): Rating
   deleteSeason(where: SeasonWhereUniqueInput!): Season
   deleteSerie(where: SerieWhereUniqueInput!): Serie
   deleteSeriesWatchlist(where: SeriesWatchlistWhereUniqueInput!): SeriesWatchlist
@@ -3944,6 +5054,7 @@ type Mutation {
   updateAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
   updateActor(data: ActorUpdateInput!, where: ActorWhereUniqueInput!): Actor
   updateAppSettings(data: AppSettingsUpdateInput!, where: AppSettingsWhereUniqueInput!): AppSettings
+  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
   updateDirector(data: DirectorUpdateInput!, where: DirectorWhereUniqueInput!): Director
   updateEpisode(data: EpisodeUpdateInput!, where: EpisodeWhereUniqueInput!): Episode
   updateEpisodesWatchlist(data: EpisodesWatchlistUpdateInput!, where: EpisodesWatchlistWhereUniqueInput!): EpisodesWatchlist
@@ -3952,6 +5063,7 @@ type Mutation {
   updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
   updateManyActor(data: ActorUpdateManyMutationInput!, where: ActorWhereInput): AffectedRowsOutput!
   updateManyAppSettings(data: AppSettingsUpdateManyMutationInput!, where: AppSettingsWhereInput): AffectedRowsOutput!
+  updateManyComment(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): AffectedRowsOutput!
   updateManyDirector(data: DirectorUpdateManyMutationInput!, where: DirectorWhereInput): AffectedRowsOutput!
   updateManyEpisode(data: EpisodeUpdateManyMutationInput!, where: EpisodeWhereInput): AffectedRowsOutput!
   updateManyEpisodesWatchlist(data: EpisodesWatchlistUpdateManyMutationInput!, where: EpisodesWatchlistWhereInput): AffectedRowsOutput!
@@ -3959,6 +5071,7 @@ type Mutation {
   updateManyLanguage(data: LanguageUpdateManyMutationInput!, where: LanguageWhereInput): AffectedRowsOutput!
   updateManyMovie(data: MovieUpdateManyMutationInput!, where: MovieWhereInput): AffectedRowsOutput!
   updateManyMoviesWatchlist(data: MoviesWatchlistUpdateManyMutationInput!, where: MoviesWatchlistWhereInput): AffectedRowsOutput!
+  updateManyRating(data: RatingUpdateManyMutationInput!, where: RatingWhereInput): AffectedRowsOutput!
   updateManySeason(data: SeasonUpdateManyMutationInput!, where: SeasonWhereInput): AffectedRowsOutput!
   updateManySerie(data: SerieUpdateManyMutationInput!, where: SerieWhereInput): AffectedRowsOutput!
   updateManySeriesWatchlist(data: SeriesWatchlistUpdateManyMutationInput!, where: SeriesWatchlistWhereInput): AffectedRowsOutput!
@@ -3971,6 +5084,7 @@ type Mutation {
   updateManyWatchlistedSerie(data: WatchlistedSerieUpdateManyMutationInput!, where: WatchlistedSerieWhereInput): AffectedRowsOutput!
   updateMovie(data: MovieUpdateInput!, where: MovieWhereUniqueInput!): Movie
   updateMoviesWatchlist(data: MoviesWatchlistUpdateInput!, where: MoviesWatchlistWhereUniqueInput!): MoviesWatchlist
+  updateRating(data: RatingUpdateInput!, where: RatingWhereUniqueInput!): Rating
   updateSeason(data: SeasonUpdateInput!, where: SeasonWhereUniqueInput!): Season
   updateSerie(data: SerieUpdateInput!, where: SerieWhereUniqueInput!): Serie
   updateSeriesWatchlist(data: SeriesWatchlistUpdateInput!, where: SeriesWatchlistWhereUniqueInput!): SeriesWatchlist
@@ -3984,6 +5098,7 @@ type Mutation {
   upsertAccount(create: AccountCreateInput!, update: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account!
   upsertActor(create: ActorCreateInput!, update: ActorUpdateInput!, where: ActorWhereUniqueInput!): Actor!
   upsertAppSettings(create: AppSettingsCreateInput!, update: AppSettingsUpdateInput!, where: AppSettingsWhereUniqueInput!): AppSettings!
+  upsertComment(create: CommentCreateInput!, update: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment!
   upsertDirector(create: DirectorCreateInput!, update: DirectorUpdateInput!, where: DirectorWhereUniqueInput!): Director!
   upsertEpisode(create: EpisodeCreateInput!, update: EpisodeUpdateInput!, where: EpisodeWhereUniqueInput!): Episode!
   upsertEpisodesWatchlist(create: EpisodesWatchlistCreateInput!, update: EpisodesWatchlistUpdateInput!, where: EpisodesWatchlistWhereUniqueInput!): EpisodesWatchlist!
@@ -3991,6 +5106,7 @@ type Mutation {
   upsertLanguage(create: LanguageCreateInput!, update: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language!
   upsertMovie(create: MovieCreateInput!, update: MovieUpdateInput!, where: MovieWhereUniqueInput!): Movie!
   upsertMoviesWatchlist(create: MoviesWatchlistCreateInput!, update: MoviesWatchlistUpdateInput!, where: MoviesWatchlistWhereUniqueInput!): MoviesWatchlist!
+  upsertRating(create: RatingCreateInput!, update: RatingUpdateInput!, where: RatingWhereUniqueInput!): Rating!
   upsertSeason(create: SeasonCreateInput!, update: SeasonUpdateInput!, where: SeasonWhereUniqueInput!): Season!
   upsertSerie(create: SerieCreateInput!, update: SerieUpdateInput!, where: SerieWhereUniqueInput!): Serie!
   upsertSeriesWatchlist(create: SeriesWatchlistCreateInput!, update: SeriesWatchlistUpdateInput!, where: SeriesWatchlistWhereUniqueInput!): SeriesWatchlist!
@@ -4261,6 +5377,7 @@ type Query {
   aggregateAccount(cursor: AccountWhereUniqueInput, orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): AggregateAccount!
   aggregateActor(cursor: ActorWhereUniqueInput, orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): AggregateActor!
   aggregateAppSettings(cursor: AppSettingsWhereUniqueInput, orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AggregateAppSettings!
+  aggregateComment(cursor: CommentWhereUniqueInput, orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): AggregateComment!
   aggregateDirector(cursor: DirectorWhereUniqueInput, orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): AggregateDirector!
   aggregateEpisode(cursor: EpisodeWhereUniqueInput, orderBy: [EpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodeWhereInput): AggregateEpisode!
   aggregateEpisodesWatchlist(cursor: EpisodesWatchlistWhereUniqueInput, orderBy: [EpisodesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): AggregateEpisodesWatchlist!
@@ -4268,6 +5385,7 @@ type Query {
   aggregateLanguage(cursor: LanguageWhereUniqueInput, orderBy: [LanguageOrderByWithRelationInput!], skip: Int, take: Int, where: LanguageWhereInput): AggregateLanguage!
   aggregateMovie(cursor: MovieWhereUniqueInput, orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): AggregateMovie!
   aggregateMoviesWatchlist(cursor: MoviesWatchlistWhereUniqueInput, orderBy: [MoviesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): AggregateMoviesWatchlist!
+  aggregateRating(cursor: RatingWhereUniqueInput, orderBy: [RatingOrderByWithRelationInput!], skip: Int, take: Int, where: RatingWhereInput): AggregateRating!
   aggregateSeason(cursor: SeasonWhereUniqueInput, orderBy: [SeasonOrderByWithRelationInput!], skip: Int, take: Int, where: SeasonWhereInput): AggregateSeason!
   aggregateSerie(cursor: SerieWhereUniqueInput, orderBy: [SerieOrderByWithRelationInput!], skip: Int, take: Int, where: SerieWhereInput): AggregateSerie!
   aggregateSeriesWatchlist(cursor: SeriesWatchlistWhereUniqueInput, orderBy: [SeriesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): AggregateSeriesWatchlist!
@@ -4278,6 +5396,8 @@ type Query {
   aggregateWatchlistedEpisode(cursor: WatchlistedEpisodeWhereUniqueInput, orderBy: [WatchlistedEpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): AggregateWatchlistedEpisode!
   aggregateWatchlistedMovie(cursor: WatchlistedMovieWhereUniqueInput, orderBy: [WatchlistedMovieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): AggregateWatchlistedMovie!
   aggregateWatchlistedSerie(cursor: WatchlistedSerieWhereUniqueInput, orderBy: [WatchlistedSerieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): AggregateWatchlistedSerie!
+  comment(where: CommentWhereUniqueInput!): Comment
+  comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
   director(where: DirectorWhereUniqueInput!): Director
   directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
   episode(where: EpisodeWhereUniqueInput!): Episode
@@ -4287,6 +5407,7 @@ type Query {
   findFirstAccount(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
   findFirstActor(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): Actor
   findFirstAppSettings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AppSettings
+  findFirstComment(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): Comment
   findFirstDirector(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): Director
   findFirstEpisode(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodeWhereInput): Episode
   findFirstEpisodesWatchlist(cursor: EpisodesWatchlistWhereUniqueInput, distinct: [EpisodesWatchlistScalarFieldEnum!], orderBy: [EpisodesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): EpisodesWatchlist
@@ -4294,6 +5415,7 @@ type Query {
   findFirstLanguage(cursor: LanguageWhereUniqueInput, distinct: [LanguageScalarFieldEnum!], orderBy: [LanguageOrderByWithRelationInput!], skip: Int, take: Int, where: LanguageWhereInput): Language
   findFirstMovie(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
   findFirstMoviesWatchlist(cursor: MoviesWatchlistWhereUniqueInput, distinct: [MoviesWatchlistScalarFieldEnum!], orderBy: [MoviesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): MoviesWatchlist
+  findFirstRating(cursor: RatingWhereUniqueInput, distinct: [RatingScalarFieldEnum!], orderBy: [RatingOrderByWithRelationInput!], skip: Int, take: Int, where: RatingWhereInput): Rating
   findFirstSeason(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationInput!], skip: Int, take: Int, where: SeasonWhereInput): Season
   findFirstSerie(cursor: SerieWhereUniqueInput, distinct: [SerieScalarFieldEnum!], orderBy: [SerieOrderByWithRelationInput!], skip: Int, take: Int, where: SerieWhereInput): Serie
   findFirstSeriesWatchlist(cursor: SeriesWatchlistWhereUniqueInput, distinct: [SeriesWatchlistScalarFieldEnum!], orderBy: [SeriesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): SeriesWatchlist
@@ -4311,6 +5433,7 @@ type Query {
   groupByAccount(by: [AccountScalarFieldEnum!]!, having: AccountScalarWhereWithAggregatesInput, orderBy: [AccountOrderByWithAggregationInput!], skip: Int, take: Int, where: AccountWhereInput): [AccountGroupBy!]!
   groupByActor(by: [ActorScalarFieldEnum!]!, having: ActorScalarWhereWithAggregatesInput, orderBy: [ActorOrderByWithAggregationInput!], skip: Int, take: Int, where: ActorWhereInput): [ActorGroupBy!]!
   groupByAppSettings(by: [AppSettingsScalarFieldEnum!]!, having: AppSettingsScalarWhereWithAggregatesInput, orderBy: [AppSettingsOrderByWithAggregationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettingsGroupBy!]!
+  groupByComment(by: [CommentScalarFieldEnum!]!, having: CommentScalarWhereWithAggregatesInput, orderBy: [CommentOrderByWithAggregationInput!], skip: Int, take: Int, where: CommentWhereInput): [CommentGroupBy!]!
   groupByDirector(by: [DirectorScalarFieldEnum!]!, having: DirectorScalarWhereWithAggregatesInput, orderBy: [DirectorOrderByWithAggregationInput!], skip: Int, take: Int, where: DirectorWhereInput): [DirectorGroupBy!]!
   groupByEpisode(by: [EpisodeScalarFieldEnum!]!, having: EpisodeScalarWhereWithAggregatesInput, orderBy: [EpisodeOrderByWithAggregationInput!], skip: Int, take: Int, where: EpisodeWhereInput): [EpisodeGroupBy!]!
   groupByEpisodesWatchlist(by: [EpisodesWatchlistScalarFieldEnum!]!, having: EpisodesWatchlistScalarWhereWithAggregatesInput, orderBy: [EpisodesWatchlistOrderByWithAggregationInput!], skip: Int, take: Int, where: EpisodesWatchlistWhereInput): [EpisodesWatchlistGroupBy!]!
@@ -4318,6 +5441,7 @@ type Query {
   groupByLanguage(by: [LanguageScalarFieldEnum!]!, having: LanguageScalarWhereWithAggregatesInput, orderBy: [LanguageOrderByWithAggregationInput!], skip: Int, take: Int, where: LanguageWhereInput): [LanguageGroupBy!]!
   groupByMovie(by: [MovieScalarFieldEnum!]!, having: MovieScalarWhereWithAggregatesInput, orderBy: [MovieOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieWhereInput): [MovieGroupBy!]!
   groupByMoviesWatchlist(by: [MoviesWatchlistScalarFieldEnum!]!, having: MoviesWatchlistScalarWhereWithAggregatesInput, orderBy: [MoviesWatchlistOrderByWithAggregationInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): [MoviesWatchlistGroupBy!]!
+  groupByRating(by: [RatingScalarFieldEnum!]!, having: RatingScalarWhereWithAggregatesInput, orderBy: [RatingOrderByWithAggregationInput!], skip: Int, take: Int, where: RatingWhereInput): [RatingGroupBy!]!
   groupBySeason(by: [SeasonScalarFieldEnum!]!, having: SeasonScalarWhereWithAggregatesInput, orderBy: [SeasonOrderByWithAggregationInput!], skip: Int, take: Int, where: SeasonWhereInput): [SeasonGroupBy!]!
   groupBySerie(by: [SerieScalarFieldEnum!]!, having: SerieScalarWhereWithAggregatesInput, orderBy: [SerieOrderByWithAggregationInput!], skip: Int, take: Int, where: SerieWhereInput): [SerieGroupBy!]!
   groupBySeriesWatchlist(by: [SeriesWatchlistScalarFieldEnum!]!, having: SeriesWatchlistScalarWhereWithAggregatesInput, orderBy: [SeriesWatchlistOrderByWithAggregationInput!], skip: Int, take: Int, where: SeriesWatchlistWhereInput): [SeriesWatchlistGroupBy!]!
@@ -4334,6 +5458,8 @@ type Query {
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   moviesWatchlist(where: MoviesWatchlistWhereUniqueInput!): MoviesWatchlist
   moviesWatchlists(cursor: MoviesWatchlistWhereUniqueInput, distinct: [MoviesWatchlistScalarFieldEnum!], orderBy: [MoviesWatchlistOrderByWithRelationInput!], skip: Int, take: Int, where: MoviesWatchlistWhereInput): [MoviesWatchlist!]!
+  rating(where: RatingWhereUniqueInput!): Rating
+  ratings(cursor: RatingWhereUniqueInput, distinct: [RatingScalarFieldEnum!], orderBy: [RatingOrderByWithRelationInput!], skip: Int, take: Int, where: RatingWhereInput): [Rating!]!
   season(where: SeasonWhereUniqueInput!): Season
   seasons(cursor: SeasonWhereUniqueInput, distinct: [SeasonScalarFieldEnum!], orderBy: [SeasonOrderByWithRelationInput!], skip: Int, take: Int, where: SeasonWhereInput): [Season!]!
   serie(where: SerieWhereUniqueInput!): Serie
@@ -4359,6 +5485,503 @@ type Query {
 enum QueryMode {
   default
   insensitive
+}
+
+type Rating {
+  createdAt: DateTime!
+  episode: Episode
+  episodeId: Int!
+  id: String!
+  movie: Movie
+  movieId: Int!
+  rating: Int!
+  serie: Serie
+  serieId: Int!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+type RatingAvgAggregate {
+  episodeId: Float
+  movieId: Float
+  rating: Float
+  serieId: Float
+}
+
+input RatingAvgOrderByAggregateInput {
+  episodeId: SortOrder
+  movieId: SortOrder
+  rating: SortOrder
+  serieId: SortOrder
+}
+
+type RatingCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  episodeId: Int!
+  id: Int!
+  movieId: Int!
+  rating: Int!
+  serieId: Int!
+  updatedAt: Int!
+  userId: Int!
+}
+
+input RatingCountOrderByAggregateInput {
+  createdAt: SortOrder
+  episodeId: SortOrder
+  id: SortOrder
+  movieId: SortOrder
+  rating: SortOrder
+  serieId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input RatingCreateInput {
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutUserRatingInput
+  id: String
+  movie: MovieCreateNestedOneWithoutUserRatingInput
+  rating: Int
+  serie: SerieCreateNestedOneWithoutUserRatingInput
+  updatedAt: DateTime
+  userId: String!
+}
+
+input RatingCreateManyEpisodeInput {
+  createdAt: DateTime
+  id: String
+  movieId: Int!
+  rating: Int
+  serieId: Int!
+  updatedAt: DateTime
+  userId: String!
+}
+
+input RatingCreateManyEpisodeInputEnvelope {
+  data: [RatingCreateManyEpisodeInput!]!
+  skipDuplicates: Boolean
+}
+
+input RatingCreateManyInput {
+  createdAt: DateTime
+  episodeId: Int!
+  id: String
+  movieId: Int!
+  rating: Int
+  serieId: Int!
+  updatedAt: DateTime
+  userId: String!
+}
+
+input RatingCreateManyMovieInput {
+  createdAt: DateTime
+  episodeId: Int!
+  id: String
+  rating: Int
+  serieId: Int!
+  updatedAt: DateTime
+  userId: String!
+}
+
+input RatingCreateManyMovieInputEnvelope {
+  data: [RatingCreateManyMovieInput!]!
+  skipDuplicates: Boolean
+}
+
+input RatingCreateManySerieInput {
+  createdAt: DateTime
+  episodeId: Int!
+  id: String
+  movieId: Int!
+  rating: Int
+  updatedAt: DateTime
+  userId: String!
+}
+
+input RatingCreateManySerieInputEnvelope {
+  data: [RatingCreateManySerieInput!]!
+  skipDuplicates: Boolean
+}
+
+input RatingCreateNestedManyWithoutEpisodeInput {
+  connect: [RatingWhereUniqueInput!]
+  connectOrCreate: [RatingCreateOrConnectWithoutEpisodeInput!]
+  create: [RatingCreateWithoutEpisodeInput!]
+  createMany: RatingCreateManyEpisodeInputEnvelope
+}
+
+input RatingCreateNestedManyWithoutMovieInput {
+  connect: [RatingWhereUniqueInput!]
+  connectOrCreate: [RatingCreateOrConnectWithoutMovieInput!]
+  create: [RatingCreateWithoutMovieInput!]
+  createMany: RatingCreateManyMovieInputEnvelope
+}
+
+input RatingCreateNestedManyWithoutSerieInput {
+  connect: [RatingWhereUniqueInput!]
+  connectOrCreate: [RatingCreateOrConnectWithoutSerieInput!]
+  create: [RatingCreateWithoutSerieInput!]
+  createMany: RatingCreateManySerieInputEnvelope
+}
+
+input RatingCreateOrConnectWithoutEpisodeInput {
+  create: RatingCreateWithoutEpisodeInput!
+  where: RatingWhereUniqueInput!
+}
+
+input RatingCreateOrConnectWithoutMovieInput {
+  create: RatingCreateWithoutMovieInput!
+  where: RatingWhereUniqueInput!
+}
+
+input RatingCreateOrConnectWithoutSerieInput {
+  create: RatingCreateWithoutSerieInput!
+  where: RatingWhereUniqueInput!
+}
+
+input RatingCreateWithoutEpisodeInput {
+  createdAt: DateTime
+  id: String
+  movie: MovieCreateNestedOneWithoutUserRatingInput
+  rating: Int
+  serie: SerieCreateNestedOneWithoutUserRatingInput
+  updatedAt: DateTime
+  userId: String!
+}
+
+input RatingCreateWithoutMovieInput {
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutUserRatingInput
+  id: String
+  rating: Int
+  serie: SerieCreateNestedOneWithoutUserRatingInput
+  updatedAt: DateTime
+  userId: String!
+}
+
+input RatingCreateWithoutSerieInput {
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutUserRatingInput
+  id: String
+  movie: MovieCreateNestedOneWithoutUserRatingInput
+  rating: Int
+  updatedAt: DateTime
+  userId: String!
+}
+
+type RatingGroupBy {
+  _avg: RatingAvgAggregate
+  _count: RatingCountAggregate
+  _max: RatingMaxAggregate
+  _min: RatingMinAggregate
+  _sum: RatingSumAggregate
+  createdAt: DateTime!
+  episodeId: Int!
+  id: String!
+  movieId: Int!
+  rating: Int!
+  serieId: Int!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+input RatingListRelationFilter {
+  every: RatingWhereInput
+  none: RatingWhereInput
+  some: RatingWhereInput
+}
+
+type RatingMaxAggregate {
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  movieId: Int
+  rating: Int
+  serieId: Int
+  updatedAt: DateTime
+  userId: String
+}
+
+input RatingMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  episodeId: SortOrder
+  id: SortOrder
+  movieId: SortOrder
+  rating: SortOrder
+  serieId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+type RatingMinAggregate {
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  movieId: Int
+  rating: Int
+  serieId: Int
+  updatedAt: DateTime
+  userId: String
+}
+
+input RatingMinOrderByAggregateInput {
+  createdAt: SortOrder
+  episodeId: SortOrder
+  id: SortOrder
+  movieId: SortOrder
+  rating: SortOrder
+  serieId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input RatingOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input RatingOrderByWithAggregationInput {
+  _avg: RatingAvgOrderByAggregateInput
+  _count: RatingCountOrderByAggregateInput
+  _max: RatingMaxOrderByAggregateInput
+  _min: RatingMinOrderByAggregateInput
+  _sum: RatingSumOrderByAggregateInput
+  createdAt: SortOrder
+  episodeId: SortOrder
+  id: SortOrder
+  movieId: SortOrder
+  rating: SortOrder
+  serieId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input RatingOrderByWithRelationInput {
+  createdAt: SortOrder
+  episode: EpisodeOrderByWithRelationInput
+  episodeId: SortOrder
+  id: SortOrder
+  movie: MovieOrderByWithRelationInput
+  movieId: SortOrder
+  rating: SortOrder
+  serie: SerieOrderByWithRelationInput
+  serieId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+enum RatingScalarFieldEnum {
+  createdAt
+  episodeId
+  id
+  movieId
+  rating
+  serieId
+  updatedAt
+  userId
+}
+
+input RatingScalarWhereInput {
+  AND: [RatingScalarWhereInput!]
+  NOT: [RatingScalarWhereInput!]
+  OR: [RatingScalarWhereInput!]
+  createdAt: DateTimeFilter
+  episodeId: IntFilter
+  id: StringFilter
+  movieId: IntFilter
+  rating: IntFilter
+  serieId: IntFilter
+  updatedAt: DateTimeFilter
+  userId: StringFilter
+}
+
+input RatingScalarWhereWithAggregatesInput {
+  AND: [RatingScalarWhereWithAggregatesInput!]
+  NOT: [RatingScalarWhereWithAggregatesInput!]
+  OR: [RatingScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  episodeId: IntWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  movieId: IntWithAggregatesFilter
+  rating: IntWithAggregatesFilter
+  serieId: IntWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  userId: StringWithAggregatesFilter
+}
+
+type RatingSumAggregate {
+  episodeId: Int
+  movieId: Int
+  rating: Int
+  serieId: Int
+}
+
+input RatingSumOrderByAggregateInput {
+  episodeId: SortOrder
+  movieId: SortOrder
+  rating: SortOrder
+  serieId: SortOrder
+}
+
+input RatingUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutUserRatingInput
+  id: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutUserRatingInput
+  rating: IntFieldUpdateOperationsInput
+  serie: SerieUpdateOneWithoutUserRatingInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userId: StringFieldUpdateOperationsInput
+}
+
+input RatingUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  rating: IntFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userId: StringFieldUpdateOperationsInput
+}
+
+input RatingUpdateManyWithWhereWithoutEpisodeInput {
+  data: RatingUpdateManyMutationInput!
+  where: RatingScalarWhereInput!
+}
+
+input RatingUpdateManyWithWhereWithoutMovieInput {
+  data: RatingUpdateManyMutationInput!
+  where: RatingScalarWhereInput!
+}
+
+input RatingUpdateManyWithWhereWithoutSerieInput {
+  data: RatingUpdateManyMutationInput!
+  where: RatingScalarWhereInput!
+}
+
+input RatingUpdateManyWithoutEpisodeInput {
+  connect: [RatingWhereUniqueInput!]
+  connectOrCreate: [RatingCreateOrConnectWithoutEpisodeInput!]
+  create: [RatingCreateWithoutEpisodeInput!]
+  createMany: RatingCreateManyEpisodeInputEnvelope
+  delete: [RatingWhereUniqueInput!]
+  deleteMany: [RatingScalarWhereInput!]
+  disconnect: [RatingWhereUniqueInput!]
+  set: [RatingWhereUniqueInput!]
+  update: [RatingUpdateWithWhereUniqueWithoutEpisodeInput!]
+  updateMany: [RatingUpdateManyWithWhereWithoutEpisodeInput!]
+  upsert: [RatingUpsertWithWhereUniqueWithoutEpisodeInput!]
+}
+
+input RatingUpdateManyWithoutMovieInput {
+  connect: [RatingWhereUniqueInput!]
+  connectOrCreate: [RatingCreateOrConnectWithoutMovieInput!]
+  create: [RatingCreateWithoutMovieInput!]
+  createMany: RatingCreateManyMovieInputEnvelope
+  delete: [RatingWhereUniqueInput!]
+  deleteMany: [RatingScalarWhereInput!]
+  disconnect: [RatingWhereUniqueInput!]
+  set: [RatingWhereUniqueInput!]
+  update: [RatingUpdateWithWhereUniqueWithoutMovieInput!]
+  updateMany: [RatingUpdateManyWithWhereWithoutMovieInput!]
+  upsert: [RatingUpsertWithWhereUniqueWithoutMovieInput!]
+}
+
+input RatingUpdateManyWithoutSerieInput {
+  connect: [RatingWhereUniqueInput!]
+  connectOrCreate: [RatingCreateOrConnectWithoutSerieInput!]
+  create: [RatingCreateWithoutSerieInput!]
+  createMany: RatingCreateManySerieInputEnvelope
+  delete: [RatingWhereUniqueInput!]
+  deleteMany: [RatingScalarWhereInput!]
+  disconnect: [RatingWhereUniqueInput!]
+  set: [RatingWhereUniqueInput!]
+  update: [RatingUpdateWithWhereUniqueWithoutSerieInput!]
+  updateMany: [RatingUpdateManyWithWhereWithoutSerieInput!]
+  upsert: [RatingUpsertWithWhereUniqueWithoutSerieInput!]
+}
+
+input RatingUpdateWithWhereUniqueWithoutEpisodeInput {
+  data: RatingUpdateWithoutEpisodeInput!
+  where: RatingWhereUniqueInput!
+}
+
+input RatingUpdateWithWhereUniqueWithoutMovieInput {
+  data: RatingUpdateWithoutMovieInput!
+  where: RatingWhereUniqueInput!
+}
+
+input RatingUpdateWithWhereUniqueWithoutSerieInput {
+  data: RatingUpdateWithoutSerieInput!
+  where: RatingWhereUniqueInput!
+}
+
+input RatingUpdateWithoutEpisodeInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutUserRatingInput
+  rating: IntFieldUpdateOperationsInput
+  serie: SerieUpdateOneWithoutUserRatingInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userId: StringFieldUpdateOperationsInput
+}
+
+input RatingUpdateWithoutMovieInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutUserRatingInput
+  id: StringFieldUpdateOperationsInput
+  rating: IntFieldUpdateOperationsInput
+  serie: SerieUpdateOneWithoutUserRatingInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userId: StringFieldUpdateOperationsInput
+}
+
+input RatingUpdateWithoutSerieInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutUserRatingInput
+  id: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutUserRatingInput
+  rating: IntFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userId: StringFieldUpdateOperationsInput
+}
+
+input RatingUpsertWithWhereUniqueWithoutEpisodeInput {
+  create: RatingCreateWithoutEpisodeInput!
+  update: RatingUpdateWithoutEpisodeInput!
+  where: RatingWhereUniqueInput!
+}
+
+input RatingUpsertWithWhereUniqueWithoutMovieInput {
+  create: RatingCreateWithoutMovieInput!
+  update: RatingUpdateWithoutMovieInput!
+  where: RatingWhereUniqueInput!
+}
+
+input RatingUpsertWithWhereUniqueWithoutSerieInput {
+  create: RatingCreateWithoutSerieInput!
+  update: RatingUpdateWithoutSerieInput!
+  where: RatingWhereUniqueInput!
+}
+
+input RatingWhereInput {
+  AND: [RatingWhereInput!]
+  NOT: [RatingWhereInput!]
+  OR: [RatingWhereInput!]
+  createdAt: DateTimeFilter
+  episode: EpisodeRelationFilter
+  episodeId: IntFilter
+  id: StringFilter
+  movie: MovieRelationFilter
+  movieId: IntFilter
+  rating: IntFilter
+  serie: SerieRelationFilter
+  serieId: IntFilter
+  updatedAt: DateTimeFilter
+  userId: StringFilter
+}
+
+input RatingWhereUniqueInput {
+  id: String
 }
 
 enum Role {
@@ -4770,6 +6393,7 @@ input SeasonWhereUniqueInput {
 type Serie {
   _count: SerieCount
   actors(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): [Actor!]!
+  comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
   createdAt: DateTime!
   directors(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): [Director!]!
   genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
@@ -4786,6 +6410,7 @@ type Serie {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime!
+  userRating(cursor: RatingWhereUniqueInput, distinct: [RatingScalarFieldEnum!], orderBy: [RatingOrderByWithRelationInput!], skip: Int, take: Int, where: RatingWhereInput): [Rating!]!
   watchlist(cursor: WatchlistedSerieWhereUniqueInput, distinct: [WatchlistedSerieScalarFieldEnum!], orderBy: [WatchlistedSerieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): [WatchlistedSerie!]!
   year: Int!
 }
@@ -4808,10 +6433,12 @@ input SerieAvgOrderByAggregateInput {
 
 type SerieCount {
   actors: Int!
+  comments: Int!
   directors: Int!
   genres: Int!
   languages: Int!
   seasons: Int!
+  userRating: Int!
   watchlist: Int!
 }
 
@@ -4850,6 +6477,7 @@ input SerieCountOrderByAggregateInput {
 
 input SerieCreateInput {
   actors: ActorCreateNestedManyWithoutSeriesInput
+  comments: CommentCreateNestedManyWithoutSerieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   genres: GenreCreateNestedManyWithoutSeriesInput
@@ -4865,6 +6493,7 @@ input SerieCreateInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutSerieInput
   watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
@@ -4903,6 +6532,12 @@ input SerieCreateNestedOneWithoutActorsInput {
   create: SerieCreateWithoutActorsInput
 }
 
+input SerieCreateNestedOneWithoutCommentsInput {
+  connect: SerieWhereUniqueInput
+  connectOrCreate: SerieCreateOrConnectWithoutCommentsInput
+  create: SerieCreateWithoutCommentsInput
+}
+
 input SerieCreateNestedOneWithoutDirectorsInput {
   connect: SerieWhereUniqueInput
   connectOrCreate: SerieCreateOrConnectWithoutDirectorsInput
@@ -4915,6 +6550,12 @@ input SerieCreateNestedOneWithoutSeasonsInput {
   create: SerieCreateWithoutSeasonsInput
 }
 
+input SerieCreateNestedOneWithoutUserRatingInput {
+  connect: SerieWhereUniqueInput
+  connectOrCreate: SerieCreateOrConnectWithoutUserRatingInput
+  create: SerieCreateWithoutUserRatingInput
+}
+
 input SerieCreateNestedOneWithoutWatchlistInput {
   connect: SerieWhereUniqueInput
   connectOrCreate: SerieCreateOrConnectWithoutWatchlistInput
@@ -4923,6 +6564,11 @@ input SerieCreateNestedOneWithoutWatchlistInput {
 
 input SerieCreateOrConnectWithoutActorsInput {
   create: SerieCreateWithoutActorsInput!
+  where: SerieWhereUniqueInput!
+}
+
+input SerieCreateOrConnectWithoutCommentsInput {
+  create: SerieCreateWithoutCommentsInput!
   where: SerieWhereUniqueInput!
 }
 
@@ -4946,12 +6592,18 @@ input SerieCreateOrConnectWithoutSeasonsInput {
   where: SerieWhereUniqueInput!
 }
 
+input SerieCreateOrConnectWithoutUserRatingInput {
+  create: SerieCreateWithoutUserRatingInput!
+  where: SerieWhereUniqueInput!
+}
+
 input SerieCreateOrConnectWithoutWatchlistInput {
   create: SerieCreateWithoutWatchlistInput!
   where: SerieWhereUniqueInput!
 }
 
 input SerieCreateWithoutActorsInput {
+  comments: CommentCreateNestedManyWithoutSerieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   genres: GenreCreateNestedManyWithoutSeriesInput
@@ -4967,12 +6619,36 @@ input SerieCreateWithoutActorsInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutSerieInput
+  watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
+  year: Int!
+}
+
+input SerieCreateWithoutCommentsInput {
+  actors: ActorCreateNestedManyWithoutSeriesInput
+  createdAt: DateTime
+  directors: DirectorCreateNestedManyWithoutSeriesInput
+  genres: GenreCreateNestedManyWithoutSeriesInput
+  imdbID: String!
+  imdbRating: Float!
+  languages: LanguageCreateNestedManyWithoutSeriesInput
+  plot: String!
+  poster: String!
+  rating: String!
+  release: DateTime!
+  runtime: Int!
+  seasons: SeasonCreateNestedManyWithoutSeriesInput
+  title: String!
+  totalSeasons: Int!
+  updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutSerieInput
   watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
 input SerieCreateWithoutDirectorsInput {
   actors: ActorCreateNestedManyWithoutSeriesInput
+  comments: CommentCreateNestedManyWithoutSerieInput
   createdAt: DateTime
   genres: GenreCreateNestedManyWithoutSeriesInput
   imdbID: String!
@@ -4987,12 +6663,14 @@ input SerieCreateWithoutDirectorsInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutSerieInput
   watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
 input SerieCreateWithoutGenresInput {
   actors: ActorCreateNestedManyWithoutSeriesInput
+  comments: CommentCreateNestedManyWithoutSerieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   imdbID: String!
@@ -5007,12 +6685,14 @@ input SerieCreateWithoutGenresInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutSerieInput
   watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
 input SerieCreateWithoutLanguagesInput {
   actors: ActorCreateNestedManyWithoutSeriesInput
+  comments: CommentCreateNestedManyWithoutSerieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   genres: GenreCreateNestedManyWithoutSeriesInput
@@ -5027,12 +6707,14 @@ input SerieCreateWithoutLanguagesInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutSerieInput
   watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
 input SerieCreateWithoutSeasonsInput {
   actors: ActorCreateNestedManyWithoutSeriesInput
+  comments: CommentCreateNestedManyWithoutSerieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   genres: GenreCreateNestedManyWithoutSeriesInput
@@ -5044,6 +6726,29 @@ input SerieCreateWithoutSeasonsInput {
   rating: String!
   release: DateTime!
   runtime: Int!
+  title: String!
+  totalSeasons: Int!
+  updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutSerieInput
+  watchlist: WatchlistedSerieCreateNestedManyWithoutSerieInput
+  year: Int!
+}
+
+input SerieCreateWithoutUserRatingInput {
+  actors: ActorCreateNestedManyWithoutSeriesInput
+  comments: CommentCreateNestedManyWithoutSerieInput
+  createdAt: DateTime
+  directors: DirectorCreateNestedManyWithoutSeriesInput
+  genres: GenreCreateNestedManyWithoutSeriesInput
+  imdbID: String!
+  imdbRating: Float!
+  languages: LanguageCreateNestedManyWithoutSeriesInput
+  plot: String!
+  poster: String!
+  rating: String!
+  release: DateTime!
+  runtime: Int!
+  seasons: SeasonCreateNestedManyWithoutSeriesInput
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
@@ -5053,6 +6758,7 @@ input SerieCreateWithoutSeasonsInput {
 
 input SerieCreateWithoutWatchlistInput {
   actors: ActorCreateNestedManyWithoutSeriesInput
+  comments: CommentCreateNestedManyWithoutSerieInput
   createdAt: DateTime
   directors: DirectorCreateNestedManyWithoutSeriesInput
   genres: GenreCreateNestedManyWithoutSeriesInput
@@ -5068,6 +6774,7 @@ input SerieCreateWithoutWatchlistInput {
   title: String!
   totalSeasons: Int!
   updatedAt: DateTime
+  userRating: RatingCreateNestedManyWithoutSerieInput
   year: Int!
 }
 
@@ -5189,6 +6896,7 @@ input SerieOrderByWithAggregationInput {
 
 input SerieOrderByWithRelationInput {
   actors: ActorOrderByRelationAggregateInput
+  comments: CommentOrderByRelationAggregateInput
   createdAt: SortOrder
   directors: DirectorOrderByRelationAggregateInput
   genres: GenreOrderByRelationAggregateInput
@@ -5205,6 +6913,7 @@ input SerieOrderByWithRelationInput {
   title: SortOrder
   totalSeasons: SortOrder
   updatedAt: SortOrder
+  userRating: RatingOrderByRelationAggregateInput
   watchlist: WatchlistedSerieOrderByRelationAggregateInput
   year: SortOrder
 }
@@ -5286,6 +6995,7 @@ input SerieSumOrderByAggregateInput {
 
 input SerieUpdateInput {
   actors: ActorUpdateManyWithoutSeriesInput
+  comments: CommentUpdateManyWithoutSerieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   genres: GenreUpdateManyWithoutSeriesInput
@@ -5301,6 +7011,7 @@ input SerieUpdateInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutSerieInput
   watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
@@ -5382,6 +7093,16 @@ input SerieUpdateOneWithoutActorsInput {
   upsert: SerieUpsertWithoutActorsInput
 }
 
+input SerieUpdateOneWithoutCommentsInput {
+  connect: SerieWhereUniqueInput
+  connectOrCreate: SerieCreateOrConnectWithoutCommentsInput
+  create: SerieCreateWithoutCommentsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: SerieUpdateWithoutCommentsInput
+  upsert: SerieUpsertWithoutCommentsInput
+}
+
 input SerieUpdateOneWithoutDirectorsInput {
   connect: SerieWhereUniqueInput
   connectOrCreate: SerieCreateOrConnectWithoutDirectorsInput
@@ -5390,6 +7111,16 @@ input SerieUpdateOneWithoutDirectorsInput {
   disconnect: Boolean
   update: SerieUpdateWithoutDirectorsInput
   upsert: SerieUpsertWithoutDirectorsInput
+}
+
+input SerieUpdateOneWithoutUserRatingInput {
+  connect: SerieWhereUniqueInput
+  connectOrCreate: SerieCreateOrConnectWithoutUserRatingInput
+  create: SerieCreateWithoutUserRatingInput
+  delete: Boolean
+  disconnect: Boolean
+  update: SerieUpdateWithoutUserRatingInput
+  upsert: SerieUpsertWithoutUserRatingInput
 }
 
 input SerieUpdateWithWhereUniqueWithoutGenresInput {
@@ -5403,6 +7134,7 @@ input SerieUpdateWithWhereUniqueWithoutLanguagesInput {
 }
 
 input SerieUpdateWithoutActorsInput {
+  comments: CommentUpdateManyWithoutSerieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   genres: GenreUpdateManyWithoutSeriesInput
@@ -5418,12 +7150,36 @@ input SerieUpdateWithoutActorsInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutSerieInput
+  watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
+  year: IntFieldUpdateOperationsInput
+}
+
+input SerieUpdateWithoutCommentsInput {
+  actors: ActorUpdateManyWithoutSeriesInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  directors: DirectorUpdateManyWithoutSeriesInput
+  genres: GenreUpdateManyWithoutSeriesInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  languages: LanguageUpdateManyWithoutSeriesInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  rating: StringFieldUpdateOperationsInput
+  release: DateTimeFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  seasons: SeasonUpdateManyWithoutSeriesInput
+  title: StringFieldUpdateOperationsInput
+  totalSeasons: IntFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutSerieInput
   watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
 input SerieUpdateWithoutDirectorsInput {
   actors: ActorUpdateManyWithoutSeriesInput
+  comments: CommentUpdateManyWithoutSerieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   genres: GenreUpdateManyWithoutSeriesInput
   imdbID: StringFieldUpdateOperationsInput
@@ -5438,12 +7194,14 @@ input SerieUpdateWithoutDirectorsInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutSerieInput
   watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
 input SerieUpdateWithoutGenresInput {
   actors: ActorUpdateManyWithoutSeriesInput
+  comments: CommentUpdateManyWithoutSerieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   imdbID: StringFieldUpdateOperationsInput
@@ -5458,12 +7216,14 @@ input SerieUpdateWithoutGenresInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutSerieInput
   watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
 input SerieUpdateWithoutLanguagesInput {
   actors: ActorUpdateManyWithoutSeriesInput
+  comments: CommentUpdateManyWithoutSerieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   genres: GenreUpdateManyWithoutSeriesInput
@@ -5478,12 +7238,14 @@ input SerieUpdateWithoutLanguagesInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutSerieInput
   watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
 input SerieUpdateWithoutSeasonsInput {
   actors: ActorUpdateManyWithoutSeriesInput
+  comments: CommentUpdateManyWithoutSerieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   genres: GenreUpdateManyWithoutSeriesInput
@@ -5495,6 +7257,29 @@ input SerieUpdateWithoutSeasonsInput {
   rating: StringFieldUpdateOperationsInput
   release: DateTimeFieldUpdateOperationsInput
   runtime: IntFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  totalSeasons: IntFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutSerieInput
+  watchlist: WatchlistedSerieUpdateManyWithoutSerieInput
+  year: IntFieldUpdateOperationsInput
+}
+
+input SerieUpdateWithoutUserRatingInput {
+  actors: ActorUpdateManyWithoutSeriesInput
+  comments: CommentUpdateManyWithoutSerieInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  directors: DirectorUpdateManyWithoutSeriesInput
+  genres: GenreUpdateManyWithoutSeriesInput
+  imdbID: StringFieldUpdateOperationsInput
+  imdbRating: FloatFieldUpdateOperationsInput
+  languages: LanguageUpdateManyWithoutSeriesInput
+  plot: StringFieldUpdateOperationsInput
+  poster: StringFieldUpdateOperationsInput
+  rating: StringFieldUpdateOperationsInput
+  release: DateTimeFieldUpdateOperationsInput
+  runtime: IntFieldUpdateOperationsInput
+  seasons: SeasonUpdateManyWithoutSeriesInput
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -5504,6 +7289,7 @@ input SerieUpdateWithoutSeasonsInput {
 
 input SerieUpdateWithoutWatchlistInput {
   actors: ActorUpdateManyWithoutSeriesInput
+  comments: CommentUpdateManyWithoutSerieInput
   createdAt: DateTimeFieldUpdateOperationsInput
   directors: DirectorUpdateManyWithoutSeriesInput
   genres: GenreUpdateManyWithoutSeriesInput
@@ -5519,6 +7305,7 @@ input SerieUpdateWithoutWatchlistInput {
   title: StringFieldUpdateOperationsInput
   totalSeasons: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  userRating: RatingUpdateManyWithoutSerieInput
   year: IntFieldUpdateOperationsInput
 }
 
@@ -5539,6 +7326,11 @@ input SerieUpsertWithoutActorsInput {
   update: SerieUpdateWithoutActorsInput!
 }
 
+input SerieUpsertWithoutCommentsInput {
+  create: SerieCreateWithoutCommentsInput!
+  update: SerieUpdateWithoutCommentsInput!
+}
+
 input SerieUpsertWithoutDirectorsInput {
   create: SerieCreateWithoutDirectorsInput!
   update: SerieUpdateWithoutDirectorsInput!
@@ -5547,6 +7339,11 @@ input SerieUpsertWithoutDirectorsInput {
 input SerieUpsertWithoutSeasonsInput {
   create: SerieCreateWithoutSeasonsInput!
   update: SerieUpdateWithoutSeasonsInput!
+}
+
+input SerieUpsertWithoutUserRatingInput {
+  create: SerieCreateWithoutUserRatingInput!
+  update: SerieUpdateWithoutUserRatingInput!
 }
 
 input SerieUpsertWithoutWatchlistInput {
@@ -5559,6 +7356,7 @@ input SerieWhereInput {
   NOT: [SerieWhereInput!]
   OR: [SerieWhereInput!]
   actors: ActorListRelationFilter
+  comments: CommentListRelationFilter
   createdAt: DateTimeFilter
   directors: DirectorListRelationFilter
   genres: GenreListRelationFilter
@@ -5575,6 +7373,7 @@ input SerieWhereInput {
   title: StringFilter
   totalSeasons: IntFilter
   updatedAt: DateTimeFilter
+  userRating: RatingListRelationFilter
   watchlist: WatchlistedSerieListRelationFilter
   year: IntFilter
 }
@@ -6164,6 +7963,7 @@ input StringWithAggregatesFilter {
 type User {
   _count: UserCount
   accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
+  comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
   createdAt: DateTime!
   email: String!
   emailVerified: DateTime
@@ -6181,6 +7981,7 @@ type User {
 
 type UserCount {
   accounts: Int!
+  comments: Int!
   sessions: Int!
   settings: Int!
   watchlist: Int!
@@ -6215,6 +8016,7 @@ input UserCountOrderByAggregateInput {
 
 input UserCreateInput {
   accounts: AccountCreateNestedManyWithoutUserInput
+  comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   emailVerified: DateTime
@@ -6249,6 +8051,12 @@ input UserCreateNestedOneWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput
 }
 
+input UserCreateNestedOneWithoutCommentsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutCommentsInput
+  create: UserCreateWithoutCommentsInput
+}
+
 input UserCreateNestedOneWithoutSessionsInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutSessionsInput
@@ -6272,6 +8080,11 @@ input UserCreateOrConnectWithoutAccountsInput {
   where: UserWhereUniqueInput!
 }
 
+input UserCreateOrConnectWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput!
+  where: UserWhereUniqueInput!
+}
+
 input UserCreateOrConnectWithoutSessionsInput {
   create: UserCreateWithoutSessionsInput!
   where: UserWhereUniqueInput!
@@ -6288,6 +8101,24 @@ input UserCreateOrConnectWithoutWatchlistInput {
 }
 
 input UserCreateWithoutAccountsInput {
+  comments: CommentCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  emailVerified: DateTime
+  firstName: String
+  id: String
+  image: String
+  lastName: String
+  role: Role
+  sessions: SessionCreateNestedManyWithoutUserInput
+  settings: AppSettingsCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String
+  watchlist: WatchlistCreateNestedManyWithoutUserInput
+}
+
+input UserCreateWithoutCommentsInput {
+  accounts: AccountCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   emailVerified: DateTime
@@ -6305,6 +8136,7 @@ input UserCreateWithoutAccountsInput {
 
 input UserCreateWithoutSessionsInput {
   accounts: AccountCreateNestedManyWithoutUserInput
+  comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   emailVerified: DateTime
@@ -6321,6 +8153,7 @@ input UserCreateWithoutSessionsInput {
 
 input UserCreateWithoutSettingsInput {
   accounts: AccountCreateNestedManyWithoutUserInput
+  comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   emailVerified: DateTime
@@ -6337,6 +8170,7 @@ input UserCreateWithoutSettingsInput {
 
 input UserCreateWithoutWatchlistInput {
   accounts: AccountCreateNestedManyWithoutUserInput
+  comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   emailVerified: DateTime
@@ -6437,6 +8271,7 @@ input UserOrderByWithAggregationInput {
 
 input UserOrderByWithRelationInput {
   accounts: AccountOrderByRelationAggregateInput
+  comments: CommentOrderByRelationAggregateInput
   createdAt: SortOrder
   email: SortOrder
   emailVerified: SortOrder
@@ -6488,6 +8323,7 @@ input UserScalarWhereWithAggregatesInput {
 
 input UserUpdateInput {
   accounts: AccountUpdateManyWithoutUserInput
+  comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
@@ -6524,6 +8360,14 @@ input UserUpdateOneRequiredWithoutAccountsInput {
   upsert: UserUpsertWithoutAccountsInput
 }
 
+input UserUpdateOneRequiredWithoutCommentsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutCommentsInput
+  create: UserCreateWithoutCommentsInput
+  update: UserUpdateWithoutCommentsInput
+  upsert: UserUpsertWithoutCommentsInput
+}
+
 input UserUpdateOneRequiredWithoutSessionsInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutSessionsInput
@@ -6551,6 +8395,24 @@ input UserUpdateOneWithoutSettingsInput {
 }
 
 input UserUpdateWithoutAccountsInput {
+  comments: CommentUpdateManyWithoutUserInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: NullableStringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
+  lastName: NullableStringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
+  sessions: SessionUpdateManyWithoutUserInput
+  settings: AppSettingsUpdateManyWithoutUserInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  username: NullableStringFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutCommentsInput {
+  accounts: AccountUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
@@ -6568,6 +8430,7 @@ input UserUpdateWithoutAccountsInput {
 
 input UserUpdateWithoutSessionsInput {
   accounts: AccountUpdateManyWithoutUserInput
+  comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
@@ -6584,6 +8447,7 @@ input UserUpdateWithoutSessionsInput {
 
 input UserUpdateWithoutSettingsInput {
   accounts: AccountUpdateManyWithoutUserInput
+  comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
@@ -6600,6 +8464,7 @@ input UserUpdateWithoutSettingsInput {
 
 input UserUpdateWithoutWatchlistInput {
   accounts: AccountUpdateManyWithoutUserInput
+  comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
@@ -6617,6 +8482,11 @@ input UserUpdateWithoutWatchlistInput {
 input UserUpsertWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput!
   update: UserUpdateWithoutAccountsInput!
+}
+
+input UserUpsertWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput!
+  update: UserUpdateWithoutCommentsInput!
 }
 
 input UserUpsertWithoutSessionsInput {
@@ -6639,6 +8509,7 @@ input UserWhereInput {
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
   accounts: AccountListRelationFilter
+  comments: CommentListRelationFilter
   createdAt: DateTimeFilter
   email: StringFilter
   emailVerified: DateTimeNullableFilter
