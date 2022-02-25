@@ -36,5 +36,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       genres: genres,
     },
+    revalidate: 60,
   };
 };

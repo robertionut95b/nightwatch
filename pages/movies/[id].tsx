@@ -184,5 +184,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       movie: movie,
       relatedMovies: relatedMovies,
     },
+    revalidate: 60,
   };
 };

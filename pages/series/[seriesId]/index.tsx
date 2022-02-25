@@ -107,5 +107,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       series: serie,
       relatedSeries: relatedSeries,
     },
+    revalidate: 60,
   };
 };

@@ -27,9 +27,9 @@ export const SeasonsPage = ({
           </title>
         </Head>
         <article>
-          <h2 className="font-bold text-3xl mb-4">{`${seasons?.[0]?.series?.title}`}</h2>
-          <h4 className="font-normal text-2xl mb-8">Seasons</h4>
-          <div className="seasons grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row gap-x-6 gap-y-2 md:flex-wrap">
+          <h2 className="mb-4 text-3xl font-bold">{`${seasons?.[0]?.series?.title}`}</h2>
+          <h4 className="mb-8 text-2xl font-normal">Seasons</h4>
+          <div className="seasons grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-3 md:flex md:flex-row md:flex-wrap">
             {seasons?.map((season) => (
               <div
                 key={season.id}
@@ -84,6 +84,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       seasons: seasons,
     },
+    revalidate: 60,
   };
 };
 
