@@ -5,7 +5,14 @@ import { ParsedUrlQuery } from 'querystring';
 import MovieDetailsCard from '../../components/items/movies/details/MovieDetailsCard';
 import { Movie } from '../../generated/graphql';
 import prisma from '../../lib/PrismaClient/prisma';
-import { Actor, Director, Genre, Language, Comment } from '@prisma/client';
+import {
+  Actor,
+  Director,
+  Genre,
+  Language,
+  Comment,
+  Role,
+} from '@prisma/client';
 
 interface IParams extends ParsedUrlQuery {
   id: string;
@@ -24,11 +31,13 @@ export default function MoviePage({
       user: {
         email: string;
         image: string | null;
+        role: Role;
       };
       comments: (Comment & {
         user: {
           email: string;
           image: string | null;
+          role: Role;
         };
       })[];
     })[];
@@ -67,6 +76,7 @@ export const getStaticPaths: GetStaticPaths =
               select: {
                 email: true,
                 image: true,
+                role: true,
               },
             },
             comments: {
@@ -75,6 +85,7 @@ export const getStaticPaths: GetStaticPaths =
                   select: {
                     email: true,
                     image: true,
+                    role: true,
                   },
                 },
               },
@@ -120,6 +131,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             select: {
               email: true,
               image: true,
+              role: true,
             },
           },
           comments: {
@@ -128,6 +140,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                 select: {
                   email: true,
                   image: true,
+                  role: true,
                 },
               },
             },

@@ -13,10 +13,16 @@ import {
   Language,
   Movie,
   Comment,
+  Role,
 } from '@prisma/client';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import CommentCard from '@components/items/comments/commentCard';
 import Divider from '../../../utils/layout/divider/divider';
+import useCommentReply from '@components/items/comments/useCommentReply';
+import { useSession } from 'next-auth/client';
+import { FormEvent } from 'react';
+import { useRouter } from 'next/router';
+import { AppSession } from 'pages/api/auth/[...nextauth]';
 
 export default function MovieDetailsCard({
   movie,
@@ -31,15 +37,19 @@ export default function MovieDetailsCard({
       user: {
         email: string;
         image: string | null;
+        role: Role;
       };
       comments: (Comment & {
-        user: { email: string; image: string | null };
+        user: { email: string; image: string | null; role: Role };
       })[];
     })[];
   };
   relatedMovies: Movie[];
 }): JSX.Element {
   const toast = createStandaloneToast();
+  const router = useRouter();
+  const [session] = useSession();
+
   const {
     isBookmarked,
     addToWatchlist,
@@ -68,6 +78,7 @@ export default function MovieDetailsCard({
       }
     },
   });
+
   const bookmarkButton = (): JSX.Element => {
     if (bookmarkLoading) {
       return (
@@ -107,6 +118,46 @@ export default function MovieDetailsCard({
       </button>
     );
   };
+
+  const { loading, createComment } = useCommentReply({
+    onError: (err) => {
+      if (err?.message.includes('Access denied')) {
+        toast({
+          title: 'Action not allowed. Must login first',
+          status: 'error',
+          ...toastDefaults,
+        });
+      } else {
+        toast({
+          title: 'Failed to reply',
+          status: 'error',
+          ...toastDefaults,
+        });
+      }
+    },
+    onSuccess: () => {
+      toast({
+        title: 'Comment added',
+        status: 'success',
+        ...toastDefaults,
+      });
+      router.reload();
+    },
+  });
+
+  const submitComment = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+
+    const event = e as FormEvent<HTMLFormElement> & {
+      target: { elements: { message: { value: string } } };
+    };
+
+    const message = event.target.elements.message.value;
+
+    const appSession = session as AppSession;
+    createComment(message, movie.id, appSession);
+  };
+
   return (
     <div className="movie-card-details text-black dark:text-white">
       <div className="relative grid grid-cols-1 place-items-start gap-x-2 md:grid-cols-3">
@@ -182,7 +233,12 @@ export default function MovieDetailsCard({
           >
             <>
               {movie?.comments?.map((comment, idx) => (
-                <CommentCard key={idx} {...comment} showChildComments />
+                <CommentCard
+                  key={idx}
+                  {...comment}
+                  showChildComments
+                  entityId={movie.id}
+                />
               ))}
             </>
           </ShowIfElse>
@@ -190,7 +246,10 @@ export default function MovieDetailsCard({
         <Divider />
         <div className="comments-form flex flex-col">
           <h4 className="mb-4 text-lg font-semibold">Save your comment</h4>
-          <form className="flex flex-col gap-y-2">
+          <form
+            className="flex flex-col gap-y-2"
+            onSubmit={(e) => submitComment(e)}
+          >
             <label htmlFor="message">Message</label>
             <textarea
               className="w-full rounded-lg bg-gray-100 p-2 px-3 text-black dark:border-none dark:bg-none dark:text-gray-700"
@@ -200,13 +259,14 @@ export default function MovieDetailsCard({
               required
               rows={3}
             />
+            <button
+              className="btn-primary-outline mt-4 place-self-end disabled:bg-zinc-600 dark:text-white dark:disabled:bg-primary-hover"
+              type="submit"
+              disabled={loading || !session}
+            >
+              {loading ? <MinimalSpinner color="white" /> : 'Submit'}
+            </button>
           </form>
-          <button
-            className="btn-primary-outline mt-4 place-self-end disabled:bg-zinc-600 dark:text-white"
-            type="submit"
-          >
-            Submit
-          </button>
         </div>
       </div>
     </div>

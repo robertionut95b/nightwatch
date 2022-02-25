@@ -23,7 +23,6 @@ const permissions = shield(
       watchlists: isUser,
     },
     Mutation: {
-      upsertAppSettings: isUser,
       '*': isUser,
     },
   },

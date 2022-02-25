@@ -11,7 +11,8 @@ const schema = await buildSchema({
   authChecker: userAuthChecker,
   validate: true,
   resolvers: resolvers,
-  emitSchemaFile: true,
+  // emit schema only on Dev environments
+  emitSchemaFile: process.env.NODE_ENV === 'development',
 });
 
 export default applyMiddleware(schema, permissions);

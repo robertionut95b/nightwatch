@@ -349,3 +349,19 @@ export const updateUser = gql`
     }
   }
 `;
+
+export const postComment = gql`
+  mutation createComment($data: CommentCreateInput!) {
+    createComment(data: $data) {
+      id
+    }
+  }
+`;
+
+export const deleteComment = gql`
+  mutation deleteComment($where: CommentWhereUniqueInput!) {
+    deleteComment(where: $where) {
+      id
+    }
+  }
+`;
