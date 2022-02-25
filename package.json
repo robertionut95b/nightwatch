@@ -38,6 +38,7 @@
     "axios": "^0.21.1",
     "axios-cache-adapter": "^2.7.3",
     "class-validator": "^0.13.1",
+    "crypto-hash": "^2.0.1",
     "date-fns": "^2.11.1",
     "framer-motion": "^5.6.0",
     "graphql": "^15.7.2",
