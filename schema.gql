@@ -7971,6 +7971,7 @@ type User {
   id: String!
   image: String
   lastName: String
+  name: String
   role: Role!
   sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
   settings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettings!]!
@@ -7996,6 +7997,7 @@ type UserCountAggregate {
   id: Int!
   image: Int!
   lastName: Int!
+  name: Int!
   role: Int!
   updatedAt: Int!
   username: Int!
@@ -8009,6 +8011,7 @@ input UserCountOrderByAggregateInput {
   id: SortOrder
   image: SortOrder
   lastName: SortOrder
+  name: SortOrder
   role: SortOrder
   updatedAt: SortOrder
   username: SortOrder
@@ -8024,6 +8027,7 @@ input UserCreateInput {
   id: String
   image: String
   lastName: String
+  name: String
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   settings: AppSettingsCreateNestedManyWithoutUserInput
@@ -8040,6 +8044,7 @@ input UserCreateManyInput {
   id: String
   image: String
   lastName: String
+  name: String
   role: Role
   updatedAt: DateTime
   username: String
@@ -8109,6 +8114,7 @@ input UserCreateWithoutAccountsInput {
   id: String
   image: String
   lastName: String
+  name: String
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   settings: AppSettingsCreateNestedManyWithoutUserInput
@@ -8126,6 +8132,7 @@ input UserCreateWithoutCommentsInput {
   id: String
   image: String
   lastName: String
+  name: String
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   settings: AppSettingsCreateNestedManyWithoutUserInput
@@ -8144,6 +8151,7 @@ input UserCreateWithoutSessionsInput {
   id: String
   image: String
   lastName: String
+  name: String
   role: Role
   settings: AppSettingsCreateNestedManyWithoutUserInput
   updatedAt: DateTime
@@ -8161,6 +8169,7 @@ input UserCreateWithoutSettingsInput {
   id: String
   image: String
   lastName: String
+  name: String
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   updatedAt: DateTime
@@ -8178,6 +8187,7 @@ input UserCreateWithoutWatchlistInput {
   id: String
   image: String
   lastName: String
+  name: String
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   settings: AppSettingsCreateNestedManyWithoutUserInput
@@ -8196,6 +8206,7 @@ type UserGroupBy {
   id: String!
   image: String
   lastName: String
+  name: String
   role: Role!
   updatedAt: DateTime!
   username: String
@@ -8209,6 +8220,7 @@ type UserMaxAggregate {
   id: String
   image: String
   lastName: String
+  name: String
   role: Role
   updatedAt: DateTime
   username: String
@@ -8222,6 +8234,7 @@ input UserMaxOrderByAggregateInput {
   id: SortOrder
   image: SortOrder
   lastName: SortOrder
+  name: SortOrder
   role: SortOrder
   updatedAt: SortOrder
   username: SortOrder
@@ -8235,6 +8248,7 @@ type UserMinAggregate {
   id: String
   image: String
   lastName: String
+  name: String
   role: Role
   updatedAt: DateTime
   username: String
@@ -8248,6 +8262,7 @@ input UserMinOrderByAggregateInput {
   id: SortOrder
   image: SortOrder
   lastName: SortOrder
+  name: SortOrder
   role: SortOrder
   updatedAt: SortOrder
   username: SortOrder
@@ -8264,6 +8279,7 @@ input UserOrderByWithAggregationInput {
   id: SortOrder
   image: SortOrder
   lastName: SortOrder
+  name: SortOrder
   role: SortOrder
   updatedAt: SortOrder
   username: SortOrder
@@ -8279,6 +8295,7 @@ input UserOrderByWithRelationInput {
   id: SortOrder
   image: SortOrder
   lastName: SortOrder
+  name: SortOrder
   role: SortOrder
   sessions: SessionOrderByRelationAggregateInput
   settings: AppSettingsOrderByRelationAggregateInput
@@ -8300,6 +8317,7 @@ enum UserScalarFieldEnum {
   id
   image
   lastName
+  name
   role
   updatedAt
   username
@@ -8316,6 +8334,7 @@ input UserScalarWhereWithAggregatesInput {
   id: StringWithAggregatesFilter
   image: StringNullableWithAggregatesFilter
   lastName: StringNullableWithAggregatesFilter
+  name: StringNullableWithAggregatesFilter
   role: EnumRoleWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
   username: StringNullableWithAggregatesFilter
@@ -8331,6 +8350,7 @@ input UserUpdateInput {
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   settings: AppSettingsUpdateManyWithoutUserInput
@@ -8347,6 +8367,7 @@ input UserUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   username: NullableStringFieldUpdateOperationsInput
@@ -8403,6 +8424,7 @@ input UserUpdateWithoutAccountsInput {
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   settings: AppSettingsUpdateManyWithoutUserInput
@@ -8420,6 +8442,7 @@ input UserUpdateWithoutCommentsInput {
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   settings: AppSettingsUpdateManyWithoutUserInput
@@ -8438,6 +8461,7 @@ input UserUpdateWithoutSessionsInput {
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   settings: AppSettingsUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -8455,6 +8479,7 @@ input UserUpdateWithoutSettingsInput {
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -8472,6 +8497,7 @@ input UserUpdateWithoutWatchlistInput {
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   settings: AppSettingsUpdateManyWithoutUserInput
@@ -8517,6 +8543,7 @@ input UserWhereInput {
   id: StringFilter
   image: StringNullableFilter
   lastName: StringNullableFilter
+  name: StringNullableFilter
   role: EnumRoleFilter
   sessions: SessionListRelationFilter
   settings: AppSettingsListRelationFilter

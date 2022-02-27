@@ -9,16 +9,22 @@ export default function SignInForm(): JSX.Element {
   };
 
   return (
-    <form onSubmit={(e) => onSubmit(e)}>
+    <form
+      className="flex flex-col gap-y-4 md:flex-row"
+      onSubmit={(e) => onSubmit(e)}
+    >
       <input
-        className="bg-white shadow-md bg-clip-padding px-4 py-1 backdrop-filter backdrop-blur-sm rounded-md text-black min-w-[20rem]"
+        className="min-w-[20rem] rounded-md border border-gray-200 bg-white bg-clip-padding px-4 py-1 text-black shadow-md backdrop-blur-sm backdrop-filter"
         type="email"
         name="email"
         id="email"
         placeholder="Your email"
         required
       />
-      <button className="ml-2 bg-primary py-1.5 px-4 rounded-lg" type="submit">
+      <button
+        className="btn-primary ml-2 rounded-lg bg-primary py-1.5 px-4 text-white"
+        type="submit"
+      >
         Get started
       </button>
     </form>

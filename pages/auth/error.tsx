@@ -1,7 +1,38 @@
 import Layout from '../../components/layout/layout';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+
+const errors: {
+  Signin: string;
+  OAuthSignin: string;
+  OAuthCallback: string;
+  OAuthCreateAccount: string;
+  EmailCreateAccount: string;
+  Callback: string;
+  OAuthAccountNotLinked: string;
+  EmailSignin: string;
+  CredentialsSignin: string;
+  default: string;
+} = {
+  Signin: 'Try signing with a different account.',
+  OAuthSignin: 'Try signing with a different account.',
+  OAuthCallback: 'Try signing with a different account.',
+  OAuthCreateAccount: 'Try signing with a different account.',
+  EmailCreateAccount: 'Try signing with a different account.',
+  Callback: 'Try signing with a different account.',
+  OAuthAccountNotLinked:
+    'To confirm your identity, sign in with the same account you used originally.',
+  EmailSignin: 'Check your email address.',
+  CredentialsSignin:
+    'Sign in failed. Check the details you provided are correct.',
+  default: 'Unable to sign in.',
+};
 
 const AuthError = (): JSX.Element => {
+  const { error } = useRouter().query;
+  const errorMessage =
+    error && (errors[error as keyof typeof errors] ?? errors.default);
+
   return (
     <Layout home={false}>
       <Head>
@@ -20,10 +51,8 @@ const AuthError = (): JSX.Element => {
             clipRule="evenodd"
           />
         </svg>
-        <h4 className="font-bold text-xl mb-10">Unexpected error</h4>
-        <h6 className="font-normal text-lg tracking-wide">
-          Unfortunately your request could not be completed. Please try again
-        </h6>
+        <h4 className="mb-10 text-xl font-bold">Authentication error</h4>
+        <h6 className="text-lg font-normal tracking-wide">{errorMessage}</h6>
       </div>
     </Layout>
   );
