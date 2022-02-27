@@ -19,8 +19,21 @@ export interface AppSession extends Session {
 export default NextAuth({
   providers: [
     Providers.Email({
-      server: `smtp://${process.env.EMAIL_SERVER_USER}:${process.env.EMAIL_SERVER_PASSWORD}@${process.env.EMAIL_SERVER}:${process.env.EMAIL_SERVER_PORT}`,
+      server: {
+        host: process.env.EMAIL_SERVER,
+        port: Number(process.env.EMAIL_SERVER_PORT),
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        }
+      },
       from: process.env.EMAIL_FROM,
+    }),
+    Providers.Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorizationUrl:
+        'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
     }),
   ],
   database: process.env.DATABASE_URL,
@@ -30,7 +43,7 @@ export default NextAuth({
     maxAge: 30 * 24 * 60 * 60, // 30 days
     updateAge: 24 * 60 * 60, // 24 hours
   },
-  debug: false,
+  debug: process.env.NODE_ENV !== 'production',
   adapter: PrismaAdapter(prisma),
   pages: {
     signIn: '/auth/signin',

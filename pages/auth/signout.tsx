@@ -1,3 +1,4 @@
+import Logo from '@components/nav/Logo';
 import { GetServerSideProps } from 'next';
 import { signout, getSession, useSession } from 'next-auth/client';
 import Head from 'next/head';
@@ -17,9 +18,12 @@ const SignOut = (): JSX.Element => {
       <Head>
         <title>{`Sign out - ${process.env.APP_SITE_NAME}`}</title>
       </Head>
-      <div className="container flex gap-y-8 justify-center items-center">
+      <div className="sign-in-to-logo mb-12 flex items-center justify-center">
+        <Logo />
+      </div>
+      <div className="container flex flex-col items-center justify-center gap-y-8">
         <div className="info">
-          <h4 className="font-bold text-xl tracking-wide mb-8">
+          <h4 className="mb-3 text-center text-xl font-bold tracking-wide">
             Sad to see you going!
           </h4>
           <p>But you have succesfully logged out</p>

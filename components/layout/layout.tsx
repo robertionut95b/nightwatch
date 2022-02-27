@@ -25,7 +25,7 @@ export default function Layout({
     return <SignInForm />;
   };
   return (
-    <div className="bg-white dark:bg-background">
+    <div className="bg-white transition-colors duration-300 ease-out dark:bg-background">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="og:title" content={process.env.APP_SITE_NAME} />
@@ -35,15 +35,15 @@ export default function Layout({
         <NavigationBar />
         {home && (
           <div
-            className={`hero-register-cta max-w-max mx-auto ${styles.heroRegister}`}
+            className={`hero-register-cta mx-auto max-w-max ${styles.heroRegister}`}
           >
             <div
-              className={`hero-content p-8 backdrop-blur-sm flex flex-col items-center gap-y-4 bg-black bg-opacity-40 rounded-lg ${styles.heroContent}`}
+              className={`hero-content flex flex-col items-center gap-y-4 rounded-lg bg-black bg-opacity-40 p-8 backdrop-blur-sm ${styles.heroContent}`}
             >
-              <h4 className="text-white text-center font-bold text-3xl shadow-lg text-shadow">
+              <h4 className="text-shadow text-center text-3xl font-bold text-white shadow-lg">
                 Best of movies and series
               </h4>
-              <h6 className="text-center text-shadow">
+              <h6 className="text-shadow text-center">
                 Build your watchlist and explore thousands of movies, series and
                 documentaries
               </h6>
@@ -53,7 +53,7 @@ export default function Layout({
         )}
       </header>
       <main
-        className={`${styles.layoutMainContainer} w-full container mx-auto p-2 text-black dark:text-white`}
+        className={`${styles.layoutMainContainer} container mx-auto w-full p-2 text-black dark:text-white`}
       >
         {children}
         <AskBanner />
