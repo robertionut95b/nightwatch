@@ -28,7 +28,7 @@ const SignIn = ({
       </div>
       <section className="flex flex-col items-center justify-evenly lg:flex-row">
         <div className="intro mb-8">
-          <h4 className="mb-1 text-xl font-bold tracking-wide">
+          <h4 className="mb-1 text-center text-xl font-bold tracking-wide md:text-left">
             Log in or Register
           </h4>
           <p className="dark:text-gray-200">

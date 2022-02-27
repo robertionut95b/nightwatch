@@ -10,7 +10,7 @@ export default function SignInForm(): JSX.Element {
 
   return (
     <form
-      className="flex flex-col gap-2 md:flex-row"
+      className="flex flex-col gap-y-4 md:flex-row"
       onSubmit={(e) => onSubmit(e)}
     >
       <input
