@@ -1,0 +1,111 @@
+import { Role } from '.prisma/client';
+import { Authorized } from 'type-graphql';
+import { ResolversEnhanceMap } from '../generated/type-graphql';
+
+export const resolversEnhanceMap: ResolversEnhanceMap = {
+  Movie: {
+    createManyMovie: [Authorized(Role.USER)],
+    createMovie: [Authorized(Role.USER)],
+    updateManyMovie: [Authorized(Role.ADMIN)],
+    updateMovie: [Authorized(Role.ADMIN)],
+    deleteManyMovie: [Authorized(Role.ADMIN)],
+    deleteMovie: [Authorized(Role.ADMIN)],
+  },
+  Serie: {
+    createManySerie: [Authorized(Role.USER)],
+    createSerie: [Authorized(Role.USER)],
+    updateManySerie: [Authorized(Role.ADMIN)],
+    updateSerie: [Authorized(Role.ADMIN)],
+    deleteManySerie: [Authorized(Role.ADMIN)],
+    deleteSerie: [Authorized(Role.ADMIN)],
+  },
+  Episode: {
+    createEpisode: [Authorized(Role.USER)],
+    createManyEpisode: [Authorized(Role.USER)],
+    updateEpisode: [Authorized(Role.ADMIN)],
+    updateManyEpisode: [Authorized(Role.ADMIN)],
+    deleteManyEpisode: [Authorized(Role.ADMIN)],
+    deleteEpisode: [Authorized(Role.ADMIN)],
+  },
+  Watchlist: {
+    createManyWatchlist: [Authorized(Role.USER)],
+    createWatchlist: [Authorized(Role.USER)],
+    updateManyWatchlist: [Authorized(Role.USER)],
+    updateWatchlist: [Authorized(Role.USER)],
+    deleteManyWatchlist: [Authorized(Role.ADMIN)],
+    deleteWatchlist: [Authorized(Role.ADMIN)],
+  },
+  Season: {
+    createManySeason: [Authorized(Role.USER)],
+    createSeason: [Authorized(Role.USER)],
+    updateManySeason: [Authorized(Role.ADMIN)],
+    updateSeason: [Authorized(Role.ADMIN)],
+    deleteManySeason: [Authorized(Role.ADMIN)],
+    deleteSeason: [Authorized(Role.ADMIN)],
+  },
+  Actor: {
+    createActor: [Authorized(Role.USER)],
+    createManyActor: [Authorized(Role.USER)],
+    updateActor: [Authorized(Role.ADMIN)],
+    updateManyActor: [Authorized(Role.ADMIN)],
+    deleteActor: [Authorized(Role.ADMIN)],
+    deleteManyActor: [Authorized(Role.ADMIN)],
+  },
+  Director: {
+    createDirector: [Authorized(Role.USER)],
+    createManyDirector: [Authorized(Role.USER)],
+    updateDirector: [Authorized(Role.ADMIN)],
+    updateManyDirector: [Authorized(Role.ADMIN)],
+    deleteDirector: [Authorized(Role.ADMIN)],
+    deleteManyDirector: [Authorized(Role.ADMIN)],
+  },
+  Genre: {
+    createGenre: [Authorized(Role.USER)],
+    createManyGenre: [Authorized(Role.USER)],
+    updateGenre: [Authorized(Role.ADMIN)],
+    updateManyGenre: [Authorized(Role.ADMIN)],
+    deleteGenre: [Authorized(Role.ADMIN)],
+    deleteManyGenre: [Authorized(Role.ADMIN)],
+  },
+  EpisodesWatchlist: {
+    createEpisodesWatchlist: [Authorized(Role.USER)],
+    createManyEpisodesWatchlist: [Authorized(Role.USER)],
+    updateEpisodesWatchlist: [Authorized(Role.USER)],
+    updateManyEpisodesWatchlist: [Authorized(Role.USER)],
+    deleteManyEpisodesWatchlist: [Authorized(Role.ADMIN)],
+    deleteEpisodesWatchlist: [Authorized(Role.ADMIN)],
+  },
+  Language: {
+    createLanguage: [Authorized(Role.USER)],
+    createManyLanguage: [Authorized(Role.USER)],
+    updateLanguage: [Authorized(Role.ADMIN)],
+    updateManyLanguage: [Authorized(Role.ADMIN)],
+    deleteLanguage: [Authorized(Role.ADMIN)],
+    deleteManyLanguage: [Authorized(Role.ADMIN)],
+  },
+  MoviesWatchlist: {
+    createManyMoviesWatchlist: [Authorized(Role.USER)],
+    createMoviesWatchlist: [Authorized(Role.USER)],
+    updateManyMoviesWatchlist: [Authorized(Role.USER)],
+    updateMoviesWatchlist: [Authorized(Role.USER)],
+    deleteManyMoviesWatchlist: [Authorized(Role.ADMIN)],
+    deleteMoviesWatchlist: [Authorized(Role.ADMIN)],
+  },
+  SeriesWatchlist: {
+    createManySeriesWatchlist: [Authorized(Role.USER)],
+    createSeriesWatchlist: [Authorized(Role.USER)],
+    updateManySeriesWatchlist: [Authorized(Role.USER)],
+    updateSeriesWatchlist: [Authorized(Role.USER)],
+    deleteManySeriesWatchlist: [Authorized(Role.ADMIN)],
+    deleteSeriesWatchlist: [Authorized(Role.ADMIN)],
+  },
+  WatchlistedMovie: {
+    _all: [Authorized(Role.USER)],
+  },
+  WatchlistedEpisode: {
+    _all: [Authorized(Role.USER)],
+  },
+  WatchlistedSerie: {
+    _all: [Authorized(Role.USER)],
+  },
+};

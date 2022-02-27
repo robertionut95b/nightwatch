@@ -1,0 +1,15 @@
+overwrite: true
+# schema: 'http://localhost:3000/api/graphql'
+schema: schema.gql
+documents:
+  - 'graphql/queries/*.graphql.ts'
+  - 'graphql/mutations/*.graphql.ts'
+generates:
+  generated/graphql.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withComponent: false
+      withHooks: true

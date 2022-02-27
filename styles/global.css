@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --color-primary: #095db2ff;
+  --color-primary-hover: #013b76;
+  --color-secondary: #dc9b28ff;
+  --color-background: #080c1aff;
+  --color-background-dark: #060811;
+  --color-background-secondary: #0e1527;
+  --color-background-light: #fff;
+  --color-heading-light: #9ea3b5ff;
+  --color-heading-dark: #080c1aff;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Barlow', sans-serif;
+  line-height: 1.6;
+  background-color: var(--color-background);
+  color: white;
+}
+
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white py-1 px-4 rounded-lg hover:bg-primary-hover transition-all ease-in-out duration-300;
+  }
+
+  .btn-primary-outline {
+    @apply bg-transparent text-primary hover:bg-primary py-1 px-4 border border-primary hover:border-transparent hover:text-white rounded-lg transition-all ease-in-out duration-300;
+  }
+
+  .btn-primary-outline-white {
+    @apply bg-transparent text-white py-1 px-4 border border-gray-500 hover:bg-primary-hover rounded-lg transition-all ease-in-out duration-300;
+  }
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --ebony: #5A5E4Aff;
+--gamboge: #DC9B28ff;
+--rich-black-fogra-29: #080C1Aff;
+--denim: #095DB2ff;
+--manatee: #9EA3B5ff; */
