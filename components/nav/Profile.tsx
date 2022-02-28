@@ -18,7 +18,7 @@ const Profile = ({ minimal }: { minimal?: boolean }): JSX.Element => {
   if (minimal)
     return (
       <div className="profile">
-        <div className="profile-picture flex rounded-full justify-between">
+        <div className="profile-picture flex justify-between rounded-full">
           {image && (
             <Avatar src={image} alt="profile picture" width={34} height={34} />
           )}
@@ -40,7 +40,7 @@ const Profile = ({ minimal }: { minimal?: boolean }): JSX.Element => {
 
   return (
     <div className="profile">
-      <div className="profile-picture flex rounded-full gap-x-4 py-1 px-2 items-center justify-between">
+      <div className="profile-picture flex items-center justify-between gap-x-4 rounded-full py-1 px-2">
         {image && (
           <Avatar src={image} alt="profile picture" width={34} height={34} />
         )}
@@ -55,7 +55,9 @@ const Profile = ({ minimal }: { minimal?: boolean }): JSX.Element => {
             borderColor={'var(--color-primary)'}
           />
         )}
-        <div className="email-label">{session?.user?.email}</div>
+        <div className="email-label text-black dark:text-white">
+          {session?.user?.email}
+        </div>
       </div>
     </div>
   );

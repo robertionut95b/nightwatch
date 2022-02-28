@@ -25,7 +25,7 @@ export default NextAuth({
         auth: {
           user: process.env.EMAIL_SERVER_USER,
           pass: process.env.EMAIL_SERVER_PASSWORD,
-        }
+        },
       },
       from: process.env.EMAIL_FROM,
     }),
@@ -104,8 +104,32 @@ export default NextAuth({
           },
         });
 
-        if (watchlist)
+        const settings = [
+          {
+            name: 'darkMode',
+            value: 'true',
+          },
+          {
+            name: 'language',
+            value: 'en',
+          },
+          {
+            name: 'listType',
+            value: 'grid',
+          },
+        ];
+
+        if (watchlist) {
           console.log(`Default watchlist created for user ${email}`);
+          settings.forEach((setting) =>
+            prisma.appSettings.create({
+              data: {
+                ...setting,
+                userId: userId,
+              },
+            }),
+          );
+        }
       }
     },
   },

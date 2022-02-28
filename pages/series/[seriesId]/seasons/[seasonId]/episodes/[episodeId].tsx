@@ -1,4 +1,4 @@
-import { Episode, Season, Serie } from '@prisma/client';
+import { Episode, Role, Season, Comment } from '@prisma/client';
 import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
@@ -16,8 +16,24 @@ export const EpisodePage = ({
   episode,
 }: {
   episode: Episode & {
+    comments: (Comment & {
+      user: {
+        email: string;
+        image: string | null;
+        role: Role;
+      };
+      comments: (Comment & {
+        user: {
+          email: string;
+          image: string | null;
+          role: Role;
+        };
+      })[];
+    })[];
     season: Season & {
-      series: Serie;
+      series: {
+        title: string;
+      };
     };
   };
 }): JSX.Element => {
@@ -39,7 +55,46 @@ export const getStaticPaths: GetStaticPaths =
   async (): Promise<GetStaticPathsResult> => {
     const episodes = await prisma.episode.findMany({
       include: {
-        season: true,
+        season: {
+          include: {
+            series: {
+              select: {
+                title: true,
+              },
+            },
+          },
+        },
+        comments: {
+          where: {
+            active: true,
+            parent: {
+              is: null,
+            },
+          },
+          include: {
+            user: {
+              select: {
+                email: true,
+                image: true,
+                role: true,
+              },
+            },
+            comments: {
+              include: {
+                user: {
+                  select: {
+                    email: true,
+                    image: true,
+                    role: true,
+                  },
+                },
+              },
+            },
+          },
+          orderBy: {
+            createdAt: 'asc',
+          },
+        },
       },
     });
     const paths = episodes.map((e) => {
@@ -68,7 +123,42 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     include: {
       season: {
         include: {
-          series: true,
+          series: {
+            select: {
+              title: true,
+            },
+          },
+        },
+      },
+      comments: {
+        where: {
+          active: true,
+          parent: {
+            is: null,
+          },
+        },
+        include: {
+          user: {
+            select: {
+              email: true,
+              image: true,
+              role: true,
+            },
+          },
+          comments: {
+            include: {
+              user: {
+                select: {
+                  email: true,
+                  image: true,
+                  role: true,
+                },
+              },
+            },
+          },
+        },
+        orderBy: {
+          createdAt: 'asc',
         },
       },
     },

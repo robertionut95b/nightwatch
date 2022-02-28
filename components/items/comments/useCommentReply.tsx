@@ -16,11 +16,12 @@ interface ICommentReplyResp {
 }
 
 const useCommentReply = (options: {
+  objectType: 'movie' | 'serie' | 'episode';
   onSuccess?: () => void;
   onError?: (err: ApolloError | undefined) => void;
 }): ICommentReplyResp => {
   const toast = createStandaloneToast();
-  const { onSuccess, onError } = options;
+  const { onSuccess, onError, objectType } = options;
 
   const [createCommentMutation, { loading }] = useCreateCommentMutation({
     onCompleted: () => {
@@ -72,11 +73,27 @@ const useCommentReply = (options: {
                 email: session?.user?.email || undefined,
               },
             },
-            movie: {
-              connect: {
-                id: entityId,
+            ...(objectType === 'movie' && {
+              movie: {
+                connect: {
+                  id: entityId,
+                },
               },
-            },
+            }),
+            ...(objectType === 'serie' && {
+              serie: {
+                connect: {
+                  id: entityId,
+                },
+              },
+            }),
+            ...(objectType === 'episode' && {
+              episode: {
+                connect: {
+                  id: entityId,
+                },
+              },
+            }),
             parent: {
               connect: {
                 id: parentCommentId || undefined,
@@ -95,11 +112,27 @@ const useCommentReply = (options: {
                 email: session?.user?.email || undefined,
               },
             },
-            movie: {
-              connect: {
-                id: entityId,
+            ...(objectType === 'movie' && {
+              movie: {
+                connect: {
+                  id: entityId,
+                },
               },
-            },
+            }),
+            ...(objectType === 'serie' && {
+              serie: {
+                connect: {
+                  id: entityId,
+                },
+              },
+            }),
+            ...(objectType === 'episode' && {
+              episode: {
+                connect: {
+                  id: entityId,
+                },
+              },
+            }),
           },
         },
       });

@@ -73,11 +73,11 @@ const SecurityForm = (): JSX.Element => {
   if (loading) return <MinimalSpinner />;
   return (
     <section>
-      <h4 className="font-bold text-xl tracking-wide">Email</h4>
-      <p className="dark:text-gray-200 mb-2">
+      <h4 className="text-xl font-bold tracking-wide">Email</h4>
+      <p className="mb-2 dark:text-gray-200">
         This section allows the user to change the account&apos;s email address
       </p>
-      <small className="tracking-wide mb-4 font-semibold text-red-600 flex items-center">
+      <small className="mb-4 flex items-center font-semibold tracking-wide text-red-600">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 text-red-700"
@@ -90,28 +90,28 @@ const SecurityForm = (): JSX.Element => {
             clipRule="evenodd"
           />
         </svg>
-        Be warned! This change is irreversible and cannot be undone!
+        This change is irreversible and cannot be undone!
       </small>
       <div className="form">
         <form
-          className="flex flex-col gap-y-2 mb-4"
+          className="mb-4 flex flex-col gap-y-2"
           onSubmit={(e) => submitChangeEmail(e)}
         >
           <label htmlFor="email">Email address*</label>
           <input
-            className="rounded py-1 px-2 bg-gray-100 dark:bg-white border text-black placeholder-gray-800"
+            className="rounded border bg-gray-100 py-1 px-2 text-black placeholder-gray-800 dark:bg-white"
             name="email"
             type="email"
             placeholder="johndoe@nightwatch.org"
             defaultValue={session?.user?.email || ''}
           />
           <p>
-            A confirmation e-mail will be sent to your current address (
-            {session?.user?.email})
+            A confirmation e-mail will be sent to your current address{' '}
+            <i>({session?.user?.email})</i>
           </p>
           <div className="button-groups mt-8 flex justify-end gap-x-2">
             <button
-              className="btn-primary bg-gray-200 text-primary hover:bg-gray-400 font-semibold"
+              className="btn-primary bg-gray-200 font-semibold text-primary hover:bg-gray-400"
               type="reset"
             >
               Cancel

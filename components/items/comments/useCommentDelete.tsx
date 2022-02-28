@@ -2,7 +2,10 @@ import { ApolloError } from '@apollo/client';
 import { createStandaloneToast } from '@chakra-ui/react';
 import { Comment } from '@prisma/client';
 import { AppSession } from 'pages/api/auth/[...nextauth]';
-import { useDeleteCommentMutation } from '../../../generated/graphql';
+import {
+  useDeleteCommentMutation,
+  useDeleteManyCommentMutation,
+} from '../../../generated/graphql';
 import { toastDefaults } from 'assets/constants/config';
 
 interface ICommentDeleteResp {
@@ -17,6 +20,14 @@ const useCommentDelete = (options: {
   const toast = createStandaloneToast();
   const { onSuccess, onError } = options;
 
+  const [deleteManyCommentMutation] = useDeleteManyCommentMutation({
+    onCompleted: () => {
+      onSuccess?.();
+    },
+    onError: (err) => {
+      onError?.(err);
+    },
+  });
   const [deleteCommentMutation, { loading }] = useDeleteCommentMutation({
     onCompleted: () => {
       onSuccess?.();
@@ -50,6 +61,16 @@ const useCommentDelete = (options: {
       variables: {
         where: {
           id: commentId || undefined,
+        },
+      },
+    });
+
+    deleteManyCommentMutation({
+      variables: {
+        where: {
+          parentId: {
+            equals: commentId || undefined,
+          },
         },
       },
     });

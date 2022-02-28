@@ -365,3 +365,11 @@ export const deleteComment = gql`
     }
   }
 `;
+
+export const deleteManyComment = gql`
+  mutation deleteManyComment($where: CommentWhereInput) {
+    deleteManyComment(where: $where) {
+      count
+    }
+  }
+`;

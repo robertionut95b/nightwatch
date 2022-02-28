@@ -19,7 +19,9 @@ import { StringListDropdown } from '../../components/utils/layout/dropdowns/drop
 import { generateYearsArray } from '../../src/utils/generators/years';
 import { imdbRatingsArray } from '../../assets/constants/imdbRatingsArr';
 import { cfg } from '../../assets/constants/config';
-import { Spinner } from '../../components/utils/layout/spinners/spinner';
+import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
+import { useTheme } from 'next-themes';
 
 export default function SeriesPage({
   series,
@@ -170,6 +172,8 @@ export default function SeriesPage({
     }
   }, [series]);
 
+  const { theme } = useTheme();
+
   return (
     <Layout home={false}>
       <Head>
@@ -179,7 +183,7 @@ export default function SeriesPage({
         Series
       </h4>
       <section className="series-filters mb-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row gap-x-6 gap-y-2 md:flex-wrap">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-3 md:flex md:flex-row md:flex-wrap">
           {genres?.length > 0 && (
             <StringListDropdown
               label="Genres"
@@ -249,7 +253,7 @@ export default function SeriesPage({
           />
         </div>
       </section>
-      <section className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-12">
+      <section className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-6">
         <>
           {seriesCursor.length === 0 ? 'No series found' : null}
           {seriesCursor?.map((s) => (
@@ -257,14 +261,20 @@ export default function SeriesPage({
           ))}
         </>
       </section>
-      <div className="mt-14 load-more flex flex-col-reverse items-center justify-center gap-y-4">
-        {loadMore && <Spinner />}
+      <div className="load-more mt-14 flex items-center justify-center gap-y-4">
         {cursor !== 0 && (
           <button
-            className="btn-primary-outline text-lg font-semibold"
+            className="btn-primary-outline text-base font-semibold"
             onClick={() => loadMoreSeries()}
+            disabled={loadMore}
           >
-            Load more
+            <ShowIfElse if={loadMore} else={'Load more'}>
+              {theme === 'light' ? (
+                <MinimalSpinner color="black" />
+              ) : (
+                <MinimalSpinner color="text-white" />
+              )}
+            </ShowIfElse>
           </button>
         )}
       </div>

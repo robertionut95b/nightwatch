@@ -24,7 +24,7 @@ export default function SearchBar(): JSX.Element {
           id="search-input-title"
           name="q"
           className={
-            'w-full rounded-md border border-primary bg-opacity-60 bg-clip-padding px-4 py-1 text-sm font-semibold text-black backdrop-blur-sm backdrop-filter dark:border-gray-800 dark:bg-background dark:shadow-md'
+            'w-full rounded-md border border-primary bg-opacity-60 bg-clip-padding px-4 py-1 text-sm font-semibold text-black backdrop-blur-sm backdrop-filter dark:border-gray-800 dark:bg-background dark:text-white dark:shadow-md'
           }
           type="text"
           placeholder="Search movies ..."

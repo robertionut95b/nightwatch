@@ -12,7 +12,9 @@ const schema = await buildSchema({
   validate: true,
   resolvers: resolvers,
   // emit schema only on Dev environments
-  emitSchemaFile: process.env.NODE_ENV === 'development',
+  emitSchemaFile:
+    process.env.TYPEGRAPHQL_GENERATE_CODE ||
+    process.env.NODE_ENV === 'development',
 });
 
 export default applyMiddleware(schema, permissions);

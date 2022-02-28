@@ -2,9 +2,18 @@ import Layout from '../../../components/layout/layout';
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { Serie } from '../../../generated/graphql';
 import SeriesDetailsCard from '../../../components/items/series/details/SeriesDetailsCard';
 import prisma from '../../../lib/PrismaClient/prisma';
+import {
+  Actor,
+  Director,
+  Episode,
+  Genre,
+  Language,
+  Role,
+  Season,
+  Serie,
+} from '@prisma/client';
 
 interface IParams extends ParsedUrlQuery {
   seriesId: string;
@@ -14,7 +23,29 @@ export default function SeriesPage({
   series,
   relatedSeries,
 }: {
-  series: Serie;
+  series: Serie & {
+    genres: Genre[];
+    actors: Actor[];
+    directors: Director[];
+    languages: Language[];
+    seasons: (Season & {
+      episodeIds: Episode[];
+    })[];
+    comments: (Comment & {
+      user: {
+        email: string;
+        image: string | null;
+        role: Role;
+      };
+      comments: (Comment & {
+        user: {
+          email: string;
+          image: string | null;
+          role: Role;
+        };
+      })[];
+    })[];
+  };
   relatedSeries: Serie[];
 }): JSX.Element {
   return (
@@ -61,6 +92,37 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       actors: true,
       directors: true,
       languages: true,
+      comments: {
+        where: {
+          active: true,
+          parent: {
+            is: null,
+          },
+        },
+        include: {
+          user: {
+            select: {
+              email: true,
+              image: true,
+              role: true,
+            },
+          },
+          comments: {
+            include: {
+              user: {
+                select: {
+                  email: true,
+                  image: true,
+                  role: true,
+                },
+              },
+            },
+          },
+        },
+        orderBy: {
+          createdAt: 'asc',
+        },
+      },
       seasons: {
         include: {
           episodeIds: true,

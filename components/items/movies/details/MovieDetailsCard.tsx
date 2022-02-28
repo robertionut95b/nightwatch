@@ -120,6 +120,7 @@ export default function MovieDetailsCard({
   };
 
   const { loading, createComment } = useCommentReply({
+    objectType: 'movie',
     onError: (err) => {
       if (err?.message.includes('Access denied')) {
         toast({
@@ -237,6 +238,7 @@ export default function MovieDetailsCard({
                   key={idx}
                   {...comment}
                   showChildComments
+                  objectType="movie"
                   entityId={movie.id}
                 />
               ))}
@@ -260,7 +262,7 @@ export default function MovieDetailsCard({
               rows={3}
             />
             <button
-              className="btn-primary-outline mt-4 place-self-end disabled:bg-zinc-600 dark:text-white dark:disabled:bg-primary-hover"
+              className="btn-primary-outline mt-4 place-self-end disabled:cursor-not-allowed dark:text-white dark:disabled:bg-primary-hover"
               type="submit"
               disabled={loading || !session}
             >
