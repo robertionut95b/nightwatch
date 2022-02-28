@@ -26,7 +26,7 @@ export default function MovieCard({
       });
     },
     onError: (err) => {
-      if (err?.message.includes('Not authorised')) {
+      if (err?.message.includes('Not Authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',

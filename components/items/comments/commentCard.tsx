@@ -45,7 +45,7 @@ export default function CommentCard({
   const { createComment, loading: createLoading } = useCommentReply({
     objectType,
     onError: (err) => {
-      if (err?.message.includes('Not authorised')) {
+      if (err?.message.includes('Not Authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
@@ -87,7 +87,7 @@ export default function CommentCard({
 
   const { deleteComment, loading } = useCommentDelete({
     onError: (err) => {
-      if (err?.message.includes('Not authorised')) {
+      if (err?.message.includes('Not Authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',

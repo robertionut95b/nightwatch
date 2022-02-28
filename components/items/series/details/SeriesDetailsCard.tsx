@@ -115,7 +115,7 @@ export default function SeriesDetailsCard({
       });
     },
     onError: (err) => {
-      if (err?.message.includes('Not authorised')) {
+      if (err?.message.includes('Not Authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
@@ -134,7 +134,7 @@ export default function SeriesDetailsCard({
   const { loading: commentLoading, createComment } = useCommentReply({
     objectType: 'serie',
     onError: (err) => {
-      if (err?.message.includes('Not authorised')) {
+      if (err?.message.includes('Not Authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
