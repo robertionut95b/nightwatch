@@ -37,7 +37,7 @@ export default function EpisodeCard({
         });
       },
       onError: (err) => {
-        if (err?.message.includes('Access denied')) {
+        if (err?.message.includes('Not authorised')) {
           toast({
             title: 'Action not allowed. Must login first',
             status: 'error',
@@ -56,7 +56,7 @@ export default function EpisodeCard({
   return (
     <div className="episode-card w-max">
       <div className="series-card cursor-pointer">
-        <div className="flex flex-col mx-auto relative w-[180px]">
+        <div className="relative mx-auto flex w-[180px] flex-col">
           <Link
             href={`/series/${seriesImdbID}/seasons/${season.index}/episodes/${episode.imdbID}`}
             passHref
@@ -79,7 +79,7 @@ export default function EpisodeCard({
             </a>
           </Link>
           <h6
-            className="text-center mt-1 truncate font-medium tracking-wide text-black dark:text-white"
+            className="mt-1 truncate text-center font-medium tracking-wide text-black dark:text-white"
             title={episode.title}
           >
             {episode.title}
@@ -93,7 +93,7 @@ export default function EpisodeCard({
               else={
                 <>
                   {loading ? (
-                    <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
+                    <div className="absolute top-1 right-2 rounded-full bg-slate-900 p-2">
                       <MinimalSpinner />
                     </div>
                   ) : (

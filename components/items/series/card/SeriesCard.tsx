@@ -34,7 +34,7 @@ export default function SeriesCard({
       });
     },
     onError: (err) => {
-      if (err?.message.includes('Access denied')) {
+      if (err?.message.includes('Not authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
@@ -52,7 +52,7 @@ export default function SeriesCard({
 
   return (
     <div className="series-card cursor-pointer transition hover:scale-110">
-      <div className="flex flex-col mx-auto relative w-[180px]">
+      <div className="relative mx-auto flex w-[180px] flex-col">
         <Link href={`/series/${series.imdbID}`}>
           <a>
             <Image
@@ -65,7 +65,7 @@ export default function SeriesCard({
           </a>
         </Link>
         <h6
-          className="text-center mt-1 truncate font-medium tracking-wide text-black dark:text-white"
+          className="mt-1 truncate text-center font-medium tracking-wide text-black dark:text-white"
           title={series.title}
         >
           {series.title}
@@ -79,7 +79,7 @@ export default function SeriesCard({
             else={
               <>
                 {loading ? (
-                  <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
+                  <div className="absolute top-1 right-2 rounded-full bg-slate-900 p-2">
                     <MinimalSpinner />
                   </div>
                 ) : (

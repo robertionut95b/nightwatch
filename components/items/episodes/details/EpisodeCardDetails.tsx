@@ -60,7 +60,7 @@ export default function EpisodeDetailsCard({
       });
     },
     onError: (err) => {
-      if (err?.message.includes('Access denied')) {
+      if (err?.message.includes('Not authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
@@ -118,7 +118,7 @@ export default function EpisodeDetailsCard({
   const { loading, createComment } = useCommentReply({
     objectType: 'episode',
     onError: (err) => {
-      if (err?.message.includes('Access denied')) {
+      if (err?.message.includes('Not authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',

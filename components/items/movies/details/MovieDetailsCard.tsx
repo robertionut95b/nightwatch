@@ -63,7 +63,7 @@ export default function MovieDetailsCard({
       });
     },
     onError: (err) => {
-      if (err?.message.includes('Access denied')) {
+      if (err?.message.includes('Not authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
@@ -122,7 +122,7 @@ export default function MovieDetailsCard({
   const { loading, createComment } = useCommentReply({
     objectType: 'movie',
     onError: (err) => {
-      if (err?.message.includes('Access denied')) {
+      if (err?.message.includes('Not authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
