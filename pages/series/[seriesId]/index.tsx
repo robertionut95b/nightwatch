@@ -13,6 +13,7 @@ import {
   Role,
   Season,
   Serie,
+  Comment,
 } from '@prisma/client';
 
 interface IParams extends ParsedUrlQuery {
