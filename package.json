@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "concurrently --kill-others \"npm run prisma-generate\" \"npm run prisma-deploy\" \"npm run generate\" \"npm run next-build\"",
+    "build": "concurrently --kill-others \"npm run prisma generate\" \"npm run prisma deploy\" \"npm run generate\" \"npm run next-build\"",
     "start": "next start",
     "generate": "graphql-codegen --config codegen.yml",
     "prisma-generate": "prisma generate",
