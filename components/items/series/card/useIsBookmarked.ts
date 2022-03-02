@@ -148,9 +148,22 @@ export const useIsBookmarked = (
           query: WatchlistsDocument,
           variables: {
             where: {
-              default: {
-                equals: true,
-              },
+              AND: [
+                {
+                  default: {
+                    equals: true,
+                  },
+                },
+                {
+                  user: {
+                    is: {
+                      email: {
+                        equals: session?.user?.email,
+                      },
+                    },
+                  },
+                },
+              ],
             },
           },
         },

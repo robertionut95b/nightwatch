@@ -5,11 +5,27 @@ import EpisodeCard from '../episodes/card/EpisodeCard';
 import ShowIf from '@components/utils/layout/showConditional/showIf';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import WatchlistTypeSelector from './WatchlistTypeSelector';
+import { WatchlistsDocument } from 'generated/graphql';
+import { useApolloClient } from '@apollo/client';
+import { useEffect } from 'react';
 
 export const WatchlistComponent = ({
   watchlist,
 }: WatchlistsPageProps): JSX.Element => {
   const { selectedSection, WatchlistSelector } = WatchlistTypeSelector();
+  const client = useApolloClient();
+
+  useEffect(() => {
+    client.writeQuery({
+      query: WatchlistsDocument,
+      data: {
+        watchlists: {
+          ...watchlist,
+        },
+        __typename: 'Watchlist',
+      },
+    });
+  }, [client, watchlist]);
 
   return (
     <section>
@@ -29,17 +45,9 @@ export const WatchlistComponent = ({
             >
               <h2 className="text-lg font-bold">Movies</h2>
               <div className="movies-wrapper layout-grid mt-3">
-                {watchlist.movieWatchlist?.movies?.map(
-                  ({ movie, seen, seenAt }) => (
-                    <MovieCard
-                      key={movie.id}
-                      movie={movie}
-                      bookmarked
-                      seen={seen}
-                      seenAt={seenAt?.toString()}
-                    />
-                  ),
-                )}
+                {watchlist.movieWatchlist?.movies?.map(({ movie }) => (
+                  <MovieCard key={movie.id} movie={movie} />
+                ))}
               </div>
             </ShowIfElse>
           </div>
@@ -56,7 +64,7 @@ export const WatchlistComponent = ({
               <h2 className="text-lg font-bold">Series</h2>
               <div className="series-wrapper layout-grid mt-3">
                 {watchlist.seriesWatchlist?.series?.map(({ serie }) => (
-                  <SeriesCard key={serie.id} series={serie} bookmarked />
+                  <SeriesCard key={serie.id} series={serie} />
                 ))}
               </div>
             </ShowIfElse>
@@ -79,7 +87,6 @@ export const WatchlistComponent = ({
                     seriesImdbID={episode.season.series.imdbID}
                     episode={episode}
                     season={episode.season}
-                    bookmarked
                   />
                 </div>
               ))}

@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client';
-import { Movie } from '@prisma/client';
+import { Episode } from '@prisma/client';
 import {
   useWatchlistsLazyQuery,
   WatchlistsDocument,
@@ -7,7 +7,7 @@ import {
 } from 'generated/graphql';
 import { useSession } from 'next-auth/client';
 import { useEffect, useState } from 'react';
-import { useUpdateIsSeenMovieMutation } from '../../../../generated/graphql';
+import { useUpdateIsSeenEpisodeMutation } from '../../../../generated/graphql';
 
 interface IIsSeenResp {
   isSeen: boolean;
@@ -16,24 +16,24 @@ interface IIsSeenResp {
   setIsSeen: () => void;
 }
 
-const checkIsSeenMovie = (
-  movieId: Movie['id'],
+const checkIsSeenEpisode = (
+  episodeId: Episode['id'],
   watchlist: WatchlistsQuery['watchlists'][number],
 ): {
   seen: boolean;
   seenAt: string;
 } => {
-  const movie = watchlist.movieWatchlist?.movies.find(
-    (m) => m.movieId === movieId,
+  const episode = watchlist.episodeWatchlist?.episodes.find(
+    (e) => e.episodeId === episodeId,
   );
   return {
-    seen: movie?.seen || false,
-    seenAt: movie?.seenAt || '',
+    seen: episode?.seen || false,
+    seenAt: episode?.seenAt || '',
   };
 };
 
-const useIsSeenMovie = (
-  movieId: Movie['id'],
+const useIsSeenEpisode = (
+  episodeId: Episode['id'],
   options: {
     onSuccess?: () => void;
     onError?: (err: ApolloError | undefined) => void;
@@ -71,12 +71,12 @@ const useIsSeenMovie = (
     },
   });
 
-  const [updateIsSeenMovieMutation, { loading: mutationLoading }] =
-    useUpdateIsSeenMovieMutation({
+  const [updateIsSeenEpisodeMutation, { loading: mutationLoading }] =
+    useUpdateIsSeenEpisodeMutation({
       variables: {
         where: {
-          movieId_watchlistId: {
-            movieId: movieId,
+          episodeId_watchlistId: {
+            episodeId: episodeId,
             watchlistId: wachlistId,
           },
         },
@@ -133,21 +133,21 @@ const useIsSeenMovie = (
     if (defaultWatchlist) {
       setWatchlistId(defaultWatchlist.watchlists[0].id);
 
-      const seenSerie = checkIsSeenMovie(
-        movieId,
+      const seenSerie = checkIsSeenEpisode(
+        episodeId,
         defaultWatchlist.watchlists[0],
       );
       setIsSeen(seenSerie.seen);
       setSeenAt(seenSerie.seenAt);
     }
-  }, [defaultWatchlist, movieId]);
+  }, [defaultWatchlist, episodeId]);
 
   return {
     isSeen,
     seenAt,
     loading: loading || watchlistLoading || mutationLoading,
-    setIsSeen: () => updateIsSeenMovieMutation(),
+    setIsSeen: () => updateIsSeenEpisodeMutation(),
   };
 };
 
-export default useIsSeenMovie;
+export default useIsSeenEpisode;

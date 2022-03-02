@@ -4,7 +4,7 @@ import { Movie, SearchMovieByTitleQuery } from '../../../../generated/graphql';
 import { Ribbon } from '../../../utils/layout/card-fillers/ribbon';
 import { toastDefaults } from '../../../../assets/constants/config';
 import { useIsBookmarked } from './useIsBookmarked';
-import { createStandaloneToast } from '@chakra-ui/react';
+import { createStandaloneToast, Tooltip } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import ShowIf from '@components/utils/layout/showConditional/showIf';
@@ -14,14 +14,8 @@ import { format, parseISO } from 'date-fns';
 
 export default function MovieCard({
   movie,
-  bookmarked = false,
-  seen = false,
-  seenAt = '',
 }: {
   movie: Movie | SearchMovieByTitleQuery['movies'][0];
-  bookmarked?: boolean;
-  seen?: boolean;
-  seenAt?: string;
 }): JSX.Element {
   const { id } = movie;
   const toast = createStandaloneToast();
@@ -43,7 +37,8 @@ export default function MovieCard({
         });
       } else {
         toast({
-          title: 'Failed to remove from watchlist',
+          title:
+            'Unexpected error. If this persists, contact your administrator',
           status: 'error',
           ...toastDefaults,
         });
@@ -53,41 +48,37 @@ export default function MovieCard({
 
   const {
     isSeen,
-    seenAt: seenAtt,
+    seenAt,
     loading: seenLoading,
     setIsSeen,
-  } = useIsSeenMovie(
-    id,
-    {
-      onSuccess: () => {
+  } = useIsSeenMovie(id, {
+    onSuccess: () => {
+      toast({
+        title: isSeen ? 'Removed seen mark' : 'Marked as seen',
+        status: isSeen ? 'info' : 'success',
+        ...toastDefaults,
+      });
+    },
+    onError: (err) => {
+      if (err?.message.includes('Not Authorised')) {
         toast({
-          title: isSeen ? 'Removed seen mark' : 'Marked as seen',
-          status: isBookmarked ? 'info' : 'success',
+          title: 'Action not allowed. Must login first',
+          status: 'error',
           ...toastDefaults,
         });
-      },
-      onError: (err) => {
-        if (err?.message.includes('Not Authorised')) {
-          toast({
-            title: 'Action not allowed. Must login first',
-            status: 'error',
-            ...toastDefaults,
-          });
-        } else {
-          toast({
-            title: 'Failed to update seen mark',
-            status: 'error',
-            ...toastDefaults,
-          });
-        }
-      },
+      } else {
+        toast({
+          title: 'Failed to update seen mark',
+          status: 'error',
+          ...toastDefaults,
+        });
+      }
     },
-    seen,
-  );
+  });
 
   return (
     <div className="movie-card cursor-pointer transition hover:scale-110">
-      <div className="relative mx-auto flex w-[180px] flex-col">
+      <div className="relative mx-auto flex h-[280px] w-[180px] flex-col">
         <Link href={`/movies/${movie.imdbID}`}>
           <a>
             <Image
@@ -110,23 +101,17 @@ export default function MovieCard({
           onClick={() => !loading && addToWatchlist()}
         >
           <ShowIfElse
-            if={bookmarked}
+            if={!loading}
             else={
-              <>
-                {loading ? (
-                  <div className="absolute top-1 right-2 rounded-full bg-slate-900 p-2">
-                    <MinimalSpinner />
-                  </div>
-                ) : (
-                  <Ribbon marked={isBookmarked} />
-                )}
-              </>
+              <div className="absolute top-1 right-2 rounded-full bg-slate-900 p-2">
+                <MinimalSpinner />
+              </div>
             }
           >
-            <Ribbon marked={bookmarked} />
+            <Ribbon marked={isBookmarked} />
           </ShowIfElse>
         </div>
-        <ShowIf if={bookmarked}>
+        <ShowIf if={isBookmarked}>
           <div
             className="seen-wrapper absolute top-1 left-0"
             onClick={() => !seenLoading && setIsSeen()}
@@ -139,17 +124,16 @@ export default function MovieCard({
                 </div>
               }
             >
-              <div
-                title={
+              <Tooltip
+                label={
                   seenAt &&
-                  `Seen at ${format(
-                    parseISO(seenAt || seenAtt),
-                    'LLLL d, yyyy hh:mm',
-                  )}`
+                  `Seen at ${format(parseISO(seenAt), 'LLLL d, yyyy hh:mm')}`
                 }
               >
-                <SeenMark marked={isSeen} />
-              </div>
+                <div>
+                  <SeenMark marked={isSeen} />
+                </div>
+              </Tooltip>
             </ShowIfElse>
           </div>
         </ShowIf>

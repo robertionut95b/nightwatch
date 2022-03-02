@@ -386,3 +386,29 @@ export const updateIsSeenMovie = gql`
     }
   }
 `;
+
+export const updateIsSeenSerie = gql`
+  mutation updateIsSeenSerie(
+    $where: WatchlistedSerieWhereUniqueInput!
+    $data: WatchlistedSerieUpdateInput!
+  ) {
+    updateWatchlistedSerie(where: $where, data: $data) {
+      serieId
+      seen
+      seenAt
+    }
+  }
+`;
+
+export const updateIsSeenEpisode = gql`
+  mutation updateIsSeenEpisode(
+    $where: WatchlistedEpisodeWhereUniqueInput!
+    $data: WatchlistedEpisodeUpdateInput!
+  ) {
+    updateWatchlistedEpisode(where: $where, data: $data) {
+      episodeId
+      seen
+      seenAt
+    }
+  }
+`;

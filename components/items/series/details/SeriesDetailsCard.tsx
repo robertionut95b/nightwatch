@@ -123,7 +123,8 @@ export default function SeriesDetailsCard({
         });
       } else {
         toast({
-          title: 'Failed to remove from watchlist',
+          title:
+            'Unexpected error. If this persists, contact your administrator',
           status: 'error',
           ...toastDefaults,
         });
