@@ -41,7 +41,9 @@ export const WatchlistComponent = ({
                 watchlist?.movieWatchlist &&
                 watchlist?.movieWatchlist?.movies?.length > 0
               }
-              else={'No movies in this watchlist'}
+              else={
+                'No movies in this watchlist. Add a movie to your watchlist to see it here'
+              }
             >
               <h2 className="text-lg font-bold">Movies</h2>
               <div className="movies-wrapper layout-grid mt-3">
@@ -59,7 +61,9 @@ export const WatchlistComponent = ({
                 watchlist?.seriesWatchlist &&
                 watchlist?.seriesWatchlist?.series.length > 0
               }
-              else={'No series in this watchlist'}
+              else={
+                'No series in this watchlist. Add a serie to your watchlist to see it here'
+              }
             >
               <h2 className="text-lg font-bold">Series</h2>
               <div className="series-wrapper layout-grid mt-3">
@@ -72,25 +76,35 @@ export const WatchlistComponent = ({
         </ShowIf>
         <ShowIf if={selectedSection === 'episodes'}>
           <div className="episodes">
-            <h2 className="text-lg font-bold">Episodes</h2>
-            <div className="series-wrapper layout-grid mt-2">
-              {watchlist.episodeWatchlist?.episodes?.map(({ episode }) => (
-                <div
-                  className="flex flex-col items-center"
-                  key={episode.imdbID}
-                >
-                  <span className="text-md truncate font-normal">
-                    {episode.season.series.title} - S{episode.season.index}
-                  </span>
-                  <EpisodeCard
-                    key={episode.id}
-                    seriesImdbID={episode.season.series.imdbID}
-                    episode={episode}
-                    season={episode.season}
-                  />
-                </div>
-              ))}
-            </div>
+            <ShowIfElse
+              if={
+                watchlist?.episodeWatchlist &&
+                watchlist?.episodeWatchlist?.episodes.length > 0
+              }
+              else={
+                'No episodes in this watchlist. Add an episode to your watchlist to see it here.'
+              }
+            >
+              <h2 className="text-lg font-bold">Episodes</h2>
+              <div className="series-wrapper layout-grid mt-2">
+                {watchlist.episodeWatchlist?.episodes?.map(({ episode }) => (
+                  <div
+                    className="flex flex-col items-center"
+                    key={episode.imdbID}
+                  >
+                    <span className="text-md truncate font-normal">
+                      {episode.season.series.title} - S{episode.season.index}
+                    </span>
+                    <EpisodeCard
+                      key={episode.id}
+                      seriesImdbID={episode.season.series.imdbID}
+                      episode={episode}
+                      season={episode.season}
+                    />
+                  </div>
+                ))}
+              </div>
+            </ShowIfElse>
           </div>
         </ShowIf>
       </div>

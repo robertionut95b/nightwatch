@@ -70,7 +70,6 @@ export const SeenMark = ({
             clipRule="evenodd"
           />
         </svg>
-        ;
       </ShowIfElse>
     </div>
   );
