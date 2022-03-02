@@ -152,7 +152,7 @@ export default function SearchResults({
 
   const createOMDBSeries = async (id: string): Promise<void> => {
     if (series.filter((s) => s.imdbID === id).length > 0) {
-      alert('Series already exist');
+      alert('Series already exists');
       return;
     }
     toast({
@@ -172,7 +172,7 @@ export default function SearchResults({
 
   const createOMDBMovies = async (id: string): Promise<void> => {
     if (movies.filter((m) => m.imdbID === id).length > 0) {
-      alert('Movie already exist');
+      alert('Movie already exists');
       return;
     }
     toast({
@@ -215,7 +215,7 @@ export default function SearchResults({
             <Link href="/movies" passHref>
               <p className="text-lg font-bold">Movies</p>
             </Link>
-            <div className="search-results grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-6">
+            <div className="search-results layout-grid">
               {movies?.map((m) => (
                 <MovieCard movie={m} key={m.id} />
               ))}
@@ -227,7 +227,7 @@ export default function SearchResults({
             <Link href="/series" passHref>
               <p className="text-lg font-bold">Series</p>
             </Link>
-            <div className="search-results grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-6">
+            <div className="search-results layout-grid">
               {series?.map((s) => (
                 <SeriesCard series={s} key={s.id} />
               ))}

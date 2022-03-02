@@ -132,8 +132,6 @@ export class OMDBMovie implements IPrismaMovieConvertor {
       languages: {
         connectOrCreate: languages,
       },
-      // director: this.Director,
-      // actors: this.Actors,
       plot: this.Plot,
       poster: this.Poster,
       imdbRating: parseFloat(this.imdbRating) || 0,

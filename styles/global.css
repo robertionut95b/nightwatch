@@ -52,6 +52,10 @@ img {
   .btn-primary-outline-white {
     @apply rounded-lg border border-gray-500 bg-transparent py-1 px-4 text-white transition-all duration-300 ease-in-out hover:bg-primary-hover;
   }
+
+  .layout-grid {
+    @apply grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-6;
+  }
 }
 
 .lds-ring {

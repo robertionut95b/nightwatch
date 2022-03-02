@@ -1,6 +1,7 @@
 module.exports = {
   images: {
     domains: ['m.media-amazon.com'],
+    formats: ['image/avif', 'image/webp'],
   },
   env: {
     OMDB_API_URL: process.env.OMDB_API_URL,

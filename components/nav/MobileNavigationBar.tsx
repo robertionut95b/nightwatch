@@ -19,7 +19,7 @@ export default function MobileNavigationBar(): JSX.Element {
             </Link>
           </div>
         )}
-        <div className="quick-actions grid grid-cols-2 gap-x-2">
+        <div className="quick-actions grid gap-2">
           {session && (
             <Link href="/user/watchlists" passHref>
               <button className="btn-primary">Watchlists</button>

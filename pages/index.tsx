@@ -39,7 +39,7 @@ export default function Home({
         <h2 className="mb-4 text-lg font-bold">
           <Link href="/movies">Movies</Link>
         </h2>
-        <section className="latest-movies-section grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-6">
+        <section className="latest-movies-section layout-grid">
           {movies.map((m) => (
             <MovieCard movie={m} key={m.id} />
           ))}
@@ -47,7 +47,7 @@ export default function Home({
         <h2 className="mt-8 mb-4 text-lg font-bold">
           <Link href="/series">Series</Link>
         </h2>
-        <section className="latest-series-section grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-6">
+        <section className="latest-series-section layout-grid">
           {series.map((s) => (
             <SeriesCard series={s} key={s.id} />
           ))}

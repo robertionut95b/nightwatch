@@ -253,7 +253,7 @@ export default function SeriesPage({
           />
         </div>
       </section>
-      <section className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-6">
+      <section className="layout-grid">
         <>
           {seriesCursor.length === 0 ? 'No series found' : null}
           {seriesCursor?.map((s) => (

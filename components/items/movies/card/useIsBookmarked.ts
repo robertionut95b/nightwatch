@@ -39,7 +39,6 @@ export const useIsBookmarked = (
   const [isBookmarked, setIsBookmarked] = useState<boolean>(
     defaultBookmarked || false,
   );
-  const [bookmarkLoading, setBookmarkLoading] = useState<boolean>(true);
   const [defaultWatchlist, setDefaultWatchlist] =
     useState<WatchlistsQuery['watchlists'][0]>();
 
@@ -66,11 +65,6 @@ export const useIsBookmarked = (
           },
         ],
       },
-    },
-    onError: (err) => {
-      if (typeof window === 'undefined') {
-        console.error(err);
-      }
     },
   });
 
@@ -103,9 +97,6 @@ export const useIsBookmarked = (
         onSuccess?.();
       },
       onError: (err) => {
-        if (typeof window === 'undefined') {
-          console.error(err);
-        }
         onError?.(err);
       },
       refetchQueries: [
@@ -150,9 +141,6 @@ export const useIsBookmarked = (
         onSuccess?.();
       },
       onError: (err) => {
-        if (typeof window === 'undefined') {
-          console.error(err);
-        }
         onError?.(err);
       },
       refetchQueries: [
@@ -170,10 +158,11 @@ export const useIsBookmarked = (
     });
 
   useEffect(() => {
+    if (defaultBookmarked === true) return;
     if (session?.user?.email) {
       getDefaultWatchlist();
     }
-  }, [getDefaultWatchlist, session?.user?.email]);
+  }, [defaultBookmarked, getDefaultWatchlist, session?.user?.email]);
 
   useEffect(() => {
     if (watchlistQueryData) {
@@ -187,20 +176,12 @@ export const useIsBookmarked = (
     setIsBookmarked(checkIfBookmarked(movieId, defaultWatchlist));
   }, [movieId, session, defaultWatchlist]);
 
-  useEffect(() => {
-    if (loading || addLoading || removeLoading || watchlistLoading) {
-      setBookmarkLoading(true);
-    } else {
-      setBookmarkLoading(false);
-    }
-  }, [loading, addLoading, removeLoading, watchlistLoading]);
-
   return {
     isBookmarked,
     addToWatchlist: () =>
       !isBookmarked
         ? addMovieToWatchlistMutation()
         : removeMovieFromWatchlistMutation(),
-    loading: bookmarkLoading,
+    loading: loading || addLoading || removeLoading || watchlistLoading,
   };
 };

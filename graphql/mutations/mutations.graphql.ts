@@ -373,3 +373,16 @@ export const deleteManyComment = gql`
     }
   }
 `;
+
+export const updateIsSeenMovie = gql`
+  mutation updateIsSeenMovie(
+    $where: WatchlistedMovieWhereUniqueInput!
+    $data: WatchlistedMovieUpdateInput!
+  ) {
+    updateWatchlistedMovie(where: $where, data: $data) {
+      movieId
+      seen
+      seenAt
+    }
+  }
+`;

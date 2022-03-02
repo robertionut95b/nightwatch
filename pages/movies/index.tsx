@@ -252,7 +252,7 @@ export default function Movies({
           />
         </div>
       </section>
-      <section className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-6">
+      <section className="layout-grid">
         <>
           {moviesCursor.length === 0 ? 'No movies found' : null}
           {moviesCursor?.map((m) => (
