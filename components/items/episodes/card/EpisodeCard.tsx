@@ -4,17 +4,20 @@ import { Placeholder } from '../../../utils/layout/placeholders/placeholder';
 import { Ribbon } from '../../../utils/layout/card-fillers/ribbon';
 import { useIsBookmarked } from './useIsBookmarked';
 import { toastDefaults } from '../../../../assets/constants/config';
-import { createStandaloneToast } from '@chakra-ui/react';
+import { createStandaloneToast, Tooltip } from '@chakra-ui/react';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
 import { Episode, Season as PrismaSeason, Season } from '@prisma/client';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import { CreateSeasonMutation } from 'generated/graphql';
+import useIsSeenEpisode from './useIsSeen';
+import { SeenMark } from '@components/utils/layout/card-fillers/seenMark';
+import ShowIf from '@components/utils/layout/showConditional/showIf';
+import { format, parseISO } from 'date-fns';
 
 export default function EpisodeCard({
   seriesImdbID,
   season,
   episode,
-  bookmarked = false,
 }: {
   seriesImdbID: string;
   season:
@@ -23,9 +26,10 @@ export default function EpisodeCard({
     | PrismaSeason
     | { index: Season['index'] };
   episode: Episode | CreateSeasonMutation['createSeason']['episodeIds'][0];
-  bookmarked?: boolean;
 }): JSX.Element {
+  const { id } = episode;
   const toast = createStandaloneToast();
+
   const { isBookmarked, addToWatchlist, loading } = useIsBookmarked(
     episode.id,
     {
@@ -37,7 +41,7 @@ export default function EpisodeCard({
         });
       },
       onError: (err) => {
-        if (err?.message.includes('Access denied')) {
+        if (err?.message.includes('Not Authorised')) {
           toast({
             title: 'Action not allowed. Must login first',
             status: 'error',
@@ -45,7 +49,8 @@ export default function EpisodeCard({
           });
         } else {
           toast({
-            title: 'Failed to remove from watchlist',
+            title:
+              'Unexpected error. If this persists, contact your administrator',
             status: 'error',
             ...toastDefaults,
           });
@@ -53,59 +58,106 @@ export default function EpisodeCard({
       },
     },
   );
+
+  const {
+    isSeen,
+    seenAt,
+    loading: seenLoading,
+    setIsSeen,
+  } = useIsSeenEpisode(id, {
+    onSuccess: () => {
+      toast({
+        title: isSeen ? 'Removed seen mark' : 'Marked as seen',
+        status: isSeen ? 'info' : 'success',
+        ...toastDefaults,
+      });
+    },
+    onError: (err) => {
+      if (err?.message.includes('Not Authorised')) {
+        toast({
+          title: 'Action not allowed. Must login first',
+          status: 'error',
+          ...toastDefaults,
+        });
+      } else {
+        toast({
+          title: 'Failed to update seen mark',
+          status: 'error',
+          ...toastDefaults,
+        });
+      }
+    },
+  });
+
   return (
     <div className="episode-card w-max">
-      <div className="series-card cursor-pointer">
-        <div className="flex flex-col mx-auto relative w-[180px]">
-          <Link
-            href={`/series/${seriesImdbID}/seasons/${season.index}/episodes/${episode.imdbID}`}
-            passHref
+      <div className="relative mx-auto flex w-[180px] flex-col">
+        <Link
+          href={`/series/${seriesImdbID}/seasons/${season.index}/episodes/${episode.imdbID}`}
+          passHref
+        >
+          <a>
+            <ShowIfElse
+              else={<Placeholder width={180} height={250} label="No poster" />}
+              if={episode.poster}
+            >
+              <Image
+                src={episode.poster}
+                width={180}
+                height={250}
+                alt="poster"
+                objectFit="cover"
+              />
+            </ShowIfElse>
+          </a>
+        </Link>
+        <h6
+          className="mt-1 truncate text-center font-medium tracking-wide text-black dark:text-white"
+          title={episode.title}
+        >
+          {episode.title}
+        </h6>
+        <div
+          className="ribbon-wrapper"
+          onClick={() => !loading && addToWatchlist()}
+        >
+          <ShowIfElse
+            if={!loading}
+            else={
+              <div className="absolute top-1 right-2 rounded-full bg-slate-900 p-2">
+                <MinimalSpinner />
+              </div>
+            }
           >
-            <a>
-              <ShowIfElse
-                else={
-                  <Placeholder width={180} height={250} label="No poster" />
-                }
-                if={episode.poster}
-              >
-                <Image
-                  src={episode.poster}
-                  width={180}
-                  height={250}
-                  alt="poster"
-                  objectFit="cover"
-                />
-              </ShowIfElse>
-            </a>
-          </Link>
-          <h6
-            className="text-center mt-1 truncate font-medium tracking-wide text-black dark:text-white"
-            title={episode.title}
-          >
-            {episode.title}
-          </h6>
+            <Ribbon marked={isBookmarked} />
+          </ShowIfElse>
+        </div>
+        <ShowIf if={isBookmarked}>
           <div
-            className="ribbon-wrapper"
-            onClick={() => !loading && addToWatchlist()}
+            className="seen-wrapper absolute top-1 left-0"
+            onClick={() => !seenLoading && setIsSeen()}
           >
             <ShowIfElse
-              if={bookmarked}
+              if={!seenLoading}
               else={
-                <>
-                  {loading ? (
-                    <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
-                      <MinimalSpinner />
-                    </div>
-                  ) : (
-                    <Ribbon marked={isBookmarked} />
-                  )}
-                </>
+                <div className="absolute top-1 left-2 rounded-full bg-slate-900 p-2">
+                  <MinimalSpinner />
+                </div>
               }
             >
-              <Ribbon marked={bookmarked} />
+              <Tooltip
+                label={
+                  seenAt &&
+                  `Seen at ${format(parseISO(seenAt), 'LLLL d, yyyy hh:mm')}`
+                }
+              >
+                <div>
+                  <SeenMark marked={isSeen} />
+                </div>
+              </Tooltip>
             </ShowIfElse>
           </div>
-        </div>
+        </ShowIf>
       </div>
     </div>
   );

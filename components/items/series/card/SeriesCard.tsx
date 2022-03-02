@@ -1,30 +1,26 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-  Serie,
-  SearchSeriesByTitleQuery,
-  AllSeriesQuery,
-} from '../../../../generated/graphql';
-import { createStandaloneToast } from '@chakra-ui/react';
+import { Serie, SearchSeriesByTitleQuery } from '../../../../generated/graphql';
+import { createStandaloneToast, Tooltip } from '@chakra-ui/react';
 import { toastDefaults } from '../../../../assets/constants/config';
 import React from 'react';
 import { Ribbon } from '../../../utils/layout/card-fillers/ribbon';
 import { useIsBookmarked } from './useIsBookmarked';
 import { MinimalSpinner } from '../../../utils/layout/spinners/minimalSpinner';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
+import useIsSeenSerie from './useIsSeen';
+import ShowIf from '@components/utils/layout/showConditional/showIf';
+import { format, parseISO } from 'date-fns';
+import { SeenMark } from '@components/utils/layout/card-fillers/seenMark';
 
 export default function SeriesCard({
   series,
-  bookmarked = false,
 }: {
-  series:
-    | Serie
-    | AllSeriesQuery['series'][0]
-    | SearchSeriesByTitleQuery['series'][0];
-  bookmarked?: boolean;
+  series: Serie | SearchSeriesByTitleQuery['series'][0];
 }): JSX.Element {
   const { id } = series;
   const toast = createStandaloneToast();
+
   const { isBookmarked, addToWatchlist, loading } = useIsBookmarked(id, {
     onSuccess: () => {
       toast({
@@ -34,7 +30,7 @@ export default function SeriesCard({
       });
     },
     onError: (err) => {
-      if (err?.message.includes('Access denied')) {
+      if (err?.message.includes('Not Authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
@@ -42,7 +38,38 @@ export default function SeriesCard({
         });
       } else {
         toast({
-          title: 'Failed to remove from watchlist',
+          title:
+            'Unexpected error. If this persists, contact your administrator',
+          status: 'error',
+          ...toastDefaults,
+        });
+      }
+    },
+  });
+
+  const {
+    isSeen,
+    seenAt,
+    loading: seenLoading,
+    setIsSeen,
+  } = useIsSeenSerie(id, {
+    onSuccess: () => {
+      toast({
+        title: isSeen ? 'Removed seen mark' : 'Marked as seen',
+        status: isSeen ? 'info' : 'success',
+        ...toastDefaults,
+      });
+    },
+    onError: (err) => {
+      if (err?.message.includes('Not Authorised')) {
+        toast({
+          title: 'Action not allowed. Must login first',
+          status: 'error',
+          ...toastDefaults,
+        });
+      } else {
+        toast({
+          title: 'Failed to update seen mark',
           status: 'error',
           ...toastDefaults,
         });
@@ -52,7 +79,7 @@ export default function SeriesCard({
 
   return (
     <div className="series-card cursor-pointer transition hover:scale-110">
-      <div className="flex flex-col mx-auto relative w-[180px]">
+      <div className="relative mx-auto flex h-[280px] w-[180px] flex-col">
         <Link href={`/series/${series.imdbID}`}>
           <a>
             <Image
@@ -65,7 +92,7 @@ export default function SeriesCard({
           </a>
         </Link>
         <h6
-          className="text-center mt-1 truncate font-medium tracking-wide text-black dark:text-white"
+          className="mt-1 truncate text-center font-medium tracking-wide text-black dark:text-white"
           title={series.title}
         >
           {series.title}
@@ -75,22 +102,42 @@ export default function SeriesCard({
           onClick={() => !loading && addToWatchlist()}
         >
           <ShowIfElse
-            if={bookmarked}
+            if={!loading}
             else={
-              <>
-                {loading ? (
-                  <div className="absolute top-1 right-2 p-2 bg-slate-900 rounded-full">
-                    <MinimalSpinner />
-                  </div>
-                ) : (
-                  <Ribbon marked={isBookmarked} />
-                )}
-              </>
+              <div className="absolute top-1 right-2 rounded-full bg-slate-900 p-2">
+                <MinimalSpinner />
+              </div>
             }
           >
-            <Ribbon marked={bookmarked} />
+            <Ribbon marked={isBookmarked} />
           </ShowIfElse>
         </div>
+        <ShowIf if={isBookmarked}>
+          <div
+            className="seen-wrapper absolute top-1 left-0"
+            onClick={() => !seenLoading && setIsSeen()}
+          >
+            <ShowIfElse
+              if={!seenLoading}
+              else={
+                <div className="absolute top-1 left-2 rounded-full bg-slate-900 p-2">
+                  <MinimalSpinner />
+                </div>
+              }
+            >
+              <Tooltip
+                label={
+                  seenAt &&
+                  `Seen at ${format(parseISO(seenAt), 'LLLL d, yyyy hh:mm')}`
+                }
+              >
+                <div>
+                  <SeenMark marked={isSeen} />
+                </div>
+              </Tooltip>
+            </ShowIfElse>
+          </div>
+        </ShowIf>
       </div>
     </div>
   );

@@ -18,7 +18,9 @@ import { cfg } from '../../assets/constants/config';
 import { generateYearsArray } from '../../src/utils/generators/years';
 import { imdbRatingsArray } from '../../assets/constants/imdbRatingsArr';
 import { StringListDropdown } from '../../components/utils/layout/dropdowns/dropdown';
-import { Spinner } from '../../components/utils/layout/spinners/spinner';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
+import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
+import { useTheme } from 'next-themes';
 
 export default function Movies({
   movies,
@@ -169,6 +171,8 @@ export default function Movies({
     }
   }, [movies]);
 
+  const { theme } = useTheme();
+
   return (
     <Layout home={false}>
       <Head>
@@ -178,7 +182,7 @@ export default function Movies({
         Movies
       </h4>
       <section className="movies-filters mb-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row gap-x-6 gap-y-2 md:flex-wrap">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-3 md:flex md:flex-row md:flex-wrap">
           {genres?.length > 0 && (
             <StringListDropdown
               label="Genres"
@@ -248,7 +252,7 @@ export default function Movies({
           />
         </div>
       </section>
-      <section className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-12">
+      <section className="layout-grid">
         <>
           {moviesCursor.length === 0 ? 'No movies found' : null}
           {moviesCursor?.map((m) => (
@@ -256,14 +260,20 @@ export default function Movies({
           ))}
         </>
       </section>
-      <div className="mt-14 load-more flex flex-col-reverse items-center justify-center gap-y-4">
-        {loadMore && <Spinner />}
+      <div className="load-more mt-14 flex items-center justify-center gap-y-4">
         {cursor !== 0 && (
           <button
-            className="btn-primary-outline text-lg font-semibold"
+            className="btn-primary-outline text-base font-semibold"
             onClick={() => loadMoreMovies()}
+            disabled={loadMore}
           >
-            Load more
+            <ShowIfElse if={loadMore} else={'Load more'}>
+              {theme === 'light' ? (
+                <MinimalSpinner color="black" />
+              ) : (
+                <MinimalSpinner color="text-white" />
+              )}
+            </ShowIfElse>
           </button>
         )}
       </div>

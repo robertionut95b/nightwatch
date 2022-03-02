@@ -42,7 +42,6 @@ export const useIsBookmarked = (
   );
   const [defaultWatchlist, setDefaultWatchlist] =
     useState<WatchlistsQuery['watchlists'][0]>();
-  const [bookmarkLoading, setBookmarkLoading] = useState<boolean>(true);
 
   const [
     getDefaultWatchlist,
@@ -68,10 +67,8 @@ export const useIsBookmarked = (
         ],
       },
     },
-    onError: (err) => {
-      if (typeof window === 'undefined') {
-        console.error(err);
-      }
+    onCompleted: (data) => {
+      setDefaultWatchlist(data.watchlists[0]);
     },
   });
 
@@ -104,9 +101,6 @@ export const useIsBookmarked = (
         onSuccess?.();
       },
       onError: (err) => {
-        if (typeof window === 'undefined') {
-          console.error(err);
-        }
         onError?.(err);
       },
       refetchQueries: [
@@ -151,9 +145,6 @@ export const useIsBookmarked = (
         onSuccess?.();
       },
       onError: (err) => {
-        if (typeof window === 'undefined') {
-          console.error(err);
-        }
         onError?.(err);
       },
       refetchQueries: [
@@ -171,16 +162,11 @@ export const useIsBookmarked = (
     });
 
   useEffect(() => {
+    if (defaultBookmarked === true) return;
     if (session?.user?.email) {
       getDefaultWatchlist();
     }
-  }, [getDefaultWatchlist, session?.user?.email]);
-
-  useEffect(() => {
-    if (watchlistQueryData) {
-      setDefaultWatchlist(watchlistQueryData.watchlists[0]);
-    }
-  }, [watchlistQueryData]);
+  }, [getDefaultWatchlist, session?.user?.email, defaultBookmarked]);
 
   useEffect(() => {
     if (!session || Object.keys(session).length === 0 || !defaultWatchlist)
@@ -189,12 +175,10 @@ export const useIsBookmarked = (
   }, [episodeId, session, defaultWatchlist]);
 
   useEffect(() => {
-    if (loading || addLoading || removeLoading || watchlistLoading) {
-      setBookmarkLoading(true);
-    } else {
-      setBookmarkLoading(false);
+    if (watchlistQueryData) {
+      setDefaultWatchlist(watchlistQueryData.watchlists[0]);
     }
-  }, [loading, addLoading, removeLoading, watchlistLoading]);
+  }, [watchlistQueryData]);
 
   return {
     isBookmarked,
@@ -202,6 +186,6 @@ export const useIsBookmarked = (
       !isBookmarked
         ? addEpisodeToWatchlistMutation()
         : removeEpisodeFromWatchlistMutation(),
-    loading: bookmarkLoading,
+    loading: loading || addLoading || removeLoading || watchlistLoading,
   };
 };

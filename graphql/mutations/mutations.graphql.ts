@@ -365,3 +365,50 @@ export const deleteComment = gql`
     }
   }
 `;
+
+export const deleteManyComment = gql`
+  mutation deleteManyComment($where: CommentWhereInput) {
+    deleteManyComment(where: $where) {
+      count
+    }
+  }
+`;
+
+export const updateIsSeenMovie = gql`
+  mutation updateIsSeenMovie(
+    $where: WatchlistedMovieWhereUniqueInput!
+    $data: WatchlistedMovieUpdateInput!
+  ) {
+    updateWatchlistedMovie(where: $where, data: $data) {
+      movieId
+      seen
+      seenAt
+    }
+  }
+`;
+
+export const updateIsSeenSerie = gql`
+  mutation updateIsSeenSerie(
+    $where: WatchlistedSerieWhereUniqueInput!
+    $data: WatchlistedSerieUpdateInput!
+  ) {
+    updateWatchlistedSerie(where: $where, data: $data) {
+      serieId
+      seen
+      seenAt
+    }
+  }
+`;
+
+export const updateIsSeenEpisode = gql`
+  mutation updateIsSeenEpisode(
+    $where: WatchlistedEpisodeWhereUniqueInput!
+    $data: WatchlistedEpisodeUpdateInput!
+  ) {
+    updateWatchlistedEpisode(where: $where, data: $data) {
+      episodeId
+      seen
+      seenAt
+    }
+  }
+`;

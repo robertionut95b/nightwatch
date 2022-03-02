@@ -20,8 +20,10 @@ export default function CommentCard({
   comments,
   userId,
   entityId,
+  objectType,
   showChildComments = false,
 }: {
+  objectType: 'movie' | 'serie' | 'episode';
   entityId: Movie['id'] | Serie['id'] | Episode['id'];
   showChildComments?: boolean;
 } & Comment & {
@@ -41,8 +43,9 @@ export default function CommentCard({
   );
 
   const { createComment, loading: createLoading } = useCommentReply({
+    objectType,
     onError: (err) => {
-      if (err?.message.includes('Access denied')) {
+      if (err?.message.includes('Not Authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
@@ -84,7 +87,7 @@ export default function CommentCard({
 
   const { deleteComment, loading } = useCommentDelete({
     onError: (err) => {
-      if (err?.message.includes('Access denied')) {
+      if (err?.message.includes('Not Authorised')) {
         toast({
           title: 'Action not allowed. Must login first',
           status: 'error',
@@ -196,6 +199,7 @@ export default function CommentCard({
                 <div className="child-comments-list">
                   {comments?.map((comment, idx) => (
                     <CommentCard
+                      objectType={objectType}
                       comments={[]}
                       key={idx}
                       {...comment}

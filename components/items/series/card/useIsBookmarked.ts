@@ -39,7 +39,6 @@ export const useIsBookmarked = (
   const [isBookmarked, setIsBookmarked] = useState<boolean>(
     defaultBookmarked || false,
   );
-  const [bookmarkLoading, setBookmarkLoading] = useState<boolean>(true);
 
   const [defaultWatchlist, setDefaultWatchlist] =
     useState<WatchlistsQuery['watchlists'][0]>();
@@ -66,11 +65,6 @@ export const useIsBookmarked = (
           },
         ],
       },
-    },
-    onError: (err) => {
-      if (typeof window === 'undefined') {
-        console.error(err);
-      }
     },
   });
 
@@ -103,9 +97,6 @@ export const useIsBookmarked = (
         onSuccess?.();
       },
       onError: (err) => {
-        if (typeof window === 'undefined') {
-          console.error(err);
-        }
         onError?.(err);
       },
       refetchQueries: [
@@ -150,9 +141,6 @@ export const useIsBookmarked = (
         onSuccess?.();
       },
       onError: (err) => {
-        if (typeof window === 'undefined') {
-          console.error(err);
-        }
         onError?.(err);
       },
       refetchQueries: [
@@ -160,9 +148,22 @@ export const useIsBookmarked = (
           query: WatchlistsDocument,
           variables: {
             where: {
-              default: {
-                equals: true,
-              },
+              AND: [
+                {
+                  default: {
+                    equals: true,
+                  },
+                },
+                {
+                  user: {
+                    is: {
+                      email: {
+                        equals: session?.user?.email,
+                      },
+                    },
+                  },
+                },
+              ],
             },
           },
         },
@@ -170,16 +171,11 @@ export const useIsBookmarked = (
     });
 
   useEffect(() => {
+    if (defaultBookmarked === true) return;
     if (session?.user?.email) {
       getDefaultWatchlist();
     }
-  }, [getDefaultWatchlist, session?.user?.email]);
-
-  useEffect(() => {
-    if (watchlistQueryData) {
-      setDefaultWatchlist(watchlistQueryData.watchlists[0]);
-    }
-  }, [watchlistQueryData]);
+  }, [getDefaultWatchlist, session?.user?.email, defaultBookmarked]);
 
   useEffect(() => {
     if (!session || Object.keys(session).length === 0 || !defaultWatchlist)
@@ -188,12 +184,10 @@ export const useIsBookmarked = (
   }, [seriesId, session, defaultWatchlist]);
 
   useEffect(() => {
-    if (loading || addLoading || removeLoading || watchlistLoading) {
-      setBookmarkLoading(true);
-    } else {
-      setBookmarkLoading(false);
+    if (watchlistQueryData) {
+      setDefaultWatchlist(watchlistQueryData.watchlists[0]);
     }
-  }, [loading, addLoading, removeLoading, watchlistLoading]);
+  }, [watchlistQueryData]);
 
   return {
     isBookmarked,
@@ -201,6 +195,6 @@ export const useIsBookmarked = (
       !isBookmarked
         ? addSeriesToWatchlistMutation()
         : removeSeriesFromWatchlistMutation(),
-    loading: bookmarkLoading,
+    loading: loading || addLoading || removeLoading || watchlistLoading,
   };
 };

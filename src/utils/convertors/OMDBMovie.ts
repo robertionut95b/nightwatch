@@ -123,7 +123,8 @@ export class OMDBMovie implements IPrismaMovieConvertor {
       title: this.Title,
       year: parseInt(this.Year?.split('-')[0]),
       rating: this.Rated || 'N/A',
-      release: parse(this.Released, 'dd MMM yyyy', new Date()),
+      release:
+        parse(this.Released, 'dd MMM yyyy', new Date()) || new Date(5999, 1, 1),
       runtime: parseInt(this.Runtime?.split(' ')[0]) || 0,
       genres: {
         connectOrCreate: genres,
@@ -131,11 +132,9 @@ export class OMDBMovie implements IPrismaMovieConvertor {
       languages: {
         connectOrCreate: languages,
       },
-      // director: this.Director,
-      // actors: this.Actors,
       plot: this.Plot,
       poster: this.Poster,
-      imdbRating: parseFloat(this.imdbRating),
+      imdbRating: parseFloat(this.imdbRating) || 0,
       imdbID: this.imdbID,
     };
   };
@@ -147,7 +146,8 @@ export class OMDBMovie implements IPrismaMovieConvertor {
       title: this.Title,
       year: parseInt(this.Year),
       rating: this.Rated || 'N/A',
-      release: parse(this.Released, 'dd MMM yyyy', new Date()),
+      release:
+        parse(this.Released, 'dd MMM yyyy', new Date()) || new Date(5999, 1, 1),
       runtime: parseInt(this.Runtime) || 0,
       genres: {
         connectOrCreate: genres,
@@ -159,7 +159,7 @@ export class OMDBMovie implements IPrismaMovieConvertor {
         connectOrCreate: languages,
       },
       poster: this.Poster,
-      imdbRating: parseInt(this.imdbRating),
+      imdbRating: parseInt(this.imdbRating) || 0,
       imdbID: this.imdbID,
     };
   };

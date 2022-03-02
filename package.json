@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "concurrently --kill-others \"npm run prisma generate\" \"npm run prisma deploy\" \"npm run generate\" \"npm run next-build\"",
     "start": "next start",
     "generate": "graphql-codegen --config codegen.yml",
+    "prisma-generate": "prisma generate",
+    "prisma-deploy": "prisma migrate deploy",
+    "prisma-studio": "prisma studio",
+    "next-build": "next build",
     "lint": "next lint",
     "lint:fix": "next lint --fix"
   },
@@ -88,6 +92,7 @@
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "autoprefixer": "^10.3.7",
+    "concurrently": "^7.0.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^14.0.0",

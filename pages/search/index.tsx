@@ -18,7 +18,6 @@ import { useRouter } from 'next/dist/client/router';
 import { ApolloError } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import NProgress from 'nprogress';
-import { Spinner } from '../../components/utils/layout/spinners/spinner';
 import Head from 'next/head';
 import SearchedSeriesCard from '../../components/items/series/searched/SearchedSeriesCard';
 import { OMDBSearchSeries } from '../../src/utils/convertors/OMDBSearchSeries';
@@ -29,6 +28,10 @@ import { createStandaloneToast } from '@chakra-ui/react';
 import { toastDefaults } from '../../assets/constants/config';
 import prisma from 'lib/PrismaClient/prisma';
 import { Movie, Serie } from '@prisma/client';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
+import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
+import { useTheme } from 'next-themes';
+import ShowIf from '@components/utils/layout/showConditional/showIf';
 
 export default function SearchResults({
   movies,
@@ -37,12 +40,13 @@ export default function SearchResults({
   movies: Movie[];
   series: Serie[];
 }): JSX.Element {
-  const [session] = useSession();
+  const [session, loading] = useSession();
   const router = useRouter();
   const { query } = router;
   const [omdbSeries, setOmdbSeries] = useState<OMDBSearchSeries[]>([]);
   const [omdbMovies, setOmdbMovies] = useState<OMDBSearchMovie[]>([]);
   const toast = createStandaloneToast();
+  const [showFindMore, setShowFindMore] = useState<boolean>(true);
 
   const [createSeasonMutation] = useCreateSeasonMutation({
     fetchPolicy: 'no-cache',
@@ -56,8 +60,8 @@ export default function SearchResults({
     },
   });
 
-  const [createSerieSearchMutation, { loading }] = useCreateSerieSearchMutation(
-    {
+  const [createSerieSearchMutation, { loading: createSerieLoading }] =
+    useCreateSerieSearchMutation({
       fetchPolicy: 'no-cache',
       onError: (error: ApolloError) => {
         console.error(error);
@@ -99,10 +103,9 @@ export default function SearchResults({
           },
         },
       ],
-    },
-  );
+    });
 
-  const [createMovieSearchMutation, { loading: loadingMovies }] =
+  const [createMovieSearchMutation, { loading: createMovieLoading }] =
     useCreateMovieSearchMutation({
       fetchPolicy: 'no-cache',
       onError: (error: ApolloError) => {
@@ -149,7 +152,7 @@ export default function SearchResults({
 
   const createOMDBSeries = async (id: string): Promise<void> => {
     if (series.filter((s) => s.imdbID === id).length > 0) {
-      alert('Series already exist');
+      alert('Series already exists');
       return;
     }
     toast({
@@ -169,7 +172,7 @@ export default function SearchResults({
 
   const createOMDBMovies = async (id: string): Promise<void> => {
     if (movies.filter((m) => m.imdbID === id).length > 0) {
-      alert('Movie already exist');
+      alert('Movie already exists');
       return;
     }
     toast({
@@ -193,9 +196,11 @@ export default function SearchResults({
   }, [query.q]);
 
   useEffect(() => {
-    if (loading || loadingMovies) NProgress.start();
-    if (!loading || loadingMovies) NProgress.done();
-  }, [loading, loadingMovies]);
+    if (createSerieLoading || createMovieLoading) NProgress.start();
+    if (!createSerieLoading || !createMovieLoading) NProgress.done();
+  }, [createSerieLoading, createMovieLoading]);
+
+  const { theme } = useTheme();
 
   return (
     <Layout home={false}>
@@ -210,7 +215,7 @@ export default function SearchResults({
             <Link href="/movies" passHref>
               <p className="text-lg font-bold">Movies</p>
             </Link>
-            <div className="search-results grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-12">
+            <div className="search-results layout-grid">
               {movies?.map((m) => (
                 <MovieCard movie={m} key={m.id} />
               ))}
@@ -222,7 +227,7 @@ export default function SearchResults({
             <Link href="/series" passHref>
               <p className="text-lg font-bold">Series</p>
             </Link>
-            <div className="search-results grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-12">
+            <div className="search-results layout-grid">
               {series?.map((s) => (
                 <SeriesCard series={s} key={s.id} />
               ))}
@@ -237,59 +242,83 @@ export default function SearchResults({
             Not what you&apos;re looking for ? Extend the search towards the
             IMDB Database
           </p>
-          <button
-            type="button"
-            className="btn-primary-outline dark:text-white mt-4 disabled:bg-zinc-600"
-            disabled={loading || loadingMovies}
-            onClick={() => {
-              if (!session) {
-                toast({
-                  title: 'Action not allowed. Must login',
-                  status: 'error',
-                  ...toastDefaults,
-                });
-                return;
-              }
-              searchOMDBAPISeries(query.q as string);
-              searchOMDBAPIMovies(query.q as string);
-            }}
+          <ShowIfElse
+            if={!loading}
+            else={
+              <>
+                {theme === 'light' ? (
+                  <MinimalSpinner color="black" />
+                ) : (
+                  <MinimalSpinner color="text-white" />
+                )}
+              </>
+            }
           >
-            Find more
-          </button>
+            <ShowIf if={showFindMore}>
+              <button
+                type="button"
+                className="btn-primary-outline mt-4 dark:text-white"
+                disabled={loading || createMovieLoading}
+                onClick={() => {
+                  if (!session) {
+                    toast({
+                      title: 'Action not allowed. Must login',
+                      status: 'error',
+                      ...toastDefaults,
+                    });
+                    return;
+                  }
+                  searchOMDBAPISeries(query.q as string);
+                  searchOMDBAPIMovies(query.q as string);
+                  setShowFindMore(false);
+                }}
+              >
+                <ShowIfElse
+                  if={loading || createMovieLoading}
+                  else={'Find more'}
+                >
+                  {theme === 'light' ? (
+                    <MinimalSpinner color="black" />
+                  ) : (
+                    <MinimalSpinner color="text-white" />
+                  )}
+                </ShowIfElse>
+              </button>
+            </ShowIf>
+          </ShowIfElse>
           <p className="mt-2 text-center">
             Keep typing to get more precise results
           </p>
         </div>
         {omdbMovies?.length > 0 && (
           <>
-            <p className="mt-16 text-primarytext-lg font-bold">
+            <p className="text-primarytext-lg mt-16 font-bold">
               Movies from IMDB
             </p>
-            <div className="search-results-ombdb grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-12">
+            <div className="search-results-ombdb grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-5">
               {omdbMovies?.map((m, idx) => (
                 <SearchedMoviesCard
                   movie={m}
                   key={idx}
                   createMovieCb={createOMDBMovies}
-                  disabled={loadingMovies}
+                  disabled={createMovieLoading}
                 />
               ))}
             </div>
-            {loadingMovies ? <Spinner /> : null}
           </>
         )}
         {omdbSeries?.length > 0 && (
           <>
-            <p className="mt-16 text-primarytext-lg font-bold">
+            <p className="text-primarytext-lg mt-16 font-bold">
               Series from IMDB
             </p>
-            <div className="search-results-ombdb grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-12">
+            <div className="search-results-ombdb grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-12 xl:grid-cols-5">
               {omdbSeries?.map((s, idx) => (
                 <SearchedSeriesCard
                   series={s}
                   key={idx}
                   createSerieCb={createOMDBSeries}
-                  disabled={loading}
+                  disabled={createSerieLoading}
                 />
               ))}
             </div>

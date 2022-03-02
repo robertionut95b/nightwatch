@@ -4,9 +4,9 @@ export const MinimalSpinner = ({
   color?: string;
 }): JSX.Element => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex items-center justify-center">
       <svg
-        className={`animate-spin h-5 w-5 ${color}`}
+        className={`h-5 w-5 animate-spin ${color}`}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

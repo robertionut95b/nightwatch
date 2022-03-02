@@ -24,7 +24,7 @@ export default function SearchBar(): JSX.Element {
           id="search-input-title"
           name="q"
           className={
-            'w-full rounded-md border border-primary bg-opacity-60 bg-clip-padding px-4 py-1 text-sm font-semibold text-black backdrop-blur-sm backdrop-filter dark:border-gray-800 dark:bg-background dark:shadow-md'
+            'w-full rounded-md border border-primary bg-opacity-60 bg-clip-padding px-4 py-1 text-sm font-semibold text-black backdrop-blur-sm backdrop-filter dark:border-gray-800 dark:bg-background dark:text-white dark:shadow-md'
           }
           type="text"
           placeholder="Search movies ..."
@@ -34,7 +34,7 @@ export default function SearchBar(): JSX.Element {
         ></input>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute top-1.5 right-2 h-4 w-4 cursor-pointer"
+          className="absolute top-1.5 right-2 h-4 w-4 cursor-pointer text-black dark:text-white"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

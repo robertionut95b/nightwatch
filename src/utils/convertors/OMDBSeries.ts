@@ -127,8 +127,9 @@ export class OMDBSeries implements IPrismaSeriesConvertor {
     const series: Prisma.SerieCreateInput = {
       title: this.title,
       year: parseInt(this.year?.split('-')[0]),
-      rating: this.rated || "N/A",
-      release: parse(this.released, 'dd MMM yyyy', new Date()),
+      rating: this.rated || 'N/A',
+      release:
+        parse(this.released, 'dd MMM yyyy', new Date()) || new Date(5999, 1, 1),
       runtime: parseInt(this.runtime) || 0,
       genres: {
         connectOrCreate: genres,
@@ -140,9 +141,9 @@ export class OMDBSeries implements IPrismaSeriesConvertor {
         connectOrCreate: languages,
       },
       poster: this.poster,
-      imdbRating: parseFloat(this.imdbRating),
+      imdbRating: parseFloat(this.imdbRating) || 0,
       imdbID: this.imdbID,
-      totalSeasons: parseInt(this.totalSeasons),
+      totalSeasons: parseInt(this.totalSeasons) || 0,
     };
     return series;
   }
@@ -154,7 +155,8 @@ export class OMDBSeries implements IPrismaSeriesConvertor {
       title: this.title,
       year: parseInt(this.year?.split('-')[0]),
       rating: this.rated || 'N/A',
-      release: parse(this.released, 'dd MMM yyyy', new Date()),
+      release:
+        parse(this.released, 'dd MMM yyyy', new Date()) || new Date(5999, 1, 1),
       runtime: parseInt(this.runtime) || 0,
       genres: {
         connectOrCreate: genres,
@@ -164,9 +166,9 @@ export class OMDBSeries implements IPrismaSeriesConvertor {
         connectOrCreate: languages,
       },
       poster: this.poster,
-      imdbRating: parseFloat(this.imdbRating),
+      imdbRating: parseFloat(this.imdbRating) || 0,
       imdbID: this.imdbID,
-      totalSeasons: parseInt(this.totalSeasons),
+      totalSeasons: parseInt(this.totalSeasons) || 0,
     };
   };
 }
