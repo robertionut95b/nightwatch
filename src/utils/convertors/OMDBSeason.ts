@@ -100,7 +100,7 @@ export class OMDBSeason implements IPrismaSeasonsConvertor {
           imdbID: this.seriesId,
         },
       },
-      launchDate: this.launchDate,
+      launchDate: this.launchDate ?? new Date(5999, 1, 1),
     };
   };
 

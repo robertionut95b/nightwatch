@@ -5,27 +5,11 @@ import EpisodeCard from '../episodes/card/EpisodeCard';
 import ShowIf from '@components/utils/layout/showConditional/showIf';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import WatchlistTypeSelector from './WatchlistTypeSelector';
-import { WatchlistsDocument } from 'generated/graphql';
-import { useApolloClient } from '@apollo/client';
-import { useEffect } from 'react';
 
 export const WatchlistComponent = ({
   watchlist,
 }: WatchlistsPageProps): JSX.Element => {
   const { selectedSection, WatchlistSelector } = WatchlistTypeSelector();
-  const client = useApolloClient();
-
-  useEffect(() => {
-    client.writeQuery({
-      query: WatchlistsDocument,
-      data: {
-        watchlists: {
-          ...watchlist,
-        },
-        __typename: 'Watchlist',
-      },
-    });
-  }, [client, watchlist]);
 
   return (
     <section>

@@ -13,7 +13,18 @@ const isUser = rule()(async (parent, args, ctx, info) => {
   const session = (await getSession({
     req: ctx.req,
   })) as AppSession;
-  return session && session.user && session.role === Role.USER;
+  return (
+    session &&
+    session.user &&
+    (session.role === Role.USER || session.role === Role.ADMIN)
+  );
+});
+
+const isAdmin = rule()(async (parent, args, ctx, info) => {
+  const session = (await getSession({
+    req: ctx.req,
+  })) as AppSession;
+  return session && session.user && session.role === Role.ADMIN;
 });
 
 const permissions = shield(

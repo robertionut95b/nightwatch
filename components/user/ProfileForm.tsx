@@ -170,8 +170,8 @@ export const ProfileForm = (): JSX.Element => {
 
   return (
     <section className="text-black dark:text-white">
-      <h4 className="font-bold text-xl tracking-wide">Profile</h4>
-      <p className="dark:text-gray-200 mb-4">
+      <h4 className="text-xl font-bold tracking-wide">Profile</h4>
+      <p className="mb-4 dark:text-gray-200">
         This section will contain the public information about the user&apos;s
         profile
       </p>
@@ -180,9 +180,9 @@ export const ProfileForm = (): JSX.Element => {
       ) : (
         <>
           <article className="profile-pic flex flex-col gap-y-2">
-            <h4 className="font-bold text-lg tracking-wide">Avatar</h4>
-            <p className="dark:text-gray-200 mb-4">User personal photograph</p>
-            <span className="font-semibold text-md">Photo</span>
+            <h4 className="text-lg font-bold tracking-wide">Avatar</h4>
+            <p className="mb-4 dark:text-gray-200">User personal photograph</p>
+            <span className="text-md font-semibold">Photo</span>
             <div className="flex items-center gap-x-2">
               {renderAvatar()}
               <input
@@ -204,17 +204,17 @@ export const ProfileForm = (): JSX.Element => {
               className="basic-profile-information"
               onSubmit={(e) => submitProfileDetailsForm(e)}
             >
-              <h4 className="font-bold text-lg tracking-wide">
+              <h4 className="text-lg font-bold tracking-wide">
                 Personal information
               </h4>
-              <p className="dark:text-gray-200 mb-4">
+              <p className="mb-4 dark:text-gray-200">
                 Basic information such as email address, last name, first name,
                 address
               </p>
               <div className="form-inputs flex flex-col gap-y-2">
                 <label htmlFor="email">Email address*</label>
                 <input
-                  className="rounded py-1 px-2 border bg-slate-200 dark:bg-inherit cursor-not-allowed"
+                  className="cursor-not-allowed rounded border bg-slate-200 py-1 px-2 dark:bg-inherit"
                   name="email"
                   type="email"
                   placeholder="johndoe@nightwatch.org"
@@ -223,7 +223,7 @@ export const ProfileForm = (): JSX.Element => {
                 />
                 <label htmlFor="username">Username</label>
                 <input
-                  className="rounded py-1 px-2 bg-gray-100 dark:bg-white border text-black placeholder-gray-800"
+                  className="rounded border bg-gray-100 py-1 px-2 text-black placeholder-gray-800 dark:bg-white"
                   name="userName"
                   type="userName"
                   placeholder="johndoe"
@@ -231,7 +231,7 @@ export const ProfileForm = (): JSX.Element => {
                 />
                 <label htmlFor="firstName">First name</label>
                 <input
-                  className="rounded py-1 px-2 bg-gray-100 text-black border placeholder-gray-800"
+                  className="rounded border bg-gray-100 py-1 px-2 text-black placeholder-gray-800"
                   name="firstName"
                   type="text"
                   placeholder="John"
@@ -239,7 +239,7 @@ export const ProfileForm = (): JSX.Element => {
                 />
                 <label htmlFor="lastName">Last name</label>
                 <input
-                  className="rounded py-1 px-2 bg-gray-100 text-black border placeholder-gray-800"
+                  className="rounded border bg-gray-100 py-1 px-2 text-black placeholder-gray-800"
                   name="lastName"
                   type="text"
                   placeholder="Doe"
@@ -247,12 +247,7 @@ export const ProfileForm = (): JSX.Element => {
                 />
               </div>
               <div className="button-groups mt-8 flex justify-end gap-x-2">
-                <button
-                  className="btn-primary bg-gray-200 text-primary hover:bg-gray-400 font-semibold"
-                  type="reset"
-                >
-                  Cancel
-                </button>
+                <button className="btn-primary-gray">Cancel</button>
                 <button
                   className="btn-primary bg-primary text-white disabled:bg-slate-700"
                   type="submit"

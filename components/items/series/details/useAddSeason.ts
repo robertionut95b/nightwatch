@@ -25,7 +25,6 @@ const useAddSeason = (
   const [createSeasonMutation, { data, loading }] = useCreateSeasonMutation({
     fetchPolicy: 'no-cache',
     onError: (error: ApolloError) => {
-      console.error(error);
       onError?.(error);
     },
     onCompleted: () => {

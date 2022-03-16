@@ -13,9 +13,11 @@ export const Profile = (): JSX.Element => {
           <title>{`Profile - ${process.env.APP_SITE_NAME}`}</title>
         </Head>
         <section>
-          <div className="wrapper flex flex-col md:flex-row gap-y-4 gap-x-4">
-            <Sidebar />
-            <div className="page-container w-full md:w-3/4 border border-gray-800 rounded-lg p-4">
+          <div className="wrapper flex flex-col gap-y-4 gap-x-4 md:flex-row">
+            <div className="sidebar w-full md:w-1/4">
+              <Sidebar />
+            </div>
+            <div className="page-container w-full rounded-lg border border-gray-800 p-4 md:w-3/4">
               <ProfileForm />
             </div>
           </div>

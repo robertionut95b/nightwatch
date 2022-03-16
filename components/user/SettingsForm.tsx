@@ -27,15 +27,15 @@ export const SettingsForm = (): JSX.Element => {
     <section className="text-black dark:text-white">
       <form className="flex flex-col gap-y-6" onSubmit={(e) => onSubmitForm(e)}>
         <article>
-          <h4 className="font-bold text-xl tracking-wide">Account settings</h4>
+          <h4 className="text-xl font-bold tracking-wide">Account settings</h4>
           <p className="dark:text-gray-200">
             This section will contain various global settings used across the
             application
           </p>
         </article>
         <article>
-          <h4 className="font-bold text-lg tracking-wide">Styling</h4>
-          <p className="dark:text-gray-200 mb-4 text-base">
+          <h4 className="text-lg font-bold tracking-wide">Styling</h4>
+          <p className="mb-4 text-base dark:text-gray-200">
             Website&apos;s appearance and layout settings
           </p>
           <FormControl display="flex flex-col" alignItems="center">
@@ -76,8 +76,8 @@ export const SettingsForm = (): JSX.Element => {
           </FormControl>
         </article>
         <article>
-          <h4 className="font-bold text-lg tracking-wide">Notifications</h4>
-          <p className="dark:text-gray-200 mb-4">
+          <h4 className="text-lg font-bold tracking-wide">Notifications</h4>
+          <p className="mb-4 dark:text-gray-200">
             Event based notifications to stay in sync with all updates
           </p>
           <FormControl display="flex flex-col" alignItems="center">
@@ -114,10 +114,10 @@ export const SettingsForm = (): JSX.Element => {
           </FormControl>
         </article>
         <article>
-          <h4 className="font-bold text-lg tracking-wide">
+          <h4 className="text-lg font-bold tracking-wide">
             Locales and geolocation
           </h4>
-          <p className="dark:text-gray-200 mb-4">
+          <p className="mb-4 dark:text-gray-200">
             Region based settings like app language and location
           </p>
           <FormControl display="flex flex-col" alignItems="center">
@@ -147,12 +147,7 @@ export const SettingsForm = (): JSX.Element => {
           </FormControl>
         </article>
         <div className="button-group flex gap-x-2 self-end">
-          <button
-            className="btn-primary bg-gray-200 text-primary hover:bg-gray-400 font-semibold"
-            type="reset"
-          >
-            Reset
-          </button>
+          <button className="btn-primary-gray">Reset</button>
           <button
             className="btn-primary bg-primary text-white disabled:bg-slate-700"
             type="submit"

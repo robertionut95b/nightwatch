@@ -711,6 +711,12 @@ type AggregateAppSettings {
   _min: AppSettingsMinAggregate
 }
 
+type AggregateAskSubmission {
+  _count: AskSubmissionCountAggregate
+  _max: AskSubmissionMaxAggregate
+  _min: AskSubmissionMinAggregate
+}
+
 type AggregateComment {
   _avg: CommentAvgAggregate
   _count: CommentCountAggregate
@@ -1126,6 +1132,292 @@ input AppSettingsWhereInput {
 input AppSettingsWhereUniqueInput {
   id: String
   name_userId: AppSettingsNameUserIdCompoundUniqueInput
+}
+
+type AskSubmission {
+  createdAt: DateTime!
+  id: String!
+  reason: SubmissionReason!
+  status: SubmissionStatus!
+  updatedAt: DateTime!
+  url: String!
+  user: User!
+  userId: String!
+}
+
+type AskSubmissionCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  reason: Int!
+  status: Int!
+  updatedAt: Int!
+  url: Int!
+  userId: Int!
+}
+
+input AskSubmissionCountOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  reason: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+  url: SortOrder
+  userId: SortOrder
+}
+
+input AskSubmissionCreateInput {
+  createdAt: DateTime
+  id: String
+  reason: SubmissionReason!
+  status: SubmissionStatus!
+  updatedAt: DateTime
+  url: String!
+  user: UserCreateNestedOneWithoutAskSubmissionInput!
+}
+
+input AskSubmissionCreateManyInput {
+  createdAt: DateTime
+  id: String
+  reason: SubmissionReason!
+  status: SubmissionStatus!
+  updatedAt: DateTime
+  url: String!
+  userId: String!
+}
+
+input AskSubmissionCreateManyUserInput {
+  createdAt: DateTime
+  id: String
+  reason: SubmissionReason!
+  status: SubmissionStatus!
+  updatedAt: DateTime
+  url: String!
+}
+
+input AskSubmissionCreateManyUserInputEnvelope {
+  data: [AskSubmissionCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input AskSubmissionCreateNestedManyWithoutUserInput {
+  connect: [AskSubmissionWhereUniqueInput!]
+  connectOrCreate: [AskSubmissionCreateOrConnectWithoutUserInput!]
+  create: [AskSubmissionCreateWithoutUserInput!]
+  createMany: AskSubmissionCreateManyUserInputEnvelope
+}
+
+input AskSubmissionCreateOrConnectWithoutUserInput {
+  create: AskSubmissionCreateWithoutUserInput!
+  where: AskSubmissionWhereUniqueInput!
+}
+
+input AskSubmissionCreateWithoutUserInput {
+  createdAt: DateTime
+  id: String
+  reason: SubmissionReason!
+  status: SubmissionStatus!
+  updatedAt: DateTime
+  url: String!
+}
+
+type AskSubmissionGroupBy {
+  _count: AskSubmissionCountAggregate
+  _max: AskSubmissionMaxAggregate
+  _min: AskSubmissionMinAggregate
+  createdAt: DateTime!
+  id: String!
+  reason: SubmissionReason!
+  status: SubmissionStatus!
+  updatedAt: DateTime!
+  url: String!
+  userId: String!
+}
+
+input AskSubmissionListRelationFilter {
+  every: AskSubmissionWhereInput
+  none: AskSubmissionWhereInput
+  some: AskSubmissionWhereInput
+}
+
+type AskSubmissionMaxAggregate {
+  createdAt: DateTime
+  id: String
+  reason: SubmissionReason
+  status: SubmissionStatus
+  updatedAt: DateTime
+  url: String
+  userId: String
+}
+
+input AskSubmissionMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  reason: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+  url: SortOrder
+  userId: SortOrder
+}
+
+type AskSubmissionMinAggregate {
+  createdAt: DateTime
+  id: String
+  reason: SubmissionReason
+  status: SubmissionStatus
+  updatedAt: DateTime
+  url: String
+  userId: String
+}
+
+input AskSubmissionMinOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  reason: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+  url: SortOrder
+  userId: SortOrder
+}
+
+input AskSubmissionOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input AskSubmissionOrderByWithAggregationInput {
+  _count: AskSubmissionCountOrderByAggregateInput
+  _max: AskSubmissionMaxOrderByAggregateInput
+  _min: AskSubmissionMinOrderByAggregateInput
+  createdAt: SortOrder
+  id: SortOrder
+  reason: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+  url: SortOrder
+  userId: SortOrder
+}
+
+input AskSubmissionOrderByWithRelationInput {
+  createdAt: SortOrder
+  id: SortOrder
+  reason: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+  url: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+enum AskSubmissionScalarFieldEnum {
+  createdAt
+  id
+  reason
+  status
+  updatedAt
+  url
+  userId
+}
+
+input AskSubmissionScalarWhereInput {
+  AND: [AskSubmissionScalarWhereInput!]
+  NOT: [AskSubmissionScalarWhereInput!]
+  OR: [AskSubmissionScalarWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  reason: EnumSubmissionReasonFilter
+  status: EnumSubmissionStatusFilter
+  updatedAt: DateTimeFilter
+  url: StringFilter
+  userId: StringFilter
+}
+
+input AskSubmissionScalarWhereWithAggregatesInput {
+  AND: [AskSubmissionScalarWhereWithAggregatesInput!]
+  NOT: [AskSubmissionScalarWhereWithAggregatesInput!]
+  OR: [AskSubmissionScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  reason: EnumSubmissionReasonWithAggregatesFilter
+  status: EnumSubmissionStatusWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  url: StringWithAggregatesFilter
+  userId: StringWithAggregatesFilter
+}
+
+input AskSubmissionUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  reason: EnumSubmissionReasonFieldUpdateOperationsInput
+  status: EnumSubmissionStatusFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  url: StringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutAskSubmissionInput
+}
+
+input AskSubmissionUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  reason: EnumSubmissionReasonFieldUpdateOperationsInput
+  status: EnumSubmissionStatusFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  url: StringFieldUpdateOperationsInput
+}
+
+input AskSubmissionUpdateManyWithWhereWithoutUserInput {
+  data: AskSubmissionUpdateManyMutationInput!
+  where: AskSubmissionScalarWhereInput!
+}
+
+input AskSubmissionUpdateManyWithoutUserInput {
+  connect: [AskSubmissionWhereUniqueInput!]
+  connectOrCreate: [AskSubmissionCreateOrConnectWithoutUserInput!]
+  create: [AskSubmissionCreateWithoutUserInput!]
+  createMany: AskSubmissionCreateManyUserInputEnvelope
+  delete: [AskSubmissionWhereUniqueInput!]
+  deleteMany: [AskSubmissionScalarWhereInput!]
+  disconnect: [AskSubmissionWhereUniqueInput!]
+  set: [AskSubmissionWhereUniqueInput!]
+  update: [AskSubmissionUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [AskSubmissionUpdateManyWithWhereWithoutUserInput!]
+  upsert: [AskSubmissionUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input AskSubmissionUpdateWithWhereUniqueWithoutUserInput {
+  data: AskSubmissionUpdateWithoutUserInput!
+  where: AskSubmissionWhereUniqueInput!
+}
+
+input AskSubmissionUpdateWithoutUserInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  reason: EnumSubmissionReasonFieldUpdateOperationsInput
+  status: EnumSubmissionStatusFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  url: StringFieldUpdateOperationsInput
+}
+
+input AskSubmissionUpsertWithWhereUniqueWithoutUserInput {
+  create: AskSubmissionCreateWithoutUserInput!
+  update: AskSubmissionUpdateWithoutUserInput!
+  where: AskSubmissionWhereUniqueInput!
+}
+
+input AskSubmissionWhereInput {
+  AND: [AskSubmissionWhereInput!]
+  NOT: [AskSubmissionWhereInput!]
+  OR: [AskSubmissionWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  reason: EnumSubmissionReasonFilter
+  status: EnumSubmissionStatusFilter
+  updatedAt: DateTimeFilter
+  url: StringFilter
+  user: UserRelationFilter
+  userId: StringFilter
+}
+
+input AskSubmissionWhereUniqueInput {
+  id: String
 }
 
 input BoolFieldUpdateOperationsInput {
@@ -2346,6 +2638,48 @@ input EnumRoleWithAggregatesFilter {
   in: [Role!]
   not: NestedEnumRoleWithAggregatesFilter
   notIn: [Role!]
+}
+
+input EnumSubmissionReasonFieldUpdateOperationsInput {
+  set: SubmissionReason
+}
+
+input EnumSubmissionReasonFilter {
+  equals: SubmissionReason
+  in: [SubmissionReason!]
+  not: NestedEnumSubmissionReasonFilter
+  notIn: [SubmissionReason!]
+}
+
+input EnumSubmissionReasonWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumSubmissionReasonFilter
+  _min: NestedEnumSubmissionReasonFilter
+  equals: SubmissionReason
+  in: [SubmissionReason!]
+  not: NestedEnumSubmissionReasonWithAggregatesFilter
+  notIn: [SubmissionReason!]
+}
+
+input EnumSubmissionStatusFieldUpdateOperationsInput {
+  set: SubmissionStatus
+}
+
+input EnumSubmissionStatusFilter {
+  equals: SubmissionStatus
+  in: [SubmissionStatus!]
+  not: NestedEnumSubmissionStatusFilter
+  notIn: [SubmissionStatus!]
+}
+
+input EnumSubmissionStatusWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumSubmissionStatusFilter
+  _min: NestedEnumSubmissionStatusFilter
+  equals: SubmissionStatus
+  in: [SubmissionStatus!]
+  not: NestedEnumSubmissionStatusWithAggregatesFilter
+  notIn: [SubmissionStatus!]
 }
 
 type Episode {
@@ -4966,6 +5300,7 @@ type Mutation {
   createAccount(data: AccountCreateInput!): Account!
   createActor(data: ActorCreateInput!): Actor!
   createAppSettings(data: AppSettingsCreateInput!): AppSettings!
+  createAskSubmission(data: AskSubmissionCreateInput!): AskSubmission!
   createComment(data: CommentCreateInput!): Comment!
   createDirector(data: DirectorCreateInput!): Director!
   createEpisode(data: EpisodeCreateInput!): Episode!
@@ -4975,6 +5310,7 @@ type Mutation {
   createManyAccount(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyActor(data: [ActorCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyAppSettings(data: [AppSettingsCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyAskSubmission(data: [AskSubmissionCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyComment(data: [CommentCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyDirector(data: [DirectorCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyEpisode(data: [EpisodeCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
@@ -5010,6 +5346,7 @@ type Mutation {
   deleteAccount(where: AccountWhereUniqueInput!): Account
   deleteActor(where: ActorWhereUniqueInput!): Actor
   deleteAppSettings(where: AppSettingsWhereUniqueInput!): AppSettings
+  deleteAskSubmission(where: AskSubmissionWhereUniqueInput!): AskSubmission
   deleteComment(where: CommentWhereUniqueInput!): Comment
   deleteDirector(where: DirectorWhereUniqueInput!): Director
   deleteEpisode(where: EpisodeWhereUniqueInput!): Episode
@@ -5019,6 +5356,7 @@ type Mutation {
   deleteManyAccount(where: AccountWhereInput): AffectedRowsOutput!
   deleteManyActor(where: ActorWhereInput): AffectedRowsOutput!
   deleteManyAppSettings(where: AppSettingsWhereInput): AffectedRowsOutput!
+  deleteManyAskSubmission(where: AskSubmissionWhereInput): AffectedRowsOutput!
   deleteManyComment(where: CommentWhereInput): AffectedRowsOutput!
   deleteManyDirector(where: DirectorWhereInput): AffectedRowsOutput!
   deleteManyEpisode(where: EpisodeWhereInput): AffectedRowsOutput!
@@ -5054,6 +5392,7 @@ type Mutation {
   updateAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
   updateActor(data: ActorUpdateInput!, where: ActorWhereUniqueInput!): Actor
   updateAppSettings(data: AppSettingsUpdateInput!, where: AppSettingsWhereUniqueInput!): AppSettings
+  updateAskSubmission(data: AskSubmissionUpdateInput!, where: AskSubmissionWhereUniqueInput!): AskSubmission
   updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
   updateDirector(data: DirectorUpdateInput!, where: DirectorWhereUniqueInput!): Director
   updateEpisode(data: EpisodeUpdateInput!, where: EpisodeWhereUniqueInput!): Episode
@@ -5063,6 +5402,7 @@ type Mutation {
   updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
   updateManyActor(data: ActorUpdateManyMutationInput!, where: ActorWhereInput): AffectedRowsOutput!
   updateManyAppSettings(data: AppSettingsUpdateManyMutationInput!, where: AppSettingsWhereInput): AffectedRowsOutput!
+  updateManyAskSubmission(data: AskSubmissionUpdateManyMutationInput!, where: AskSubmissionWhereInput): AffectedRowsOutput!
   updateManyComment(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): AffectedRowsOutput!
   updateManyDirector(data: DirectorUpdateManyMutationInput!, where: DirectorWhereInput): AffectedRowsOutput!
   updateManyEpisode(data: EpisodeUpdateManyMutationInput!, where: EpisodeWhereInput): AffectedRowsOutput!
@@ -5098,6 +5438,7 @@ type Mutation {
   upsertAccount(create: AccountCreateInput!, update: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account!
   upsertActor(create: ActorCreateInput!, update: ActorUpdateInput!, where: ActorWhereUniqueInput!): Actor!
   upsertAppSettings(create: AppSettingsCreateInput!, update: AppSettingsUpdateInput!, where: AppSettingsWhereUniqueInput!): AppSettings!
+  upsertAskSubmission(create: AskSubmissionCreateInput!, update: AskSubmissionUpdateInput!, where: AskSubmissionWhereUniqueInput!): AskSubmission!
   upsertComment(create: CommentCreateInput!, update: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment!
   upsertDirector(create: DirectorCreateInput!, update: DirectorUpdateInput!, where: DirectorWhereUniqueInput!): Director!
   upsertEpisode(create: EpisodeCreateInput!, update: EpisodeUpdateInput!, where: EpisodeWhereUniqueInput!): Episode!
@@ -5197,6 +5538,40 @@ input NestedEnumRoleWithAggregatesFilter {
   in: [Role!]
   not: NestedEnumRoleWithAggregatesFilter
   notIn: [Role!]
+}
+
+input NestedEnumSubmissionReasonFilter {
+  equals: SubmissionReason
+  in: [SubmissionReason!]
+  not: NestedEnumSubmissionReasonFilter
+  notIn: [SubmissionReason!]
+}
+
+input NestedEnumSubmissionReasonWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumSubmissionReasonFilter
+  _min: NestedEnumSubmissionReasonFilter
+  equals: SubmissionReason
+  in: [SubmissionReason!]
+  not: NestedEnumSubmissionReasonWithAggregatesFilter
+  notIn: [SubmissionReason!]
+}
+
+input NestedEnumSubmissionStatusFilter {
+  equals: SubmissionStatus
+  in: [SubmissionStatus!]
+  not: NestedEnumSubmissionStatusFilter
+  notIn: [SubmissionStatus!]
+}
+
+input NestedEnumSubmissionStatusWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumSubmissionStatusFilter
+  _min: NestedEnumSubmissionStatusFilter
+  equals: SubmissionStatus
+  in: [SubmissionStatus!]
+  not: NestedEnumSubmissionStatusWithAggregatesFilter
+  notIn: [SubmissionStatus!]
 }
 
 input NestedFloatFilter {
@@ -5377,6 +5752,7 @@ type Query {
   aggregateAccount(cursor: AccountWhereUniqueInput, orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): AggregateAccount!
   aggregateActor(cursor: ActorWhereUniqueInput, orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): AggregateActor!
   aggregateAppSettings(cursor: AppSettingsWhereUniqueInput, orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AggregateAppSettings!
+  aggregateAskSubmission(cursor: AskSubmissionWhereUniqueInput, orderBy: [AskSubmissionOrderByWithRelationInput!], skip: Int, take: Int, where: AskSubmissionWhereInput): AggregateAskSubmission!
   aggregateComment(cursor: CommentWhereUniqueInput, orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): AggregateComment!
   aggregateDirector(cursor: DirectorWhereUniqueInput, orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): AggregateDirector!
   aggregateEpisode(cursor: EpisodeWhereUniqueInput, orderBy: [EpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodeWhereInput): AggregateEpisode!
@@ -5396,6 +5772,8 @@ type Query {
   aggregateWatchlistedEpisode(cursor: WatchlistedEpisodeWhereUniqueInput, orderBy: [WatchlistedEpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedEpisodeWhereInput): AggregateWatchlistedEpisode!
   aggregateWatchlistedMovie(cursor: WatchlistedMovieWhereUniqueInput, orderBy: [WatchlistedMovieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedMovieWhereInput): AggregateWatchlistedMovie!
   aggregateWatchlistedSerie(cursor: WatchlistedSerieWhereUniqueInput, orderBy: [WatchlistedSerieOrderByWithRelationInput!], skip: Int, take: Int, where: WatchlistedSerieWhereInput): AggregateWatchlistedSerie!
+  askSubmission(where: AskSubmissionWhereUniqueInput!): AskSubmission
+  askSubmissions(cursor: AskSubmissionWhereUniqueInput, distinct: [AskSubmissionScalarFieldEnum!], orderBy: [AskSubmissionOrderByWithRelationInput!], skip: Int, take: Int, where: AskSubmissionWhereInput): [AskSubmission!]!
   comment(where: CommentWhereUniqueInput!): Comment
   comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
   director(where: DirectorWhereUniqueInput!): Director
@@ -5407,6 +5785,7 @@ type Query {
   findFirstAccount(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
   findFirstActor(cursor: ActorWhereUniqueInput, distinct: [ActorScalarFieldEnum!], orderBy: [ActorOrderByWithRelationInput!], skip: Int, take: Int, where: ActorWhereInput): Actor
   findFirstAppSettings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): AppSettings
+  findFirstAskSubmission(cursor: AskSubmissionWhereUniqueInput, distinct: [AskSubmissionScalarFieldEnum!], orderBy: [AskSubmissionOrderByWithRelationInput!], skip: Int, take: Int, where: AskSubmissionWhereInput): AskSubmission
   findFirstComment(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): Comment
   findFirstDirector(cursor: DirectorWhereUniqueInput, distinct: [DirectorScalarFieldEnum!], orderBy: [DirectorOrderByWithRelationInput!], skip: Int, take: Int, where: DirectorWhereInput): Director
   findFirstEpisode(cursor: EpisodeWhereUniqueInput, distinct: [EpisodeScalarFieldEnum!], orderBy: [EpisodeOrderByWithRelationInput!], skip: Int, take: Int, where: EpisodeWhereInput): Episode
@@ -5433,6 +5812,7 @@ type Query {
   groupByAccount(by: [AccountScalarFieldEnum!]!, having: AccountScalarWhereWithAggregatesInput, orderBy: [AccountOrderByWithAggregationInput!], skip: Int, take: Int, where: AccountWhereInput): [AccountGroupBy!]!
   groupByActor(by: [ActorScalarFieldEnum!]!, having: ActorScalarWhereWithAggregatesInput, orderBy: [ActorOrderByWithAggregationInput!], skip: Int, take: Int, where: ActorWhereInput): [ActorGroupBy!]!
   groupByAppSettings(by: [AppSettingsScalarFieldEnum!]!, having: AppSettingsScalarWhereWithAggregatesInput, orderBy: [AppSettingsOrderByWithAggregationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettingsGroupBy!]!
+  groupByAskSubmission(by: [AskSubmissionScalarFieldEnum!]!, having: AskSubmissionScalarWhereWithAggregatesInput, orderBy: [AskSubmissionOrderByWithAggregationInput!], skip: Int, take: Int, where: AskSubmissionWhereInput): [AskSubmissionGroupBy!]!
   groupByComment(by: [CommentScalarFieldEnum!]!, having: CommentScalarWhereWithAggregatesInput, orderBy: [CommentOrderByWithAggregationInput!], skip: Int, take: Int, where: CommentWhereInput): [CommentGroupBy!]!
   groupByDirector(by: [DirectorScalarFieldEnum!]!, having: DirectorScalarWhereWithAggregatesInput, orderBy: [DirectorOrderByWithAggregationInput!], skip: Int, take: Int, where: DirectorWhereInput): [DirectorGroupBy!]!
   groupByEpisode(by: [EpisodeScalarFieldEnum!]!, having: EpisodeScalarWhereWithAggregatesInput, orderBy: [EpisodeOrderByWithAggregationInput!], skip: Int, take: Int, where: EpisodeWhereInput): [EpisodeGroupBy!]!
@@ -7960,7 +8340,20 @@ input StringWithAggregatesFilter {
   startsWith: String
 }
 
+enum SubmissionReason {
+  CREATE
+  INAPPROPIATE
+  UPDATE
+}
+
+enum SubmissionStatus {
+  ACCEPTED
+  PENDING
+  REJECTED
+}
+
 type User {
+  AskSubmission(cursor: AskSubmissionWhereUniqueInput, distinct: [AskSubmissionScalarFieldEnum!], orderBy: [AskSubmissionOrderByWithRelationInput!], skip: Int, take: Int, where: AskSubmissionWhereInput): [AskSubmission!]!
   _count: UserCount
   accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
   comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
@@ -7981,6 +8374,7 @@ type User {
 }
 
 type UserCount {
+  AskSubmission: Int!
   accounts: Int!
   comments: Int!
   sessions: Int!
@@ -8018,6 +8412,7 @@ input UserCountOrderByAggregateInput {
 }
 
 input UserCreateInput {
+  AskSubmission: AskSubmissionCreateNestedManyWithoutUserInput
   accounts: AccountCreateNestedManyWithoutUserInput
   comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
@@ -8056,6 +8451,12 @@ input UserCreateNestedOneWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput
 }
 
+input UserCreateNestedOneWithoutAskSubmissionInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutAskSubmissionInput
+  create: UserCreateWithoutAskSubmissionInput
+}
+
 input UserCreateNestedOneWithoutCommentsInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutCommentsInput
@@ -8085,6 +8486,11 @@ input UserCreateOrConnectWithoutAccountsInput {
   where: UserWhereUniqueInput!
 }
 
+input UserCreateOrConnectWithoutAskSubmissionInput {
+  create: UserCreateWithoutAskSubmissionInput!
+  where: UserWhereUniqueInput!
+}
+
 input UserCreateOrConnectWithoutCommentsInput {
   create: UserCreateWithoutCommentsInput!
   where: UserWhereUniqueInput!
@@ -8106,6 +8512,26 @@ input UserCreateOrConnectWithoutWatchlistInput {
 }
 
 input UserCreateWithoutAccountsInput {
+  AskSubmission: AskSubmissionCreateNestedManyWithoutUserInput
+  comments: CommentCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  emailVerified: DateTime
+  firstName: String
+  id: String
+  image: String
+  lastName: String
+  name: String
+  role: Role
+  sessions: SessionCreateNestedManyWithoutUserInput
+  settings: AppSettingsCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String
+  watchlist: WatchlistCreateNestedManyWithoutUserInput
+}
+
+input UserCreateWithoutAskSubmissionInput {
+  accounts: AccountCreateNestedManyWithoutUserInput
   comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
@@ -8124,6 +8550,7 @@ input UserCreateWithoutAccountsInput {
 }
 
 input UserCreateWithoutCommentsInput {
+  AskSubmission: AskSubmissionCreateNestedManyWithoutUserInput
   accounts: AccountCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
@@ -8142,6 +8569,7 @@ input UserCreateWithoutCommentsInput {
 }
 
 input UserCreateWithoutSessionsInput {
+  AskSubmission: AskSubmissionCreateNestedManyWithoutUserInput
   accounts: AccountCreateNestedManyWithoutUserInput
   comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
@@ -8160,6 +8588,7 @@ input UserCreateWithoutSessionsInput {
 }
 
 input UserCreateWithoutSettingsInput {
+  AskSubmission: AskSubmissionCreateNestedManyWithoutUserInput
   accounts: AccountCreateNestedManyWithoutUserInput
   comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
@@ -8178,6 +8607,7 @@ input UserCreateWithoutSettingsInput {
 }
 
 input UserCreateWithoutWatchlistInput {
+  AskSubmission: AskSubmissionCreateNestedManyWithoutUserInput
   accounts: AccountCreateNestedManyWithoutUserInput
   comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
@@ -8286,6 +8716,7 @@ input UserOrderByWithAggregationInput {
 }
 
 input UserOrderByWithRelationInput {
+  AskSubmission: AskSubmissionOrderByRelationAggregateInput
   accounts: AccountOrderByRelationAggregateInput
   comments: CommentOrderByRelationAggregateInput
   createdAt: SortOrder
@@ -8341,6 +8772,7 @@ input UserScalarWhereWithAggregatesInput {
 }
 
 input UserUpdateInput {
+  AskSubmission: AskSubmissionUpdateManyWithoutUserInput
   accounts: AccountUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -8381,6 +8813,14 @@ input UserUpdateOneRequiredWithoutAccountsInput {
   upsert: UserUpsertWithoutAccountsInput
 }
 
+input UserUpdateOneRequiredWithoutAskSubmissionInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutAskSubmissionInput
+  create: UserCreateWithoutAskSubmissionInput
+  update: UserUpdateWithoutAskSubmissionInput
+  upsert: UserUpsertWithoutAskSubmissionInput
+}
+
 input UserUpdateOneRequiredWithoutCommentsInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutCommentsInput
@@ -8416,6 +8856,26 @@ input UserUpdateOneWithoutSettingsInput {
 }
 
 input UserUpdateWithoutAccountsInput {
+  AskSubmission: AskSubmissionUpdateManyWithoutUserInput
+  comments: CommentUpdateManyWithoutUserInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: NullableStringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
+  lastName: NullableStringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
+  sessions: SessionUpdateManyWithoutUserInput
+  settings: AppSettingsUpdateManyWithoutUserInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  username: NullableStringFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutAskSubmissionInput {
+  accounts: AccountUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
@@ -8434,6 +8894,7 @@ input UserUpdateWithoutAccountsInput {
 }
 
 input UserUpdateWithoutCommentsInput {
+  AskSubmission: AskSubmissionUpdateManyWithoutUserInput
   accounts: AccountUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
@@ -8452,6 +8913,7 @@ input UserUpdateWithoutCommentsInput {
 }
 
 input UserUpdateWithoutSessionsInput {
+  AskSubmission: AskSubmissionUpdateManyWithoutUserInput
   accounts: AccountUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -8470,6 +8932,7 @@ input UserUpdateWithoutSessionsInput {
 }
 
 input UserUpdateWithoutSettingsInput {
+  AskSubmission: AskSubmissionUpdateManyWithoutUserInput
   accounts: AccountUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -8488,6 +8951,7 @@ input UserUpdateWithoutSettingsInput {
 }
 
 input UserUpdateWithoutWatchlistInput {
+  AskSubmission: AskSubmissionUpdateManyWithoutUserInput
   accounts: AccountUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -8508,6 +8972,11 @@ input UserUpdateWithoutWatchlistInput {
 input UserUpsertWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput!
   update: UserUpdateWithoutAccountsInput!
+}
+
+input UserUpsertWithoutAskSubmissionInput {
+  create: UserCreateWithoutAskSubmissionInput!
+  update: UserUpdateWithoutAskSubmissionInput!
 }
 
 input UserUpsertWithoutCommentsInput {
@@ -8532,6 +9001,7 @@ input UserUpsertWithoutWatchlistInput {
 
 input UserWhereInput {
   AND: [UserWhereInput!]
+  AskSubmission: AskSubmissionListRelationFilter
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
   accounts: AccountListRelationFilter

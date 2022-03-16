@@ -110,12 +110,7 @@ const SecurityForm = (): JSX.Element => {
             <i>({session?.user?.email})</i>
           </p>
           <div className="button-groups mt-8 flex justify-end gap-x-2">
-            <button
-              className="btn-primary bg-gray-200 font-semibold text-primary hover:bg-gray-400"
-              type="reset"
-            >
-              Cancel
-            </button>
+            <button className="btn-primary-gray">Cancel</button>
             <button
               className="btn-primary bg-primary text-white disabled:bg-slate-700"
               type="submit"

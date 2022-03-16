@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const WatchlistTypeSelector = (): {
-  selectedSection: string;
+  selectedSection: 'movies' | 'series' | 'episodes' | string;
   WatchlistSelector: () => JSX.Element;
 } => {
   const [selectedSection, setSelectedSection] = useState<string>('movies');
