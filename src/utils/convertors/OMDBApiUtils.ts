@@ -1,5 +1,4 @@
 import { OMDBSeries, IOMDBSeries } from './OMDBSeries';
-import { CreateSerieSearchMutationVariables } from '../../../generated/graphql';
 import { omdbAPI } from '../omdbapi/api';
 import {
   IOMDBSearchSeries,
@@ -16,41 +15,6 @@ import { IOMDBSeason, OMDBSeason, OMDBEpisode } from './OMDBSeason';
 import { parseISO } from 'date-fns';
 
 export class OMDBApiUtils {
-  public static async fetchOMDBSeriesByTitle(
-    title: string,
-  ): Promise<CreateSerieSearchMutationVariables | undefined> {
-    const titleEncoded = encodeURIComponent(title);
-    let seriesResp = undefined;
-    let seriesToCreate: CreateSerieSearchMutationVariables | undefined =
-      undefined;
-    try {
-      seriesResp = (
-        await omdbAPI.get<IOMDBSeries>(
-          `?t=${titleEncoded}&apiKey=${process.env.OMDB_API_KEY}&plot=full&type=series`,
-        )
-      ).data;
-      seriesToCreate = new OMDBSeries(
-        seriesResp?.Title,
-        seriesResp?.Year,
-        seriesResp?.Rated,
-        seriesResp?.Released,
-        seriesResp?.Runtime,
-        seriesResp?.Genre,
-        seriesResp?.Director,
-        seriesResp?.Actors,
-        seriesResp?.Plot,
-        seriesResp?.Language,
-        seriesResp?.Poster,
-        seriesResp?.imdbRating,
-        seriesResp?.totalSeasons,
-        seriesResp.imdbID,
-      ).toCreateVariables();
-    } catch (err) {
-      console.error(err);
-    }
-    return seriesToCreate;
-  }
-
   public static async fetchOMDBSeriesBySearchTitle(
     title: string,
   ): Promise<OMDBSearchSeries[]> {

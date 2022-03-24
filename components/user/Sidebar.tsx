@@ -1,7 +1,9 @@
 import ShowIf from '@components/utils/layout/showConditional/showIf';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
+import { Role } from '@prisma/client';
 import { useSession } from 'next-auth/client';
+import { AppSession } from 'pages/api/auth/[...nextauth]';
 import { MenuNavigationComponent } from '../nav/MenuNavigation';
 
 export const Sidebar = (): JSX.Element => {
@@ -119,6 +121,7 @@ export const Sidebar = (): JSX.Element => {
   ];
 
   const [session, loading] = useSession();
+  const appSession = session as AppSession;
 
   return (
     <>
@@ -126,7 +129,7 @@ export const Sidebar = (): JSX.Element => {
         <MenuNavigationComponent items={items} />
       </div>
       <ShowIfElse if={!loading} else={<MinimalSpinner />}>
-        <ShowIf if={session}>
+        <ShowIf if={appSession?.role === Role.ADMIN}>
           <div className="menu-container-sidebar mt-4 h-min w-full rounded border border-gray-800 bg-white p-4 dark:bg-background-dark">
             <MenuNavigationComponent
               items={[

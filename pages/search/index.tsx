@@ -20,8 +20,14 @@ import { useEffect, useState } from 'react';
 import NProgress from 'nprogress';
 import Head from 'next/head';
 import SearchedSeriesCard from '../../components/items/series/searched/SearchedSeriesCard';
-import { OMDBSearchSeries } from '../../src/utils/convertors/OMDBSearchSeries';
-import { OMDBSearchMovie } from '../../src/utils/convertors/OMDBSearchMovies';
+import {
+  IOMDBSearchSeries,
+  OMDBSearchSeries,
+} from '../../src/utils/convertors/OMDBSearchSeries';
+import {
+  IOMDBSearchMovie,
+  OMDBSearchMovie,
+} from '../../src/utils/convertors/OMDBSearchMovies';
 import SearchedMoviesCard from '../../components/items/movies/searched/card/SearchedMovieCard';
 import Link from 'next/link';
 import { createStandaloneToast } from '@chakra-ui/react';
@@ -32,6 +38,10 @@ import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
 import { useTheme } from 'next-themes';
 import ShowIf from '@components/utils/layout/showConditional/showIf';
+import isEmptyObject from 'src/utils/objects/isEmptyObject';
+import { OMDBMovie } from 'src/utils/convertors/OMDBMovie';
+import { OMDBSeries } from 'src/utils/convertors/OMDBSeries';
+import useMounted from '@components/layout/loading/loading';
 
 export default function SearchResults({
   movies,
@@ -47,6 +57,7 @@ export default function SearchResults({
   const [omdbMovies, setOmdbMovies] = useState<OMDBSearchMovie[]>([]);
   const toast = createStandaloneToast();
   const [showFindMore, setShowFindMore] = useState<boolean>(true);
+  const mounted = useMounted();
 
   const [createSeasonMutation] = useCreateSeasonMutation({
     fetchPolicy: 'no-cache',
@@ -136,7 +147,15 @@ export default function SearchResults({
 
   const searchOMDBAPISeries = async (q: string): Promise<void> => {
     setOmdbSeries([]);
-    const searchedSeries = await OMDBApiUtils.fetchOMDBSeriesBySearchTitle(q);
+    const searchedSeriesResp = await fetch(
+      `/api/omdb/series/search-by-title?t=${q}`,
+    );
+    const searchedSeriesJson: IOMDBSearchSeries[] =
+      await searchedSeriesResp.json();
+
+    const searchedSeries = searchedSeriesJson.map((s) =>
+      OMDBSearchSeries.jsonToObject(s),
+    );
     if (searchedSeries) {
       setOmdbSeries([...omdbSeries, ...searchedSeries]);
     }
@@ -144,7 +163,17 @@ export default function SearchResults({
 
   const searchOMDBAPIMovies = async (q: string): Promise<void> => {
     setOmdbMovies([]);
-    const searchedMovies = await OMDBApiUtils.fetchOMDBMoviesBySearchTitle(q);
+    const searchedMoviesResp = await fetch(
+      `/api/omdb/movies/search-by-title?t=${q}`,
+    );
+
+    const searchedMoviesJson: IOMDBSearchMovie[] =
+      await searchedMoviesResp.json();
+
+    const searchedMovies = searchedMoviesJson.map((s) =>
+      OMDBSearchMovie.jsonToObject(s),
+    );
+
     if (searchedMovies) {
       setOmdbMovies([...omdbMovies, ...searchedMovies]);
     }
@@ -152,7 +181,11 @@ export default function SearchResults({
 
   const createOMDBSeries = async (id: string): Promise<void> => {
     if (series.filter((s) => s.imdbID === id).length > 0) {
-      alert('Series already exists');
+      toast({
+        title: 'Series already exists',
+        status: 'error',
+        ...toastDefaults,
+      });
       return;
     }
     toast({
@@ -160,7 +193,23 @@ export default function SearchResults({
       status: 'info',
       ...toastDefaults,
     });
-    const searchedSeries = await OMDBApiUtils.fetchOMDBSeriesByID(id);
+
+    const searchedSeriesResp = await fetch(
+      `/api/omdb/series/search-by-id?i=${id}`,
+    );
+    const searchedSeriesJson = await searchedSeriesResp.json();
+
+    if (isEmptyObject(searchedSeriesJson)) {
+      toast({
+        title: 'Nothing found on OMDB',
+        status: 'error',
+        ...toastDefaults,
+      });
+      return;
+    }
+
+    const searchedSeries = OMDBSeries.jsonToObject(searchedSeriesJson);
+
     if (searchedSeries) {
       await createSerieSearchMutation({
         variables: {
@@ -172,7 +221,11 @@ export default function SearchResults({
 
   const createOMDBMovies = async (id: string): Promise<void> => {
     if (movies.filter((m) => m.imdbID === id).length > 0) {
-      alert('Movie already exists');
+      toast({
+        title: 'Movie already exists',
+        status: 'error',
+        ...toastDefaults,
+      });
       return;
     }
     toast({
@@ -180,7 +233,23 @@ export default function SearchResults({
       status: 'info',
       ...toastDefaults,
     });
-    const searchedMovie = await OMDBApiUtils.fetchOMDBMovieByID(id);
+
+    const searchedMovieResp = await fetch(
+      `/api/omdb/movies/search-by-id?i=${id}`,
+    );
+    const searchedMovieJson = await searchedMovieResp.json();
+
+    if (isEmptyObject(searchedMovieJson)) {
+      toast({
+        title: 'Nothing found on OMDB',
+        status: 'error',
+        ...toastDefaults,
+      });
+      return;
+    }
+
+    const searchedMovie = OMDBMovie.jsonToObject(searchedMovieJson);
+
     if (searchedMovie) {
       await createMovieSearchMutation({
         variables: {
@@ -246,11 +315,12 @@ export default function SearchResults({
             if={!loading}
             else={
               <>
-                {theme === 'light' ? (
-                  <MinimalSpinner color="black" />
-                ) : (
-                  <MinimalSpinner color="text-white" />
-                )}
+                {mounted &&
+                  (theme === 'light' ? (
+                    <MinimalSpinner color="black" />
+                  ) : (
+                    <MinimalSpinner color="text-white" />
+                  ))}
               </>
             }
           >
@@ -277,11 +347,12 @@ export default function SearchResults({
                   if={loading || createMovieLoading}
                   else={'Find more'}
                 >
-                  {theme === 'light' ? (
-                    <MinimalSpinner color="black" />
-                  ) : (
-                    <MinimalSpinner color="text-white" />
-                  )}
+                  {mounted &&
+                    (theme === 'light' ? (
+                      <MinimalSpinner color="black" />
+                    ) : (
+                      <MinimalSpinner color="text-white" />
+                    ))}
                 </ShowIfElse>
               </button>
             </ShowIf>
