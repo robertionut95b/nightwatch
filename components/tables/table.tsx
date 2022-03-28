@@ -6,10 +6,13 @@ import {
   Tbody,
   Td,
   TableCaption,
+  Input,
 } from '@chakra-ui/react';
+import ShowIf from '@components/utils/layout/showConditional/showIf';
 import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
+import { debounce } from 'lodash';
 import Link from 'next/link';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import { Pagination } from './pagination';
 
 type Column<T> = {
@@ -82,6 +85,7 @@ const DeleteOption = (): JSX.Element => {
 };
 
 const NTable = <T,>({
+  title,
   cols,
   data,
   totalItems,
@@ -89,7 +93,9 @@ const NTable = <T,>({
   createRowLink,
   updateRowLink,
   deleteRowLink,
+  onFilter,
 }: {
+  title: string;
   cols: Column<T>[];
   data: T[];
   totalItems: number;
@@ -97,6 +103,7 @@ const NTable = <T,>({
   createRowLink?: (Row: T) => string;
   updateRowLink?: (Row: T) => string;
   deleteRowLink?: (Row: T) => string;
+  onFilter?: (filter: string) => void;
 }): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const handlePageChange = (pageNumber: number) => {
@@ -107,6 +114,15 @@ const NTable = <T,>({
   const defaultAccessor = (col: Column<T>, row: T): JSX.Element | ReactNode =>
     String(row[col.id]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedFilterEvent = useCallback(
+    debounce(onFilter || (() => null), 1000),
+    [onFilter],
+  );
+
+  const filterEvent = (e: React.ChangeEvent<HTMLInputElement>) =>
+    debouncedFilterEvent(e.target.value);
+
   return (
     <div className="overflow-auto">
       <Table variant="simple" className="rounded-lg border border-gray-200">
@@ -114,13 +130,27 @@ const NTable = <T,>({
           style={{ padding: '5px', marginBottom: '0.35rem' }}
           placement="bottom"
         >
-          <div className="table-options flex justify-end">
+          <div className="table-options-bottom flex justify-end">
             <Pagination
               className="flex items-center justify-center gap-x-2 text-black dark:text-white"
               currentPage={currentPage}
               totalItems={totalItems}
               handlePageChange={handlePageChange}
             />
+          </div>
+        </TableCaption>
+        <TableCaption placement="top">
+          <div className="table-options-top flex justify-between">
+            <span className="table-title text-2xl font-bold">{title}</span>
+            <ShowIf if={onFilter}>
+              <Input
+                className="place-self-en mb-1"
+                type="text"
+                placeholder="Filter entries"
+                onChange={filterEvent}
+                maxWidth={'16rem'}
+              />
+            </ShowIf>
           </div>
         </TableCaption>
         <Thead>

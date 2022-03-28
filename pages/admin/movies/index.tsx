@@ -21,7 +21,7 @@ export const AdminMoviesPage = ({
   movies: Movie[];
   total: number;
 }): JSX.Element => {
-  const { push, pathname } = useRouter();
+  const { push, pathname, query } = useRouter();
 
   return (
     <Layout>
@@ -37,9 +37,9 @@ export const AdminMoviesPage = ({
           ]}
         />
       </div>
-      <article className="users">
-        <h2 className="mb-4 text-2xl font-bold">Movies</h2>
+      <article className="movies">
         <NTable
+          title="Movies"
           cols={[
             {
               id: 'id',
@@ -101,10 +101,11 @@ export const AdminMoviesPage = ({
           ]}
           data={movies}
           totalItems={total}
-          onPageChange={(p) => push({ pathname, query: { p: p } })}
+          onPageChange={(p) => push({ pathname, query: { ...query, p } })}
           createRowLink={() => `/admin/movies/create`}
           updateRowLink={(m) => `/admin/movies/update/${m.imdbID}`}
           deleteRowLink={(m) => `/admin/movies/delete/${m.imdbID}`}
+          onFilter={(t) => push({ pathname, query: { t } })}
         />
       </article>
     </Layout>
@@ -114,9 +115,10 @@ export const AdminMoviesPage = ({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const ses = await getSession(context);
   const {
-    query: { p },
+    query: { p, t },
   } = context;
 
+  const title = Array.isArray(t) ? t.join(' ') : t;
   const appSession = ses as AppSession;
 
   if (!appSession || appSession?.role !== Role.ADMIN)
@@ -131,6 +133,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     prisma.movie.findMany({
       take: cfg.API_ITEMS_PAGINATION_COUNT,
       skip,
+      where: {
+        title: {
+          contains: title,
+          mode: 'insensitive',
+        },
+      },
       orderBy: {
         createdAt: 'desc',
       },
@@ -145,7 +153,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       session: ses,
       movies: JSON.parse(JSON.stringify(movies)),
-      total,
+      total: t ? movies.length : total,
     },
   };
 };

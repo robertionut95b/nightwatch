@@ -23,6 +23,7 @@ import { useSession } from 'next-auth/client';
 import { FormEvent } from 'react';
 import { useRouter } from 'next/router';
 import { AppSession } from 'pages/api/auth/[...nextauth]';
+import RatingSlider from '../../rating/index';
 
 export default function MovieDetailsCard({
   movie,
@@ -202,6 +203,18 @@ export default function MovieDetailsCard({
               ))}
             </ul>
           )}
+          <div className="user-ratings flex flex-row items-center gap-x-3">
+            <span>User rating</span>
+            <RatingSlider
+              initialValue={3}
+              size={16}
+              scale={10}
+              fillColor={'gold'}
+              onClick={(r) => console.log(r)}
+            />
+            <span>|</span>
+            <span className="text-sm">⭐ 7.3/10</span>
+          </div>
           {bookmarkButton()}
         </div>
         <div className="image-poster relative order-first place-self-center md:order-last">

@@ -1,6 +1,5 @@
 import Layout from '@components/layout/layout';
 import DateComponent from '@components/utils/helpers/date';
-import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
 import Head from 'next/head';
@@ -19,7 +18,7 @@ export default function UsersPage({
   users: User[];
   total: number;
 }): JSX.Element {
-  const { push, pathname } = useRouter();
+  const { push, pathname, query } = useRouter();
 
   return (
     <Layout>
@@ -36,45 +35,44 @@ export default function UsersPage({
         />
       </div>
       <article className="users">
-        <h2 className="mb-4 text-2xl font-bold">Users</h2>
-        <ShowIfElse if={users && users.length > 0} else={'No items to show'}>
-          <div className="users mt-2">
-            <NTable
-              cols={[
-                {
-                  id: 'id',
-                },
-                {
-                  id: 'username',
-                },
-                {
-                  id: 'email',
-                },
-                {
-                  id: 'role',
-                },
-                {
-                  id: 'createdAt',
-                  accesor: (user: User) => (
-                    <DateComponent dateString={user.createdAt.toString()} />
-                  ),
-                },
-                {
-                  id: 'updatedAt',
-                  accesor: (user: User) => (
-                    <DateComponent dateString={user.updatedAt.toString()} />
-                  ),
-                },
-              ]}
-              data={users}
-              totalItems={total}
-              onPageChange={(p) => push({ pathname, query: { p: p } })}
-              createRowLink={() => `/admin/users/create`}
-              updateRowLink={(u) => `/admin/users/update/${u.id}`}
-              deleteRowLink={(u) => `/admin/users/delete/${u.id}`}
-            />
-          </div>
-        </ShowIfElse>
+        <NTable
+          title="Users"
+          cols={[
+            {
+              id: 'id',
+            },
+            {
+              id: 'username',
+            },
+            {
+              id: 'email',
+            },
+            {
+              id: 'role',
+            },
+            {
+              id: 'createdAt',
+              label: 'Created',
+              accesor: (user: User) => (
+                <DateComponent dateString={user.createdAt.toString()} />
+              ),
+            },
+            {
+              id: 'updatedAt',
+              label: 'Updated',
+              accesor: (user: User) => (
+                <DateComponent dateString={user.updatedAt.toString()} />
+              ),
+            },
+          ]}
+          data={users}
+          totalItems={total}
+          onPageChange={(p) => push({ pathname, query: { ...query, p } })}
+          createRowLink={() => `/admin/users/create`}
+          updateRowLink={(u) => `/admin/users/update/${u.id}`}
+          deleteRowLink={(u) => `/admin/users/delete/${u.id}`}
+          onFilter={(u) => push({ pathname, query: { u } })}
+        />
       </article>
     </Layout>
   );
@@ -83,9 +81,10 @@ export default function UsersPage({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const ses = await getSession(context);
   const {
-    query: { p },
+    query: { p, u },
   } = context;
 
+  const username = Array.isArray(u) ? u.join(' ') : u;
   const appSession = ses as AppSession;
 
   if (!appSession || appSession?.role !== Role.ADMIN)
@@ -98,6 +97,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const [total, users] = await prisma.$transaction([
     prisma.user.count(),
     prisma.user.findMany({
+      where: {
+        username: {
+          contains: username,
+          mode: 'insensitive',
+        },
+      },
       take: cfg.API_ITEMS_PAGINATION_COUNT,
       skip,
     }),
@@ -107,7 +112,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       session: ses,
       users: JSON.parse(JSON.stringify(users)),
-      total,
+      total: u ? users.length : total,
     },
   };
 };
