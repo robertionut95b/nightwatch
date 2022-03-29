@@ -23,10 +23,14 @@ import { useSession } from 'next-auth/client';
 import { FormEvent } from 'react';
 import { useRouter } from 'next/router';
 import { AppSession } from 'pages/api/auth/[...nextauth]';
+import RatingSlider from '../../rating/index';
+import useUserMovieRating from '../../../../src/hooks/useUserMovieRating';
+import { roundTo2Decimals } from 'src/utils/numbers/round';
 
 export default function MovieDetailsCard({
   movie,
   relatedMovies,
+  totalRating,
 }: {
   movie: Movie & {
     genres: Genre[];
@@ -45,6 +49,7 @@ export default function MovieDetailsCard({
     })[];
   };
   relatedMovies: Movie[];
+  totalRating: number;
 }): JSX.Element {
   const toast = createStandaloneToast();
   const router = useRouter();
@@ -160,6 +165,36 @@ export default function MovieDetailsCard({
     createComment(message, movie.id, appSession);
   };
 
+  const {
+    rating,
+    loading: ratingLoad,
+    upsertMovieRating,
+  } = useUserMovieRating(movie.imdbID, {
+    onError: (err) => {
+      if (err?.message.includes('Not Authorised')) {
+        toast({
+          title: 'Action not allowed. Must login first',
+          status: 'error',
+          ...toastDefaults,
+        });
+      } else {
+        toast({
+          title: 'Failed to rate',
+          status: 'error',
+          ...toastDefaults,
+        });
+      }
+    },
+    onSuccess: () => {
+      toast({
+        title: 'Your rating has been submitted',
+        status: 'success',
+        ...toastDefaults,
+      });
+      router.reload();
+    },
+  });
+
   return (
     <div className="movie-card-details text-black dark:text-white">
       <div className="relative grid grid-cols-1 place-items-start gap-x-2 md:grid-cols-3">
@@ -202,6 +237,22 @@ export default function MovieDetailsCard({
               ))}
             </ul>
           )}
+          <div className="user-ratings flex flex-row items-center gap-x-3">
+            <span>User rating</span>
+            <ShowIfElse if={!ratingLoad} else={<MinimalSpinner />}>
+              <RatingSlider
+                initialValue={roundTo2Decimals(rating)}
+                size={16}
+                scale={10}
+                fillColor={'gold'}
+                onClick={(r) => upsertMovieRating(r)}
+              />
+              <span>|</span>
+              <span className="text-sm">
+                ⭐ {roundTo2Decimals(totalRating)}/10
+              </span>
+            </ShowIfElse>
+          </div>
           {bookmarkButton()}
         </div>
         <div className="image-poster relative order-first place-self-center md:order-last">

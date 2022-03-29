@@ -183,6 +183,34 @@ export const createMovie = gql`
   }
 `;
 
+export const UpdateMovie = gql`
+  mutation updateMovie(
+    $data: MovieUpdateInput!
+    $where: MovieWhereUniqueInput!
+  ) {
+    updateMovie(data: $data, where: $where) {
+      id
+      title
+      genres {
+        name
+      }
+      languages {
+        name
+      }
+      imdbRating
+      imdbID
+      plot
+      poster
+      rating
+      release
+      runtime
+      year
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
 export const createGenre = gql`
   mutation createGenre($name: String!) {
     createGenre(data: { name: $name }) {
@@ -409,6 +437,36 @@ export const updateIsSeenEpisode = gql`
       episodeId
       seen
       seenAt
+    }
+  }
+`;
+
+export const upsertUser = gql`
+  mutation upsertUser(
+    $create: UserCreateInput!
+    $update: UserUpdateInput!
+    $where: UserWhereUniqueInput!
+  ) {
+    upsertUser(create: $create, update: $update, where: $where) {
+      id
+      email
+      username
+      firstName
+      lastName
+    }
+  }
+`;
+
+export const upsertRating = gql`
+  mutation upsertRating(
+    $create: RatingCreateInput!
+    $update: RatingUpdateInput!
+    $where: RatingWhereUniqueInput!
+  ) {
+    upsertRating(create: $create, update: $update, where: $where) {
+      id
+      userId
+      rating
     }
   }
 `;

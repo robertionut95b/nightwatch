@@ -23,6 +23,7 @@ interface IParams extends ParsedUrlQuery {
 export default function SeriesPage({
   series,
   relatedSeries,
+  totalRating,
 }: {
   series: Serie & {
     genres: Genre[];
@@ -48,6 +49,7 @@ export default function SeriesPage({
     })[];
   };
   relatedSeries: Serie[];
+  totalRating: number;
 }): JSX.Element {
   return (
     <Layout home={false}>
@@ -55,7 +57,11 @@ export default function SeriesPage({
         <title>{series.title}</title>
       </Head>
       <article>
-        <SeriesDetailsCard series={series} relatedSeries={relatedSeries} />
+        <SeriesDetailsCard
+          series={series}
+          relatedSeries={relatedSeries}
+          totalRating={totalRating}
+        />
       </article>
     </Layout>
   );
@@ -129,8 +135,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           episodeIds: true,
         },
       },
+      userRating: {
+        select: {
+          rating: true,
+        },
+      },
     },
   });
+
+  if (!serie) {
+    return { notFound: true };
+  }
 
   const serieStr = JSON.stringify(serie);
   serie = JSON.parse(serieStr);
@@ -161,14 +176,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const relatedSeriesStr = JSON.stringify(relatedSeries);
   relatedSeries = JSON.parse(relatedSeriesStr);
 
-  if (!serie) {
-    return { notFound: true };
+  let totalRating = 0;
+
+  if (serie) {
+    totalRating =
+      serie?.userRating.reduce((total, next) => total + next.rating, 0) /
+      serie?.userRating.length;
   }
 
   return {
     props: {
       series: serie,
       relatedSeries: relatedSeries,
+      totalRating,
     },
     revalidate: 60,
   };

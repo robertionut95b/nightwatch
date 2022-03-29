@@ -2,8 +2,8 @@ import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
 import Head from 'next/head';
 import Layout from '../../../../components/layout/layout';
-import { MenuNavigationComponent } from '../../../../components/user/MenuNavigation';
 import { SettingsForm } from '../../../../components/user/SettingsForm';
+import Sidebar from '@components/user/Sidebar';
 
 export const Profile = (): JSX.Element => {
   return (
@@ -13,11 +13,11 @@ export const Profile = (): JSX.Element => {
           <title>{`Settings - ${process.env.APP_SITE_NAME}`}</title>
         </Head>
         <section>
-          <div className="wrapper flex flex-col md:flex-row gap-y-4 gap-x-4">
-            <div className="menu-container-sidebar w-full md:w-1/4 p-4 bg-white dark:bg-background-dark h-min rounded border border-gray-800">
-              <MenuNavigationComponent />
+          <div className="wrapper flex flex-col gap-y-4 gap-x-4 md:flex-row">
+            <div className="sidebar w-full md:w-1/4">
+              <Sidebar />
             </div>
-            <div className="page-container w-full md:w-3/4 border border-gray-800 rounded-lg p-4">
+            <div className="page-container w-full rounded-lg border border-gray-800 p-4 md:w-3/4">
               <SettingsForm />
             </div>
           </div>

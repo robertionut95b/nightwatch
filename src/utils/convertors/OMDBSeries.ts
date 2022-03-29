@@ -171,4 +171,23 @@ export class OMDBSeries implements IPrismaSeriesConvertor {
       totalSeasons: parseInt(this.totalSeasons) || 0,
     };
   };
+
+  static jsonToObject(json: OMDBSeries): OMDBSeries {
+    return new OMDBSeries(
+      json.title,
+      json.year,
+      json.rated,
+      json.released,
+      json.runtime,
+      json.genre,
+      json.director,
+      json.actors,
+      json.plot,
+      json.language,
+      json.poster,
+      json.imdbRating,
+      json.totalSeasons,
+      json.imdbID,
+    );
+  }
 }

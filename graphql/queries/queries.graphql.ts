@@ -333,3 +333,15 @@ export const getWatchlist = gql`
     }
   }
 `;
+
+export const getRatings = gql`
+  query getRatings($where: RatingWhereInput) {
+    ratings(where: $where) {
+      id
+      rating
+      movie {
+        imdbID
+      }
+    }
+  }
+`;

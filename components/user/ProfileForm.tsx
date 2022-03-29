@@ -1,60 +1,19 @@
 import { Avatar, createStandaloneToast } from '@chakra-ui/react';
 import Divider from '@components/utils/layout/divider/divider';
-import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 import { MinimalSpinner } from '@components/utils/layout/spinners/minimalSpinner';
-import { User } from '@prisma/client';
+import { Role, User } from '@prisma/client';
 import { toastDefaults } from 'assets/constants/config';
 import axios from 'axios';
-import { useUpdateUserMutation } from 'generated/graphql';
 import { useSession } from 'next-auth/client';
-import { useState, useEffect, FormEvent } from 'react';
-
-interface IProfileDetailsFormProps {
-  email?: {
-    value: string;
-  };
-  firstName?: {
-    value: string;
-  };
-  lastName?: {
-    value: string;
-  };
-  userName?: {
-    value: string;
-  };
-}
+import { useState, useEffect } from 'react';
+import UserForm from './UserForm';
+import ShowIfElse from '@components/utils/layout/showConditional/showIfElse';
 
 export const ProfileForm = (): JSX.Element => {
   const [session, loading] = useSession();
   const [user, setUser] = useState<User>(session?.user as User);
   const [userImage, setUserImage] = useState<string | ArrayBuffer | null>();
   const toast = createStandaloneToast();
-
-  const [updateUserMutation, { loading: updateLoading }] =
-    useUpdateUserMutation({
-      onCompleted: (newUserData) => {
-        setUser({ ...user, ...newUserData });
-        toast({
-          title: 'User information updated',
-          status: 'success',
-          ...toastDefaults,
-        });
-      },
-      onError: (err) => {
-        let msg = 'Could not update user information';
-        if (
-          err.message?.toLowerCase()?.includes('unique constraint') ||
-          err.message?.toLowerCase()?.includes('username')
-        ) {
-          msg = 'Username already taken';
-        }
-        toast({
-          title: msg,
-          status: 'error',
-          ...toastDefaults,
-        });
-      },
-    });
 
   useEffect(() => {
     if (session) setUser(session.user as User);
@@ -79,52 +38,6 @@ export const ProfileForm = (): JSX.Element => {
           />
         </svg>
       );
-  };
-
-  const submitProfileDetailsForm = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    const { email, firstName, lastName, userName } =
-      e.target as typeof e.target & IProfileDetailsFormProps;
-
-    if (
-      email &&
-      email.value === user.email &&
-      firstName &&
-      firstName.value === user.firstName &&
-      lastName &&
-      lastName.value === user.lastName &&
-      userName &&
-      userName.value === user.username
-    ) {
-      toast({
-        title: 'Nothing has changed!',
-        status: 'warning',
-        ...toastDefaults,
-      });
-      return;
-    }
-
-    updateUserMutation({
-      variables: {
-        data: {
-          email: {
-            set: email?.value,
-          },
-          firstName: {
-            set: firstName?.value,
-          },
-          lastName: {
-            set: lastName?.value,
-          },
-          username: {
-            set: userName?.value,
-          },
-        },
-        where: {
-          id: user.id,
-        },
-      },
-    });
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -170,103 +83,52 @@ export const ProfileForm = (): JSX.Element => {
 
   return (
     <section className="text-black dark:text-white">
-      <h4 className="font-bold text-xl tracking-wide">Profile</h4>
-      <p className="dark:text-gray-200 mb-4">
+      <h4 className="text-xl font-bold tracking-wide">Profile</h4>
+      <p className="mb-4 dark:text-gray-200">
         This section will contain the public information about the user&apos;s
         profile
       </p>
-      {loading ? (
-        <MinimalSpinner />
-      ) : (
-        <>
-          <article className="profile-pic flex flex-col gap-y-2">
-            <h4 className="font-bold text-lg tracking-wide">Avatar</h4>
-            <p className="dark:text-gray-200 mb-4">User personal photograph</p>
-            <span className="font-semibold text-md">Photo</span>
-            <div className="flex items-center gap-x-2">
-              {renderAvatar()}
-              <input
-                className="hidden"
-                type="file"
-                id="profilePic"
-                name="profilePic"
-                accept="image/png, image/gif, image/jpeg"
-                onChange={(e) => submitProfilePictureForm(e)}
-              />
-              <label htmlFor="profilePic" className="btn-primary">
-                Change photo
-              </label>
-            </div>
-          </article>
-          <Divider />
-          <article className="form-basic">
-            <form
-              className="basic-profile-information"
-              onSubmit={(e) => submitProfileDetailsForm(e)}
-            >
-              <h4 className="font-bold text-lg tracking-wide">
-                Personal information
-              </h4>
-              <p className="dark:text-gray-200 mb-4">
-                Basic information such as email address, last name, first name,
-                address
-              </p>
-              <div className="form-inputs flex flex-col gap-y-2">
-                <label htmlFor="email">Email address*</label>
-                <input
-                  className="rounded py-1 px-2 border bg-slate-200 dark:bg-inherit cursor-not-allowed"
-                  name="email"
-                  type="email"
-                  placeholder="johndoe@nightwatch.org"
-                  disabled
-                  defaultValue={user?.email}
-                />
-                <label htmlFor="username">Username</label>
-                <input
-                  className="rounded py-1 px-2 bg-gray-100 dark:bg-white border text-black placeholder-gray-800"
-                  name="userName"
-                  type="userName"
-                  placeholder="johndoe"
-                  defaultValue={user?.username || undefined}
-                />
-                <label htmlFor="firstName">First name</label>
-                <input
-                  className="rounded py-1 px-2 bg-gray-100 text-black border placeholder-gray-800"
-                  name="firstName"
-                  type="text"
-                  placeholder="John"
-                  defaultValue={user?.firstName || undefined}
-                />
-                <label htmlFor="lastName">Last name</label>
-                <input
-                  className="rounded py-1 px-2 bg-gray-100 text-black border placeholder-gray-800"
-                  name="lastName"
-                  type="text"
-                  placeholder="Doe"
-                  defaultValue={user?.lastName || undefined}
-                />
-              </div>
-              <div className="button-groups mt-8 flex justify-end gap-x-2">
-                <button
-                  className="btn-primary bg-gray-200 text-primary hover:bg-gray-400 font-semibold"
-                  type="reset"
-                >
-                  Cancel
-                </button>
-                <button
-                  className="btn-primary bg-primary text-white disabled:bg-slate-700"
-                  type="submit"
-                  disabled={updateLoading}
-                >
-                  <ShowIfElse if={updateLoading} else={'Save'}>
-                    <MinimalSpinner color={'white'} />
-                  </ShowIfElse>
-                </button>
-              </div>
-            </form>
-          </article>
-        </>
-      )}
+      <ShowIfElse if={!loading} else={<MinimalSpinner />}>
+        <article className="profile-pic flex flex-col gap-y-2">
+          <h4 className="text-lg font-bold tracking-wide">Avatar</h4>
+          <p className="mb-4 dark:text-gray-200">User personal photograph</p>
+          <span className="text-md font-semibold">Photo</span>
+          <div className="flex items-center gap-x-2">
+            {renderAvatar()}
+            <input
+              className="hidden"
+              type="file"
+              id="profilePic"
+              name="profilePic"
+              accept="image/png, image/gif, image/jpeg"
+              onChange={(e) => submitProfilePictureForm(e)}
+            />
+            <label htmlFor="profilePic" className="btn-primary">
+              Change photo
+            </label>
+          </div>
+        </article>
+        <Divider />
+        <article className="form-basic">
+          <h4 className="text-lg font-bold tracking-wide">
+            Personal information
+          </h4>
+          <p className="mb-4 dark:text-gray-200">
+            Basic information such as email address, last name, first name,
+            address
+          </p>
+          <UserForm
+            user={{
+              id: user?.id,
+              username: user?.username,
+              firstName: user?.firstName,
+              lastName: user?.lastName,
+              role: (session?.role as Role | undefined) || undefined,
+            }}
+            showFields={['firstName', 'lastName', 'username']}
+          />
+        </article>
+      </ShowIfElse>
     </section>
   );
 };

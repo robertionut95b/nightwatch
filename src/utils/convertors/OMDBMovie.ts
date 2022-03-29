@@ -116,6 +116,27 @@ export class OMDBMovie implements IPrismaMovieConvertor {
     });
   }
 
+  static jsonToObject = (
+    json: IOMDBMovie | undefined,
+  ): OMDBMovie | undefined => {
+    if (!json) return undefined;
+    return new OMDBMovie(
+      json.Title,
+      json.Year,
+      json.Rated,
+      json.Released,
+      json.Runtime,
+      json.Genre,
+      json.Director,
+      json.Actors,
+      json.Plot,
+      json.Language,
+      json.Poster,
+      json.imdbRating,
+      json.imdbID,
+    );
+  };
+
   toCreateVariables = (): CreateMovieMutationVariables => {
     const genres = this.mapGenresFromString();
     const languages = this.mapLanguagesFromString();
