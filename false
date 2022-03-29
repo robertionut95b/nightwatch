@@ -5870,14 +5870,15 @@ enum QueryMode {
 type Rating {
   createdAt: DateTime!
   episode: Episode
-  episodeId: Int!
+  episodeId: Int
   id: String!
   movie: Movie
-  movieId: Int!
+  movieId: Int
   rating: Int!
   serie: Serie
-  serieId: Int!
+  serieId: Int
   updatedAt: DateTime!
+  user: User!
   userId: String!
 }
 
@@ -5926,15 +5927,15 @@ input RatingCreateInput {
   rating: Int
   serie: SerieCreateNestedOneWithoutUserRatingInput
   updatedAt: DateTime
-  userId: String!
+  user: UserCreateNestedOneWithoutRatingsInput!
 }
 
 input RatingCreateManyEpisodeInput {
   createdAt: DateTime
   id: String
-  movieId: Int!
+  movieId: Int
   rating: Int
-  serieId: Int!
+  serieId: Int
   updatedAt: DateTime
   userId: String!
 }
@@ -5946,21 +5947,21 @@ input RatingCreateManyEpisodeInputEnvelope {
 
 input RatingCreateManyInput {
   createdAt: DateTime
-  episodeId: Int!
+  episodeId: Int
   id: String
-  movieId: Int!
+  movieId: Int
   rating: Int
-  serieId: Int!
+  serieId: Int
   updatedAt: DateTime
   userId: String!
 }
 
 input RatingCreateManyMovieInput {
   createdAt: DateTime
-  episodeId: Int!
+  episodeId: Int
   id: String
   rating: Int
-  serieId: Int!
+  serieId: Int
   updatedAt: DateTime
   userId: String!
 }
@@ -5972,9 +5973,9 @@ input RatingCreateManyMovieInputEnvelope {
 
 input RatingCreateManySerieInput {
   createdAt: DateTime
-  episodeId: Int!
+  episodeId: Int
   id: String
-  movieId: Int!
+  movieId: Int
   rating: Int
   updatedAt: DateTime
   userId: String!
@@ -5982,6 +5983,21 @@ input RatingCreateManySerieInput {
 
 input RatingCreateManySerieInputEnvelope {
   data: [RatingCreateManySerieInput!]!
+  skipDuplicates: Boolean
+}
+
+input RatingCreateManyUserInput {
+  createdAt: DateTime
+  episodeId: Int
+  id: String
+  movieId: Int
+  rating: Int
+  serieId: Int
+  updatedAt: DateTime
+}
+
+input RatingCreateManyUserInputEnvelope {
+  data: [RatingCreateManyUserInput!]!
   skipDuplicates: Boolean
 }
 
@@ -6006,6 +6022,13 @@ input RatingCreateNestedManyWithoutSerieInput {
   createMany: RatingCreateManySerieInputEnvelope
 }
 
+input RatingCreateNestedManyWithoutUserInput {
+  connect: [RatingWhereUniqueInput!]
+  connectOrCreate: [RatingCreateOrConnectWithoutUserInput!]
+  create: [RatingCreateWithoutUserInput!]
+  createMany: RatingCreateManyUserInputEnvelope
+}
+
 input RatingCreateOrConnectWithoutEpisodeInput {
   create: RatingCreateWithoutEpisodeInput!
   where: RatingWhereUniqueInput!
@@ -6021,6 +6044,11 @@ input RatingCreateOrConnectWithoutSerieInput {
   where: RatingWhereUniqueInput!
 }
 
+input RatingCreateOrConnectWithoutUserInput {
+  create: RatingCreateWithoutUserInput!
+  where: RatingWhereUniqueInput!
+}
+
 input RatingCreateWithoutEpisodeInput {
   createdAt: DateTime
   id: String
@@ -6028,7 +6056,7 @@ input RatingCreateWithoutEpisodeInput {
   rating: Int
   serie: SerieCreateNestedOneWithoutUserRatingInput
   updatedAt: DateTime
-  userId: String!
+  user: UserCreateNestedOneWithoutRatingsInput!
 }
 
 input RatingCreateWithoutMovieInput {
@@ -6038,7 +6066,7 @@ input RatingCreateWithoutMovieInput {
   rating: Int
   serie: SerieCreateNestedOneWithoutUserRatingInput
   updatedAt: DateTime
-  userId: String!
+  user: UserCreateNestedOneWithoutRatingsInput!
 }
 
 input RatingCreateWithoutSerieInput {
@@ -6048,7 +6076,17 @@ input RatingCreateWithoutSerieInput {
   movie: MovieCreateNestedOneWithoutUserRatingInput
   rating: Int
   updatedAt: DateTime
-  userId: String!
+  user: UserCreateNestedOneWithoutRatingsInput!
+}
+
+input RatingCreateWithoutUserInput {
+  createdAt: DateTime
+  episode: EpisodeCreateNestedOneWithoutUserRatingInput
+  id: String
+  movie: MovieCreateNestedOneWithoutUserRatingInput
+  rating: Int
+  serie: SerieCreateNestedOneWithoutUserRatingInput
+  updatedAt: DateTime
 }
 
 type RatingGroupBy {
@@ -6058,11 +6096,11 @@ type RatingGroupBy {
   _min: RatingMinAggregate
   _sum: RatingSumAggregate
   createdAt: DateTime!
-  episodeId: Int!
+  episodeId: Int
   id: String!
-  movieId: Int!
+  movieId: Int
   rating: Int!
-  serieId: Int!
+  serieId: Int
   updatedAt: DateTime!
   userId: String!
 }
@@ -6148,6 +6186,7 @@ input RatingOrderByWithRelationInput {
   serie: SerieOrderByWithRelationInput
   serieId: SortOrder
   updatedAt: SortOrder
+  user: UserOrderByWithRelationInput
   userId: SortOrder
 }
 
@@ -6167,11 +6206,11 @@ input RatingScalarWhereInput {
   NOT: [RatingScalarWhereInput!]
   OR: [RatingScalarWhereInput!]
   createdAt: DateTimeFilter
-  episodeId: IntFilter
+  episodeId: IntNullableFilter
   id: StringFilter
-  movieId: IntFilter
+  movieId: IntNullableFilter
   rating: IntFilter
-  serieId: IntFilter
+  serieId: IntNullableFilter
   updatedAt: DateTimeFilter
   userId: StringFilter
 }
@@ -6181,11 +6220,11 @@ input RatingScalarWhereWithAggregatesInput {
   NOT: [RatingScalarWhereWithAggregatesInput!]
   OR: [RatingScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
-  episodeId: IntWithAggregatesFilter
+  episodeId: IntNullableWithAggregatesFilter
   id: StringWithAggregatesFilter
-  movieId: IntWithAggregatesFilter
+  movieId: IntNullableWithAggregatesFilter
   rating: IntWithAggregatesFilter
-  serieId: IntWithAggregatesFilter
+  serieId: IntNullableWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
   userId: StringWithAggregatesFilter
 }
@@ -6212,7 +6251,7 @@ input RatingUpdateInput {
   rating: IntFieldUpdateOperationsInput
   serie: SerieUpdateOneWithoutUserRatingInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  userId: StringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutRatingsInput
 }
 
 input RatingUpdateManyMutationInput {
@@ -6220,7 +6259,6 @@ input RatingUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
   rating: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  userId: StringFieldUpdateOperationsInput
 }
 
 input RatingUpdateManyWithWhereWithoutEpisodeInput {
@@ -6234,6 +6272,11 @@ input RatingUpdateManyWithWhereWithoutMovieInput {
 }
 
 input RatingUpdateManyWithWhereWithoutSerieInput {
+  data: RatingUpdateManyMutationInput!
+  where: RatingScalarWhereInput!
+}
+
+input RatingUpdateManyWithWhereWithoutUserInput {
   data: RatingUpdateManyMutationInput!
   where: RatingScalarWhereInput!
 }
@@ -6280,6 +6323,20 @@ input RatingUpdateManyWithoutSerieInput {
   upsert: [RatingUpsertWithWhereUniqueWithoutSerieInput!]
 }
 
+input RatingUpdateManyWithoutUserInput {
+  connect: [RatingWhereUniqueInput!]
+  connectOrCreate: [RatingCreateOrConnectWithoutUserInput!]
+  create: [RatingCreateWithoutUserInput!]
+  createMany: RatingCreateManyUserInputEnvelope
+  delete: [RatingWhereUniqueInput!]
+  deleteMany: [RatingScalarWhereInput!]
+  disconnect: [RatingWhereUniqueInput!]
+  set: [RatingWhereUniqueInput!]
+  update: [RatingUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [RatingUpdateManyWithWhereWithoutUserInput!]
+  upsert: [RatingUpsertWithWhereUniqueWithoutUserInput!]
+}
+
 input RatingUpdateWithWhereUniqueWithoutEpisodeInput {
   data: RatingUpdateWithoutEpisodeInput!
   where: RatingWhereUniqueInput!
@@ -6295,6 +6352,11 @@ input RatingUpdateWithWhereUniqueWithoutSerieInput {
   where: RatingWhereUniqueInput!
 }
 
+input RatingUpdateWithWhereUniqueWithoutUserInput {
+  data: RatingUpdateWithoutUserInput!
+  where: RatingWhereUniqueInput!
+}
+
 input RatingUpdateWithoutEpisodeInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
@@ -6302,7 +6364,7 @@ input RatingUpdateWithoutEpisodeInput {
   rating: IntFieldUpdateOperationsInput
   serie: SerieUpdateOneWithoutUserRatingInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  userId: StringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutRatingsInput
 }
 
 input RatingUpdateWithoutMovieInput {
@@ -6312,7 +6374,7 @@ input RatingUpdateWithoutMovieInput {
   rating: IntFieldUpdateOperationsInput
   serie: SerieUpdateOneWithoutUserRatingInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  userId: StringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutRatingsInput
 }
 
 input RatingUpdateWithoutSerieInput {
@@ -6322,7 +6384,17 @@ input RatingUpdateWithoutSerieInput {
   movie: MovieUpdateOneWithoutUserRatingInput
   rating: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  userId: StringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutRatingsInput
+}
+
+input RatingUpdateWithoutUserInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  episode: EpisodeUpdateOneWithoutUserRatingInput
+  id: StringFieldUpdateOperationsInput
+  movie: MovieUpdateOneWithoutUserRatingInput
+  rating: IntFieldUpdateOperationsInput
+  serie: SerieUpdateOneWithoutUserRatingInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input RatingUpsertWithWhereUniqueWithoutEpisodeInput {
@@ -6343,20 +6415,27 @@ input RatingUpsertWithWhereUniqueWithoutSerieInput {
   where: RatingWhereUniqueInput!
 }
 
+input RatingUpsertWithWhereUniqueWithoutUserInput {
+  create: RatingCreateWithoutUserInput!
+  update: RatingUpdateWithoutUserInput!
+  where: RatingWhereUniqueInput!
+}
+
 input RatingWhereInput {
   AND: [RatingWhereInput!]
   NOT: [RatingWhereInput!]
   OR: [RatingWhereInput!]
   createdAt: DateTimeFilter
   episode: EpisodeRelationFilter
-  episodeId: IntFilter
+  episodeId: IntNullableFilter
   id: StringFilter
   movie: MovieRelationFilter
-  movieId: IntFilter
+  movieId: IntNullableFilter
   rating: IntFilter
   serie: SerieRelationFilter
-  serieId: IntFilter
+  serieId: IntNullableFilter
   updatedAt: DateTimeFilter
+  user: UserRelationFilter
   userId: StringFilter
 }
 
@@ -8365,6 +8444,7 @@ type User {
   image: String
   lastName: String
   name: String
+  ratings(cursor: RatingWhereUniqueInput, distinct: [RatingScalarFieldEnum!], orderBy: [RatingOrderByWithRelationInput!], skip: Int, take: Int, where: RatingWhereInput): [Rating!]!
   role: Role!
   sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
   settings(cursor: AppSettingsWhereUniqueInput, distinct: [AppSettingsScalarFieldEnum!], orderBy: [AppSettingsOrderByWithRelationInput!], skip: Int, take: Int, where: AppSettingsWhereInput): [AppSettings!]!
@@ -8377,6 +8457,7 @@ type UserCount {
   AskSubmission: Int!
   accounts: Int!
   comments: Int!
+  ratings: Int!
   sessions: Int!
   settings: Int!
   watchlist: Int!
@@ -8423,6 +8504,7 @@ input UserCreateInput {
   image: String
   lastName: String
   name: String
+  ratings: RatingCreateNestedManyWithoutUserInput
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   settings: AppSettingsCreateNestedManyWithoutUserInput
@@ -8463,6 +8545,12 @@ input UserCreateNestedOneWithoutCommentsInput {
   create: UserCreateWithoutCommentsInput
 }
 
+input UserCreateNestedOneWithoutRatingsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutRatingsInput
+  create: UserCreateWithoutRatingsInput
+}
+
 input UserCreateNestedOneWithoutSessionsInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutSessionsInput
@@ -8496,6 +8584,11 @@ input UserCreateOrConnectWithoutCommentsInput {
   where: UserWhereUniqueInput!
 }
 
+input UserCreateOrConnectWithoutRatingsInput {
+  create: UserCreateWithoutRatingsInput!
+  where: UserWhereUniqueInput!
+}
+
 input UserCreateOrConnectWithoutSessionsInput {
   create: UserCreateWithoutSessionsInput!
   where: UserWhereUniqueInput!
@@ -8522,6 +8615,7 @@ input UserCreateWithoutAccountsInput {
   image: String
   lastName: String
   name: String
+  ratings: RatingCreateNestedManyWithoutUserInput
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   settings: AppSettingsCreateNestedManyWithoutUserInput
@@ -8541,6 +8635,7 @@ input UserCreateWithoutAskSubmissionInput {
   image: String
   lastName: String
   name: String
+  ratings: RatingCreateNestedManyWithoutUserInput
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   settings: AppSettingsCreateNestedManyWithoutUserInput
@@ -8552,6 +8647,27 @@ input UserCreateWithoutAskSubmissionInput {
 input UserCreateWithoutCommentsInput {
   AskSubmission: AskSubmissionCreateNestedManyWithoutUserInput
   accounts: AccountCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  emailVerified: DateTime
+  firstName: String
+  id: String
+  image: String
+  lastName: String
+  name: String
+  ratings: RatingCreateNestedManyWithoutUserInput
+  role: Role
+  sessions: SessionCreateNestedManyWithoutUserInput
+  settings: AppSettingsCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String
+  watchlist: WatchlistCreateNestedManyWithoutUserInput
+}
+
+input UserCreateWithoutRatingsInput {
+  AskSubmission: AskSubmissionCreateNestedManyWithoutUserInput
+  accounts: AccountCreateNestedManyWithoutUserInput
+  comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   emailVerified: DateTime
@@ -8580,6 +8696,7 @@ input UserCreateWithoutSessionsInput {
   image: String
   lastName: String
   name: String
+  ratings: RatingCreateNestedManyWithoutUserInput
   role: Role
   settings: AppSettingsCreateNestedManyWithoutUserInput
   updatedAt: DateTime
@@ -8599,6 +8716,7 @@ input UserCreateWithoutSettingsInput {
   image: String
   lastName: String
   name: String
+  ratings: RatingCreateNestedManyWithoutUserInput
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   updatedAt: DateTime
@@ -8618,6 +8736,7 @@ input UserCreateWithoutWatchlistInput {
   image: String
   lastName: String
   name: String
+  ratings: RatingCreateNestedManyWithoutUserInput
   role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   settings: AppSettingsCreateNestedManyWithoutUserInput
@@ -8727,6 +8846,7 @@ input UserOrderByWithRelationInput {
   image: SortOrder
   lastName: SortOrder
   name: SortOrder
+  ratings: RatingOrderByRelationAggregateInput
   role: SortOrder
   sessions: SessionOrderByRelationAggregateInput
   settings: AppSettingsOrderByRelationAggregateInput
@@ -8783,6 +8903,7 @@ input UserUpdateInput {
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  ratings: RatingUpdateManyWithoutUserInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   settings: AppSettingsUpdateManyWithoutUserInput
@@ -8829,6 +8950,14 @@ input UserUpdateOneRequiredWithoutCommentsInput {
   upsert: UserUpsertWithoutCommentsInput
 }
 
+input UserUpdateOneRequiredWithoutRatingsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutRatingsInput
+  create: UserCreateWithoutRatingsInput
+  update: UserUpdateWithoutRatingsInput
+  upsert: UserUpsertWithoutRatingsInput
+}
+
 input UserUpdateOneRequiredWithoutSessionsInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutSessionsInput
@@ -8866,6 +8995,7 @@ input UserUpdateWithoutAccountsInput {
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  ratings: RatingUpdateManyWithoutUserInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   settings: AppSettingsUpdateManyWithoutUserInput
@@ -8885,6 +9015,7 @@ input UserUpdateWithoutAskSubmissionInput {
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  ratings: RatingUpdateManyWithoutUserInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   settings: AppSettingsUpdateManyWithoutUserInput
@@ -8896,6 +9027,27 @@ input UserUpdateWithoutAskSubmissionInput {
 input UserUpdateWithoutCommentsInput {
   AskSubmission: AskSubmissionUpdateManyWithoutUserInput
   accounts: AccountUpdateManyWithoutUserInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: NullableStringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
+  lastName: NullableStringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  ratings: RatingUpdateManyWithoutUserInput
+  role: EnumRoleFieldUpdateOperationsInput
+  sessions: SessionUpdateManyWithoutUserInput
+  settings: AppSettingsUpdateManyWithoutUserInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  username: NullableStringFieldUpdateOperationsInput
+  watchlist: WatchlistUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutRatingsInput {
+  AskSubmission: AskSubmissionUpdateManyWithoutUserInput
+  accounts: AccountUpdateManyWithoutUserInput
+  comments: CommentUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
@@ -8924,6 +9076,7 @@ input UserUpdateWithoutSessionsInput {
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  ratings: RatingUpdateManyWithoutUserInput
   role: EnumRoleFieldUpdateOperationsInput
   settings: AppSettingsUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -8943,6 +9096,7 @@ input UserUpdateWithoutSettingsInput {
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  ratings: RatingUpdateManyWithoutUserInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -8962,6 +9116,7 @@ input UserUpdateWithoutWatchlistInput {
   image: NullableStringFieldUpdateOperationsInput
   lastName: NullableStringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  ratings: RatingUpdateManyWithoutUserInput
   role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserInput
   settings: AppSettingsUpdateManyWithoutUserInput
@@ -8982,6 +9137,11 @@ input UserUpsertWithoutAskSubmissionInput {
 input UserUpsertWithoutCommentsInput {
   create: UserCreateWithoutCommentsInput!
   update: UserUpdateWithoutCommentsInput!
+}
+
+input UserUpsertWithoutRatingsInput {
+  create: UserCreateWithoutRatingsInput!
+  update: UserUpdateWithoutRatingsInput!
 }
 
 input UserUpsertWithoutSessionsInput {
@@ -9014,6 +9174,7 @@ input UserWhereInput {
   image: StringNullableFilter
   lastName: StringNullableFilter
   name: StringNullableFilter
+  ratings: RatingListRelationFilter
   role: EnumRoleFilter
   sessions: SessionListRelationFilter
   settings: AppSettingsListRelationFilter

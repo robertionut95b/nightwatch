@@ -456,3 +456,17 @@ export const upsertUser = gql`
     }
   }
 `;
+
+export const upsertRating = gql`
+  mutation upsertRating(
+    $create: RatingCreateInput!
+    $update: RatingUpdateInput!
+    $where: RatingWhereUniqueInput!
+  ) {
+    upsertRating(create: $create, update: $update, where: $where) {
+      id
+      userId
+      rating
+    }
+  }
+`;

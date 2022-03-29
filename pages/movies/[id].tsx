@@ -21,6 +21,7 @@ interface IParams extends ParsedUrlQuery {
 export default function MoviePage({
   movie,
   relatedMovies,
+  totalRating,
 }: {
   movie: Movie & {
     genres: Genre[];
@@ -43,6 +44,7 @@ export default function MoviePage({
     })[];
   };
   relatedMovies: Movie[];
+  totalRating: number;
 }): JSX.Element {
   return (
     <Layout home={false}>
@@ -50,7 +52,11 @@ export default function MoviePage({
         <title>{movie.title}</title>
       </Head>
       <article>
-        <MovieDetailsCard movie={movie} relatedMovies={relatedMovies} />
+        <MovieDetailsCard
+          movie={movie}
+          relatedMovies={relatedMovies}
+          totalRating={totalRating}
+        />
       </article>
     </Layout>
   );
@@ -150,8 +156,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           createdAt: 'asc',
         },
       },
+      userRating: {
+        select: {
+          rating: true,
+        },
+      },
     },
   });
+
+  if (!movie) {
+    return { notFound: true };
+  }
 
   const movieStr = JSON.stringify(movie);
   movie = JSON.parse(movieStr);
@@ -175,14 +190,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const relatedMoviesStr = JSON.stringify(relatedMovies);
   relatedMovies = JSON.parse(relatedMoviesStr);
 
-  if (!movie) {
-    return { notFound: true };
+  let totalRating = 0;
+
+  if (movie) {
+    totalRating =
+      movie?.userRating.reduce((total, next) => total + next.rating, 0) /
+      movie?.userRating.length;
   }
 
   return {
     props: {
-      movie: movie,
+      movie,
       relatedMovies: relatedMovies,
+      totalRating,
     },
     revalidate: 60,
   };
