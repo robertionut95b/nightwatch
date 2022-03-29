@@ -56,7 +56,7 @@ const useUserMovieRating = (
   }, [session, geMovieRatingsLazyQuery, movieImdbId]);
 
   return {
-    rating: data?.ratings?.[0].rating || 0,
+    rating: data?.ratings?.[0]?.rating || 0,
     loading: loading || upsertLoading || queryLoading,
     upsertMovieRating: (rating) => {
       const appSession = session as AppSession;
